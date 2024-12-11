@@ -34,6 +34,7 @@ github_username:  Hull-Robotics-Society
 remote_theme: "mmistakes/minimal-mistakes@4.26.2"
 plugins:
  - jekyll-feed
+ - jekyll-include-cache
 
 # Exclude from processing.
 # The following items will not be processed, by default.
