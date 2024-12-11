@@ -3,6 +3,8 @@ layout: home
 title: Hull University Robotics Society
 ---
 
+![Hull University Robotics Society Logo](/img/hullrs.svg)
+
 # Hull University Robotics Society 🤖
 
 Welcome to the **Hull University Robotics Society**—the home of innovation, creativity, and teamwork! 🚀  
