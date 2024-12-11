@@ -31,9 +31,9 @@ github_username:  Hull-Robotics-Society
 
 # Build settings
 # theme: minima
-theme: minimal-mistakes-jekyll
+remote_theme: mmistakes/minimal-mistakes
 plugins:
-  - jekyll-feed
+ - jekyll-feed
 
 # Exclude from processing.
 # The following items will not be processed, by default.
