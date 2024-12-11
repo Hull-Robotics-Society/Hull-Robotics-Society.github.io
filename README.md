@@ -30,10 +30,10 @@ Details: Teams will compete to design and build robots for real-world challenges
 ---
 
 ## 🔗 Quick Links  
-- [**Join Our Discord Server**](https://discord.gg/example)  
-- [**Visit Our GitHub Repository**](https://github.com/example)  
-- [**Check Out Our Linktree**](https://linktr.ee/example)  
-- [**Society Information & Membership**](https://hulluni.example/society)  
+- [**Join Our Discord Server**](https://discord.gg/DaNcZb7zvd)  
+- [**Visit Our GitHub Repository**](https://github.com/Hull-Robotics-Society)  
+- [**Check Out Our Linktree**](https://www.linktr.ee/HU_RS)  
+- [**Society Information & Membership**](https://hulluniunion.com/activities/view/Robotics)  
 
 ---
 
@@ -42,7 +42,7 @@ Check out what we've been working on!
 ![Robotics Workshop](https://example.com/robotics_workshop.jpg)  
 ![Build a Bot Event](https://example.com/build_a_bot.jpg)  
 
-See more on our [**Instagram**](https://instagram.com/example).
+See more on our [**Instagram**](https://instagram.com/hull_rs).
 
 ---
 
