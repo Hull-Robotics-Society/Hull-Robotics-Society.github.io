@@ -61,9 +61,27 @@ github:
 Check out some of our exciting projects and events!  
 <div style="text-align: center;">
   <iframe 
-    src="https://www.instagram.com/p/C-_BLd3utZe/?utm_source=ig_embed"
-    width="400" 
-    height="480" 
+    src="https://www.instagram.com/p/C-_BLd3utZe/embed"
+    width="300" 
+    height="400" 
+    frameborder="0" 
+    scrolling="no" 
+    allowtransparency="true" 
+    style="margin: 10px;">
+  </iframe>
+  <iframe 
+    src="https://www.instagram.com/p/DDZYD4RuAYt/embed"
+    width="300" 
+    height="400" 
+    frameborder="0" 
+    scrolling="no" 
+    allowtransparency="true" 
+    style="margin: 10px;">
+  </iframe>
+  <iframe 
+    src="https://www.instagram.com/p/DDj5TVotKq-/embed"
+    width="300" 
+    height="400" 
     frameborder="0" 
     scrolling="no" 
     allowtransparency="true" 
