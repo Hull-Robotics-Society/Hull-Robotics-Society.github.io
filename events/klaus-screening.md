@@ -10,6 +10,9 @@ Join us for a cozy Christmas movie night featuring the critically acclaimed anim
 
 ---
 
+<!-- Button to go back to main events page -->
+<a href="/events/" class="back-to-events-btn">Back to Events →</a>
+
 ## 🎬 Movie Details
 
 **Title**: Klaus  
