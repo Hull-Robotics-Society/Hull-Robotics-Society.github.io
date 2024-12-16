@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    if: github.repository == 'mmistakes/minimal-mistakes'
+    if: github.repository == 'Hull-Robotics-Society/Hull-Robotics-Society.github.io'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
