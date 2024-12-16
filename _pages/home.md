@@ -1,6 +1,9 @@
 ---
 layout: splash
 permalink: /
+hidden: true
+title: " "
+excerpt: <br />
 header:
   overlay_image: images/hullrs-web-banner.svg
   # caption: "The official home of the University of Hull Robotics Society"

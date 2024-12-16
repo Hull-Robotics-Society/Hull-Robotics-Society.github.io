@@ -4,3 +4,6 @@ main:
     url: /projects/main/
   - title: "About"
     url: /about/
+  - title: "Events"
+    url: /events/
+
