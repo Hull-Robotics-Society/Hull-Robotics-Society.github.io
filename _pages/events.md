@@ -36,7 +36,7 @@ feature_row:
 <ul class="recent-events">
   {% for event in events %}
   <li class="event-post">
-    <h3><a href="{{ event.path }}">{{ event.title }}</a></h3>
+    <h3><a href="{{ event.url }}">{{ event.title }}</a></h3>
     <p>{{ event.excerpt | markdownify }}</p>
   </li>
   {% endfor %}
