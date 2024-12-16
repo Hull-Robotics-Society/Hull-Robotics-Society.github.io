@@ -28,3 +28,18 @@ feature_row:
 ---
 {% include feature_row id="intro" type="center" %}
 {% include feature_row %}
+
+## Latest Events
+
+{% assign events = site.pages | where_exp: "item", "item.path contains 'events/'" | sort: "modified_time" | slice: 0, 6 %}
+
+<ul class="recent-events">
+  {% for event in events %}
+  <li class="event-post">
+    <h3><a href="{{ event.path }}">{{ event.title }}</a></h3>
+    <p>{{ event.excerpt | markdownify }}</p>
+  </li>
+  {% endfor %}
+</ul>
+
+[View all events](/events/all-events/)

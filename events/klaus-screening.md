@@ -1,7 +1,9 @@
 ---
 layout: posts
+date: 2024-12-11
 title: "Christmas Movie Night: Klaus 🎄"
 permalink: /events/klaus-screening/
+excerpt: "Join us for a cozy Christmas movie night featuring the critically acclaimed animated film **Klaus**! Bring some popcorn, relax, and enjoy the festive spirit with friends. 🎥✨"
 ---
 
 Join us for a cozy Christmas movie night featuring the critically acclaimed animated film **Klaus**! Bring some popcorn, relax, and enjoy the festive spirit with friends. 🎥✨
