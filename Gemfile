@@ -6,10 +6,14 @@ gem "github-pages", "~> 232", group: :jekyll_plugins
 # Markdown parser for GitHub-flavored markdown (required for parsing GFM)
 gem "kramdown-parser-gfm"
 
-# Jekyll plugins (optional, but useful for functionality)
-group :jekyll_plugins do
-    gem "jekyll-sitemap"
-    gem "jekyll-gist"
-    gem "jekyll-feed"
-    gem "jekyll-paginate"
-end
+# Runtime dependencies
+gem "jekyll", ">= 3.7", "< 5.0"
+gem "jekyll-paginate", "~> 1.1"
+gem "jekyll-sitemap", "~> 1.3"
+gem "jekyll-gist", "~> 1.5"
+gem "jekyll-feed", "~> 0.1"
+gem "jekyll-include-cache", "~> 0.1"
+
+# Development dependencies
+gem "bundler"
+gem "rake", ">= 12.3.3"
