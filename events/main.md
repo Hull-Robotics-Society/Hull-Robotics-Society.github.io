@@ -17,25 +17,14 @@ feature_row:
     btn_label: "Learn More"
     btn_class: "btn--primary"
 
+  - image_path: 
+    alt: "Klaus Christmas Showing"
+    title: "Klaus Christmas Showing"
+    excerpt: "Come join us as we watch the movie Klaus"
+    url: /events/klaus-screening/
+    btn_label: "Learn More"
+    btn_class: "btn--primary"
+
 ---
 {% include feature_row id="intro" type="center" %}
 {% include feature_row %}
-
-
-
-<!-- # 📅 Upcoming Events
-
-Welcome to our events page! Below, you'll find details about our upcoming workshops, hackathons, and meetups. Click on an event to learn more.
-
----
-
-## 🌟 Events List
-
-- [**Weekly Robotics Meetup**](Weekly-meetup)  
-  Date: Last Wednesday of Every Month  
-  Time: 6:00 PM – 8:00 PM  
-  Location: Common Room, University of Hull  
-
----
-
-Interested in attending? [**Sign Up Here →**](https://hulluni.example/signup) -->

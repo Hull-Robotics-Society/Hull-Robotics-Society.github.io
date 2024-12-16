@@ -119,9 +119,9 @@ author:
   location         : "Hull, United Kindgom"
   email            : "uniofhullroboticsociety@gmail.com"
   links:
-    - label: "Email"
-      icon: "fas fa-fw fa-envelope-square"
-      url: "uniofhullroboticsociety@gmail.com"
+    # - label: "Email"
+    #   icon: "fas fa-fw fa-envelope-square"
+    #   url: "uniofhullroboticsociety@gmail.com"
     # - label: "Website"
     #   icon: "fas fa-fw fa-link"
     #   # url: "https://your-website.com"
@@ -136,7 +136,7 @@ author:
       url: "https://github.com/Hull-Robotics-Society"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
-      # url: "https://instagram.com/"
+      url: "https://instagram.com/hull_rs"
 
 # Site Footer
 footer:
@@ -158,7 +158,7 @@ footer:
     #   # url:
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
-      # url:
+      url: "https://instagram.com/hull_rs"
 
 
 # Reading Files
