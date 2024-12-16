@@ -222,6 +222,8 @@ kramdown:
 # Sass/SCSS
 sass:
   sass_dir: _sass
+  load_paths:
+    - _sass/minimal-mistakes/vendor
   style: compressed # https://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
 
 
