@@ -9,18 +9,18 @@ header:
 excerpt: <br />
 
 feature_row:
-  - image_path: 
+  - image_path: images/projects.png
     alt: "Weekly Robotics Meetup"
     title: "Weekly Robotics Meetup"
-    excerpt: "**Date:** Last Wednesday of Every Month<br>**Time:** 5:00 PM – 7:00 PM<br>**Location:** Robotics Lab, University of Hull<br>Join us for casual discussions, project sharing, and networking!"
+    excerpt: "**Date:** Monday every week<br>**Time:** 5:00 PM – 7:00 PM<br>**Location:** Robotics Lab, University of Hull<br>"
     url: /events/weekly-meetup/
     btn_label: "Learn More"
     btn_class: "btn--primary"
 
-  - image_path: 
+  - image_path: images/klaus.jpg
     alt: "Klaus Christmas Showing"
     title: "Klaus Christmas Showing"
-    excerpt: "Come join us as we watch the movie Klaus"
+    excerpt: "**Date:** 11/12/2024<br>**Time:** 4:00 PM – 7:00 PM<br>**Location:** HIVE, University of Hull<br>"
     url: /events/klaus-screening/
     btn_label: "Learn More"
     btn_class: "btn--primary"
