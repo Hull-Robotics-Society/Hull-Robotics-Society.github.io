@@ -8,6 +8,9 @@ header:
 excerpt: "Browse through all upcoming robotics events and workshops at Hull Robotics Society."
 ---
 
+<!-- Button to go back to main events page -->
+<a href="/events/" class="back-to-events-btn">Back to Events →</a>
+
 Here is a list of all our events:
 
 <ul class="all-events">

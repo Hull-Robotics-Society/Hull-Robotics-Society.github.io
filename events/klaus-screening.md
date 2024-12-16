@@ -30,7 +30,7 @@ Join us for a cozy Christmas movie night featuring the critically acclaimed anim
 ## 🎄 Event Details
 
 - **Date**: December 11th, 2024  
-- **Time**: 4:00 PM – 10:00 PM  
+- **Time**: 4:00 PM – 7:00 PM  
 - **Location**: HIVE, University of Hull  
 - **BYOS**: Bring your own snacks!
 
