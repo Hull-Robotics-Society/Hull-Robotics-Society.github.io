@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: posts
 title: Weekly Robotics Meetup
 permalink: /events/weekly-meetup/
 excerpt: "A casual meetup to discuss projects, share ideas, and get to know other members of the society. Everyone is welcome—come as you are and join the fun!"
