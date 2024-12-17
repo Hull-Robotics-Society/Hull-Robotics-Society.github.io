@@ -316,7 +316,7 @@ compress_html:
 collections:
   dalek:
     output: true
-    permalink: /:projects/dalek/:name/
+    permalink: /projects/dalek/:name/
 
 
 # Defaults
