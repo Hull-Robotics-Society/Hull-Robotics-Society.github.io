@@ -3,7 +3,7 @@ layout: splash
 permalink: /events/
 title: " "
 header:
-  overlay_image: images/hullrs-web-banner.svg
+  overlay_image: images/hullrs-web-banner.png
 #   overlay_filter: 0.3 # Optional: Adjust the overlay opacity
   caption: "Join us for exciting robotics events and workshops!"
 excerpt: <br />

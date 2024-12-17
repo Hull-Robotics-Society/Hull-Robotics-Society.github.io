@@ -3,10 +3,14 @@ layout: splash
 permalink: /
 hidden: true
 title: " "
-excerpt: <br />
 header:
-  overlay_image: images/hullrs-web-banner.svg
+  # overlay_color: "#ffffff"
+  overlay_image: images/hullrs-web-banner.jpg
+  overlay_image_class: "fixed-width-header"
   # caption: "The official home of the University of Hull Robotics Society"
+  # actions:
+  #   - label: " "
+# excerpt: <br />
 feature_row:
   - image_path: 
     alt: "Hull University Robotics Society Logo"
@@ -46,7 +50,8 @@ feature_row:
 github:
   - excerpt: 'Check out our code and projects on GitHub!'
 ---
-{% include feature_row id="intro" type="center" %}
+
+<!-- {% include feature_row id="intro" type="center" %} -->
 {% include feature_row %}
 
 ## 🔗 Quick Links  

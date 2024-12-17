@@ -1,0 +1,25 @@
+.page__hero {
+    background-size: contain;   /* Ensures the image scales down to fit */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat; /* Prevents the background from repeating */
+    margin: 0;          /* Remove any margin around the hero section */
+    padding: 0;         /* Remove any padding if it's causing the gap */
+  }
+  .page__hero--overlay {
+    margin-top: 0;                /* Remove any top margin */
+    padding-top: 32.75%;          /* Aspect ratio based on the image's dimensions */
+    padding-bottom: 0;            /* Ensure no extra padding at the bottom */
+    width: 100%;
+    background-size: contain;     /* Make the image fit the width */
+    background-position: center;  /* Center the image */
+    background-repeat: no-repeat;
+  }
+ 
+  
+  /* Optional: to add media queries for further control */
+  @media (max-width: 768px) {
+    .page__hero {
+      background-size: cover;   /* Use cover for smaller screens, or keep contain based on preference */
+    }
+  }
+  

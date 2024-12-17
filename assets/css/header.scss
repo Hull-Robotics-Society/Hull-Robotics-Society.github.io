@@ -1,0 +1,24 @@
+/* Remove margins and padding from the header */
+header, .masthead {
+    margin: 0;      /* Remove any margin */
+    padding: 0;     /* Remove any padding */
+    position: relative; /* Keep it in the document flow */
+    z-index: 10;    /* Ensure it's on top */
+  }
+  
+  /* Optional: If header has a background or color */
+  header {
+    background-color: #ffffff;  /* Choose your header background */
+  }
+  
+  /* Ensure the page hero image fits and adjusts correctly */
+  .page__hero--overlay {
+    margin-top: 0;                /* Remove top margin */
+    padding-top: 32.75%;           /* Aspect ratio, adjust as needed */
+    padding-bottom: 0;            /* Remove bottom padding */
+    width: 100%;
+    background-size: contain;     /* Fit the image to the width */
+    background-position: center;  /* Center the image */
+    background-repeat: no-repeat; /* Prevent repeating the background */
+  }
+  
