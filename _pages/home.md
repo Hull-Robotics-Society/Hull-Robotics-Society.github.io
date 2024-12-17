@@ -11,9 +11,10 @@ header:
 feature_row:
   - image_path: 
     alt: "Hull University Robotics Society Logo"
-    title: "Welcome to Hull University Robotics Society"
+    title: "Welcome to HullRS"
     excerpt: "The home of innovation, creativity, and teamwork! We design, build, and run exciting robotics projects."
     btn_label: "Join Us!"
+    btn_class: "btn--primary"
     url: "/about/"
   
   - image_path: 
@@ -21,37 +22,48 @@ feature_row:
     title: "What We Do"
     excerpt: "Build robotics projects, host workshops, hackathons, and competitions for all skill levels."
     btn_label: "Learn More"
+    btn_class: "btn--primary"
     url: "/what-we-do/"
-  
+
   - image_path: 
     alt: "Upcoming Events"
     title: "Upcoming Events"
-    excerpt: "Get involved in upcoming workshops, competitions, and social events!"
+    excerpt: "Get involved in upcoming workshops, competitions, and social events!<br /><br />"
     btn_label: "See Events"
+    btn_class: "btn--primary"
     url: "/events/"
 
+  - image_path:
+    alt: "Current Projects"
+    title: "Current Projects"
+    excerpt: "Learn about all of our ongoing projects.<br /><br /><br />"
+    btn_label: "See Projects"
+    btn_class: "btn--primary"
+    url: "/projects/"
+  
   - image_path: 
     alt: "Gallery"
     title: "Gallery"
-    excerpt: "Check out the amazing robotics projects we've been working on!"
+    excerpt: "Check out the amazing robotics projects we've been working on!<br /><br />"
     btn_label: "View Gallery"
+    btn_class: "btn--primary"
     url: "/gallery/"
   
   - image_path: 
     alt: "Join Us"
     title: "Join Us!"
-    excerpt: "Interested in robotics? Join the Hull University Robotics Society today!"
+    excerpt: "Interested in robotics? Join the Hull University Robotics Society today!<br /><br />"
     btn_label: "Sign Up"
+    btn_class: "btn--primary"
     url: "https://hulluniunion.com/activities/view/Robotics"
   
 github:
   - excerpt: 'Check out our code and projects on GitHub!'
 ---
-
 <!-- {% include feature_row id="intro" type="center" %} -->
 {% include feature_row %}
 
-## 🔗 Quick Links  
+## Quick Links  
 - [**Join Our Discord Server**](https://discord.gg/DaNcZb7zvd)  
 - [**Visit Our GitHub Repository**](https://github.com/Hull-Robotics-Society)  
 - [**Check Out Our Linktree**](https://www.linktr.ee/HU_RS)  
@@ -59,7 +71,7 @@ github:
 
 ---
 
-## 🖼️ Gallery  
+## Gallery  
 Check out some of our exciting projects and events!  
 <div style="text-align: center;">
   <iframe 
