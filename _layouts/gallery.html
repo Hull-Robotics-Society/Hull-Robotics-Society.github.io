@@ -1,0 +1,72 @@
+---
+layout: collection
+---
+
+<div class="gallery-container">
+  <h2 class="gallery-title">{{ page.title }}</h2>
+  
+  {% assign images = site.static_files %}
+  {% assign columns = page.columns | default: 3 %}  <!-- Default to 3 columns if not specified -->
+
+  <div class="gallery-grid" style="grid-template-columns: repeat({{ columns }}, 1fr);">
+    {% for image in images %}
+      {% if image.path contains '/images/' and image.name contains 'dalek' %}
+        <div class="gallery-item">
+          <img src="{{ image.path | relative_url }}" alt="{{ image.name }}">
+          <!-- <p>{{ image.name }}</p> -->
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  .gallery-container {
+    text-align: center;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .gallery-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  .gallery-grid {
+    display: grid;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.05);
+  }
+
+  figcaption {
+    padding: 10px;
+    font-size: 1rem;
+    background-color: #f0f0f0;
+    text-align: center;
+    font-weight: bold;
+    color: #333;
+  }
+
+  .gallery-item a {
+    display: block;
+  }
+</style>
