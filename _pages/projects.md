@@ -9,7 +9,7 @@ header:
   caption: "The society is full of projects, click to find out more!"
 
 feature_row:
-  - image_path: images/dalek.jpeg
+  - image_path: images//dalek/dalek50years.jpeg
     alt: "Dalek"
     title: "Dalek"
     excerpt: ""
