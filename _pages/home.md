@@ -4,12 +4,9 @@ permalink: /
 hidden: true
 title: " "
 header:
-  # overlay_color: "#ffffff"
   overlay_image: images/hullrs-web-banner.jpg
   overlay_image_class: "fixed-width-header"
   # caption: "The official home of the University of Hull Robotics Society"
-  # actions:
-  #   - label: " "
 # excerpt: <br />
 feature_row:
   - image_path: 

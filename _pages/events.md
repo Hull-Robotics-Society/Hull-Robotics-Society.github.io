@@ -3,10 +3,11 @@ layout: splash
 permalink: /events/
 title: " "
 header:
-  overlay_image: images/hullrs-web-banner.png
+  overlay_image: images/hullrs-web-banner.jpg
+  overlay_image_class: "fixed-width-header"
 #   overlay_filter: 0.3 # Optional: Adjust the overlay opacity
   caption: "Join us for exciting robotics events and workshops!"
-excerpt: <br />
+# excerpt: <br />
 
 feature_row:
   - image_path: images/projects.png
@@ -26,7 +27,7 @@ feature_row:
     btn_class: "btn--primary"
 
 ---
-{% include feature_row id="intro" type="center" %}
+<!-- {% include feature_row id="intro" type="center" %} -->
 {% include feature_row %}
 
 ## Latest Events

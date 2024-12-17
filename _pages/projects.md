@@ -3,10 +3,11 @@ layout: splash
 permalink: /projects/
 title: " "
 header:
-  overlay_image: images/hullrs-web-banner.png
+  overlay_image: images/hullrs-web-banner.jpg
+  overlay_image_class: "fixed-width-header"
 #   overlay_filter: 0.3 # Optional: Adjust the overlay opacity
   caption: "The society is full of projects, click to find out more!"
-excerpt: <br />
+# excerpt: <br />
 
 feature_row:
   - image_path: images/dalek.jpeg
@@ -25,7 +26,7 @@ feature_row:
   #   btn_label: "Learn More"
   #   btn_class: "btn--primary"
 ---
-{% include feature_row id="intro" type="center" %}
+<!-- {% include feature_row id="intro" type="center" %} -->
 {% include feature_row %}
 
 [View all projects](/projects/all-projects)
