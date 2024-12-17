@@ -7,3 +7,17 @@ main:
   - title: "Events"
     url: /events/
 
+# project links
+projects:
+  - title: Dalek Project
+    children:
+      - title: "Mobile Frame"
+        url: /projects/dalek/dalek-mobile-frame/
+      - title: "Electronics Upgrade"
+        url: /projects/dalek/dalek-electronics-upgrade/
+      - title: "Head Upgrade"
+        url: /projects/dalek/dalek-head-mechanism/
+      - title: "Fresh Paint"
+        url: /projects/dalek/dalek-fresh-paint/
+      - title: "Mind Control System"
+        url: /projects/dalek/dalek-mind-control/

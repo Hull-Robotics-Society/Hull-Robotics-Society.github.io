@@ -1,9 +1,10 @@
 ---
-layout: posts
+layout: single
 title: "Making the Dalek Mind-Controlled"
 date: 2024-12-15
 permalink: /projects/dalek/dalek-mind-control/
 excerpt: "Exploring mind control with an Epox X headset and Raspberry Pi for the ultimate futuristic Dalek."
+toc: true
 ---
 
 We’re currently working on our most ambitious upgrade yet: making the Dalek **mind-controlled**! Using the **Emotive Epox X** headset, we’re exploring how to read brainwave signals to control the Dalek's movements.

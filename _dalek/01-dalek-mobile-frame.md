@@ -1,9 +1,10 @@
 ---
-layout: posts
+layout: single
 title: "Giving the Dalek Its Wheels"
 date: 2024-08-15
 permalink: /projects/dalek/dalek-mobile-frame/
 excerpt: "How we gave the Dalek mobility by repurposing an electric wheelchair and a custom joystick controller."
+toc: true
 ---  
 
 When we started the Dalek project back in August 2024, the first goal was to make the frame mobile. To do this, we repurposed an **electric wheelchair** as the base for mobility. However, there was a major hurdle: the wheelchair’s controller required a compatible joystick, which we didn’t have.

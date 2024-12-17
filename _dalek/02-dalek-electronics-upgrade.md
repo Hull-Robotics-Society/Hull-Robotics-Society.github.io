@@ -1,9 +1,10 @@
 ---
-layout: posts
+layout: single
 title: "Upgrading the Electronics"
 date: 2024-09-10
 permalink: /projects/dalek/dalek-electronics-upgrade/
 excerpt: "Enhancing joystick control with a relay module for smooth movement and lighting control."
+toc: true
 ---
 
 After constructing the custom joystick controller, we faced another challenge: the wheelchair's control system required some pins to be shorted to ground to enable movement. To address this, we added a **4x relay module** to enhance the joystick’s capabilities.
