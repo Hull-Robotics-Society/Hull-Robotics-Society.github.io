@@ -1,25 +1,21 @@
 ---
-layout: page
+layout: posts
 title: "Dalek Schematics"
 permalink: /projects/dalek/schematics/
 ---
 
 # Dalek Schematics
 
-Welcome to the Dalek project schematics page! Here you can download all the files you need to understand and replicate the Dalek design.
+Welcome to the Dalek project schematics page! Here you can explore the project files hosted on GitHub.
 
 ## Downloadable Files
 
-- **[Source Code](https://example.com/dalek/code.zip)**  
-  The full codebase for controlling the Dalek. This includes firmware and software for various systems.
+- **[CAD Files](https://github.com/Hull-Robotics-Society/Dalek/tree/main/%5B01%5D%203D%20Models)**
+- **[Electronics](https://github.com/Hull-Robotics-Society/Dalek/tree/main/%5B02%5D%20Electronics)**
+- **[Source Code](https://github.com/Hull-Robotics-Society/Dalek/tree/main/dalek)**
 
-- **[Fritzing Files](https://example.com/dalek/fritzing.zip)**  
-  The Fritzing files for the Dalek electrical wiring. Use these to create your own breadboard designs.
 
-- **[CAD Files (STL/STEP)](https://example.com/dalek/cad.zip)**  
-  The complete set of CAD files, including 3D models of the Dalek parts in STL and STEP formats.
-
-## CAD Viewer
+<!-- ## CAD Viewer
 
 Explore the Dalek 3D CAD model below. Use the controls to rotate and zoom in on different parts of the Dalek.
 
@@ -32,12 +28,12 @@ Explore the Dalek 3D CAD model below. Use the controls to rotate and zoom in on 
 <!-- <script src="https://www.3dviewer.net/"></script> -->
 <!-- <3d-viewer src="https://example.com/dalek/cad/your_model.stl"></3d-viewer> -->
 
-## How to Use
+<!-- ## How to Use
 
 1. **Download the files**: Click on the links above to download the files for the project.
 2. **Explore the 3D Model**: Use the CAD viewer above to inspect the 3D model of the Dalek. You can rotate, zoom, and pan to get a detailed view of each part.
 
-If you have any issues or suggestions, feel free to [contact us](mailto:support@hullrobotics.com)!
+If you have any issues or suggestions, feel free to [contact us](mailto:support@hullrobotics.com)! -->
 
 ---
 
