@@ -13,15 +13,23 @@ feature_row:
     alt: "Dalek"
     title: "Project Repository"
     excerpt: "Explore the source code on GitHub."
-    url: {{ site.data.dalek.dalek.github_repo }}
+    url: "https://github.com/Hull-Robotics-Society/dalek"
     btn_label: "View on GitHub"
+    btn_class: "btn--primary"
+
+  - image_path: 
+    alt: "Dalek"
+    title: "Dalek Schematic"
+    excerpt: "Look through our collection of schematics."
+    url: /projects/dalek/schematics/
+    btn_label: "View Schematics"
     btn_class: "btn--primary"
 
   - image_path: 
     alt: "Dalek Images"
     title: "Image Collection"
     excerpt: "View the Dalek in action with our image gallery."
-    url: {{ site.data.dalek.dalek.gallery_page }}
+    url: /gallery/dalek/
     btn_label: "View Gallery"
     btn_class: "btn--primary"
 ---
