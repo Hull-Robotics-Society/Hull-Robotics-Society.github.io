@@ -2,9 +2,8 @@
 layout: posts
 title: "Dalek Schematics"
 permalink: /projects/dalek/schematics/
+excerpt: "A schematic database for our Dalek"
 ---
-
-# Dalek Schematics
 
 Welcome to the Dalek project schematics page! Here you can explore the project files hosted on GitHub.
 
