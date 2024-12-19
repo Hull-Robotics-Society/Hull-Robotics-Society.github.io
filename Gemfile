@@ -7,6 +7,7 @@ gem "jekyll-sitemap", "~> 1.4"
 gem "jekyll-feed", "~> 0.16"
 gem "jekyll-gist", "~> 1.5"
 gem "jekyll-include-cache", "~> 0.2"
+gem 'jekyll-search'
 
 # Minimal Mistakes theme
 gem "minimal-mistakes-jekyll"
