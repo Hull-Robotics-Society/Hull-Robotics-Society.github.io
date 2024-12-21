@@ -1,30 +1,46 @@
 ---
-layout: collection
+layout: archive
 ---
 
 <div class="gallery-container">
   <h2 class="gallery-title">{{ page.title }}</h2>
-  
-  {% assign images = site.static_files %}
-  {% assign columns = page.columns | default: 3 %}  <!-- Default to 3 columns if not specified -->
 
-  <div class="gallery-grid" style="grid-template-columns: repeat({{ columns }}, 1fr);">
+  <!-- Grid container for gallery items -->
+  <div class="gallery-grid">
+    {% assign images = site.static_files %}
     {% for image in images %}
-      {% if image.path contains '/images/' and image.name contains 'dalek' %}
-        <div class="gallery-item">
-          <img src="{{ image.path | relative_url }}" alt="{{ image.name }}">
-          <!-- <p>{{ image.name }}</p> -->
-        </div>
+      {% if image.path contains page.image_path %}
+        {% if image.extname == '.jpg' or image.extname == '.jpeg' or image.extname == '.png' %}
+          <div class="gallery-item">
+            <img src="{{ image.path | relative_url }}" alt="{{ image.name }}">
+          </div>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+
+    {% assign videos = site.static_files %}
+    {% for video in videos %}
+      {% if video.path contains page.media_path %}
+        {% if video.extname == '.mp4' or video.extname == '.webm' or video.extname == '.ogg' %}
+          <div class="gallery-item">
+            <video controls>
+              <source src="{{ video.path | relative_url }}" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        {% endif %}
       {% endif %}
     {% endfor %}
   </div>
 </div>
 
+
 <style>
+  /* CSS for gallery grid */
   .gallery-container {
-    text-align: center;
     margin: 0 auto;
     padding: 20px;
+    text-align: center;
   }
 
   .gallery-title {
@@ -35,38 +51,40 @@ layout: collection
   .gallery-grid {
     display: grid;
     gap: 20px;
-    padding: 20px;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns by default */
+    transition: all 0.3s ease-in-out;
   }
 
   .gallery-item {
-    position: relative;
-    overflow: hidden;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
   }
 
-  .gallery-item img {
+  .gallery-item img,
+  .gallery-item video {
     width: 100%;
     height: auto;
     object-fit: cover;
     transition: transform 0.3s ease;
   }
 
-  .gallery-item:hover img {
+  .gallery-item:hover img,
+  .gallery-item:hover video {
     transform: scale(1.05);
   }
 
-  figcaption {
-    padding: 10px;
-    font-size: 1rem;
-    background-color: #f0f0f0;
-    text-align: center;
-    font-weight: bold;
-    color: #333;
+  /* Responsive styling */
+  @media (max-width: 768px) {
+    .gallery-grid {
+      grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
+    }
   }
 
-  .gallery-item a {
-    display: block;
+  @media (max-width: 480px) {
+    .gallery-grid {
+      grid-template-columns: 1fr; /* 1 column on small screens */
+    }
   }
 </style>
