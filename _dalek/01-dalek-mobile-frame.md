@@ -12,11 +12,15 @@ When we set out on the Dalek project back in August 2024, our primary objective 
 
 The wheelchair’s original control system required a compatible joystick, which, unfortunately, we didn’t have. This presented a major issue, but also an opportunity to get creative with a solution.
 
+---
+
 ## The Custom Joystick Controller Solution
 
 In order to bypass the need for a compatible joystick, we designed and built a custom joystick controller using a 4-axis joystick. This joystick would serve as the input device, allowing us to control the Dalek’s movement in multiple directions—forward, left, and right. The joystick’s output signals were then fed into an Arduino, which acted as an intermediary between the joystick and the wheelchair’s controller.
 
 The Arduino played a pivotal role in translating the joystick’s inputs into commands that the wheelchair could understand. Through the DB9 connector on the wheelchair’s controller, we were able to establish communication between the joystick and the wheelchair’s internal systems. This allowed us to control the Dalek’s movement accurately while also keeping the system modular and flexible for future upgrades.
+
+---
 
 ## Challenges of Mounting the Dalek on a Pivoting Wheelchair Base
 
@@ -25,6 +29,8 @@ While the concept of using an electric wheelchair as the Dalek's base was promis
 This mounting point was effective, but it introduced a stability issue—the Dalek’s weight and design caused it to be unstable at times, as it was essentially pivoting around this single point. This made balancing the Dalek a constant challenge, especially when trying to ensure that the weight distribution was ideal for smooth mobility.
 
 The pivot point at the back of the wheelchair, though functional, meant that the Dalek could tip or wobble if too much weight was placed on the front. As we continued to work on the project, we realized that to make the Dalek truly mobile, we would need to balance the structure carefully and possibly add additional support to prevent instability during movement. These design considerations were crucial as we sought to refine the Dalek’s performance.
+
+---
 
 ## Powering the Dalek’s Movement: A Deep Dive Into the System
 
@@ -35,6 +41,8 @@ The motor driver responsible for controlling the Dalek’s movement is powered d
 The wheelchair’s original controller communicates with the motor driver, receiving signals from the custom joystick through the Arduino. When the joystick is moved, the Arduino interprets the directional commands (forward, left, or right) and sends the appropriate signals to the wheelchair’s motor controller. The motor controller then adjusts the speed and direction of the motors based on the input from the joystick, enabling smooth movement in the desired direction.
 
 This feedback loop between the joystick, Arduino, wheelchair controller, and motor driver is what makes the Dalek’s movement both responsive and precise. While the joystick controls the speed and direction, the motor driver ensures that the wheels rotate according to the commands sent from the wheelchair controller. It’s a simple yet effective system that provides full mobility to the Dalek.
+
+---
 
 ## Looking Ahead: Fine-Tuning the Dalek's Electronics and Functionality
 
