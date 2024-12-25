@@ -35,7 +35,7 @@ This setup provided a much more versatile system, allowing us to control not jus
 
 To achieve all of this, the **Arduino** acted as the central controller. The schematic for this setup involved wiring the joystick to the **analog input pins** of the Arduino, while the relays were connected to **digital output pins**. The goal was to allow fine control over the Dalek's movements and the lighting system using the joystick, while also ensuring that the relays could control specific functions.
 
-### **Pin Layout:**
+#### **Pin Layout:**
 
 - **Joystick Wiring**: The joystick was wired into the **analog input pins** of the Arduino. Since the joystick was a 4-axis controller, it sent signals for both horizontal and vertical movement, which were read by the analog pins.
   
