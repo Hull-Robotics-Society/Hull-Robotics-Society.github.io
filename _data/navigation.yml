@@ -21,3 +21,7 @@ projects:
         url: /projects/dalek/dalek-fresh-paint/
       - title: "Mind Control System"
         url: /projects/dalek/dalek-mind-control/
+  - title: OSRC Project
+    children:
+      - title: "Introduction"
+        url: /projects/OSRC/introduction
