@@ -369,6 +369,7 @@ defaults:
       author_profile: false
       share: true
       read_time: false
+      toc: true
       toc_sticky: true
       sidebar:
         nav: "projects"
@@ -381,6 +382,7 @@ defaults:
       author_profile: false
       share: true
       read_time: false
+      toc: true
       toc_sticky: true
       sidebar:
         nav: "projects"

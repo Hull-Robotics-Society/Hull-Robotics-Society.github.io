@@ -4,7 +4,6 @@ title: "Upgrading the Electronics"
 date: 2024-09-10
 permalink: /projects/dalek/dalek-electronics-upgrade/
 excerpt: "Enhancing joystick control with a relay module for smooth movement and lighting control."
-toc: true
 ---
 
 ## Enhancing the Dalek Project: Joystick Control, Relays, and Lights

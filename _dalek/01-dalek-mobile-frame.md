@@ -3,7 +3,6 @@ title: "Giving the Dalek Its Wheels"
 date: 2024-08-15
 permalink: /projects/dalek/dalek-mobile-frame/
 excerpt: "How we gave the Dalek mobility by repurposing an electric wheelchair and a custom joystick controller."
-toc: true
 ---  
 
 ## Building the Dalek Project: The Quest for Mobility and Control
