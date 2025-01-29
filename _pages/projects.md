@@ -9,7 +9,7 @@ header:
   caption: "The society is full of projects, click to find out more!"
 
 feature_row:
-  - image_path: images/dalek/dalek50.jpeg
+  - image_path: images/dalek.jpeg
     alt: "Dalek"
     title: "Dalek"
     excerpt: ""
@@ -17,27 +17,28 @@ feature_row:
     btn_label: "Learn More"
     btn_class: "btn--primary"
 
-  # - image_path: images/os-controller.png
-  #   alt: "Open Source Controller"
-  #   title: "Open Source Controller"
-  #   excerpt: ""
-  #   url: /projects/os-controller/
-  #   btn_label: "Learn More"
-  #   btn_class: "btn--primary"
+  - image_path: images/OSRC.png
+    alt: "Open Source Controller"
+    title: "Open Source Controller"
+    excerpt: ""
+    url: /projects/OSRC/
+    btn_label: "Learn More"
+    btn_class: "btn--primary"
 ---
 <!-- {% include feature_row id="intro" type="center" %} -->
 {% include feature_row %}
 
 ## Latest projects
 
-{% assign projects = site.pages | where_exp: "item", "item.path contains 'projects/'" | sort: "modified_time" | slice: 0, 6 %}
+{% assign projects = site.pages | where_exp: "item", "item.path contains 'projects/'" | sort: "date" | reverse | slice: 0, 6 %}
 
 <ul class="all-projects">
   {% assign dalek_projects = site.dalek %}
+  {% assign OSRC_projects = site.OSRC %}
   {% assign project_pages = site.pages | where_exp: "item", "item.path contains 'projects/'" %}
   
-  {% assign all_projects = dalek_projects | concat: project_pages %}
-  {% assign sorted_projects = all_projects | sort: 'date' | reverse %}
+  {%- assign all_projects = dalek_projects | concat: OSRC_projects | concat: project_pages -%}
+  {%- assign sorted_projects = all_projects | sort: 'date' | reverse -%}
 
   {% for project in sorted_projects %}
     <li class="project-post">
@@ -46,6 +47,7 @@ feature_row:
     </li>
   {% endfor %}
 </ul>
+
 
 
 [View all projects](/projects/all-projects/)
