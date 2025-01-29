@@ -1,6 +1,6 @@
 ---
 title: "CAD Design & 3D Printing the OSRC"
-date: 2025-02-12
+date: 2025-01-20
 excerpt: "How we designed the OSRC’s enclosure and 3D printed it for durability."
 permalink: /projects/OSRC/cad-design/
 ---

@@ -1,9 +1,8 @@
 ---
 title: "Open Source Robotics Remote: Introduction"
-date: 2025-01-29
+date: 2025-01-10
 permalink: /projects/OSRC/introduction/
 excerpt: "Introducing our open-source robotics remote, designed for ROS & ROS2 control. Featuring a Raspberry Pi 5, 7-inch touchscreen, dual joysticks, and more!"
-toc: true
 ---
 
 ## Introducing the Open Source Robotics Remote

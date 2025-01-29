@@ -1,6 +1,6 @@
 ---
 title: "Hardware Breakdown: Inside the OSRC"
-date: 2025-02-05
+date: 2025-01-15
 excerpt: "A detailed breakdown of the OSRC’s hardware, from microcontrollers to input controls."
 permalink: /projects/OSRC/hardware/
 ---

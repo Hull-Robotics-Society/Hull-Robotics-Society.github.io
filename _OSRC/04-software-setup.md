@@ -1,6 +1,6 @@
 ---
 title: "Software Setup: Installing ROS & ROS2 on the OSRC"
-date: 2025-02-19
+date: 2025-01-25
 excerpt: "A step-by-step guide to installing ROS and ROS2 on the OSRC."
 permalink: /projects/OSRC/software-setup/
 ---

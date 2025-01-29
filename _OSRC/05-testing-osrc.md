@@ -1,6 +1,6 @@
 ---
 title: "Testing & First Trials: Controlling Robots with OSRC"
-date: 2025-02-26
+date: 2025-01-30
 excerpt: "Testing the OSRC with ROS-based robots and refining control."
 permalink: /projects/OSRC/testing/
 ---
