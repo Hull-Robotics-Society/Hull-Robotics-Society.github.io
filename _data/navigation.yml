@@ -24,4 +24,12 @@ projects:
   - title: OSRC Project
     children:
       - title: "Introduction"
-        url: /projects/OSRC/introduction
+        url: /projects/OSRC/introduction/
+      - title: "Hardware Breakdown"
+        url: /projects/OSRC/hardware/
+      - title: "CAD Design and 3D Printing"
+        url: /projects/OSRC/cad-design/
+      - title: "Software Setup"
+        url: /projects/OSRC/software/
+      - title: "Testing the OSRC"
+        url: /projects/OSRC/testing/
