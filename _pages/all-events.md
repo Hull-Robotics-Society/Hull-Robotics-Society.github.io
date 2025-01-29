@@ -14,7 +14,7 @@ excerpt: "Browse through all upcoming robotics events and workshops at Hull Robo
 Here is a list of all our events:
 
 <ul class="all-events">
-  {% assign events = site.pages | where_exp: "item", "item.path contains 'events/'" %}
+  {% assign events = site.pages | where_exp: "item", "item.path contains 'events/'" | sort: "date" | reverse %}
   {% for event in events %}
     <li class="event-post">
       <h3><a href="{{ event.url }}">{{ event.title }}</a></h3>
