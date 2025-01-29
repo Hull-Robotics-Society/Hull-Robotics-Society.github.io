@@ -32,7 +32,7 @@ feature_row:
 
 ## Latest Events
 
-{% assign events = site.pages | where_exp: "item", "item.path contains 'events/'" | sort: "modified_time" | slice: 0, 6 %}
+{% assign events = site.pages | where_exp: "item", "item.path contains 'events/'" | sort: "date" | reverse | slice: 0, 6 %}
 
 <ul class="recent-events">
   {% for event in events %}
