@@ -319,6 +319,10 @@ collections:
   dalek:
     output: true
     permalink: /projects/dalek/:name/
+  OSRC:
+    output: true
+    permalink: /projects/OSRC/:name/
+
 
 
 # Defaults
@@ -365,6 +369,19 @@ defaults:
       author_profile: false
       share: true
       read_time: false
+      toc_sticky: true
+      sidebar:
+        nav: "projects"
+
+  # OSRC Project
+  - scope:
+      type: OSRC
+    values:
+      layout: single
+      author_profile: false
+      share: true
+      read_time: false
+      toc_sticky: true
       sidebar:
         nav: "projects"
 
