@@ -11,15 +11,15 @@ header:
 feature_row:
   - image_path: images/dalek.jpeg
     alt: "Dalek"
-    title: "Dalek"
+    title: "Hull RS Dalek <br /><br />"
     excerpt: ""
     url: /projects/dalek
     btn_label: "Learn More"
     btn_class: "btn--primary"
 
   - image_path: images/OSRC.png
-    alt: "Open Source Controller"
-    title: "Open Source Controller"
+    alt: "Open Source Robotics Controller"
+    title: "OS Robotics Controller"
     excerpt: ""
     url: /projects/OSRC/
     btn_label: "Learn More"
