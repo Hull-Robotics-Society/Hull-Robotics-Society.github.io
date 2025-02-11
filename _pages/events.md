@@ -10,6 +10,14 @@ header:
 # excerpt: <br />
 
 feature_row:
+  - image_path: images/wall-e.jpg
+    alt: "Wall-E Movie Showing"
+    title: "Wall-E Movie Showing"
+    excerpt: "**Date:** 11/12/2024<br>**Time:** 4:00 PM – 7:00 PM<br>**Location:** HIVE, University of Hull<br>"
+    url: /events/walle-screening/
+    btn_label: "Learn More"
+    btn_class: "btn--primary"
+
   - image_path: images/projects.png
     alt: "Weekly Robotics Meetup"
     title: "Weekly Robotics Meetup"
