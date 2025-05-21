@@ -10,6 +10,14 @@ header:
 # excerpt: <br />
 
 feature_row:
+  - image_path: images/dalek-100-leaders.jpg
+    alt: "East Riding Top 100 Leaders"
+    title: "East Riding Top 100 Leaders"
+    excerpt: "**Date:** 15/05/2025<br>**Time:** 2:00 PM – 4:00 PM<br>**Location:** Beverley Leisure Centre , Beverly<br>"
+    url: /events/daleks-day-out/
+    btn_label: "Learn More"
+    btn_class: "btn--primary"
+
   - image_path: images/wall-e.jpg
     alt: "Wall-E Movie Showing"
     title: "Wall-E Movie Showing"
@@ -23,14 +31,6 @@ feature_row:
     title: "Weekly Robotics Meetup"
     excerpt: "**Date:** Monday every week<br>**Time:** 5:00 PM – 7:00 PM<br>**Location:** Robotics Lab, University of Hull<br>"
     url: /events/weekly-meetup/
-    btn_label: "Learn More"
-    btn_class: "btn--primary"
-
-  - image_path: images/klaus.jpg
-    alt: "Klaus Christmas Showing"
-    title: "Klaus Christmas Showing"
-    excerpt: "**Date:** 11/12/2024<br>**Time:** 4:00 PM – 7:00 PM<br>**Location:** HIVE, University of Hull<br>"
-    url: /events/klaus-screening/
     btn_label: "Learn More"
     btn_class: "btn--primary"
 
