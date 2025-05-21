@@ -1,7 +1,7 @@
 ---
+layout: posts
 title: "Mind-Controlled Daleks & Community Innovation at East Riding Leaders Event"
 date: 2025-05-20
-author: "Your Organisation Name"
 tags:
   - EEG
   - BCI
@@ -10,8 +10,8 @@ tags:
   - Node-RED
   - Innovation
   - East Riding
-image: /assets/images/dalek-demo-main.jpg # Update with actual path
-description: "A look back at our demonstration of a mind-controlled Dalek at the Top 100 Leaders event in East Riding, using Node-RED and EEG technology."
+image: /image/dalek/100-leaders/dalek-100-08.jpg
+excerpt: "A look back at our demonstration of a mind-controlled Dalek at the Top 100 Leaders event in East Riding, using Node-RED and EEG technology."
 ---
 
 On May 15th, we had the incredible opportunity to showcase our work at a truly special event held at Beverley Leisure Centre. This wasn’t just any event—it was an exclusive gathering of the Top 100 Leaders in the East Riding of Yorkshire, bringing together some of the most forward-thinking individuals across the region.
