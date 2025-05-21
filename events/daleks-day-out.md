@@ -32,7 +32,7 @@ Our Dalek isn’t just a replica. It’s a fully custom-built piece of tech with
 </div>
 
 - Wirelessly using Node-RED, our go-to visual programming interface, ideal for IoT and quick prototyping.
-- And even more impressively, using the Emotiv Epoc Insight EEG headset—a piece of tech that reads brainwave activity to control digital devices.
+- And even more impressively, using the Emotiv Epoc Insight EEG headset, a piece of tech that reads brainwave activity to control digital devices.
 
 <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
   <img src="/images/dalek/100-leaders/dalek-100-02.jpg" alt="The Dalek in transportation" style="width: 48%; max-width: 400px; height: auto;" />
@@ -115,7 +115,7 @@ Following this successful showcase, we’re looking forward to collaborating wit
 
 ## Final Thoughts
 
-We’re so grateful to have been part of such a forward-thinking event, surrounded by leaders who genuinely care about innovation and community development.
+We’re so grateful to have been part of such a forward; thinking event, surrounded by leaders who genuinely care about innovation and community development.
 
 A huge thank-you to the organisers and everyone who stopped by to learn, laugh, and think their way into the future—literally.
 
