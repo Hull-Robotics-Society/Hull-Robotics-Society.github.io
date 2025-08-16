@@ -53,6 +53,59 @@ Node-RED plays a crucial role in enabling seamless communication between the **O
    - The touchscreen interface allows for more complex commands, such as setting waypoints or adjusting parameters.
    - These commands are published to topics like `robot/settings` with payloads like `{"speed": 0.8, "mode": "autonomous"}`.
 
+### Dashboards on the Robot Controller
+
+One of the key features of our Node-RED setup is the use of interactive dashboards on the OSRC. These dashboards provide a user-friendly interface for monitoring and controlling the robots in real time. They are accessible via a web browser and are fully customizable to suit different use cases.
+
+<div style="text-align: center;">
+   <img src="/images/osrc/dashboard.jpg" alt="Dalek dashboard"/>
+</div>
+
+> *Above: A custom node-red dashboard used by our Dalek.*
+
+#### Features of the Dashboards
+
+- **Live Data Monitoring**:
+  - The dashboards display real-time data from the robot, such as sensor readings, battery levels, and motor statuses.
+  - This allows operators to quickly assess the robot's condition and make informed decisions.
+
+- **Control Interfaces**:
+  - Buttons, sliders, and other UI elements on the dashboard allow operators to send commands directly to the robot.
+  - For example, you can adjust speed, toggle lights, or activate specific functions using the dashboard.
+
+- **Visual Feedback**:
+  - Graphs and gauges provide visual feedback for critical parameters, such as motor temperatures or network latency.
+  - This helps in diagnosing issues and optimizing performance.
+
+- **Customizable Layouts**:
+  - The dashboards can be tailored to specific tasks or robots, ensuring that only the most relevant information is displayed.
+
+#### Example Use Cases
+
+1. **Joystick Visualization**:
+   - A live visualization of joystick inputs is displayed on the dashboard, showing the direction and intensity of movement commands being sent to the robot.
+
+2. **Sensor Data**:
+   - Sensor readings, such as distance from obstacles or environmental conditions, are plotted in real time for easy monitoring.
+
+3. **Command Logs**:
+   - A log of recent commands sent to the robot is displayed, allowing operators to track actions and debug issues if needed.
+
+#### Integration with Node-RED Flows
+
+The dashboards are tightly integrated with the Node-RED flows:
+- **Input Nodes**: Data from the robot is fed into the dashboard using Node-RED’s dashboard nodes.
+- **Output Nodes**: Commands issued from the dashboard are processed by Node-RED and published to the appropriate MQTT topics.
+
+#### Images
+
+We will include images of the dashboards here to illustrate their functionality and design. These images will showcase:
+- The layout of the control interface.
+- Real-time data visualizations.
+- Examples of how the dashboards are used during operation.
+
+The dashboards are a critical part of our system, providing an intuitive and powerful way to interact with the robots.
+
 ### Visualizing the Node-RED Flows
 
 With Node-RED, you can create visual flows to manage the communication. For example:
