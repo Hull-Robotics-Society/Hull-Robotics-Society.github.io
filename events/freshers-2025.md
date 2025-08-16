@@ -24,8 +24,6 @@ We’ll be showcasing some of our most exciting projects, including:
 - **Lego Mindstorms Projects:** Hands-on robotics built with creativity and innovation.
 - **CAD & 3D Printing:** Explore how we design and create custom components for our robots.
 - **Arduino Projects:** See the power of microcontrollers in action.
-- **SlimVR Trackers:** Dive into wearable tracking technology.
-- **Open-Source Remote Controller:** Discover how we’re building universal controllers for robotics.
 - **Mind-Controlled Robots:** Learn how we use EEG to control robots with brainwaves.
 
 ## Why Attend?
