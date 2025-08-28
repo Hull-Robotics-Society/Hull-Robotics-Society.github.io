@@ -100,20 +100,18 @@ Create a profile for motor imagery tasks (e.g., "Cube Manipulation").
 4. **Select Motor Imagery Task**  
 Choose a simple task, such as imagining moving a cube forward.
 
-![Motor Imagery Task Selection](image-path/mi-task-selection.jpg)  
+![Motor Imagery Task Selection](/images/emotiv/eeg-training.jpg)  
 *Caption: Selecting the cube manipulation task in the Emotiv app.*
 
 5. **Begin Training**  
 Follow on-screen instructions to focus on the movement. Visualize the cube moving, but do not move physically.
 
-![Motor Imagery Training](image-path/mi-training.jpg)  
+![Motor Imagery Training](/images/emotiv/eeg-mi-training.jpg)  
 *Caption: User concentrating on motor imagery during training.*
 
 6. **Repeat and Refine**  
 Perform multiple repetitions, maintaining focus and minimizing distractions.
 
-![Training Repetition](image-path/mi-repetition.jpg)  
-*Caption: Repeating motor imagery trials for better accuracy.*
 
 ### Tips for Best MI Results
 
