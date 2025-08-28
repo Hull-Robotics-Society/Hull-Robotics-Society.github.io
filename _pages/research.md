@@ -1,0 +1,33 @@
+---
+layout: collection
+permalink: /research/
+title: " "
+header:
+  overlay_image: images/hullrs-web-banner.jpg
+  overlay_image_class: "fixed-width-header"
+  caption: "Join us for exciting robotics research and workshops!"
+
+feature_row:
+  - image_path: /images/neuro/brain.jpg #
+    alt: "Neuro Robotics Research"
+    title: "Neuro Robotics Research"
+    excerpt: "**Explore our neuro robotics research articles and projects.**"
+    url: /research/neuro/
+    btn_label: "Learn More"
+    btn_class: "btn--primary"
+
+---
+{% include feature_row %}
+
+## Latest Research
+
+{% assign research_articles = site.pages | where_exp: "item", "item.path contains 'research/'" | sort: "date" | reverse | slice: 0, 6 %}
+
+<ul class="recent-research">
+  {% for research in research_articles %}
+  <li class="research-post">
+    <h3><a href="{{ research.url }}">{{ research.title }}</a></h3>
+    <p>{{ research.excerpt | markdownify }}</p>
+  </li>
+  {% endfor %}
+</ul>
