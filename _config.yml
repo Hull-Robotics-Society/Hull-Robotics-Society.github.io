@@ -324,7 +324,10 @@ collections:
     permalink: /projects/OSRC/:name/
   neuro:
     output: true
-    permalink: /research/neuro/:name
+    permalink: /research/neuro/:name/
+  tutorials:
+    output: true
+    permalink: /tutorials/:name/
 
 
 
