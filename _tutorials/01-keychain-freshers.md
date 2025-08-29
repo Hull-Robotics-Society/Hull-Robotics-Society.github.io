@@ -21,6 +21,12 @@ excerpt: "**Learn how to design and build a keychain using TinkerCAD and KiCAD.*
 - Navigate to **"Circuits"**
 - Click **"Create New Circuit"**
 
+<div style="text-align: center;">
+  <img src="/images/tutorials/keychain/create.svg" alt="Creating a new account and circuit project" style="width: 100%; max-width: 900px;">
+  <br>
+  <em>Figure 1: Creating a new account and circuit project in TinkerCAD.</em>
+</div>
+
 ---
 
 ## Step 2: Create Your Circuit
@@ -32,13 +38,11 @@ excerpt: "**Learn how to design and build a keychain using TinkerCAD and KiCAD.*
 - Connect them using wires
 - Click **"Start Simulation"** to test
 
----
-
-## Step 2.1: Have Fun Tinkering!
-
-- Try different layouts
-- Learn by doing
-- Explore what each component does
+<div style="text-align: center;">
+  <img src="/images/tutorials/keychain/circuit.svg" alt="Creating a new LED circuit" style="width: 100%; max-width: 900px;">
+  <br>
+  <em>Figure 2: Creating a new LED circuit in TinkerCAD.</em>
+</div>
 
 ---
 
@@ -47,6 +51,12 @@ excerpt: "**Learn how to design and build a keychain using TinkerCAD and KiCAD.*
 - Click **"Export"**
 - Select **.BRD** (Eagle Board File)
 - Save it to your device
+
+<div style="text-align: center;">
+  <img src="/images/tutorials/keychain/export.svg" alt="Exporting .BRD for KiCAD" style="width: 100%; max-width: 900px;">
+  <br>
+  <em>Figure 3: Exporting your circuit as a .BRD file for KiCAD.</em>
+</div>
 
 ---
 
@@ -57,6 +67,12 @@ excerpt: "**Learn how to design and build a keychain using TinkerCAD and KiCAD.*
 - Select your **.BRD** file
 - Choose **Auto-Match Layers**
 
+<div style="text-align: center;">
+  <img src="/images/tutorials/keychain/kicad.svg" alt="KiCAD setup" style="width: 100%; max-width: 900px;">
+  <br>
+  <em>Figure 4: Setting up your project in KiCAD.</em>
+</div>
+
 ---
 
 ## Step 5: Clean and Arrange
@@ -64,6 +80,12 @@ excerpt: "**Learn how to design and build a keychain using TinkerCAD and KiCAD.*
 - Use the PCB editor to:
   - Reposition components
   - Start routing tracks
+
+<div style="text-align: center;">
+  <img src="/images/tutorials/keychain/optimise.svg" alt="Optimising the circuit layout" style="width: 100%; max-width: 900px;">
+  <br>
+  <em>Figure 5: Optimising the circuit layout in KiCAD.</em>
+</div>
 
 ---
 
@@ -75,12 +97,24 @@ excerpt: "**Learn how to design and build a keychain using TinkerCAD and KiCAD.*
   - **F** to flip components
 - Ensure tracks don’t overlap
 
+<div style="text-align: center;">
+  <img src="/images/tutorials/keychain/routing.svg" alt="Routing trace lines for the circuit" style="width: 100%; max-width: 900px;">
+  <br>
+  <em>Figure 6: Routing trace lines for the circuit.</em>
+</div>
+
 ---
 
 ## Step 6.1: Preview in 3D
 
 - Use KiCad’s 3D viewer to inspect your board
 - Look for spacing and design issues
+
+<div style="text-align: center;">
+  <img src="/images/tutorials/keychain/3D.svg" alt="A 3D view of the circuit for final checks" style="width: 100%; max-width: 900px;">
+  <br>
+  <em>Figure 7: A 3D view of the circuit for final checks.</em>
+</div>
 
 ---
 
@@ -91,6 +125,12 @@ excerpt: "**Learn how to design and build a keychain using TinkerCAD and KiCAD.*
 - Check for **.gbrjob** file
 - Zip the folder
 - Email the zipped files to us
+
+<div style="text-align: center;">
+  <img src="/images/tutorials/keychain/drill-files.svg" alt="Saving drill files for final submission" style="width: 100%; max-width: 900px;">
+  <br>
+  <em>Figure 8: Saving drill files for final submission.</em>
+</div>
 
 ---
 
