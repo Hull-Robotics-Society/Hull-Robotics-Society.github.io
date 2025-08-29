@@ -324,7 +324,7 @@ collections:
     permalink: /projects/OSRC/:name/
   neuro:
     output: true
-    permalink: /research/neuro/:name/
+    permalink: /research/neuro/:name
 
 
 
@@ -402,3 +402,16 @@ defaults:
       toc_sticky: true
       sidebar:
         nav: "research"
+  
+  # Tutorials
+  - scope: 
+      type: tutorials
+    values:
+      layout: single
+      author_profile: false
+      share: true
+      read_time: false
+      toc: true
+      toc_sticky: true
+      sidebar:
+        nav: "tutorials"
