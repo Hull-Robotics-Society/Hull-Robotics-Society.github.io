@@ -8,10 +8,10 @@ header:
   caption: "Filled with tutorials and workshops"
 
 feature_row:
-  - image_path: /images/keychain.jpg
+  - image_path: /images/keychain.svg
     alt: "Keychain Tutorial"
     title: "Keychain TinkerCAD & KiCAD Tutorial"
-    excerpt: "**Learn how to design and build a keychain using TinkerCAD and KiCAD.**<br>Part of our Freshers Give It A Go event."
+    excerpt: ""
     url: /tutorials/keychain/
     btn_label: "View Tutorial"
     btn_class: "btn--primary"
