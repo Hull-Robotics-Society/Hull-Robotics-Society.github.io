@@ -14,7 +14,7 @@ excerpt: "Browse through all upcoming robotics research articles and workshops a
 Here is a list of all our research articles:
 
 <ul class="all-research">
-  {% assign neuro_research = site.neuro_research %}
+  {% assign neuro_research = site.neuro %}
   {% assign research_pages = site.pages | where_exp: "item", "item.path contains 'research/'" %}
   
   {%- assign all_research = neuro_research | concat: research_pages -%}

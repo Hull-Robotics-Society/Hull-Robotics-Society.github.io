@@ -37,3 +37,5 @@ feature_row:
     </li>
   {% endfor %}
 </ul>
+
+[View all research](/research/all-research/)
