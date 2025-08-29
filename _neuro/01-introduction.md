@@ -1,7 +1,6 @@
 ---
 title: Introduction to the Fundamentals of Neuroscience and Brain Signal Technologies
-date: 2024-06-10
-author: Roberto Finnisaro
+date: 2025-08-01
 tags:
     - neuroscience
     - brain signals

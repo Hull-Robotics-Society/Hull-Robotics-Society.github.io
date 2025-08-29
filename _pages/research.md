@@ -23,11 +23,17 @@ feature_row:
 
 {% assign research_articles = site.pages | where_exp: "item", "item.path contains 'research/'" | sort: "date" | reverse | slice: 0, 6 %}
 
-<ul class="recent-research">
-  {% for research in research_articles %}
-  <li class="research-post">
-    <h3><a href="{{ research.url }}">{{ research.title }}</a></h3>
-    <p>{{ research.excerpt | markdownify }}</p>
-  </li>
+<ul class="all-research">
+  {% assign neuro_research = site.neuro %}
+  {% assign research_pages = site.pages | where_exp: "item", "item.path contains 'research/'" %}
+  
+  {%- assign all_research = neuro_research | concat: research_pages -%}
+  {%- assign sorted_research = all_research | sort: 'date' | reverse -%}
+
+  {% for research in sorted_research %}
+    <li class="research-post">
+      <h3><a href="{{ research.url }}">{{ research.title }}</a></h3>
+      <p>{{ research.excerpt | default: "No synopsis available." }}</p>
+    </li>
   {% endfor %}
 </ul>
