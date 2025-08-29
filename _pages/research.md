@@ -11,7 +11,7 @@ feature_row:
   - image_path: /images/neuro/brain.jpg #
     alt: "Neuro Robotics Research"
     title: "Neuro Robotics Research"
-    excerpt: "**Explore our neuro robotics research articles and projects.**"
+    excerpt: ""
     url: /research/neuro/
     btn_label: "Learn More"
     btn_class: "btn--primary"
