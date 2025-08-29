@@ -6,8 +6,9 @@ tags:
     - Manufacturing
     - TinkerCAD
     - Simulation
+    - Give It A Go
 permalink: /tutorials/keychain/
-excerpt: "**Learn how to design and build a keychain using TinkerCAD and KiCAD.**<br>Part of our Freshers Give It A Go event."
+excerpt: "Learn how to design and build a keychain using TinkerCAD and KiCAD."
 ---
 
 *Using TinkerCAD and KiCad*
