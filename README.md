@@ -14,9 +14,9 @@ It showcases our projects, research, tutorials, and events.
 
 ## Editing and Committing Changes
 
-1. **Clone the repository:**
+1. **Clone the repository (gh-pages branch):**
    ```sh
-   git clone https://github.com/Hull-Robotics-Society/Hull-Robotics-Society.github.io.git
+   git clone --branch gh-pages https://github.com/Hull-Robotics-Society/Hull-Robotics-Society.github.io.git
    cd Hull-Robotics-Society.github.io
    ```
 
