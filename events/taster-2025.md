@@ -2,7 +2,7 @@
 layout: posts
 date: 2025-09-19
 title: "KiCAD and Thymio Robotics Session"
-permalink: /events/kicad-thymio-session
+permalink: /events/kicad-thymio-session/
 excerpt: "Join us for an exciting hands-on workshop exploring KiCAD PCB design and Thymio robots in the Robotics Lab! Learn, build and code with us."
 ---
 
@@ -27,7 +27,7 @@ Just bring your curisoity and creativity!
 ## Event Details
 
 - **Date**: September 19th, 2025 
-- **Time**: 5:00 PM – 7:00 PM  
+- **Time**: 5:30 PM – 7:00 PM  
 - **Location**: Robotics Lab, University of Hull
 - **What to bring**: Enthusiasm and ideas!
 
