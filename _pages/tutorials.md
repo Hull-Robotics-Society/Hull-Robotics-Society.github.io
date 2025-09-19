@@ -8,7 +8,7 @@ header:
   caption: "Filled with tutorials and workshops"
 
 feature_row:
-  - image_path: /images/keychain.svg
+  - image_path: /images/keychain.png
     alt: "Keychain Tutorial"
     title: "Keychain TinkerCAD & KiCAD Tutorial"
     excerpt: ""
