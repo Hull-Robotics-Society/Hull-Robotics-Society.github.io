@@ -18,11 +18,11 @@ feature_row:
     btn_label: "Learn More"
     btn_class: "btn--primary"
 
-  - image_path: images/wall-e.jpg
-    alt: "Wall-E Movie Showing"
-    title: "Wall-E Movie Showing"
-    excerpt: "**Date:** 11/12/2024<br>**Time:** 4:00 PM – 7:00 PM<br>**Location:** HIVE, University of Hull<br>"
-    url: /events/walle-screening/
+  - image_path: images/keychain.svg
+    alt: "Robotics Taster Session 2025"
+    title: "Robotics Taster Session 2025"
+    excerpt: "**Date:** 19/09/2025<br>**Time:** 5:30 PM – 7:00 PM<br>**Location:** Robotics Lab, University of Hull<br>"
+    url: /events/kicad-thymio-session/
     btn_label: "Learn More"
     btn_class: "btn--primary"
 
