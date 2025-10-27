@@ -10,19 +10,19 @@ header:
 # excerpt: <br />
 
 feature_row:
+  - image_path: images/terminator.png
+    alt: "Terminator Movie Screening"
+    title: "Terminator Movie Screening"
+    excerpt: "**Date:** 27/10/2025<br>**Time:** 5:00 PM – 7:00 PM<br>**Location:** Robotics Lab, University of Hull<br>"
+    url: /events/terminator-screening/
+    btn_label: "Learn More"
+    btn_class: "btn--primary"
+    
   - image_path: images/dalek-100-leaders.jpg
     alt: "East Riding Top 100 Leaders"
     title: "East Riding Top 100 Leaders"
     excerpt: "**Date:** 15/05/2025<br>**Time:** 2:00 PM – 4:00 PM<br>**Location:** Beverley Leisure Centre , Beverly<br>"
     url: /events/daleks-day-out/
-    btn_label: "Learn More"
-    btn_class: "btn--primary"
-
-  - image_path: images/keychain.png
-    alt: "Robotics Taster Session 2025"
-    title: "Robotics Taster Session 2025"
-    excerpt: "**Date:** 19/09/2025<br>**Time:** 5:30 PM – 7:00 PM<br>**Location:** Robotics Lab, University of Hull<br>"
-    url: /events/kicad-thymio-session/
     btn_label: "Learn More"
     btn_class: "btn--primary"
 
