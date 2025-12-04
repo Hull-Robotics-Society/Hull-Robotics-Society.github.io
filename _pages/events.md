@@ -10,11 +10,11 @@ header:
 # excerpt: <br />
 
 feature_row:
-  - image_path: images/terminator.png
-    alt: "Terminator Movie Screening"
-    title: "Terminator Movie Screening"
-    excerpt: "**Date:** 27/10/2025<br>**Time:** 5:00 PM – 7:00 PM<br>**Location:** Robotics Lab, University of Hull<br>"
-    url: /events/terminator-screening/
+  - image_path: images/lotr-fellowship.jpg
+    alt: "Lord of the Rings, Christmas Movie Screening"
+    title: "Lord of the Rings, Christmas Movie Screening"
+    excerpt: "**Date:** 08/12/2025<br>**Time:** 3:30 PM – 8:00 PM<br>**Location:** BR8, Students Union, University of Hull<br>"
+    url: /events/lotr-fellowship-christmas-2025/
     btn_label: "Learn More"
     btn_class: "btn--primary"
     
