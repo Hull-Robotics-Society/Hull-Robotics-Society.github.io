@@ -1,7 +1,7 @@
 ---
 layout: splash
 permalink: /blogs/
-title: "Blogs & News"
+title: " "
 header:
   overlay_image: images/hullrs-web-banner.jpg
   overlay_image_class: "fixed-width-header"
