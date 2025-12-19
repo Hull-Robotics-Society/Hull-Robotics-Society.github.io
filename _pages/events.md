@@ -3,19 +3,18 @@ layout: splash
 permalink: /events/
 title: " "
 header:
-  overlay_image: images/hullrs-web-banner.jpg
+  overlay_image: image/hullrs-web-banner.jpg
   overlay_image_class: "fixed-width-header"
-#   overlay_filter: 0.3 # Optional: Adjust the overlay opacity
   caption: "Join us for exciting robotics events and workshops!"
 # excerpt: <br />
 
 feature_row:
-  - image_path: images/lotr-fellowship.jpg
-    alt: "Lord of the Rings, Christmas Movie Screening"
-    title: "Lord of the Rings, Christmas Movie Screening"
-    excerpt: "**Date:** 08/12/2025<br>**Time:** 3:30 PM – 8:00 PM<br>**Location:** BR8, Students Union, University of Hull<br>"
-    url: /events/lotr-fellowship-christmas-2025/
-    btn_label: "Learn More"
+  - image_path: images/film-night-banner.jpg
+    alt: "Film Nights collection"
+    title: "Film Nights"
+    excerpt: "**Discover all film nights** — click to see upcoming and past screenings curated by Hull Robotics Society."
+    url: /events/film-nights/
+    btn_label: "View Film Nights"
     btn_class: "btn--primary"
     
   - image_path: images/dalek-100-leaders.jpg
@@ -33,8 +32,8 @@ feature_row:
     url: /events/weekly-meetup/
     btn_label: "Learn More"
     btn_class: "btn--primary"
-
 ---
+
 <!-- {% include feature_row id="intro" type="center" %} -->
 {% include feature_row %}
 
