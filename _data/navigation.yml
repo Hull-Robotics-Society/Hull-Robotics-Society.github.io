@@ -2,6 +2,8 @@
 main:
   - title: "Projects"
     url: /projects/
+  - title: "Blogs"
+    url: /blogs/
   - title: "Research"
     url: /research/
   - title: "Tutorials"
