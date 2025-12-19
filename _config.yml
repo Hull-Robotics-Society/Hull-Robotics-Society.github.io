@@ -328,6 +328,12 @@ collections:
   tutorials:
     output: true
     permalink: /tutorials/:name/
+  blogs:
+    output: true
+    permalink: /blogs/:name/
+  films:
+    output: true
+    permalink: /events/film-nights/:name/
 
 
 
@@ -418,3 +424,31 @@ defaults:
       toc_sticky: true
       sidebar:
         nav: "tutorials"
+
+  # Blogs
+  - scope:
+      type: blogs
+    values:
+      layout: single
+      author_profile: true
+      share: true
+      read_time: true
+      comments: true
+      related: true
+      toc: true
+      toc_sticky: true
+      sidebar:
+        nav: "blogs"
+
+  # Films
+  - scope:
+      type: films
+    values:
+      layout: single
+      author_profile: false
+      share: true
+      read_time: false
+      toc: true
+      toc_sticky: true
+      sidebar:
+        nav: "events"
