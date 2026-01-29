@@ -41,4 +41,5 @@ projects:
         url: /projects/OSRC/testing/
   - title: Pepper Projects
     children:
-      
+  - title: Baxter Projects
+    children:

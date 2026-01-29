@@ -325,6 +325,9 @@ collections:
   pepper:
     output: true
     permalink: /projects/pepper/:name/
+  baxter:
+    output: true
+    permalink: /projects/baxter/:name/
   neuro:
     output: true
     permalink: /research/neuro/:name/
@@ -413,6 +416,20 @@ defaults:
       read_time: false
       toc: true
       toc_sticky: true
+      sidebar:
+        nav: "projects"
+
+  # Baxter Project
+  - scope:
+      # path: "/projects/_baxter"
+      type: baxter
+    values:
+      layout: single
+      author_profile: false
+      share: true
+      read_time: false
+      toc: true
+      tock_sticky: true
       sidebar:
         nav: "projects"
 
