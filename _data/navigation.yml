@@ -39,3 +39,6 @@ projects:
         url: /projects/OSRC/software/
       - title: "Testing the OSRC"
         url: /projects/OSRC/testing/
+  - title: Pepper Projects
+    children:
+      

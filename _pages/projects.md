@@ -24,6 +24,14 @@ feature_row:
     url: /projects/OSRC/
     btn_label: "Learn More"
     btn_class: "btn--primary"
+
+  - image_path: images/pepper.jpeg
+    alt: "Pepper"
+    title: "Pepper Projects <br /><br />"
+    excerpt: ""
+    url: /projects/pepper
+    btn_label: "Learn More"
+    btn_class: "btn--primary"
 ---
 <!-- {% include feature_row id="intro" type="center" %} -->
 {% include feature_row %}

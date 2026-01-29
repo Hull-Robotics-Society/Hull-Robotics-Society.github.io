@@ -322,6 +322,9 @@ collections:
   OSRC:
     output: true
     permalink: /projects/OSRC/:name/
+  pepper:
+    output: true
+    permalink: /projects/pepper/:name/
   neuro:
     output: true
     permalink: /research/neuro/:name/
@@ -389,6 +392,20 @@ defaults:
   # OSRC Project
   - scope:
       type: OSRC
+    values:
+      layout: single
+      author_profile: false
+      share: true
+      read_time: false
+      toc: true
+      toc_sticky: true
+      sidebar:
+        nav: "projects"
+  
+  # Pepper Project
+  - scope:
+      # path: "/projects/_pepper"
+      type: pepper
     values:
       layout: single
       author_profile: false

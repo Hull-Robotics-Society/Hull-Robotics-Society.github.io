@@ -28,6 +28,13 @@ feature_row:
     excerpt: "Photos and memories from our events and workshops."
     url: /gallery/events/
     btn_class: "btn--primary"
+
+  - image_path: /images/pepper-thumbnail.jpg
+    alt: "Pepper Gallery"
+    title: "Pepper Projects"
+    excerpt: "A gallery showcasing the Pepper project in action."
+    url: /gallery/pepper/
+    btn_class: "btn--primary"
 ---
 
 {% include feature_row %}
