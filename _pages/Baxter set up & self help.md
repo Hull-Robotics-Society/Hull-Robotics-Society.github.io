@@ -156,7 +156,7 @@ In order to launch topics:
 rostopic pub (insert topic)
 ```
 
-## Scripting
+## 9. Scripting
 
 Much like ros2 you can create packages topics, run scripts individualy ect....
 
@@ -187,7 +187,7 @@ rosrun my_baxter_stuff script.py
 
 And then you should see the code come to life :)
 
-## Baxter arm positions
+## 10. Baxter arm positions
 
 Please note:
 
