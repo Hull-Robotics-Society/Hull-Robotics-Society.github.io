@@ -1,3 +1,11 @@
+---
+title: "Baxter Setup"
+date: 2026-01-15
+permalink: /projects/baxter/baxter-setup
+excerpt: "How to setup and initialise a Baxter robot."
+---  
+
+
 # Baxter Documentation
 
 ## 1. Create the Workspace
