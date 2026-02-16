@@ -63,7 +63,7 @@ After merging, you should see the following packages:
 
 ## 5. Update Workspace
 
-From inside the `src` folder, run:
+From inside the src folder, run:
 
 ```
 wstool update (approx 1 minute)
@@ -76,7 +76,7 @@ source /opt/ros/groovy/setup.bash
 ```
 
 ---
-You will run into errors (depending on OS)
+You will run into errors (depending on OS version)
 
 ```
 ls /opt/ros/noetic
@@ -97,7 +97,7 @@ You should now see all Baxter-related folders inside the workspace.
 
 ---
 
-You may encounter a code error, depending on the Python version. So in baxter_interface (python script) you will see this: 
+You may encounter a code error, depending on the Python version. So in baxter_interface (python script), you will see this: 
 
 ```
 except OSError, e;
@@ -163,82 +163,4 @@ To launch topics:
 rostopic pub (insert topic)
 ```
 
-## 9. Scripting
-
-Much like ROS2, you can create packages, topics, run scripts individually, etc.
-
-```
-catkin_make_pkg my_baxter_stuff scripts (scripts.py)
-```
-
-And then 
-
-```
-nano (scripts.py)
-```
-
-And enter code 
-
-Again, like ros2, you MUST make them executable
-
-```
-chmod +x (scripts.py)
-```
-And then from the ws:
-
-Enable robot, source, build 
-
-```
-rosrun my_baxter_stuff script.py
-```
-
-And then you should see the code come to life :)
-
-## 10. Baxter arm positions
-
-Please note:
-
-The best way I have found to see the most reliable way is by adding a print line, for example:
-
-```
-print("Initial left:", left_angles)
-```
-Alternatively, for live positions, you can echo it:
-
-```
-rostopic echo /robot/joint_states
-```
-
-Starting point for the left arm:
-
-```
-Initial left: {
-'left_e0': -0.08590292412158317, 
-'left_e1': 1.1010147105047556,
-'left_s0': -0.3616359707439863,
-'left_s1': 0.3466796580621035,
-'left_w0': -0.044485442848677,
-'left_w1': 0.17602429540985123,
-'left_w2': -0.0015339807878854137}
-
-```
-Starting point for the right arm:
-
-```
-Initial right: {
-'right_e0': 0.11389807350049197,
-'right_e1': 1.0523108204893938,
-'right_s0': 0.38924762492592374,
-'right_s1': 0.37160684586524145,
-'right_w0': -0.09664078963678106,
-'right_w1': 0.23086410857675477,
-'right_w2': -0.0015339807878854137}
-```
-
-Baxter also has cameras and sensors around the head and hands (best to run in multiple terminals to see):
-
-```
-rqt_image_view
-```
-
-Here is a quick, simple example: 
+Next up, we will look at controlling Baxter through scripts.
