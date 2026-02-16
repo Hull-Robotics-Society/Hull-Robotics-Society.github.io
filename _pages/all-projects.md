@@ -16,9 +16,11 @@ Here is a list of all our projects:
 <ul class="all-projects">
   {% assign dalek_projects = site.dalek %}
   {% assign OSRC_projects = site.OSRC %}
+  {% assign pepper_projects = site.pepper %}
+  {% assign baxter_projects = site.baxter %}
   {% assign project_pages = site.pages | where_exp: "item", "item.path contains 'projects/'" %}
   
-  {%- assign all_projects = dalek_projects | concat: OSRC_projects | concat: project_pages -%}
+  {%- assign all_projects = dalek_projects | concat: OSRC_projects | concat: pepper_projects | concat: baxter_projects | concat: project_pages -%}
   {%- assign sorted_projects = all_projects | sort: 'date' | reverse -%}
 
   {% for project in sorted_projects %}
