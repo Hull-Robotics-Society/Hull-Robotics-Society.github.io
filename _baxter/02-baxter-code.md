@@ -85,4 +85,85 @@ rqt_image_view
 
 Here is a quick, simple example: 
 
-And then you should see the code come to life :)
+## 11. Programming Baxter through scripts
+
+Here is some test code, plain and simple arm movemnt remeber stand clear!
+
+```
+import rospy
+from baxter_interface import Limb
+import copy
+
+def smooth_move(arm, start_angles, target_angles, rate, steps=100):
+    angles = copy.deepcopy(start_angles)
+
+    for _ in range(steps):
+        for j in target_angles:
+            angles[j] += (target_angles[j] - angles[j]) * 0.15
+        arm.set_joint_positions(angles)
+        rate.sleep()
+
+    # Force final pose
+    arm.set_joint_positions(target_angles)
+    return target_angles
+
+
+def main():
+    rospy.init_node('extend_arms')
+
+    left_arm = Limb('left')
+    right_arm = Limb('right')
+
+    rate = rospy.Rate(50)
+
+    # Save starting positions (DO NOT overwrite these)
+    left_start = left_arm.joint_angles()
+    right_start = right_arm.joint_angles()
+
+    
+    print("Initial left:", left_current)
+    print("Initial right:", left_current)
+
+    # Target positions
+    target_left = {
+        'left_s0': 9.0,
+        'left_s1': -10.0,
+        'left_e0': 0.0,
+        'left_e1': 0.0,
+        'left_w0': -5.0,
+        'left_w1': 0.0,
+        'left_w2': 0.0
+    }
+
+    target_right = {
+        'right_s0': -9.0,
+        'right_s1': -10.0,
+        'right_e0': 0.0,
+        'right_e1': 0.0,
+        'right_w0': 5.0,
+        'right_w1': 0.0,
+        'right_w2': 0.0
+    }
+
+    rospy.loginfo("Moving to target")
+
+    left_current = smooth_move(left_arm, left_start, target_left, rate)
+    right_current = smooth_move(right_arm, right_start, target_right, rate)
+
+    print("Last left:", left_current)
+    print("Last right:", right_current)
+
+    rospy.loginfo("Holding for 5 seconds")
+    rospy.sleep(5.0)
+
+    rospy.loginfo("Returning to start positions")
+
+    smooth_move(left_arm, left_current, left_start, rate)
+    smooth_move(right_arm, right_current, right_start, rate)
+
+    rospy.loginfo("Motion complete")
+
+
+if __name__ == '__main__':
+    main()
+```
