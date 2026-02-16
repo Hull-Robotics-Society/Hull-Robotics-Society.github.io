@@ -167,3 +167,47 @@ def main():
 if __name__ == '__main__':
     main()
 ```
+
+Here is the starting and ending state for the arms:
+
+```
+Initial Left:
+{'left_e0': 0.03489806292439316, 
+'left_e1': 1.1259418983078937, 
+'left_s0': -0.8038059328519568, 
+'left_s1': 0.4506068564413403, 
+'left_w0': -0.03029612056073692, 
+'left_w1': 0.003451456772742181, 
+'left_w2': 3.0418839023767754}
+
+Initial Right:
+{'right_e0': -0.05905826033358843, 
+'right_e1': 0.9583544972314122, 
+'right_s0': 0.8705340971249723, 
+'right_s1': 0.6412039693361029, 
+'right_w0': -0.2688301330769188, 
+'right_w1': -0.23009711818281206, 
+'right_w2': 0.6784030034423242}
+
+Last Left:
+{'left_e0': 0.03489806292439316, 
+'left_e1': 1.1259418983078937, 
+'left_s0': -0.8038059328519568, 
+'left_s1': 0.4506068564413403, 
+'left_w0': -0.03029612056073692, 
+'left_w1': 0.003451456772742181, 
+'left_w2': 3.0418839023767754}
+
+Last Right: 
+{'right_e0': -0.05905826033358843, 
+'right_e1': 0.9583544972314122, 
+'right_s0': 0.8705340971249723, 
+'right_s1': 0.6412039693361029, 
+'right_w0': -0.2688301330769188, 
+'right_w1': -0.23009711818281206, 
+'right_w2': 0.6784030034423242}
+```
+
+Now this code mainly moves the shoulders up and down, left, and right. Next, we'll go over each section of Baxter's arms:
+
+
