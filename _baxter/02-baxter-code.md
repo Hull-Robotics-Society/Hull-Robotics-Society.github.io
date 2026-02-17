@@ -1,6 +1,6 @@
 ---
 title: "Baxter Code"
-date: 2026-01-16
+date: 2026-01-17
 permalink: /projects/baxter/baxter-code
 excerpt: "Programming Baxter the robot"
 ---  
@@ -85,7 +85,7 @@ rqt_image_view
 
 Here is a quick, simple example: 
 
-https://github.com/user-attachments/assets/4337b7d4-a83f-4d7b-ae24-1a065d795056 
+
 
 
 ## 11. Programming Baxter through scripts
