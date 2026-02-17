@@ -4,3 +4,4 @@ date: 2026-01-16
 permalink: /projects/baxter/baxter-arm-segment
 excerpt: "In depth look at baxters arms."
 ---  
+(images/baxter/baxter_arm_segment.jnp)
