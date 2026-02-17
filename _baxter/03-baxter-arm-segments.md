@@ -1,7 +1,7 @@
 ---
 title: "Baxter Arm Segments"
 date: 2026-01-16
-permalink: /projects/baxter/baxter-code
+permalink: /projects/baxter/baxter-arm-segment
 excerpt: "How to code a Baxter robot."
 ---  
 
