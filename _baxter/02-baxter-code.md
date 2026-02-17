@@ -85,8 +85,7 @@ rqt_image_view
 
 Here is a quick, simple example: 
 
-
-
+(/media/baxter/baxter_rqt_example.mp4)
 
 ## 11. Programming Baxter through scripts
 
