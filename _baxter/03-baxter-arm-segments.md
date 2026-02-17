@@ -1,5 +1,5 @@
 ---
-title: "Baxter Code"
+title: "Baxter Arm Segments"
 date: 2026-01-16
 permalink: /projects/baxter/baxter-code
 excerpt: "How to code a Baxter robot."

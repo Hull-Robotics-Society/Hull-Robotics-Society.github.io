@@ -5,7 +5,6 @@ permalink: /projects/baxter/baxter-setup
 excerpt: "How to set up and initialise a Baxter robot."
 ---  
 
-
 # Baxter Documentation
 
 ## 1. Create the Workspace
