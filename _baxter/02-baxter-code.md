@@ -2,7 +2,7 @@
 title: "Baxter Code"
 date: 2026-01-16
 permalink: /projects/baxter/baxter-code
-excerpt: "How to code a Baxter robot."
+excerpt: "Programming Baxter the robot"
 ---  
 
 ## 9. Scripting
