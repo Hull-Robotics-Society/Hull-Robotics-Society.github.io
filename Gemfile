@@ -27,9 +27,4 @@ group :development do
   gem "rake", "~> 13.0"
 end
 
-group :production do
-  gem "github-pages"
-end
-
-
 gem "erb", "~> 6.0"
