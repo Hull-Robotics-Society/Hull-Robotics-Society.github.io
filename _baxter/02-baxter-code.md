@@ -1,8 +1,8 @@
 ---
 title: "Baxter Code"
-date: 2026-01-17
+date: 2026-01-18
 permalink: /projects/baxter/baxter-code
-excerpt: "Programming Baxter the robot"
+excerpt: "Programming Baxter the robot."
 ---  
 
 ## 9. Scripting
@@ -85,7 +85,10 @@ rqt_image_view
 
 Here is a quick, simple example: 
 
-(/media/baxter/baxter_rqt_example.mp4)
+<video width="100%" controls>
+  <source src="/media/baxter/baxter_rqt_example.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 ## 11. Programming Baxter through scripts
 
