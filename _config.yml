@@ -328,6 +328,9 @@ collections:
   baxter:
     output: true
     permalink: /projects/baxter/:name/
+  transformer:
+    output: true
+    permalink: /projects/transformer/:name/
   neuro:
     output: true
     permalink: /research/neuro/:name/
@@ -423,6 +426,20 @@ defaults:
   - scope:
       # path: "/projects/_baxter"
       type: baxter
+    values:
+      layout: single
+      author_profile: false
+      share: true
+      read_time: false
+      toc: true
+      tock_sticky: true
+      sidebar:
+        nav: "projects"
+
+  # Transformer Project
+  - scope:
+      # path: "/projects/_transformer"
+      type: transformer
     values:
       layout: single
       author_profile: false
