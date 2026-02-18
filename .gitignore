@@ -5,8 +5,9 @@ _site
 Gemfile.lock
 .bundle
 vendor/
-$HOME/.vs/
+$HOME/
 _site/
 .vendor/
 vendor/
 .bundle/
+Gemfile
