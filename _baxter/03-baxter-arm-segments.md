@@ -5,6 +5,6 @@ permalink: /projects/baxter/baxter-arm-segment
 excerpt: "In depth look at baxters arms."
 ---  
 
-<img src="/images/baxter/baxter_rqt_example.png"
-     alt="Baxter RQT Example"
-     style="width:100%; border-radius:10px;" />
+<div style="text-align: center;">
+   <img src="/images/baxter/baxter_arm_segment.png" alt="Baxter Arm Segment"/>
+</div>
