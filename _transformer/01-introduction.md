@@ -5,9 +5,12 @@ permalink: /projects/transfomer/introduction
 excerpt: "Introduction to our most recent project"
 ---  
 # Core Electronics
+
 ## Controllers
 1. Raspberry Pi 3 (may work with pi 2)
 2. ESP32 Development Board (ESP32-WROOM-32 or ESP32 DevKit V1)
+
+---
 
 ## Servo Control
 1. PCA9685 16-Channel Servo Driver Board
@@ -15,6 +18,8 @@ excerpt: "Introduction to our most recent project"
 3. Male-to-female jumper wires
 4. E-stop switch
 5. i/o switch
+
+---
 
 ## Motors
 ### High-torque servos (structural joints)
@@ -24,12 +29,16 @@ Use for:
 2 × knees
 2 × shin/ankle hinges
 
+---
+
 ### Medium-torque servos (upper body)
 Quantity: 4
 Use for:
 2 × shoulders
 1 × torso hinge
 1 × head or waist
+
+---
 
 ## Power System
 1. 7.4 V LiPo battery
@@ -39,6 +48,8 @@ Or the equivalant:
 5. 2S1P 21700 (7.4 V, ~5000 mAh)
 6. 2S2P 18650 (7.4 V, ~5000 mAh)
 7. ~6 V high-current DC-DC buck converter (10–20 A minimum)
+
+---
 
 ## Structural Components (Body)
 Structural Components (build up)
@@ -54,6 +65,8 @@ Mechanical frame (end product)
 6. M2, M3 bolts and nuts
 7. Self-tapping screws (for servos)
 8. Washers
+
+---
 
 ## Wiring & Electronics Accessories
 1. Servo extension cables

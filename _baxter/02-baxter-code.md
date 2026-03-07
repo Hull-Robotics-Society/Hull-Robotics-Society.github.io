@@ -5,7 +5,7 @@ permalink: /projects/baxter/baxter-code
 excerpt: "Programming Baxter the robot."
 ---  
 
-## 9. Scripting
+# 9. Scripting
 
 Much like ROS2, you can create packages, topics, run scripts individually, etc.
 
@@ -36,9 +36,11 @@ rosrun my_baxter_stuff script.py
 
 And then you should see the code come to life :)
 
-## 10. Baxter arm positions
+---
 
-Please note:
+# 10. Baxter arm positions
+
+Please note
 
 The best way I have found to see the most reliable way is by adding a print line, for example:
 
@@ -90,7 +92,7 @@ Here is a quick, simple example:
   Your browser does not support the video tag.
 </video>
 
-## 11. Programming Baxter through scripts
+# 11. Programming Baxter through scripts
 
 Here is some test code, plain and simple arm movemnt remeber stand clear!
 
