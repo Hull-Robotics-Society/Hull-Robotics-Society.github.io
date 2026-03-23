@@ -16,5 +16,13 @@ feature_row:
     btn_label: "Read Post"
     btn_class: "btn--primary"
 
+  - image_path: images/varsity/dalek-crepe.jpg
+    alt: "Varsity 2026: A year with the Robotics Society"
+    title: "Varsity 2026"
+    url: /blogs/Varsity-2026/
+    btn_label: "Read Post"
+    btn_class: "btn--primary"
+
+
 ---
 {% include feature_row %}
