@@ -9,6 +9,8 @@ header:
 collection: blogs
   
 feature_row:
+  - 
+
   - image_path: images/dalek-100-leaders.jpg
     alt: "Our 2025: A year with the Robotics Society"
     title: "Our 2025: A year with the Robotics Society"
@@ -34,6 +36,13 @@ feature_row:
     alt: "Our 2026: A year with the Robotics Society"
     title: "Our 2026"
     url: /blogs/our-2026/
+    btn_label: "Read Post"
+    btn_class: "btn--primary"
+    
+    image_path: images/pepper.jpeg
+    alt: "Pepper the humanoid robot at Freshers Fair"
+    title: "Freshers Fair 2026"
+    url: /blogs/freshers-day-2026/
     btn_label: "Read Post"
     btn_class: "btn--primary"
 
