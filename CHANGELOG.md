@@ -12,7 +12,13 @@ Rebuilt the website from scratch with Astro, replacing the Jekyll site based on 
   - A pinned robot roster ("Meet the machines") swaps through the robots as you scroll.
   - A drifting photo collage and a Join section.
 - Calm, readable inner pages: project pages with a dated build-log timeline and fact sheet, long-form article pages with a sticky contents list, reading time and an "Edit this page on GitHub" link.
-- New About page with mission, what we do, why join, where to find us, contacts and an optional committee section.
+- New About page with mission, what we do, why join, where to find us and contacts, plus the 2026–27 Executive Team (President, Vice President, Treasurer, Project Manager) with their favourite robots and hobbies.
+- Film nights get their own cinema-style page:
+  - A dark poster hero that marks the film as upcoming or "Screened".
+  - Film facts (year, director, runtime, rating) and a ticket-stub card with the screening details.
+  - The cast, and a trailer that only loads from YouTube on click.
+  - A shelf of the other film nights.
+- The Events page has a film night poster shelf, and every dated event offers an "Add to calendar" (.ics) file while it is upcoming.
 
 ### Content and navigation
 - Navigation reduced to Projects, Tutorials, Events, Journal and About. Research is a tab next to Projects; the blog is now the Journal.

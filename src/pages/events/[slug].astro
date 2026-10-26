@@ -1,13 +1,24 @@
 ---
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import Article from '../../layouts/Article.astro';
+import Base from '../../layouts/Base.astro';
+import FilmNight from '../../components/FilmNight.astro';
 import { formatDate } from '../../lib/site';
 
 export async function getStaticPaths() {
-    return (await getCollection('events')).map(e => ({ params: { slug: e.id }, props: { e } }));
+    const events = await getCollection('events');
+    const films = events
+        .filter(x => x.data.film)
+        .sort((a, b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0));
+    return events.map(e => ({ params: { slug: e.id }, props: { e, films } }));
 }
 
-const { e } = Astro.props as { e: CollectionEntry<'events'> };
+interface Props {
+    e: CollectionEntry<'events'>;
+    films: CollectionEntry<'events'>[];
+}
+
+const { e, films } = Astro.props;
 const { Content, headings } = await render(e);
 const weekdays = ['Sundays', 'Mondays', 'Tuesdays', 'Wednesdays', 'Thursdays', 'Fridays', 'Saturdays'];
 const meta: [string, string][] = [];
@@ -17,15 +28,25 @@ if (e.data.start) meta.push(['Time', e.data.end ? `${e.data.start} to ${e.data.e
 if (e.data.location) meta.push(['Where', e.data.location]);
 ---
 
-<Article
-    title={e.data.title}
-    excerpt={e.data.excerpt}
-    eyebrow={`Event · ${e.data.type}`}
-    back={{ href: '/events/', label: 'All events' }}
-    meta={meta}
-    headings={headings}
-    filePath={e.filePath}
-    cover={e.data.cover}
->
-    <Content />
-</Article>
+{e.data.film
+    ? (
+        <Base title={e.data.title} description={e.data.excerpt} image={e.data.cover}>
+            <FilmNight e={e} others={films.filter(f => f.id !== e.id)}>
+                <Content />
+            </FilmNight>
+        </Base>
+    )
+    : (
+        <Article
+            title={e.data.title}
+            excerpt={e.data.excerpt}
+            eyebrow={`Event · ${e.data.type}`}
+            back={{ href: '/events/', label: 'All events' }}
+            meta={meta}
+            headings={headings}
+            filePath={e.filePath}
+            cover={e.data.cover}
+        >
+            <Content />
+        </Article>
+    )}

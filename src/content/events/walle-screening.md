@@ -2,44 +2,26 @@
 title: "Robotics Movie Night: Wall-E"
 slug: walle-screening
 type: "Film night"
-date: 2025-02-11
-excerpt: "Join us for an inspiring movie night featuring the beloved animated film Wall-E! Explore themes of love, hope, and environmental preservation while enjoying the movie with friends."
+date: 2025-02-12
+start: "16:00"
+end: "19:00"
+location: "HIVE, University of Hull"
+bring: "Bring your own snacks!"
+excerpt: "An inspiring movie night with the beloved animated film Wall-E: love, hope and a robot cleaning up the planet."
 cover: "/images/wall-e.jpg"
----
-Join us for an inspiring movie night featuring the beloved animated film **Wall-E**! Explore themes of love, hope, and environmental preservation while enjoying the movie with friends. 🌱🎬
-
----
-
-## 🎬 Movie Details
-
-**Title**: Wall-E  
-
-**Synopsis**: In a distant future where Earth has been abandoned and covered in waste, a small robot named Wall-E spends his days cleaning up. He soon meets a sleek and advanced robot named Eve, and together, they embark on a journey that could save humanity. With stunning visuals, an emotional story, and a strong environmental message, Wall-E remains a timeless classic.
-
-**Cast**:  
-- Ben Burtt as Wall-E  
-- Elissa Knight as Eve  
-- Jeff Garlin as Captain  
-- Fred Willard as Shelby Forthright  
-
-**Duration**: 1h 38m  
-**Rating**: G  
-
+film:
+  title: "WALL·E"
+  year: 2008
+  director: "Andrew Stanton"
+  runtime: "1h 38m"
+  rating: "G"
+  synopsis: "In a distant future, Earth has been abandoned and buried in waste. A small robot called Wall-E spends his days cleaning up, until he meets a sleek, advanced robot named Eve. Together they set off on a journey that could save humanity. Stunning visuals, an emotional story and a strong environmental message make it a timeless classic."
+  cast:
+    - ["Ben Burtt", "Wall-E"]
+    - ["Elissa Knight", "Eve"]
+    - ["Jeff Garlin", "Captain"]
+    - ["Fred Willard", "Shelby Forthright"]
+  trailer: "CZ1CATNbXg0"
 ---
 
-## 🎄 Event Details
-
-- **Date**: February 12th, 2025  
-- **Time**: 4:00 PM – 7:00 PM  
-- **Location**: HIVE, University of Hull  
-- **BYOS**: Bring your own snacks!
-
----
-
-## 🎥 Watch the Trailer
-
-<div style="text-align: center;">
-  <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/CZ1CATNbXg0?si=5LSp7LCfJ59CbhlI" title="Wall-E Official Trailer" frameborder="0" allowfullscreen></iframe>
-</div>
-
----
+A robotics society showing a film about a robot: we couldn't resist. Come for the snacks, stay for the best silent-film opening in animation.

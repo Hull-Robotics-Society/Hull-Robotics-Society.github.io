@@ -45,6 +45,40 @@ cover: "/images/events/kicad.jpg"   # optional
 
 Upcoming events go to the top of the Events page and into the "Next up" bar on the homepage. Once they have ended they move to the past list on their own: the site rebuilds every morning.
 A regular session uses `recurring: weekly` and `weekday: 1` (0 = Sunday, 1 = Monday, …) instead of a `date`.
+Every dated event with a `start` time gets an "Add to calendar" file at `/events/<slug>.ics`.
+
+#### Film nights
+
+A film night is an event with `type: "Film night"` and a `film` block. It gets a cinema-style page with the poster, a ticket, the cast, the trailer and the other film nights. Copy `terminator-screening.md` as a starting point:
+
+```markdown
+---
+title: "Movie Night: The Terminator"
+type: "Film night"
+date: 2025-10-27
+start: "17:00"
+end: "19:00"
+location: "Robotics Lab, University of Hull"
+bring: "Bring your own snacks!"
+excerpt: "One or two sentences for the events list and the page header."
+cover: "/images/terminator.png"        # the poster, square works best
+film:
+  title: "The Terminator"
+  year: 1984
+  director: "James Cameron"
+  runtime: "1h 47m"
+  rating: "R"
+  synopsis: "What the film is about."
+  cast:
+    - ["Arnold Schwarzenegger", "The Terminator"]
+    - ["Linda Hamilton", "Sarah Connor"]
+  trailer: "k64P4l2Wmeg"                # the YouTube video id
+---
+
+An optional paragraph about the evening itself.
+```
+
+The trailer only loads from YouTube when a visitor presses play.
 
 ### A tutorial
 
@@ -85,7 +119,7 @@ SolidWorks files (`.SLDPRT`, `.SLDASM`) can't be shown in a browser and need an 
 
 ### Committee and contact details
 
-- Committee members: `src/data/committee.json`. The section on the About page stays hidden while the list is empty.
+- Executive team: `src/data/committee.json` (name, role, about, favourite robot, hobbies and an optional `photo`). Update `year` and the list when a new committee is elected. The section on the About page stays hidden while the list is empty.
 - Links, email and address: `src/data/site.json`.
 - Homepage photo collage: `src/data/home.json`.
 

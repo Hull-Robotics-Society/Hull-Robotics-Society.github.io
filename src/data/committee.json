@@ -1,4 +1,35 @@
 {
-    "_help": "Add one entry per committee member, e.g. { \"name\": \"Alex Smith\", \"role\": \"President\", \"photo\": \"/images/committee/alex.jpg\" }. The section on the About page stays hidden while the list is empty.",
-    "members": []
+    "_help": "The Executive Team on the About page, in this order. Optional per member: photo (path in public/), robot (favourite robot), hobbies (list). Update the year when the committee changes.",
+    "year": "2026–27",
+    "source": "https://www.instagram.com/hull_rs/p/DdUHWiZDXke/",
+    "members": [
+        {
+            "name": "Reece",
+            "role": "President",
+            "about": "Returning President of RobSoc, in the final year of Robotics and AI. A Right to Repair advocate, history lover and a huge nerd.",
+            "robot": "Sophia, the first robot to gain citizenship (in the UAE)",
+            "hobbies": ["Electronics", "Repairing broken tech", "Reading", "Anything random or spontaneous"]
+        },
+        {
+            "name": "Dan",
+            "role": "Vice President",
+            "about": "First time as VP, also in the final year of Robotics and AI. Keen to improve his electronics and scratch the itch to make sensible and stupid things alike.",
+            "robot": "GLaDOS (Portal)",
+            "hobbies": ["Electronics", "Gadgets", "Movies, games and comics", "Productive procrastination"]
+        },
+        {
+            "name": "Ben",
+            "role": "Treasurer",
+            "about": "Treasurer of RobSoc and a \"mature\" second-year Computer Science student. Automating tasks has been a lifelong interest: work smart, not hard!",
+            "robot": "Spot by Boston Dynamics",
+            "hobbies": ["Engineering process flow and efficiency", "Motor sport", "Touching grass"]
+        },
+        {
+            "name": "Rob",
+            "role": "Project Manager",
+            "about": "PhD candidate in Computer Science working on neuroprosthetic technology, with an interest in robotics, tech and building things.",
+            "robot": "Sonny (I, Robot)",
+            "hobbies": ["Engineering", "Endurance motorsport", "Board games", "Sport"]
+        }
+    ]
 }

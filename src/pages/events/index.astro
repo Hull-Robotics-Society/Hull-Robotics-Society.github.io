@@ -1,9 +1,14 @@
 ---
+import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { allEvents, clientEvents } from '../../lib/events';
 import site from '../../data/site.json';
+import '../../styles/film.css';
 
 const items = await allEvents();
+const films = (await getCollection('events'))
+    .filter(e => e.data.film)
+    .sort((a, b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0));
 const recurring = items.filter(e => e.recurring);
 const dated = items.filter(e => e.date);
 const client = clientEvents(items);
@@ -57,6 +62,21 @@ const weekdays = ['Sundays', 'Mondays', 'Tuesdays', 'Wednesdays', 'Thursdays', '
                 <p class="muted">Follow <a href={site.instagram} target="_blank" rel="noopener">{site.instagramHandle}</a> on Instagram or join the <a href={site.discord} target="_blank" rel="noopener">Discord</a> to hear first.</p>
             </div>
         </div>
+
+        {films.length > 0 && (
+            <section class="films-index" id="films" aria-labelledby="films-h">
+                <div class="section-head"><h2 id="films-h">Film nights</h2><span class="mono muted">{films.length} screenings so far</span></div>
+                <div class="film-row">
+                    {films.map(f => (
+                        <a class="film-card" href={`/events/${f.id}/`}>
+                            <span class="film-card-img">{f.data.cover ? <img src={f.data.cover} alt="" loading="lazy" decoding="async" /> : <span class="emblem"></span>}</span>
+                            <b>{f.data.film!.title}</b>
+                            <small class="mono">{f.data.date && day(f.data.date)} {f.data.date?.getUTCFullYear()}</small>
+                        </a>
+                    ))}
+                </div>
+            </section>
+        )}
 
         <div style="padding-bottom:96px">
             {years.map(y => (

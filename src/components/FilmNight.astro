@@ -1,0 +1,132 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import '../styles/film.css';
+
+interface Props {
+    e: CollectionEntry<'events'>;
+    others: CollectionEntry<'events'>[];
+}
+
+// Cinema-style page for a film night: poster hero, ticket stub, cast, trailer and more screenings.
+const { e, others } = Astro.props;
+const f = e.data.film!;
+const d = e.data.date;
+const iso = d?.toISOString().slice(0, 10);
+const longDate = d?.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+const shortDate = (x?: Date) => x?.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
+const time = e.data.start ? (e.data.end ? `${e.data.start} – ${e.data.end}` : e.data.start) : undefined;
+const facts = [f.year, f.director && `Dir. ${f.director}`, f.runtime].filter(Boolean);
+---
+
+<section class="film-hero" data-date={iso} data-end={e.data.end ?? e.data.start ?? '23:59'}>
+    {e.data.cover && <img class="film-backdrop" src={e.data.cover} alt="" aria-hidden="true" />}
+    <div class="wrap film-hero-grid">
+        <div class="film-poster">
+            {e.data.cover ? <img src={e.data.cover} alt={`${f.title} poster`} /> : <span class="emblem"></span>}
+            <span class="film-stamp" data-r="stamp">Screened</span>
+        </div>
+        <div class="film-head">
+            <a class="crumb" href="/events/">← All events</a>
+            <p class="film-eyebrow"><span class="film-live" data-r="live" hidden>Upcoming</span>Film night{longDate && ` · ${longDate}`}</p>
+            <h1>{f.title}</h1>
+            {f.edition && <p class="film-edition">{f.edition}</p>}
+            <p class="film-facts">
+                {facts.map(x => <span>{x}</span>)}
+                {f.rating && <span class="film-rating">{f.rating}</span>}
+            </p>
+            <p class="film-lede">{e.data.excerpt}</p>
+            <div class="film-cta">
+                <a class="btn" href={`/events/${e.id}.ics`} data-r="ics" hidden>Add to calendar</a>
+                {f.trailer && <a class="btn film-ghost" href="#trailer">▶ Watch the trailer</a>}
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="wrap film-body">
+    <div class="film-main">
+        <h2 class="film-h">The film</h2>
+        <p class="film-synopsis">{f.synopsis}</p>
+        <div class="prose-md"><slot /></div>
+
+        {f.cast.length > 0 && (
+            <>
+                <h2 class="film-h">Starring</h2>
+                <ul class="film-cast">
+                    {f.cast.map(([actor, role]) => (
+                        <li><span class="film-initial" aria-hidden="true">{actor.split(' ').map(w => w[0]).join('').slice(0, 2)}</span><b>{actor}</b><small>as {role}</small></li>
+                    ))}
+                </ul>
+            </>
+        )}
+
+        {f.trailer && (
+            <>
+                <h2 class="film-h" id="trailer">Trailer</h2>
+                <div class="film-trailer" data-yt={f.trailer} data-title={`${f.title} trailer`}>
+                    {e.data.cover && <img src={e.data.cover} alt="" aria-hidden="true" />}
+                    <button type="button" aria-label={`Play the ${f.title} trailer`}><span aria-hidden="true">▶</span></button>
+                    <p class="film-note">Plays from YouTube once you press play.</p>
+                </div>
+            </>
+        )}
+    </div>
+
+    <aside class="ticket" aria-label="Screening details">
+        <div class="ticket-top">
+            <p class="eyebrow">Admit one · HullRS film night</p>
+            <p class="ticket-title">{f.title}</p>
+        </div>
+        <dl>
+            {d && <><dt>Date</dt><dd>{longDate}</dd></>}
+            {time && <><dt>Time</dt><dd>{time}</dd></>}
+            {e.data.location && <><dt>Where</dt><dd>{e.data.location}</dd></>}
+            {e.data.bring && <><dt>Bring</dt><dd>{e.data.bring}</dd></>}
+        </dl>
+        <div class="ticket-stub">
+            <span class="mono">{iso ?? 'TBA'}</span>
+            <span class="mono">{e.data.start ?? ''}</span>
+        </div>
+    </aside>
+</div>
+
+{others.length > 0 && (
+    <div class="film-shelf">
+        <div class="wrap">
+            <div class="section-head"><h2>More film nights</h2><a class="link-arrow" href="/events/#films">All film nights →</a></div>
+            <div class="film-row">
+                {others.map(o => (
+                    <a class="film-card" href={`/events/${o.id}/`}>
+                        <span class="film-card-img">{o.data.cover ? <img src={o.data.cover} alt="" loading="lazy" decoding="async" /> : <span class="emblem"></span>}</span>
+                        <b>{o.data.film?.title ?? o.data.title}</b>
+                        <small class="mono">{shortDate(o.data.date)}</small>
+                    </a>
+                ))}
+            </div>
+        </div>
+    </div>
+)}
+
+<script>
+    // Upcoming or screened? The build doesn't know today's date, the browser does.
+    const hero = document.querySelector<HTMLElement>('.film-hero');
+    if (hero?.dataset.date) {
+        const end = new Date(`${hero.dataset.date}T${hero.dataset.end}:00`);
+        const upcoming = end >= new Date();
+        hero.querySelector<HTMLElement>('[data-r="stamp"]')!.hidden = upcoming;
+        hero.querySelector<HTMLElement>('[data-r="live"]')!.hidden = !upcoming;
+        hero.querySelector<HTMLElement>('[data-r="ics"]')!.hidden = !upcoming;
+    }
+
+    // Load the YouTube player only when asked, so nothing is sent to Google before that.
+    for (const box of document.querySelectorAll<HTMLElement>('.film-trailer')) {
+        box.querySelector('button')!.addEventListener('click', () => {
+            const frame = document.createElement('iframe');
+            frame.src = `https://www.youtube-nocookie.com/embed/${box.dataset.yt}?autoplay=1&rel=0`;
+            frame.title = box.dataset.title ?? 'Trailer';
+            frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+            frame.allowFullscreen = true;
+            box.replaceChildren(frame);
+        });
+    }
+</script>

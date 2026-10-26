@@ -3,7 +3,15 @@ import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
 import committee from '../data/committee.json';
 
-const members = committee.members as { name: string; role: string; photo?: string }[];
+interface Member {
+    name: string;
+    role: string;
+    about?: string;
+    robot?: string;
+    hobbies?: string[];
+    photo?: string;
+}
+const members = committee.members as Member[];
 ---
 
 <Base title="About" description="Who the Hull University Robotics Society are, what we do, and where to find us.">
@@ -82,16 +90,31 @@ const members = committee.members as { name: string; role: string; photo?: strin
         </div>
 
         {members.length > 0 && (
-            <div class="a-block">
-                <h2>The committee</h2>
-                <div class="committee">
-                    {members.map(m => (
-                        <div class="member">
-                            <div class="ph">{m.photo ? <img src={m.photo} alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:10px" /> : <span class="emblem"></span>}</div>
-                            <b>{m.name}</b>
-                            <span class="mono muted">{m.role}</span>
-                        </div>
-                    ))}
+            <div class="a-block" id="team">
+                <div>
+                    <h2>Executive team</h2>
+                    <p class="mono muted" style="margin-top:8px">{committee.year}</p>
+                </div>
+                <div style="display:grid;gap:16px">
+                    <ul class="team">
+                        {members.map(m => (
+                            <li class="team-card">
+                                <div class="team-face">
+                                    {m.photo
+                                        ? <img src={m.photo} alt={`${m.name}, ${m.role}`} loading="lazy" decoding="async" />
+                                        : <span class="team-initial" aria-hidden="true">{m.name.slice(0, 1)}</span>}
+                                </div>
+                                <div class="team-body">
+                                    <p class="eyebrow">{m.role}</p>
+                                    <h3>{m.name}</h3>
+                                    {m.about && <p class="muted">{m.about}</p>}
+                                    {m.robot && <p class="team-robot"><span class="mono">Favourite robot</span>{m.robot}</p>}
+                                    {m.hobbies?.length && <div class="team-tags">{m.hobbies.map(h => <span class="chip">{h}</span>)}</div>}
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                    {committee.source && <p><a class="edit-link" href={committee.source} target="_blank" rel="noopener">Meet the committee on Instagram ↗</a></p>}
                 </div>
             </div>
         )}

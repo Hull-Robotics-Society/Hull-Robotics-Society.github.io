@@ -95,8 +95,21 @@ const events = defineCollection({
         start: z.string().optional(),
         end: z.string().optional(),
         location: z.string().optional(),
+        bring: z.string().optional(),
         excerpt: z.string().default(''),
-        cover: z.string().optional()
+        cover: z.string().optional(),
+        // Film nights: the film being screened, shown as a cinema-style page
+        film: z.object({
+            title: z.string(),
+            year: z.number().optional(),
+            director: z.string().optional(),
+            runtime: z.string().optional(),
+            rating: z.string().optional(),
+            edition: z.string().optional(),
+            synopsis: z.string(),
+            cast: z.array(z.tuple([z.string(), z.string()])).default([]),
+            trailer: z.string().optional()
+        }).optional()
     })
 });
 

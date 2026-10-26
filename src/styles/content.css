@@ -52,3 +52,19 @@
 .bot figure .no-photo { height: 100%; }
 @media (max-width: 860px) { .a-body .toc { display: none; } }
 .prose[id], #media { scroll-margin-top: 88px; }
+
+/* ---------- Executive team (About) ---------- */
+.team { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.team-card { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 18px; padding: 20px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+.team-face { width: 96px; height: 96px; border-radius: 50%; overflow: hidden; display: grid; place-items: center; background: linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 12px 12px, linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0 / 12px 12px, var(--surface-2); box-shadow: 0 0 0 3px var(--surface), 0 0 0 4px color-mix(in srgb, var(--accent) 50%, var(--line)); }
+.team-face img { width: 100%; height: 100%; object-fit: cover; }
+.team-initial { font-family: var(--font-brand); font-weight: 800; font-size: 2.2rem; color: var(--accent); }
+.team-body { display: grid; gap: 8px; align-content: start; min-width: 0; }
+.team-body h3 { font-size: var(--step-2); }
+.team-body .muted { font-size: .95rem; line-height: 1.55; }
+.team-robot { display: grid; gap: 2px; font-size: .92rem; padding: 8px 12px; border-left: 2px solid var(--accent); background: color-mix(in srgb, var(--accent) 6%, transparent); border-radius: 0 6px 6px 0; }
+.team-robot .mono { font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.team-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.team-tags .chip { white-space: normal; }
+@media (max-width: 960px) { .team { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 480px) { .team-card { grid-template-columns: minmax(0, 1fr); } .team-face { width: 72px; height: 72px; } }
