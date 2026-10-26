@@ -1,9 +1,9 @@
 ---
-title: "Making the Dalek Mind-Controlled"
+title: "Making the Dalek mind-controlled"
 slug: dalek/dalek-mind-control
 project: dalek
 date: 2024-12-15
-excerpt: "Exploring mind control with an Epox X headset and Raspberry Pi for the ultimate futuristic Dalek."
+excerpt: "Reading brain signals with an Emotiv Insight headset to drive the Dalek."
 ---
 We’re currently working on our most ambitious upgrade yet: making the Dalek mind-controlled! Using the [Emotive Insight](https://www.emotiv.com/products/insight?srsltid=AfmBOorUQWq0w8sOlbkSeNgwiTWnNzGomKGJIEcYC8PqXcO80jvM3V4E) headset, we’re exploring how to read brainwave signals to control the Dalek's movements.
 

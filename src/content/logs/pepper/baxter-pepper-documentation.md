@@ -1,9 +1,9 @@
 ---
-title: "Baxter Pepper Dance"
+title: "Baxter × Pepper dance: Pepper's side"
 slug: pepper/baxter-pepper-documentation
 project: pepper
 date: 2026-10-12
-excerpt: "Dance Video"
+excerpt: "Choregraphe, NAOqi motion and timing behind Pepper's half of the dance."
 ---
 ## Contents
 

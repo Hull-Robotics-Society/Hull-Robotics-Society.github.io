@@ -1,5 +1,5 @@
 ---
-title: "Giving the Dalek Its Wheels"
+title: "Giving the Dalek its wheels"
 slug: dalek/dalek-mobile-frame
 project: dalek
 date: 2024-08-15

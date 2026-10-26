@@ -1,9 +1,9 @@
 ---
-title: "CAD Design & 3D Printing the OSRC"
+title: "Designing and printing the case"
 slug: OSRC/cad-design
 project: osrc
 date: 2025-01-20
-excerpt: "How we designed the OSRC’s enclosure and 3D printed it for durability."
+excerpt: "An ergonomic, modular enclosure designed in CAD and printed in PLA+ and PETG."
 ---
 ## Designing the OSRC Enclosure
 The OSRC has been **fully CAD-designed in-house**, ensuring a comfortable grip and ergonomic layout. Key features:

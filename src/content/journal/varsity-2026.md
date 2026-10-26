@@ -2,11 +2,11 @@
 title: "Varsity 2026"
 slug: varsity-2026
 date: 2026-03-23
-excerpt: "Varsity 2026: A year with the Robotics Society"
+excerpt: "The Dalek came to Varsity, and other societies got to take it for a test drive."
 cover: "/images/varsity/dalek-crepe.jpg"
 eventType: "Showcase"
 ---
-Perhaps one of out most strangest events in recent memmory, with varsity been and gone, we had the great idea to bring dalek ```[insert name]``` for a rather nice day. But it was not the only reason we brought dalek [insert name] we also had the opportunity to allow other socities to test drive and play around with dalek ```[insert name]```. But also offer a shout out for each soceity: 
+Perhaps one of our strangest events in recent memory: with Varsity been and gone, we had the great idea to bring our Dalek along for the day. That wasn't the only reason we brought it, though. Other societies got the chance to test-drive and play around with the Dalek, and it gave a shout-out to each society: 
 
 <video controls width="100%" poster="/images/varsity/dalek-crepe.jpg">
   <source src="/media/varsity/disney-vid.mp4" type="video/mp4">

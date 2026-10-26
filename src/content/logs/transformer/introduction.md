@@ -1,9 +1,9 @@
 ---
-title: "Transformer"
+title: "Introducing the Transformer"
 slug: transformer/introduction
 project: transformer
 date: 2026-01-17
-excerpt: "Introduction to our most recent project"
+excerpt: "The parts list for our walking robot: controllers, servos and power."
 ---
 ## Controllers
 1. Raspberry Pi 3 (may work with pi 2)

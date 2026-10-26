@@ -91,7 +91,7 @@ const chip = p.data.status === 'new' ? 'chip soon' : 'chip status';
             </dl>
             {p.data.repo && <a class="btn" href={p.data.repo} target="_blank" rel="noopener">Code on GitHub ↗</a>}
             {parts.length > 0 && <a class="btn ghost" href="#cad">3D models</a>}
-            {docs.map(d => <a class="btn ghost" href={`/projects/${d.id}/`}>{d.data.title.replace(`${p.data.title} `, '')}</a>)}
+            {docs.map(d => <a class="btn ghost" href={`/projects/${d.id}/`}>{d.data.title}</a>)}
         </aside>
     </div>
 </Base>

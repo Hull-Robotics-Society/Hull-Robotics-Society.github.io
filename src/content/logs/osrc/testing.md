@@ -1,9 +1,9 @@
 ---
-title: "Testing & First Trials: Controlling Robots with OSRC"
+title: "First trials"
 slug: OSRC/testing
 project: osrc
 date: 2025-01-30
-excerpt: "Testing the OSRC with ROS-based robots and refining control."
+excerpt: "Driving a ROS rover and a ROS 2 drone with the OSRC, and what we improved."
 ---
 ## First Trials with OSRC
 After assembling the OSRC and setting up software, we tested it on:

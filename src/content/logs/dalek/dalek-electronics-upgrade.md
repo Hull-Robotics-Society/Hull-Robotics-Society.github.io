@@ -1,5 +1,5 @@
 ---
-title: "Upgrading the Electronics"
+title: "Upgrading the electronics"
 slug: dalek/dalek-electronics-upgrade
 project: dalek
 date: 2024-09-10

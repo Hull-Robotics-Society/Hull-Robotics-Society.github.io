@@ -1,9 +1,9 @@
 ---
-title: "Pepper Projects: Pepper Documentation"
+title: "Pepper developer handbook"
 slug: pepper/pepper-documentation
 project: pepper
 date: 2026-10-12
-excerpt: "Detailed Project Documentation"
+excerpt: "Where everything lives and how to run our Pepper projects, from Choregraphe to the tablet."
 ---
 **Workspace:** Pepper robotics projects / University of Hull Robotics Society  
 **Repository:** [reeceherbert887/Pepper_Stuff](https://github.com/reeceherbert887/Pepper_Stuff)  

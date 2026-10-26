@@ -1,5 +1,5 @@
 ---
-title: "Challenges with the Head Mechanism"
+title: "Challenges with the head mechanism"
 slug: dalek/dalek-head-mechanism
 project: dalek
 date: 2024-09-15

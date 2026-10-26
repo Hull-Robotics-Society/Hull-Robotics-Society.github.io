@@ -1,5 +1,5 @@
 ---
-title: "A Fresh Look for Freshers Fair"
+title: "A fresh look for Freshers Fair"
 slug: dalek/dalek-fresh-paint
 project: dalek
 date: 2024-09-20

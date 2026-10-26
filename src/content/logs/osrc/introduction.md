@@ -1,9 +1,9 @@
 ---
-title: "Open Source Robotics Remote: Introduction"
+title: "Introducing the OSRC"
 slug: OSRC/introduction
 project: osrc
 date: 2025-01-10
-excerpt: "Introducing our open-source robotics remote, designed for ROS & ROS2 control. Featuring a Raspberry Pi 5, 7-inch touchscreen, dual joysticks, and more!"
+excerpt: "Our open-source robot remote: Raspberry Pi 5, 7-inch touchscreen and dual joysticks, fully 3D printed."
 ---
 ## Introducing the Open Source Robotics Remote
 

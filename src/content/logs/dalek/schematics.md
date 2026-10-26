@@ -1,8 +1,8 @@
 ---
-title: "Dalek Schematics"
+title: "Dalek files"
 slug: dalek/schematics
 project: dalek
-excerpt: "A schematic database for our Dalek"
+excerpt: "CAD models, electronics and code for the Dalek on GitHub."
 ---
 Welcome to the Dalek project schematics page! Here you can explore the project files hosted on GitHub.
 

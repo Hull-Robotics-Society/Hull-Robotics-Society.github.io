@@ -1,9 +1,9 @@
 ---
-title: "Baxter Introduction"
+title: "Meet Baxter"
 slug: baxter/baxter-introduction
 project: baxter
 date: 2026-03-07
-excerpt: "Programming Baxter the robot."
+excerpt: "What Baxter is, where it came from and why it's still a great research robot."
 ---
 Baxter is a collaborative industrial robot (often called a “cobot”) developed by Rethink Robotics and first introduced in 2012. It was designed to work safely alongside humans while performing simple repetitive tasks such as sorting, assembly, packaging, and material handling.
 

@@ -1,9 +1,9 @@
 ---
-title: "Baxter Setup"
+title: "Setting up Baxter"
 slug: baxter/baxter-setup
 project: baxter
 date: 2026-01-18
-excerpt: "How to set up and initialise a Baxter robot."
+excerpt: "Creating a ROS workspace, pulling the Baxter SDK and getting the robot ready to enable."
 ---
 First, create a meaningful ROS workspace.  
 Make sure the name reflects the project's purpose.

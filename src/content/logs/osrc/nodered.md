@@ -1,9 +1,9 @@
 ---
-title: "Node-RED Integration: Connecting the OSRC to Robots"
+title: "Connecting robots with Node-RED"
 slug: OSRC/nodered
 project: osrc
 date: 2025-08-16
-excerpt: "How we use Node-RED to connect the OSRC controller to robots over a local network using MQTT."
+excerpt: "Sending controller inputs to robots over the local network with MQTT."
 ---
 ## Node-RED Integration with the OSRC
 

@@ -1,9 +1,9 @@
 ---
-title: "Pepper Projects: Pepper Freshers Fair 2"
+title: "Pepper at Refreshers"
 slug: pepper/pepper-freshers-fair-2
 project: pepper
 date: 2026-10-12
-excerpt: "Detailed Project Documentation"
+excerpt: "The standalone Refreshers demo: what it does and how to launch it."
 ---
 **Project:** Pepper Refreshers — interactive Pepper robot demonstration  
 **Repository:** [reeceherbert887/Pepper_Stuff](https://github.com/reeceherbert887/Pepper_Stuff)  

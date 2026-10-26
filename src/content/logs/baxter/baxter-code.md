@@ -1,9 +1,9 @@
 ---
-title: "Baxter Code"
+title: "Writing code for Baxter"
 slug: baxter/baxter-code
 project: baxter
 date: 2026-01-18
-excerpt: "Programming Baxter the robot."
+excerpt: "Creating a ROS package, making scripts executable and reading Baxter's arm positions."
 ---
 Much like ROS2, you can create packages, topics, run scripts individually, etc.
 

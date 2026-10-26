@@ -1,9 +1,9 @@
 ---
-title: "Software Setup: Installing ROS & ROS2 on the OSRC"
+title: "Installing ROS and ROS 2"
 slug: OSRC/software
 project: osrc
 date: 2025-01-25
-excerpt: "A step-by-step guide to installing ROS and ROS2 on the OSRC."
+excerpt: "Setting up Ubuntu, ROS and ROS 2 on the Raspberry Pi and mapping the controls."
 ---
 ## Installing ROS & ROS2
 The OSRC is designed for **seamless integration with ROS and ROS2**. Follow these steps to set up your system:

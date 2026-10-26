@@ -37,6 +37,8 @@ Rebuilt the website from scratch with Astro, replacing the Jekyll site based on 
 - Every old build-log, tutorial, event and research URL still works. The blog, gallery and "all-…" pages redirect to their new homes, and the `transfomer` typo URL redirects to `transformer`.
 
 ### Fixes
+- Clearer build-log and journal titles and one-line summaries (OSRC, Baxter, Pepper, Transformer, Dalek and Journal), replacing ones like "Pepper Projects: HTML" / "Detailed Project Documentation". "Freshers Fair 2" is now correctly "Pepper at Refreshers".
+- Spelling and grammar fixes in the Journal posts, including "Robotics Society of Hope" and unfilled "[insert name]" placeholders for the Dalek.
 - Weekly sessions now match reality: the Monday Project Meeting (17:00 to 19:00) and the new Wednesday Project Day (13:30 to 17:00), both in term time. Their times live in one place and feed the homepage, Events and About.
 - "Univeristy" and "Kindgom" typos, the broken `/what-we-do/` link, the empty Dalek update list, `tock_sticky` typos, relative video posters and placeholder images that never loaded.
 

@@ -1,9 +1,9 @@
 ---
-title: "Hardware Breakdown: Inside the OSRC"
+title: "Inside the OSRC"
 slug: OSRC/hardware
 project: osrc
 date: 2025-01-15
-excerpt: "A detailed breakdown of the OSRC’s hardware, from microcontrollers to input controls."
+excerpt: "The Raspberry Pi 5, Teensy, joysticks and touchscreen that make up the controller."
 ---
 ## OSRC Hardware Overview
 The OSRC is built around powerful, **readily available hardware components**, including:
