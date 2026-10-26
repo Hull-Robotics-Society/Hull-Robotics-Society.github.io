@@ -119,7 +119,7 @@ SolidWorks files (`.SLDPRT`, `.SLDASM`) can't be shown in a browser and need an 
 
 ### Committee and contact details
 
-- Executive team: `src/data/committee.json` (name, role, about, favourite robot, hobbies and an optional `photo`). Update `year` and the list when a new committee is elected. The section on the About page stays hidden while the list is empty.
+- Executive team: `src/data/committee.json` (name, role, a one-sentence `about`, favourite `robot` and an optional `photo`). Update `year` and the list when a new committee is elected. The section on the About page stays hidden while the list is empty.
 - Links, email and address: `src/data/site.json`.
 - Homepage photo collage: `src/data/home.json`.
 

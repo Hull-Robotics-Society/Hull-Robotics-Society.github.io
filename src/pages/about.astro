@@ -8,7 +8,6 @@ interface Member {
     role: string;
     about?: string;
     robot?: string;
-    hobbies?: string[];
     photo?: string;
 }
 const members = committee.members as Member[];
@@ -108,8 +107,7 @@ const members = committee.members as Member[];
                                     <p class="eyebrow">{m.role}</p>
                                     <h3>{m.name}</h3>
                                     {m.about && <p class="muted">{m.about}</p>}
-                                    {m.robot && <p class="team-robot"><span class="mono">Favourite robot</span>{m.robot}</p>}
-                                    {m.hobbies?.length && <div class="team-tags">{m.hobbies.map(h => <span class="chip">{h}</span>)}</div>}
+                                    {m.robot && <p class="team-robot">Favourite robot: {m.robot}</p>}
                                 </div>
                             </li>
                         ))}
