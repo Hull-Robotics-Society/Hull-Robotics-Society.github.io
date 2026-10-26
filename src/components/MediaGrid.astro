@@ -1,5 +1,6 @@
 ---
 import type { MediaItem } from '../lib/site';
+import Credit from './Credit.astro';
 
 interface Props {
     items: MediaItem[];
@@ -15,6 +16,7 @@ const { items } = Astro.props;
             {m.kind === 'video'
                 ? <video src={m.src} poster={m.poster} controls playsinline preload="none" aria-label={m.alt}></video>
                 : <img src={m.src} alt={m.alt} loading="lazy" decoding="async" />}
+            <Credit src={m.src} />
         </figure>
     ))}
 </div>
@@ -38,7 +40,9 @@ const { items } = Astro.props;
             close.setAttribute('aria-label', 'Close');
             close.style.background = 'var(--surface)';
             close.textContent = '✕';
+            const credit = img.parentElement?.querySelector('.credit');
             box.append(big, close);
+            if (credit) box.append(Object.assign(credit.cloneNode(true) as HTMLElement, { className: 'credit credit-overlay lightbox-credit' }));
 
             const done = () => { box.remove(); removeEventListener('keydown', esc); img.focus(); };
             const esc = (ev: KeyboardEvent) => { if (ev.key === 'Escape') done(); };

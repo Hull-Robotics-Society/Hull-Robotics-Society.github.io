@@ -4,6 +4,7 @@ slug: pepper/pepper-freshers-fair-1
 project: pepper
 date: 2026-10-12
 excerpt: "How our interactive Freshers demo for Pepper is built and how to run it."
+aiAssisted: true
 ---
 **Project:** Pepper Freshers / Hull Robotics Society interactive demonstration  
 **Repository:** [reeceherbert887/Pepper_Stuff](https://github.com/reeceherbert887/Pepper_Stuff)  

@@ -24,6 +24,7 @@ const area = (areas as Record<string, { title: string; image: string }>)[a.data.
     meta={[['Published', formatDate(a.data.date)], ['Reading time', readingTime(a.body)]]}
     headings={headings}
     filePath={a.filePath}
+    aiAssisted={a.data.aiAssisted}
     cover={area?.image}
 >
     <Content />

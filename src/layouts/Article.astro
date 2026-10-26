@@ -13,13 +13,15 @@ interface Props {
     headings?: MarkdownHeading[];
     filePath?: string;
     cover?: string;
+    aiAssisted?: boolean;
     pager?: { prev?: { href: string; title: string }; next?: { href: string; title: string }; label: string };
 }
 
 // Long-form page for build logs, tutorials, journal posts, research and events.
-const { title, excerpt, eyebrow, back, meta = [], headings = [], filePath, cover, pager } = Astro.props;
+const { title, excerpt, eyebrow, back, meta = [], headings = [], filePath, cover, pager, aiAssisted = false } = Astro.props;
 const toc = headings.filter(h => h.depth === 2 || h.depth === 3);
 const showToc = toc.filter(h => h.depth === 2).length >= 3;
+const technical = /Build log|Documentation|Tutorial/.test(eyebrow);
 ---
 
 <Base title={title} description={excerpt} image={cover} search={eyebrow}>
@@ -33,6 +35,12 @@ const showToc = toc.filter(h => h.depth === 2).length >= 3;
                 <dl class="a-meta" data-pagefind-ignore>
                     {meta.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
                 </dl>
+            )}
+            {aiAssisted && (
+                <p class="ai-note" data-pagefind-ignore>
+                    <span class="mono">AI-assisted</span>
+                    This page was drafted with the help of AI tools and reviewed by its author.{technical && ' Check commands against the linked repository before running them on a robot.'} <a href="/about/#website">How we use AI</a>
+                </p>
             )}
         </div>
     </div>

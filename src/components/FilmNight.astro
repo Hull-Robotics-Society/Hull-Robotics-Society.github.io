@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import '../styles/film.css';
+import Credit from './Credit.astro';
 
 interface Props {
     e: CollectionEntry<'events'>;
@@ -24,6 +25,7 @@ const facts = [f.year, f.director && `Dir. ${f.director}`, f.runtime].filter(Boo
         <div class="film-poster">
             {e.data.cover ? <img src={e.data.cover} alt={`${f.title} poster`} /> : <span class="emblem"></span>}
             <span class="film-stamp" data-r="stamp" data-pagefind-ignore>Screened</span>
+            <Credit src={e.data.cover} />
         </div>
         <div class="film-head">
             <a class="crumb" href="/events/" data-pagefind-ignore>← All events</a>

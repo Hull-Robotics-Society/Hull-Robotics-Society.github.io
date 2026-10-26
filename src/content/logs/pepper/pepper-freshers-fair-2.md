@@ -4,6 +4,7 @@ slug: pepper/pepper-freshers-fair-2
 project: pepper
 date: 2026-10-12
 excerpt: "The standalone Refreshers demo: what it does and how to launch it."
+aiAssisted: true
 ---
 **Project:** Pepper Refreshers — interactive Pepper robot demonstration  
 **Repository:** [reeceherbert887/Pepper_Stuff](https://github.com/reeceherbert887/Pepper_Stuff)  

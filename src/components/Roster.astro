@@ -1,5 +1,6 @@
 ---
 import { projects, formatMonth, statusLabel } from '../lib/site';
+import Credit from './Credit.astro';
 
 // Every project with a `roster` block, in the order the projects started.
 const bots = (await projects())
@@ -43,6 +44,7 @@ const bots = (await projects())
                                         <div class="no-photo"><div><span class="emblem"></span><p class="mono muted" style="margin-top:12px">Photo coming soon</p></div></div>
                                     )}
                                     <span class={`tag ${chip}`}>{statusLabel[p.data.status]}</span>
+                                    {!r.video && <Credit src={r.image} />}
                                 </figure>
                                 <div class="spec">
                                     <p class="eyebrow">{r.eyebrow}</p>

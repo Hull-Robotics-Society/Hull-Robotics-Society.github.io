@@ -27,6 +27,7 @@ const link = (x?: CollectionEntry<'journal'>) => x && { href: `/journal/${x.id}/
     meta={[['Published', formatDate(p.data.date)], ['Reading time', readingTime(p.body)]]}
     headings={headings}
     filePath={p.filePath}
+    aiAssisted={p.data.aiAssisted}
     cover={p.data.cover}
     pager={{ prev: link(prev), next: link(next), label: 'More from the journal' }}
 >

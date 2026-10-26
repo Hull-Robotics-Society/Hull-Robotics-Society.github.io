@@ -138,6 +138,20 @@ SolidWorks files (`.SLDPRT`, `.SLDASM`) can't be shown in a browser and need an 
 
 The search (magnifying glass in the header, or Ctrl+K / `/`) covers projects, build logs, tutorials, research, events, film nights, the journal and the About page. The index is built automatically by `npm run build`; it doesn't exist while running `npm run dev`.
 
+### Image credits
+
+Photos without a credit are treated as the society's own. To credit a photographer or another source, add an entry to `src/data/credits.json`:
+
+```json
+{ "path": "/images/varsity/", "credit": "Photos: Jane Doe", "link": "https://instagram.com/janedoe", "licence": "CC BY 4.0" }
+```
+
+`path` can be a single file or a whole folder (ending in `/`), so one entry covers a photographer's whole set. `link`, `licence` and `note` are optional. The credit appears on the photo itself (galleries, project headers, posters, the homepage) and in the list under "About this website" on the About page.
+
+### AI-assisted pages
+
+If a page was mostly drafted with AI tools, add `aiAssisted: true` to its front matter after a member has checked it. A short note then appears under the title, and the page is listed under "About this website" on the About page. The footer of every page carries a one-line note about how the site was built.
+
 ### Committee and contact details
 
 - Executive team: `src/data/committee.json` (name, role, a one-sentence `about`, favourite `robot` and an optional `photo`). Update `year` and the list when a new committee is elected. The section on the About page stays hidden while the list is empty.

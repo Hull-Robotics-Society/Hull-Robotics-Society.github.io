@@ -48,6 +48,8 @@ const projects = defineCollection({
 const logs = defineCollection({
     loader: glob({ base: './src/content/logs', pattern: '**/*.md' }),
     schema: z.object({
+        // Shows a short note that the page was drafted with AI assistance and reviewed
+        aiAssisted: z.boolean().default(false),
         title: z.string(),
         project: z.string(),
         date: date.optional(),
@@ -60,6 +62,8 @@ const logs = defineCollection({
 const research = defineCollection({
     loader: glob({ base: './src/content/research', pattern: '**/*.md' }),
     schema: z.object({
+        // Shows a short note that the page was drafted with AI assistance and reviewed
+        aiAssisted: z.boolean().default(false),
         title: z.string(),
         area: z.string(),
         date: date,
@@ -71,6 +75,8 @@ const research = defineCollection({
 const tutorials = defineCollection({
     loader: glob({ base: './src/content/tutorials', pattern: '*.md' }),
     schema: z.object({
+        // Shows a short note that the page was drafted with AI assistance and reviewed
+        aiAssisted: z.boolean().default(false),
         title: z.string(),
         date: date,
         excerpt: z.string(),
@@ -87,6 +93,8 @@ const tutorials = defineCollection({
 const events = defineCollection({
     loader: glob({ base: './src/content/events', pattern: '*.md' }),
     schema: z.object({
+        // Shows a short note that the page was drafted with AI assistance and reviewed
+        aiAssisted: z.boolean().default(false),
         title: z.string(),
         type: z.enum(['Project meeting', 'Project day', 'Workshop', 'Film night', 'Showcase', 'Fair', 'Social', 'Competition']),
         date: date.optional(),
@@ -119,6 +127,8 @@ const events = defineCollection({
 const journal = defineCollection({
     loader: glob({ base: './src/content/journal', pattern: '*.md' }),
     schema: z.object({
+        // Shows a short note that the page was drafted with AI assistance and reviewed
+        aiAssisted: z.boolean().default(false),
         title: z.string(),
         date: date,
         excerpt: z.string().default(''),

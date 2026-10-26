@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
 import committee from '../data/committee.json';
 import { getCollection } from 'astro:content';
+import { allCredits } from '../lib/site';
 
 // The weekly sessions come from the events collection, so times are only kept in one place.
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -19,6 +20,16 @@ interface Member {
     photo?: string;
 }
 const members = committee.members as Member[];
+
+// Pages marked `aiAssisted: true`, listed for transparency
+const aiPages = [
+    ...(await getCollection('logs')).filter(x => x.data.aiAssisted).map(x => ({ title: x.data.title, href: `/projects/${x.id}/` })),
+    ...(await getCollection('tutorials')).filter(x => x.data.aiAssisted).map(x => ({ title: x.data.title, href: `/tutorials/${x.id}/` })),
+    ...(await getCollection('research')).filter(x => x.data.aiAssisted).map(x => ({ title: x.data.title, href: `/research/${x.id}/` })),
+    ...(await getCollection('journal')).filter(x => x.data.aiAssisted).map(x => ({ title: x.data.title, href: `/journal/${x.id}/` })),
+    ...(await getCollection('events')).filter(x => x.data.aiAssisted).map(x => ({ title: x.data.title, href: `/events/${x.id}/` }))
+];
+const credits = allCredits();
 ---
 
 <Base search="About" title="About" description="Who the Hull University Robotics Society are, what we do, and where to find us.">
@@ -124,6 +135,43 @@ const members = committee.members as Member[];
                 </div>
             </div>
         )}
+        <div class="a-block" id="website">
+            <h2>About this website</h2>
+            <div class="site-notes">
+                <div>
+                    <h3>Who runs it</h3>
+                    <p class="muted">The website is written and maintained by society members. Anyone in the society can suggest a change: every page has an "Edit this page on GitHub" link, or email us at {site.email}.</p>
+                </div>
+                <div>
+                    <h3>How we use AI</h3>
+                    <p class="muted">We used AI tools to help build this website and to help draft some of the technical documentation. A member reviews everything before it is published, and the society is responsible for what appears here. Pages that were mostly drafted with AI carry a note under their title.</p>
+                    {aiPages.length > 0 && (
+                        <details class="site-list">
+                            <summary>Pages marked as AI-assisted ({aiPages.length})</summary>
+                            <ul>{aiPages.map(p => <li><a href={p.href}>{p.title}</a></li>)}</ul>
+                        </details>
+                    )}
+                </div>
+                <div>
+                    <h3>Image credits</h3>
+                    <p class="muted">Unless credited otherwise, photos and videos are taken by society members. If one of your photos is used here and you'd like a credit or want it removed, let us know.</p>
+                    {credits.length > 0 && (
+                        <details class="site-list">
+                            <summary>Credited images ({credits.length})</summary>
+                            <ul>
+                                {credits.map(c => (
+                                    <li>
+                                        {c.link ? <a href={c.link} target="_blank" rel="noopener">{c.credit}</a> : c.credit}
+                                        {c.licence && <span class="muted"> · {c.licence}</span>}
+                                        {c.note && <span class="muted"> · {c.note}</span>}
+                                    </li>
+                                ))}
+                            </ul>
+                        </details>
+                    )}
+                </div>
+            </div>
+        </div>
         <div style="height:64px"></div>
     </div>
 </Base>

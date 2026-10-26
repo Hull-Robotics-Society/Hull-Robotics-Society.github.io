@@ -29,6 +29,11 @@ Rebuilt the website from scratch with Astro, replacing the Jekyll site based on 
 - The Events page sorts upcoming events to the top in the visitor's browser, and a daily rebuild moves past events to the archive.
 - 3D viewer (three.js) on project pages: lists the STL files from the project's GitHub repository at build time and shows them with turntable previews. Live for the Dalek and the OSRC.
 
+### Transparency
+- Footer note and an "About this website" section on the About page: who runs the site, how AI tools were used (with a list of AI-assisted pages) and image credits.
+- `aiAssisted: true` in front matter shows a short note under a page's title. It is set on the Pepper documentation and the Baxter × Pepper dance write-up.
+- Image credits from `src/data/credits.json`, by file or whole folder, shown on the photos themselves (galleries, lightbox, project headers, film posters, roster, collage, project cards). Film posters and the Baxter and Pepper press images are credited.
+
 ### Media and performance
 - Photos scaled to at most 1600 px and videos re-encoded to H.264 with poster frames: media went from 384 MB to 106 MB.
 - three.js only loads on pages with a 3D viewer, once it scrolls into view.

@@ -4,6 +4,7 @@ slug: pepper/baxter-pepper-documentation
 project: pepper
 date: 2026-10-12
 excerpt: "Choregraphe, NAOqi motion and timing behind Pepper's half of the dance."
+aiAssisted: true
 ---
 ## Contents
 

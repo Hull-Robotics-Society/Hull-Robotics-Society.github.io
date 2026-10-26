@@ -4,6 +4,7 @@ slug: baxter/baxter-pepper-dance
 project: baxter
 date: 2026-10-12
 excerpt: "How Baxter's half of the 30-second dance works, from joint captures to smooth, safe motion."
+aiAssisted: true
 ---
 ## Contents
 

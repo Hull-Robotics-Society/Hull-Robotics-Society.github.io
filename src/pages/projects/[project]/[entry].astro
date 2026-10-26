@@ -44,6 +44,7 @@ const link = (x?: CollectionEntry<'logs'>) => x && { href: `/projects/${x.id}/`,
     meta={meta}
     headings={headings}
     filePath={l.filePath}
+    aiAssisted={l.data.aiAssisted}
     cover={project.data.hero ?? project.data.cover}
     pager={{ prev: link(prev), next: link(next), label: 'More from this build log' }}
 >

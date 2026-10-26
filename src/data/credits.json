@@ -1,0 +1,33 @@
+{
+    "_help": "Image credits. `path` is a file or a folder in public/ (a folder covers everything inside it). The most specific match wins. `credit` is shown next to the image and listed on the About page; `link` and `licence` are optional. Photos without an entry are the society's own.",
+    "credits": [
+        {
+            "path": "/images/klaus.jpg",
+            "credit": "Klaus poster © Netflix",
+            "note": "Used to promote our screening"
+        },
+        {
+            "path": "/images/lotr-fellowship.jpg",
+            "credit": "The Fellowship of the Ring poster © New Line Cinema",
+            "note": "Used to promote our screening"
+        },
+        {
+            "path": "/images/terminator.png",
+            "credit": "The Terminator poster © Orion Pictures",
+            "note": "Used to promote our screening"
+        },
+        {
+            "path": "/images/wall-e.jpg",
+            "credit": "WALL·E poster © Disney / Pixar",
+            "note": "Used to promote our screening"
+        },
+        {
+            "path": "/images/baxter.jpeg",
+            "credit": "Baxter press image © Rethink Robotics"
+        },
+        {
+            "path": "/images/pepper.jpeg",
+            "credit": "Pepper press image © SoftBank Robotics"
+        }
+    ]
+}

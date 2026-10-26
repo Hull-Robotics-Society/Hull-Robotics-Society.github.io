@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import creditsData from '../data/credits.json';
 import path from 'node:path';
 import { getCollection, type CollectionEntry } from 'astro:content';
 
@@ -136,4 +137,27 @@ export async function cadParts(cad: NonNullable<Project['data']['cad']>): Promis
 
     cadCache.set(key, parts);
     return parts;
+}
+
+export interface Credit {
+    path: string;
+    credit: string;
+    link?: string;
+    licence?: string;
+    note?: string;
+}
+
+/**
+ * Who took or owns an image, from src/data/credits.json.
+ * A folder entry covers every file inside it; the longest (most specific) match wins.
+ */
+export function creditFor(src?: string): Credit | undefined {
+    if (!src) return undefined;
+    return allCredits()
+        .filter(c => src === c.path || (c.path.endsWith('/') ? src.startsWith(c.path) : src.startsWith(c.path + '/')))
+        .sort((a, b) => b.path.length - a.path.length)[0];
+}
+
+export function allCredits(): Credit[] {
+    return creditsData.credits as Credit[];
 }

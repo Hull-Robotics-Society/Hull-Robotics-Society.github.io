@@ -4,6 +4,7 @@ slug: pepper/pepper-HTML
 project: pepper
 date: 2026-10-12
 excerpt: "Building and testing HTML pages for the tablet on Pepper's chest."
+aiAssisted: true
 ---
 **Repository:** [reeceherbert887/Pepper_Stuff](https://github.com/reeceherbert887/Pepper_Stuff)  
 **Target directory:** [`html_pepper`](https://github.com/reeceherbert887/Pepper_Stuff/tree/main/html_pepper)  

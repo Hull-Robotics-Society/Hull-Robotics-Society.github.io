@@ -4,6 +4,7 @@ slug: pepper/pepper-documentation
 project: pepper
 date: 2026-10-12
 excerpt: "Where everything lives and how to run our Pepper projects, from Choregraphe to the tablet."
+aiAssisted: true
 ---
 **Workspace:** Pepper robotics projects / University of Hull Robotics Society  
 **Repository:** [reeceherbert887/Pepper_Stuff](https://github.com/reeceherbert887/Pepper_Stuff)  

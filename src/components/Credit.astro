@@ -1,0 +1,22 @@
+---
+import { creditFor } from '../lib/site';
+
+interface Props {
+    src?: string;
+    // `overlay` sits on top of a photo's corner, `inline` is a small line of text
+    variant?: 'overlay' | 'inline';
+    // Set to false inside another link, where a nested link isn't allowed
+    linked?: boolean;
+}
+
+// Credit for an image from src/data/credits.json; renders nothing for the society's own photos.
+const { src, variant = 'overlay', linked = true } = Astro.props;
+const c = creditFor(src);
+const text = c && [c.credit, c.licence].filter(Boolean).join(' · ');
+---
+
+{c && (
+    <small class={`credit credit-${variant}`}>
+        {linked && c.link ? <a href={c.link} target="_blank" rel="noopener">{text}</a> : text}
+    </small>
+)}
