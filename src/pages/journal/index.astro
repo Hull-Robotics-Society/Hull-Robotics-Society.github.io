@@ -6,11 +6,11 @@ import { formatDate } from '../../lib/site';
 const posts = (await getCollection('journal')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime() || a.id.localeCompare(b.id));
 ---
 
-<Base title="Journal" description="Stories from Hull University Robotics Society events, fairs and project nights.">
+<Base title="Journal" description="Stories from Hull University Robotics Society events, fairs and project sessions.">
     <div class="wrap page-head">
         <p class="eyebrow">Journal</p>
         <h1>Stories from the society</h1>
-        <p>Stories from events, fairs and project nights, newest first.</p>
+        <p>Stories from events, fairs and the lab, newest first.</p>
     </div>
     <div class="wrap">
         <ul class="j-list">

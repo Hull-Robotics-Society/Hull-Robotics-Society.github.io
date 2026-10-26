@@ -1,20 +1,18 @@
 ---
-title: "Weekly Project Night"
+title: "Project Meeting"
 slug: weekly-meetup
-type: "Project night"
+type: "Project meeting"
 recurring: weekly
 weekday: 1
 start: "17:00"
 end: "19:00"
 location: "Robot Lab, Applied Science building"
-excerpt: "A casual meetup to discuss projects, share ideas, and get to know other members of the society. Everyone is welcome—come as you are and join the fun!"
+excerpt: "Our weekly meeting to catch up on projects, plan the week and get to know other members. Everyone is welcome, no experience needed."
 cover: "/images/projects.png"
 ---
-- **Date**: Monday of Every Week 
-- **Time**: 5:00 PM – 7:00 PM  
-- **Location**: Robotics Lab, University of Hull  
 
-## Details:
-A casual meetup to discuss projects, share ideas, and get to know other members of the society. Everyone is welcome—come as you are and join the fun!
+Every Monday in term time we meet in the Robot Lab to catch up on our projects, share ideas and plan what comes next. It's the best place to start if you're new: come along, see what we're building and find a project to join.
 
-[**Back to Events →**](/events/)
+In lectures until 6? No problem, just turn up when you can. If a meeting has to be cancelled, the committee will let you know as soon as possible.
+
+Want more hands-on time? Join us for the [Project Day](/events/project-day/) every Wednesday afternoon.

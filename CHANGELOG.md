@@ -8,7 +8,7 @@ Rebuilt the website from scratch with Astro, replacing the Jekyll site based on 
 - New design in light and dark themes: a light theme by default and a dark "lab" look via the toggle in the header. The logo green is the accent colour, with Chakra Petch, IBM Plex Sans and JetBrains Mono as typefaces (self-hosted).
 - Homepage is now a scroll story:
   - The hero draws circuit traces into the logo.
-  - A "Next up" bar always shows the next project night or event.
+  - A "Next up" bar always shows the next Project Meeting, Project Day or event.
   - A pinned robot roster ("Meet the machines") swaps through the robots as you scroll.
   - A drifting photo collage and a Join section.
 - Calm, readable inner pages: project pages with a dated build-log timeline and fact sheet, long-form article pages with a sticky contents list, reading time and an "Edit this page on GitHub" link.
@@ -35,6 +35,7 @@ Rebuilt the website from scratch with Astro, replacing the Jekyll site based on 
 - Every old build-log, tutorial, event and research URL still works. The blog, gallery and "all-…" pages redirect to their new homes, and the `transfomer` typo URL redirects to `transformer`.
 
 ### Fixes
+- Weekly sessions now match reality: the Monday Project Meeting (17:00 to 19:00) and the new Wednesday Project Day (13:30 to 17:00), both in term time. Their times live in one place and feed the homepage, Events and About.
 - "Univeristy" and "Kindgom" typos, the broken `/what-we-do/` link, the empty Dalek update list, `tock_sticky` typos, relative video posters and placeholder images that never loaded.
 
 ### Removed

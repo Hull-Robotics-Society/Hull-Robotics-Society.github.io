@@ -20,11 +20,11 @@ const day = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 
 const weekdays = ['Sundays', 'Mondays', 'Tuesdays', 'Wednesdays', 'Thursdays', 'Fridays', 'Saturdays'];
 ---
 
-<Base title="Events" description="Project nights, workshops, showcases and film nights from the Hull University Robotics Society.">
+<Base title="Events" description="Project Meetings, Project Days, workshops, showcases and film nights from the Hull University Robotics Society.">
     <div class="wrap page-head">
         <p class="eyebrow">Events</p>
         <h1>Come and see a robot up close</h1>
-        <p>Project nights, workshops, showcases and the occasional film night. Upcoming events sort themselves to the top.</p>
+        <p>Weekly Project Meetings and Project Days, workshops, showcases and film nights. Upcoming events sort themselves to the top.</p>
     </div>
     <div class="wrap">
         <div class="ev-up" id="upcoming" data-events={JSON.stringify(client)}>
@@ -32,7 +32,7 @@ const weekdays = ['Sundays', 'Mondays', 'Tuesdays', 'Wednesdays', 'Thursdays', '
                 <article class="ev-feature" data-upcoming={e.href}>
                     <div class="datebox"><span data-r="dow">{weekdays[e.weekday ?? 1].slice(0, 3)}</span><b data-r="day">–</b><span data-r="mon"></span></div>
                     <div>
-                        <span class="live">Every {weekdays[e.weekday ?? 1].slice(0, -1)} in term</span>
+                        <span class="live">Every {weekdays[e.weekday ?? 1].slice(0, -1)} in term time</span>
                         <h3><a href={e.href} style="text-decoration:none">{e.title}</a></h3>
                         <p class="muted">{e.excerpt}</p>
                         <dl>

@@ -88,7 +88,7 @@ const events = defineCollection({
     loader: glob({ base: './src/content/events', pattern: '*.md' }),
     schema: z.object({
         title: z.string(),
-        type: z.enum(['Project night', 'Workshop', 'Film night', 'Showcase', 'Fair', 'Social', 'Competition']),
+        type: z.enum(['Project meeting', 'Project day', 'Workshop', 'Film night', 'Showcase', 'Fair', 'Social', 'Competition']),
         date: date.optional(),
         recurring: z.enum(['weekly']).optional(),
         weekday: z.number().min(0).max(6).optional(),

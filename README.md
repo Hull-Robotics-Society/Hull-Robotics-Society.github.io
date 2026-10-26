@@ -33,7 +33,7 @@ Create `src/content/events/<slug>.md`:
 ```markdown
 ---
 title: "KiCad workshop"
-type: "Workshop"        # Project night, Workshop, Film night, Showcase, Fair, Social or Competition
+type: "Workshop"        # Project meeting, Project day, Workshop, Film night, Showcase, Fair, Social or Competition
 date: 2026-11-12
 start: "17:00"
 end: "19:00"

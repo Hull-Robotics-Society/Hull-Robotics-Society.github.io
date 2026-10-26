@@ -2,6 +2,14 @@
 import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
 import committee from '../data/committee.json';
+import { getCollection } from 'astro:content';
+
+// The weekly sessions come from the events collection, so times are only kept in one place.
+const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const sessions = (await getCollection('events'))
+    .filter(e => e.data.recurring)
+    .sort((a, b) => (a.data.weekday ?? 0) - (b.data.weekday ?? 0))
+    .map(e => ({ day: days[e.data.weekday ?? 1], title: e.data.title, href: `/events/${e.id}/`, start: e.data.start, end: e.data.end }));
 
 interface Member {
     name: string;
@@ -66,11 +74,11 @@ const members = committee.members as Member[];
             <h2>Where to find us</h2>
             <div class="find">
                 <div class="find-card">
-                    <p class="eyebrow">Project nights</p>
+                    <p class="eyebrow">Weekly sessions</p>
                     <dl>
+                        {sessions.map(s => <><dt>{s.day}</dt><dd><a href={s.href}>{s.title}</a>, {s.start} to {s.end}</dd></>)}
                         <dt>Where</dt><dd>{site.location}<br />{site.address}</dd>
-                        <dt>When</dt><dd>Every Monday in term time, 17:00 to 19:00</dd>
-                        <dt>Late?</dt><dd>In lectures until 6? Just turn up when you can.</dd>
+                        <dt>Late?</dt><dd>In lectures? Just turn up when you can. Both sessions run in term time.</dd>
                     </dl>
                     <a class="btn ghost" href={site.maps} target="_blank" rel="noopener" style="justify-self:start">Open in maps ↗</a>
                 </div>

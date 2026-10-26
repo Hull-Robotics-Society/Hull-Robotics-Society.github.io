@@ -4,12 +4,13 @@ import { allEvents, clientEvents } from '../lib/events';
 // Server-side fallback is the weekly session; the browser swaps in whatever is really next.
 const events = clientEvents(await allEvents());
 const weekly = events.find(e => e.weekday !== undefined && !e.date);
+const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 ---
 
 <a class="next-up" href={weekly?.href ?? '/events/'} id="next-up" data-events={JSON.stringify(events)}>
     <span class="live">Next up</span>
     <strong data-r="title">{weekly?.title ?? 'See what is on'}</strong>
-    <span class="mono muted" data-r="when">{weekly ? `Mondays, ${weekly.start} to ${weekly.end}` : ''}</span>
+    <span class="mono muted" data-r="when">{weekly ? `Every ${days[weekly.weekday ?? 1]}, ${weekly.start} to ${weekly.end}` : ''}</span>
     <span class="mono muted" data-r="where">{weekly?.location}</span>
     <span class="go">Details →</span>
 </a>
