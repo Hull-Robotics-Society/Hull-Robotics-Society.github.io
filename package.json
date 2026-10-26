@@ -6,7 +6,7 @@
   "description": "Website of the Hull University Robotics Society",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && pagefind --site dist",
     "preview": "astro preview"
   },
   "engines": {
@@ -20,5 +20,8 @@
     "@fontsource/orbitron": "5.3.0",
     "astro": "7.3.8",
     "three": "0.186.1"
+  },
+  "devDependencies": {
+    "pagefind": "1.5.2"
   }
 }

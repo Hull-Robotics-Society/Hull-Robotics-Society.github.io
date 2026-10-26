@@ -8,6 +8,7 @@ export interface EventItem {
     date?: Date;
     recurring?: 'weekly';
     weekday?: number;
+    cancelled?: Date[];
     start?: string;
     end?: string;
     location?: string;
@@ -24,6 +25,7 @@ export async function allEvents(): Promise<EventItem[]> {
         date: e.data.date,
         recurring: e.data.recurring,
         weekday: e.data.weekday,
+        cancelled: e.data.cancelled,
         start: e.data.start,
         end: e.data.end,
         location: e.data.location,
@@ -57,6 +59,7 @@ export function clientEvents(items: EventItem[]) {
             date: e.date?.toISOString().slice(0, 10),
             nice: formatDate(e.date),
             weekday: e.weekday,
+            cancelled: (e.cancelled ?? []).map(d => d.toISOString().slice(0, 10)),
             start: e.start ?? '',
             end: e.end ?? '',
             location: e.location ?? ''

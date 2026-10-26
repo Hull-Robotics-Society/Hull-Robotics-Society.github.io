@@ -1,0 +1,97 @@
+---
+// Site search. The index is built by Pagefind after `astro build` and loaded only when the dialog opens.
+---
+
+<button class="icon-btn" id="search-open" type="button" aria-label="Search the site" title="Search (Ctrl+K)">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+</button>
+
+<dialog class="search" id="search" aria-label="Search">
+    <form method="dialog" class="search-bar" role="search">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+        <input id="search-input" type="search" placeholder="Search projects, build logs, tutorials, events…" autocomplete="off" spellcheck="false" aria-controls="search-results" />
+        <button class="search-close" type="submit" value="close" aria-label="Close search">Esc</button>
+    </form>
+    <p class="search-status mono muted" id="search-status" aria-live="polite">Type to search the whole site.</p>
+    <ol class="search-results" id="search-results"></ol>
+</dialog>
+
+<script>
+    type Pagefind = {
+        debouncedSearch: (q: string, opts?: object, ms?: number) => Promise<{ results: { data: () => Promise<Result> }[] } | null>;
+    };
+    type Result = {
+        url: string;
+        excerpt: string;
+        meta: { title?: string; type?: string; image?: string };
+        sub_results: { title: string; url: string; excerpt: string }[];
+    };
+
+    const dialog = document.getElementById('search') as HTMLDialogElement;
+    const input = document.getElementById('search-input') as HTMLInputElement;
+    const list = document.getElementById('search-results')!;
+    const status = document.getElementById('search-status')!;
+    let pagefind: Pagefind | null = null;
+
+    const esc = (s = '') => s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
+
+    async function load(): Promise<Pagefind | null> {
+        if (pagefind) return pagefind;
+        try {
+            // Built next to the site by `pagefind --site dist`; missing while running `astro dev`
+            pagefind = await import(/* @vite-ignore */ '/pagefind/pagefind.js');
+        } catch {
+            status.textContent = 'Search is available on the built site (npm run build, then npm run preview).';
+        }
+        return pagefind;
+    }
+
+    function open() {
+        dialog.showModal();
+        input.focus();
+        input.select();
+        load();
+    }
+
+    document.getElementById('search-open')!.addEventListener('click', open);
+    addEventListener('keydown', e => {
+        const typing = (e.target as HTMLElement).closest('input, textarea, [contenteditable]');
+        if ((e.key === 'k' && (e.ctrlKey || e.metaKey)) || (e.key === '/' && !typing)) {
+            e.preventDefault();
+            open();
+        }
+    });
+    dialog.addEventListener('click', e => { if (e.target === dialog) dialog.close(); });
+
+    input.addEventListener('input', async () => {
+        const q = input.value.trim();
+        if (!q) {
+            list.innerHTML = '';
+            status.textContent = 'Type to search the whole site.';
+            return;
+        }
+        const pf = await load();
+        if (!pf) return;
+        const search = await pf.debouncedSearch(q, {}, 200);
+        if (!search) return;
+
+        const results = await Promise.all(search.results.slice(0, 8).map(r => r.data()));
+        status.textContent = search.results.length
+            ? `${search.results.length} ${search.results.length === 1 ? 'result' : 'results'}${search.results.length > 8 ? ', showing the best 8' : ''}`
+            : `Nothing found for “${q}”.`;
+        list.innerHTML = results.map(r => {
+            const subs = r.sub_results.filter(s => s.url !== r.url && s.title !== r.meta.title).slice(0, 2);
+            return `<li>
+                <a class="search-hit" href="${esc(r.url)}">
+                    ${r.meta.type ? `<span class="eyebrow">${esc(r.meta.type)}</span>` : ''}
+                    <b>${esc(r.meta.title)}</b>
+                    <span class="search-excerpt">${r.excerpt}</span>
+                </a>
+                ${subs.length ? `<ul class="search-subs">${subs.map(s => `<li><a href="${esc(s.url)}">${esc(s.title)}</a></li>`).join('')}</ul>` : ''}
+            </li>`;
+        }).join('');
+    });
+
+    // Close the dialog when a result is followed (same-page anchors included)
+    list.addEventListener('click', e => { if ((e.target as HTMLElement).closest('a')) dialog.close(); });
+</script>

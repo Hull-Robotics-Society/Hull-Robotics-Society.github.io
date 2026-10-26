@@ -117,6 +117,27 @@ The 3D viewer lists every `.stl` file in the folders named under `cad`, straight
 Export new parts as STL (millimetres) into one of those folders and they appear on the next build. Give a part a nicer name with `cad.names`.
 SolidWorks files (`.SLDPRT`, `.SLDASM`) can't be shown in a browser and need an STL export first.
 
+### Notices and cancelled sessions
+
+- To cancel one week of a weekly session, add the date to its file, e.g. in `src/content/events/weekly-meetup.md`:
+
+  ```yaml
+  cancelled: [2026-11-02]
+  ```
+
+  A banner ("No Project Meeting on Monday 2 November") appears on every page during the week before, and "Next up" skips that week.
+- For any other announcement, add an entry to `src/data/notices.json`:
+
+  ```json
+  { "text": "The lab is closed for exams until 20 January.", "from": "2027-01-05", "until": "2027-01-20", "tone": "warning", "link": "/events/", "linkText": "See events" }
+  ```
+
+  `from`, `until` and `link` are optional. Visitors can dismiss a banner.
+
+### Search
+
+The search (magnifying glass in the header, or Ctrl+K / `/`) covers projects, build logs, tutorials, research, events, film nights, the journal and the About page. The index is built automatically by `npm run build`; it doesn't exist while running `npm run dev`.
+
 ### Committee and contact details
 
 - Executive team: `src/data/committee.json` (name, role, a one-sentence `about`, favourite `robot` and an optional `photo`). Update `year` and the list when a new committee is elected. The section on the About page stays hidden while the list is empty.

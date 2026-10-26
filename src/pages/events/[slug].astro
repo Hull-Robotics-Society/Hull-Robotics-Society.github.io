@@ -30,7 +30,7 @@ if (e.data.location) meta.push(['Where', e.data.location]);
 
 {e.data.film
     ? (
-        <Base title={e.data.title} description={e.data.excerpt} image={e.data.cover}>
+        <Base title={e.data.title} description={e.data.excerpt} image={e.data.cover} search="Film night">
             <FilmNight e={e} others={films.filter(f => f.id !== e.id)}>
                 <Content />
             </FilmNight>

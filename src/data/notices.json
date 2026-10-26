@@ -1,0 +1,4 @@
+{
+    "_help": "Announcements shown as a banner at the top of every page between `from` and `until` (YYYY-MM-DD, both optional). `tone` is info or warning. To cancel one week of a weekly session, add the date to `cancelled` in that event's file instead; its notice is created automatically.",
+    "notices": []
+}

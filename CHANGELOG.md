@@ -21,6 +21,8 @@ Rebuilt the website from scratch with Astro, replacing the Jekyll site based on 
 - The Events page has a film night poster shelf, and every dated event offers an "Add to calendar" (.ics) file while it is upcoming.
 
 ### Content and navigation
+- Site search (Pagefind) in the header, also on Ctrl+K and `/`: searches every build log, tutorial, event, film night, journal post, research article and the About page, entirely in the browser.
+- Notice banners: cancelled weekly sessions (a `cancelled` date list on the event) and announcements from `src/data/notices.json` appear at the top of every page while they are current, and "Next up" skips cancelled weeks.
 - Navigation reduced to Projects, Tutorials, Events, Journal and About. Research is a tab next to Projects; the blog is now the Journal.
 - All listings generate themselves from the Markdown files. No hand-maintained link lists any more.
 - Project galleries replace the separate gallery pages: every photo and video in a project's folder appears on its page.

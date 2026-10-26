@@ -23,19 +23,19 @@ const facts = [f.year, f.director && `Dir. ${f.director}`, f.runtime].filter(Boo
     <div class="wrap film-hero-grid">
         <div class="film-poster">
             {e.data.cover ? <img src={e.data.cover} alt={`${f.title} poster`} /> : <span class="emblem"></span>}
-            <span class="film-stamp" data-r="stamp">Screened</span>
+            <span class="film-stamp" data-r="stamp" data-pagefind-ignore>Screened</span>
         </div>
         <div class="film-head">
-            <a class="crumb" href="/events/">← All events</a>
-            <p class="film-eyebrow"><span class="film-live" data-r="live" hidden>Upcoming</span>Film night{longDate && ` · ${longDate}`}</p>
+            <a class="crumb" href="/events/" data-pagefind-ignore>← All events</a>
+            <p class="film-eyebrow" data-pagefind-ignore><span class="film-live" data-r="live" hidden>Upcoming</span>Film night{longDate && ` · ${longDate}`}</p>
             <h1>{f.title}</h1>
             {f.edition && <p class="film-edition">{f.edition}</p>}
-            <p class="film-facts">
+            <p class="film-facts" data-pagefind-ignore>
                 {facts.map(x => <span>{x}</span>)}
                 {f.rating && <span class="film-rating">{f.rating}</span>}
             </p>
             <p class="film-lede">{e.data.excerpt}</p>
-            <div class="film-cta">
+            <div class="film-cta" data-pagefind-ignore>
                 <a class="btn" href={`/events/${e.id}.ics`} data-r="ics" hidden>Add to calendar</a>
                 {f.trailer && <a class="btn film-ghost" href="#trailer">▶ Watch the trailer</a>}
             </div>
@@ -66,13 +66,13 @@ const facts = [f.year, f.director && `Dir. ${f.director}`, f.runtime].filter(Boo
                 <div class="film-trailer" data-yt={f.trailer} data-title={`${f.title} trailer`}>
                     {e.data.cover && <img src={e.data.cover} alt="" aria-hidden="true" />}
                     <button type="button" aria-label={`Play the ${f.title} trailer`}><span aria-hidden="true">▶</span></button>
-                    <p class="film-note">Plays from YouTube once you press play.</p>
+                    <p class="film-note" data-pagefind-ignore>Plays from YouTube once you press play.</p>
                 </div>
             </>
         )}
     </div>
 
-    <aside class="ticket" aria-label="Screening details">
+    <aside class="ticket" aria-label="Screening details" data-pagefind-ignore>
         <div class="ticket-top">
             <p class="eyebrow">Admit one · HullRS film night</p>
             <p class="ticket-title">{f.title}</p>
@@ -91,7 +91,7 @@ const facts = [f.year, f.director && `Dir. ${f.director}`, f.runtime].filter(Boo
 </div>
 
 {others.length > 0 && (
-    <div class="film-shelf">
+    <div class="film-shelf" data-pagefind-ignore>
         <div class="wrap">
             <div class="section-head"><h2>More film nights</h2><a class="link-arrow" href="/events/#films">All film nights →</a></div>
             <div class="film-row">

@@ -13,15 +13,18 @@ import '../styles/global.css';
 import '../styles/content.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Notices from '../components/Notices.astro';
 import site from '../data/site.json';
 
 interface Props {
     title?: string;
     description?: string;
     image?: string;
+    // Pages that set this are indexed by the site search, labelled with `type`
+    search?: string;
 }
 
-const { title, description = site.description, image = '/images/hullrs-web-banner.jpg' } = Astro.props;
+const { title, description = site.description, image = '/images/hullrs-web-banner.jpg', search } = Astro.props;
 const fullTitle = title ? `${title} · HullRS` : `${site.name} · HullRS`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -52,7 +55,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <body>
         <a class="skip" href="#main">Skip to content</a>
         <Header />
-        <main id="main">
+        <Notices />
+        <main id="main" data-pagefind-body={search ? true : undefined} data-pagefind-meta={search ? `type:${search}` : undefined}>
             <slot />
         </main>
         <Footer />

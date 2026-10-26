@@ -22,15 +22,15 @@ const toc = headings.filter(h => h.depth === 2 || h.depth === 3);
 const showToc = toc.filter(h => h.depth === 2).length >= 3;
 ---
 
-<Base title={title} description={excerpt} image={cover}>
+<Base title={title} description={excerpt} image={cover} search={eyebrow}>
     <div class="a-head">
         <div class="wrap">
-            <a class="crumb" href={back.href}>← {back.label}</a>
-            <p class="eyebrow" style="margin-top:16px">{eyebrow}</p>
+            <a class="crumb" href={back.href} data-pagefind-ignore>← {back.label}</a>
+            <p class="eyebrow" style="margin-top:16px" data-pagefind-ignore>{eyebrow}</p>
             <h1>{title}</h1>
             {excerpt && <p class="lede">{excerpt}</p>}
             {meta.length > 0 && (
-                <dl class="a-meta">
+                <dl class="a-meta" data-pagefind-ignore>
                     {meta.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
                 </dl>
             )}
@@ -38,7 +38,7 @@ const showToc = toc.filter(h => h.depth === 2).length >= 3;
     </div>
     <div class:list={['wrap', 'a-body', { 'no-toc': !showToc }]}>
         {showToc && (
-            <nav class="toc" aria-label="On this page">
+            <nav class="toc" aria-label="On this page" data-pagefind-ignore>
                 <p class="eyebrow">On this page</p>
                 {toc.map(h => <a href={`#${h.slug}`} class={`depth-${h.depth}`} data-toc>{h.text}</a>)}
             </nav>
@@ -47,9 +47,9 @@ const showToc = toc.filter(h => h.depth === 2).length >= 3;
             <article class="prose-md">
                 <slot />
             </article>
-            <p style="margin-top:48px"><a class="edit-link" href={editUrl(filePath, site.sourceRepo, site.sourceBranch)} target="_blank" rel="noopener">Spotted a mistake? Edit this page on GitHub ↗</a></p>
+            <p style="margin-top:48px" data-pagefind-ignore><a class="edit-link" href={editUrl(filePath, site.sourceRepo, site.sourceBranch)} target="_blank" rel="noopener">Spotted a mistake? Edit this page on GitHub ↗</a></p>
             {pager && (pager.prev || pager.next) && (
-                <nav class="pager" aria-label={pager.label}>
+                <nav class="pager" aria-label={pager.label} data-pagefind-ignore>
                     {pager.prev ? <a href={pager.prev.href}><span>← Previous</span><strong>{pager.prev.title}</strong></a> : <span></span>}
                     {pager.next && <a href={pager.next.href}><span>Next →</span><strong>{pager.next.title}</strong></a>}
                 </nav>

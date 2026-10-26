@@ -1,0 +1,77 @@
+---
+import { getCollection } from 'astro:content';
+import data from '../data/notices.json';
+
+// Banners for announcements and cancelled sessions. The browser decides which are current.
+interface Notice {
+    id: string;
+    text: string;
+    from?: string;
+    until?: string;
+    link?: string;
+    linkText?: string;
+    tone?: 'info' | 'warning';
+}
+
+const iso = (d: Date) => d.toISOString().slice(0, 10);
+const nice = (d: Date) => d.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'UTC' });
+
+// One notice per cancelled session, shown from a week before until the day itself
+const cancellations: Notice[] = (await getCollection('events')).flatMap(e => e.data.cancelled.map(d => ({
+    id: `cancel-${e.id}-${iso(d)}`,
+    text: `No ${e.data.title} on ${nice(d)}.`,
+    from: iso(new Date(d.getTime() - 7 * 864e5)),
+    until: iso(d),
+    link: `/events/${e.id}/`,
+    linkText: 'Details',
+    tone: 'warning' as const
+})));
+const manual: Notice[] = (data.notices as Omit<Notice, 'id'>[]).map((n, i) => ({ id: `notice-${i}-${n.text.length}`, ...n }));
+const notices = [...cancellations, ...manual];
+---
+
+{notices.length > 0 && (
+    <div class="notices" id="notices" data-notices={JSON.stringify(notices)} data-pagefind-ignore></div>
+)}
+
+<script>
+    const box = document.getElementById('notices');
+    if (box) {
+        const today = (() => {
+            const d = new Date();
+            return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+        })();
+        let dismissed: string[] = [];
+        try { dismissed = JSON.parse(localStorage.getItem('hullrs-dismissed') ?? '[]'); } catch {}
+
+        const notices = (JSON.parse(box.dataset.notices!) as { id: string; text: string; from?: string; until?: string; link?: string; linkText?: string; tone?: string }[])
+            .filter(n => (!n.from || n.from <= today) && (!n.until || n.until >= today) && !dismissed.includes(n.id));
+
+        for (const n of notices) {
+            const bar = document.createElement('div');
+            bar.className = `notice ${n.tone === 'warning' ? 'warning' : ''}`;
+            bar.setAttribute('role', 'status');
+            const wrap = document.createElement('div');
+            wrap.className = 'wrap';
+            const text = document.createElement('p');
+            text.textContent = n.text + ' ';
+            if (n.link) {
+                const a = document.createElement('a');
+                a.href = n.link;
+                a.textContent = (n.linkText ?? 'More') + ' →';
+                text.append(a);
+            }
+            const close = document.createElement('button');
+            close.type = 'button';
+            close.setAttribute('aria-label', 'Dismiss this notice');
+            close.textContent = '✕';
+            close.addEventListener('click', () => {
+                bar.remove();
+                try { localStorage.setItem('hullrs-dismissed', JSON.stringify([...dismissed, n.id])); } catch {}
+            });
+            wrap.append(text, close);
+            bar.append(wrap);
+            box.append(bar);
+        }
+    }
+</script>

@@ -7,6 +7,7 @@ export interface ClientEvent {
     date?: string;
     nice: string;
     weekday?: number;
+    cancelled?: string[];
     start: string;
     end: string;
     location: string;
@@ -15,6 +16,11 @@ export interface ClientEvent {
 export interface Occurrence {
     event: ClientEvent;
     when: Date;
+}
+
+/** Local date as YYYY-MM-DD */
+export function isoDay(d: Date): string {
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 }
 
 function at(day: Date, time: string, fallback: number): Date {
@@ -33,6 +39,8 @@ export function nextOccurrence(e: ClientEvent, now = new Date()): Date | null {
         const day = new Date(now);
         day.setDate(day.getDate() + ((e.weekday - day.getDay() + 7) % 7));
         if (at(day, e.end || e.start, 23) < now) day.setDate(day.getDate() + 7);
+        // Skip weeks the session is cancelled
+        while (e.cancelled?.includes(isoDay(day))) day.setDate(day.getDate() + 7);
         return at(day, e.start, 0);
     }
     if (!e.date) return null;

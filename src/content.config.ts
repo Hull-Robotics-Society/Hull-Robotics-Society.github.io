@@ -92,6 +92,8 @@ const events = defineCollection({
         date: date.optional(),
         recurring: z.enum(['weekly']).optional(),
         weekday: z.number().min(0).max(6).optional(),
+        // Dates a weekly session does not happen; shown as a notice and skipped by "Next up"
+        cancelled: z.array(z.coerce.date()).default([]),
         start: z.string().optional(),
         end: z.string().optional(),
         location: z.string().optional(),
