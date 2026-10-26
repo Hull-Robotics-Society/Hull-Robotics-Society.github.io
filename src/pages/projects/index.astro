@@ -1,0 +1,55 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProjectTabs from '../../components/ProjectTabs.astro';
+import { projects, logsOf, formatMonth, statusLabel } from '../../lib/site';
+
+const list = await Promise.all((await projects()).map(async p => ({ p, logs: await logsOf(p) })));
+
+// Filter chips: only the ones some project actually uses
+const labels: Record<string, string> = { ros: 'ROS', electronics: 'Electronics', humanoid: 'Humanoid', eeg: 'EEG / Neuro', '3d': '3D printing' };
+const used = Object.keys(labels).filter(k => list.some(({ p }) => p.data.filters.includes(k)));
+---
+
+<Base title="Projects" description="Robots and builds from the Hull University Robotics Society, each with its own build log.">
+    <ProjectTabs active="projects" />
+    <div class="wrap">
+        <div class="filters" id="filters" role="group" aria-label="Filter projects">
+            <button type="button" aria-pressed="true" data-f="all">All</button>
+            {used.map(k => <button type="button" aria-pressed="false" data-f={k}>{labels[k]}</button>)}
+        </div>
+        <div class="proj-grid" id="proj-grid">
+            {list.map(({ p, logs }) => (
+                <a class="card" href={`/projects/${p.id}/`} data-tags={p.data.filters.join(' ')}>
+                    <div class="media">
+                        {p.data.cover
+                            ? <img src={p.data.cover} alt={p.data.title} loading="lazy" decoding="async" style={p.data.coverFit === 'contain' ? 'object-fit:contain;background:#fff' : undefined} />
+                            : <div class="no-photo"><div><span class="emblem"></span><p class="mono muted" style="margin-top:12px">Photo coming soon</p></div></div>}
+                    </div>
+                    <div class="body">
+                        <div class="meta">
+                            <span class={p.data.status === 'new' ? 'chip soon' : 'chip status'}>{statusLabel[p.data.status]}</span>
+                            {p.data.tags.map(t => <span class="chip">{t}</span>)}
+                        </div>
+                        <h3>{p.data.title}</h3>
+                        <p class="muted">{p.data.summary}</p>
+                        <div class="stats">
+                            <span>{logs.length} {logs.length === 1 ? 'log entry' : 'log entries'}</span>
+                            <span>{logs.length ? `Last update ${formatMonth(logs[0].data.date)}` : `Started ${formatMonth(p.data.started)}`}</span>
+                        </div>
+                    </div>
+                </a>
+            ))}
+        </div>
+    </div>
+</Base>
+
+<script>
+    const buttons = [...document.querySelectorAll<HTMLButtonElement>('#filters button')];
+    buttons.forEach(b => b.addEventListener('click', () => {
+        buttons.forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+        const f = b.dataset.f!;
+        document.querySelectorAll<HTMLElement>('#proj-grid .card').forEach(c => {
+            c.hidden = f !== 'all' && !c.dataset.tags!.split(' ').includes(f);
+        });
+    }));
+</script>

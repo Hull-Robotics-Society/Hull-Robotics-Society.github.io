@@ -1,0 +1,28 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import Article from '../../layouts/Article.astro';
+import { formatDate } from '../../lib/site';
+
+export async function getStaticPaths() {
+    return (await getCollection('tutorials')).map(t => ({ params: { slug: t.id }, props: { t } }));
+}
+
+const { t } = Astro.props as { t: CollectionEntry<'tutorials'> };
+const { Content, headings } = await render(t);
+const meta: [string, string][] = [['Level', t.data.level], ['Time', t.data.duration]];
+if (t.data.needs) meta.push(['You need', t.data.needs]);
+meta.push(['Updated', formatDate(t.data.date)]);
+---
+
+<Article
+    title={t.data.title}
+    excerpt={t.data.excerpt}
+    eyebrow={`Tutorial${t.data.session ? ` · ${t.data.session} session` : ''}`}
+    back={{ href: '/tutorials/', label: 'All tutorials' }}
+    meta={meta}
+    headings={headings}
+    filePath={t.filePath}
+    cover={t.data.cover}
+>
+    <Content />
+</Article>

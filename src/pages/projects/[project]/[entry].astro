@@ -1,0 +1,51 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import Article from '../../../layouts/Article.astro';
+import { projects, formatDate, readingTime, type Project } from '../../../lib/site';
+
+export async function getStaticPaths() {
+    const all = await projects();
+    const logs = await getCollection('logs');
+    return logs.map(l => {
+        const project = all.find(p => p.id.toLowerCase() === l.data.project)!;
+        // Neighbours in reading order (oldest first) within the same project
+        const siblings = logs
+            .filter(x => x.data.project === l.data.project && x.data.date)
+            .sort((a, b) => a.data.date!.getTime() - b.data.date!.getTime() || a.id.localeCompare(b.id));
+        const i = siblings.indexOf(l);
+        const [, entry] = l.id.split('/');
+        return {
+            params: { project: project.id, entry },
+            props: { l, project, prev: i > 0 ? siblings[i - 1] : undefined, next: i >= 0 ? siblings[i + 1] : undefined }
+        };
+    });
+}
+
+interface Props {
+    l: CollectionEntry<'logs'>;
+    project: Project;
+    prev?: CollectionEntry<'logs'>;
+    next?: CollectionEntry<'logs'>;
+}
+
+const { l, project, prev, next } = Astro.props;
+const { Content, headings } = await render(l);
+const meta: [string, string][] = [];
+if (l.data.date) meta.push(['Published', formatDate(l.data.date)]);
+meta.push(['Reading time', readingTime(l.body)]);
+const link = (x?: CollectionEntry<'logs'>) => x && { href: `/projects/${x.id}/`, title: x.data.title };
+---
+
+<Article
+    title={l.data.title}
+    excerpt={l.data.excerpt}
+    eyebrow={`${project.data.title} · ${l.data.date ? 'Build log' : 'Documentation'}`}
+    back={{ href: `/projects/${project.id}/`, label: project.data.title }}
+    meta={meta}
+    headings={headings}
+    filePath={l.filePath}
+    cover={project.data.hero ?? project.data.cover}
+    pager={{ prev: link(prev), next: link(next), label: 'More from this build log' }}
+>
+    <Content />
+</Article>

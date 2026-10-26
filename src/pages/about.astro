@@ -1,0 +1,100 @@
+---
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+import committee from '../data/committee.json';
+
+const members = committee.members as { name: string; role: string; photo?: string }[];
+---
+
+<Base title="About" description="Who the Hull University Robotics Society are, what we do, and where to find us.">
+    <div class="wrap page-head">
+        <p class="eyebrow">About</p>
+        <h1>Who we are</h1>
+        <p>The {site.name}: students from every department who like making things move.</p>
+    </div>
+    <div class="wrap">
+        <div class="a-intro">
+            <div class="prose">
+                <p>We're a community of students who want to get hands-on with robotics and automation. Members come from engineering and computer science, but also from psychology, business, art and everything in between.</p>
+                <p>Some of us arrive having built robots before. Most of us haven't. Whether you're a first-year with a vague interest or a final-year engineer, there's a project you can join and someone who'll show you how it works.</p>
+            </div>
+            <img src="/images/site/freshers.jpg" alt="The HullRS stand with Pepper at Freshers Fair" loading="lazy" decoding="async" />
+        </div>
+
+        <div class="a-block">
+            <h2>Our mission</h2>
+            <div class="mission">
+                <div><p class="eyebrow">Foster collaboration</p><h3>Build it together</h3><p class="muted">A space where students work on real robots as a team, share what they know and swap ideas across courses.</p></div>
+                <div><p class="eyebrow">Encourage innovation</p><h3>Try the odd idea</h3><p class="muted">From competition robots to mind-controlled Daleks, we push at what robotics can do and bring new ideas to life.</p></div>
+            </div>
+        </div>
+
+        <div class="a-block">
+            <h2>What we do</h2>
+            <div class="do-grid">
+                <a href="/projects/"><p class="eyebrow">Projects &amp; competitions</p><h3>Put theory into practice</h3><p class="muted">Long-running builds like the Dalek, Baxter, Pepper and our own OSRC controller, plus robotics competitions against other universities.</p><span class="go">See projects →</span></a>
+                <a href="/tutorials/"><p class="eyebrow">Workshops &amp; training</p><h3>Learn the skills</h3><p class="muted">Hands-on sessions on circuit design, microcontrollers, CAD and 3D printing, pitched at every level.</p><span class="go">See tutorials →</span></a>
+                <a href="/events/"><p class="eyebrow">Socials</p><h3>Make friends</h3><p class="muted">Film nights, team challenges and fairs. Robotics is more fun with people you like.</p><span class="go">See events →</span></a>
+            </div>
+        </div>
+
+        <div class="a-block">
+            <h2>Why join us</h2>
+            <div style="display:grid;gap:24px">
+                <ul class="why">
+                    <li><span>Get hands-on experience on real robots, not just simulations.</span></li>
+                    <li><span>Work with students from other courses and see problems from new angles.</span></li>
+                    <li><span>Build up your CV and portfolio: documented projects, code on GitHub, showcase events.</span></li>
+                    <li><span>Be part of a friendly community that's as excited about robots as you are.</span></li>
+                </ul>
+                <p style="font-family:var(--font-display);font-size:var(--step-2);font-weight:600">No experience? <span style="color:var(--accent)">No problem.</span></p>
+                <div class="hero-cta" style="margin-top:0">
+                    <a class="btn" href={site.join} target="_blank" rel="noopener">Become a member</a>
+                    <a class="btn ghost" href={site.discord} target="_blank" rel="noopener">Say hi on Discord</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="a-block">
+            <h2>Where to find us</h2>
+            <div class="find">
+                <div class="find-card">
+                    <p class="eyebrow">Project nights</p>
+                    <dl>
+                        <dt>Where</dt><dd>{site.location}<br />{site.address}</dd>
+                        <dt>When</dt><dd>Every Monday in term time, 17:00 to 19:00</dd>
+                        <dt>Late?</dt><dd>In lectures until 6? Just turn up when you can.</dd>
+                    </dl>
+                    <a class="btn ghost" href={site.maps} target="_blank" rel="noopener" style="justify-self:start">Open in maps ↗</a>
+                </div>
+                <div class="find-card">
+                    <p class="eyebrow">Get in touch</p>
+                    <dl>
+                        <dt>Email</dt><dd><a href={`mailto:${site.email}`}>{site.email}</a></dd>
+                        <dt>Discord</dt><dd><a href={site.discord} target="_blank" rel="noopener">Join the server</a></dd>
+                        <dt>Instagram</dt><dd><a href={site.instagram} target="_blank" rel="noopener">{site.instagramHandle}</a></dd>
+                        <dt>YouTube</dt><dd><a href={site.youtube} target="_blank" rel="noopener">Our channel</a></dd>
+                        <dt>GitHub</dt><dd><a href={site.github} target="_blank" rel="noopener">Hull-Robotics-Society</a></dd>
+                        <dt>Union</dt><dd><a href={site.join} target="_blank" rel="noopener">Society page and membership</a></dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+
+        {members.length > 0 && (
+            <div class="a-block">
+                <h2>The committee</h2>
+                <div class="committee">
+                    {members.map(m => (
+                        <div class="member">
+                            <div class="ph">{m.photo ? <img src={m.photo} alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:10px" /> : <span class="emblem"></span>}</div>
+                            <b>{m.name}</b>
+                            <span class="mono muted">{m.role}</span>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        )}
+        <div style="height:64px"></div>
+    </div>
+</Base>

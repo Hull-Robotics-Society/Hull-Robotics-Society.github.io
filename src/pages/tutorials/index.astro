@@ -1,0 +1,34 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+const tutorials = (await getCollection('tutorials')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<Base title="Tutorials" description="Step-by-step guides from Hull University Robotics Society workshops.">
+    <div class="wrap page-head">
+        <p class="eyebrow">Tutorials</p>
+        <h1>Learn it at a project night, keep it here</h1>
+        <p>Step-by-step guides from our workshops. Each one lists what you need and how long it takes.</p>
+    </div>
+    <div class="wrap" style="padding-bottom:96px">
+        <div class="grid3">
+            {tutorials.map(t => (
+                <a class="card" href={`/tutorials/${t.id}/`}>
+                    <div class="media">{t.data.cover && <img src={t.data.cover} alt="" loading="lazy" decoding="async" />}</div>
+                    <div class="body">
+                        <p class="eyebrow">{t.data.tags[0] ?? 'Tutorial'} · {t.data.level}</p>
+                        <h3>{t.data.title}</h3>
+                        <p class="muted">{t.data.excerpt}</p>
+                        <div class="meta">{t.data.tags.slice(0, 2).map(x => <span class="chip">{x}</span>)}<span class="chip">{t.data.duration}</span></div>
+                    </div>
+                </a>
+            ))}
+            <div class="ev-empty" style="grid-column: span 2">
+                <p class="eyebrow">Write one</p>
+                <h3>Ran a workshop? Turn it into a tutorial.</h3>
+                <p class="muted">Add one Markdown file to <code class="mono">src/content/tutorials/</code>. It shows up here without touching any other page. The README explains the fields.</p>
+            </div>
+        </div>
+    </div>
+</Base>

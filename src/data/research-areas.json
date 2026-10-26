@@ -1,0 +1,15 @@
+{
+    "neuro": {
+        "title": "Neuro Robotics",
+        "status": "Ongoing",
+        "summary": "How brain signals are measured, what they can tell us, and how to use them to control cobots and other robots safely.",
+        "image": "/images/emotiv/fitting-headset.jpg",
+        "tags": ["EEG", "Neuroscience", "Human-robot interaction"],
+        "usedIn": [
+            {
+                "label": "Dalek: mind control",
+                "href": "/projects/dalek/dalek-mind-control/"
+            }
+        ]
+    }
+}

@@ -1,0 +1,60 @@
+---
+import '@fontsource/chakra-petch/500.css';
+import '@fontsource/chakra-petch/600.css';
+import '@fontsource/chakra-petch/700.css';
+import '@fontsource/ibm-plex-sans/400.css';
+import '@fontsource/ibm-plex-sans/400-italic.css';
+import '@fontsource/ibm-plex-sans/500.css';
+import '@fontsource/ibm-plex-sans/600.css';
+import '@fontsource/jetbrains-mono/400.css';
+import '@fontsource/jetbrains-mono/500.css';
+import '@fontsource/orbitron/800.css';
+import '../styles/global.css';
+import '../styles/content.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import site from '../data/site.json';
+
+interface Props {
+    title?: string;
+    description?: string;
+    image?: string;
+}
+
+const { title, description = site.description, image = '/images/hullrs-web-banner.jpg' } = Astro.props;
+const fullTitle = title ? `${title} · HullRS` : `${site.name} · HullRS`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en-GB">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        <title>{fullTitle}</title>
+        <meta name="description" content={description} />
+        <link rel="canonical" href={canonical} />
+        <link rel="icon" href="/favicon.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="sitemap" href="/sitemap-index.xml" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={fullTitle} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={new URL(image, Astro.site)} />
+        <meta property="og:url" content={canonical} />
+        <meta name="theme-color" content="#00755e" />
+        <script is:inline>
+            // Apply the saved theme before first paint. Light is the default.
+            try { if (localStorage.getItem('hullrs-theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark'); } catch (e) {}
+            document.documentElement.classList.add('js');
+        </script>
+    </head>
+    <body>
+        <a class="skip" href="#main">Skip to content</a>
+        <Header />
+        <main id="main">
+            <slot />
+        </main>
+        <Footer />
+    </body>
+</html>

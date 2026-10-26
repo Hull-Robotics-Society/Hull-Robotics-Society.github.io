@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { formatDate } from '../../lib/site';
+
+const posts = (await getCollection('journal')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime() || a.id.localeCompare(b.id));
+---
+
+<Base title="Journal" description="Stories from Hull University Robotics Society events, fairs and project nights.">
+    <div class="wrap page-head">
+        <p class="eyebrow">Journal</p>
+        <h1>Stories from the society</h1>
+        <p>Stories from events, fairs and project nights, newest first.</p>
+    </div>
+    <div class="wrap">
+        <ul class="j-list">
+            {posts.map(p => (
+                <li>
+                    <a href={`/journal/${p.id}/`}>
+                        <div class="k"><span class="mono muted">{formatDate(p.data.date)}</span><span class="chip">{p.data.eventType ?? 'Blog'}</span></div>
+                        <div><h3>{p.data.title}</h3><p class="muted">{p.data.excerpt}</p></div>
+                        {p.data.cover ? <img src={p.data.cover} alt="" loading="lazy" decoding="async" /> : <span></span>}
+                    </a>
+                </li>
+            ))}
+        </ul>
+    </div>
+</Base>

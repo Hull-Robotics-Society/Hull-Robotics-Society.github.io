@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+    active: 'projects' | 'research';
+}
+
+// Page head and the Projects / Research tab bar shared by /projects/ and /research/.
+const { active } = Astro.props;
+const counts = {
+    projects: (await getCollection('projects')).length,
+    research: new Set((await getCollection('research')).map(r => r.data.area)).size
+};
+const lede = active === 'projects'
+    ? "Every project keeps a build log. Pick one to see how it started, what broke, and where it's going."
+    : 'Research lives in its own tab: the reading, experiments and write-ups that feed into our builds.';
+---
+
+<div class="wrap page-head">
+    <p class="eyebrow">Projects</p>
+    <h1>Things we're building</h1>
+    <p>{lede}</p>
+</div>
+<div class="wrap">
+    <nav class="tabs" aria-label="Projects and research">
+        <a href="/projects/" aria-current={active === 'projects' ? 'page' : undefined} aria-selected={active === 'projects' ? 'true' : 'false'}>Projects <span>{counts.projects}</span></a>
+        <a href="/research/" aria-current={active === 'research' ? 'page' : undefined} aria-selected={active === 'research' ? 'true' : 'false'}>Research <span>{counts.research}</span></a>
+    </nav>
+</div>

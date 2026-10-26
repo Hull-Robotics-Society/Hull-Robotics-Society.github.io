@@ -1,0 +1,100 @@
+---
+import Base from '../../layouts/Base.astro';
+import { allEvents, clientEvents } from '../../lib/events';
+import site from '../../data/site.json';
+
+const items = await allEvents();
+const recurring = items.filter(e => e.recurring);
+const dated = items.filter(e => e.date);
+const client = clientEvents(items);
+
+// Past events by year. Upcoming ones are filtered in the browser, which knows today's date.
+const years = [...new Set(dated.map(e => e.date!.getUTCFullYear()))].sort((a, b) => b - a);
+const iso = (d?: Date) => d?.toISOString().slice(0, 10);
+const day = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', timeZone: 'UTC' });
+const weekdays = ['Sundays', 'Mondays', 'Tuesdays', 'Wednesdays', 'Thursdays', 'Fridays', 'Saturdays'];
+---
+
+<Base title="Events" description="Project nights, workshops, showcases and film nights from the Hull University Robotics Society.">
+    <div class="wrap page-head">
+        <p class="eyebrow">Events</p>
+        <h1>Come and see a robot up close</h1>
+        <p>Project nights, workshops, showcases and the occasional film night. Upcoming events sort themselves to the top.</p>
+    </div>
+    <div class="wrap">
+        <div class="ev-up" id="upcoming" data-events={JSON.stringify(client)}>
+            {recurring.map(e => (
+                <article class="ev-feature" data-upcoming={e.href}>
+                    <div class="datebox"><span data-r="dow">{weekdays[e.weekday ?? 1].slice(0, 3)}</span><b data-r="day">–</b><span data-r="mon"></span></div>
+                    <div>
+                        <span class="live">Every {weekdays[e.weekday ?? 1].slice(0, -1)} in term</span>
+                        <h3><a href={e.href} style="text-decoration:none">{e.title}</a></h3>
+                        <p class="muted">{e.excerpt}</p>
+                        <dl>
+                            {e.start && <><dt>Time</dt><dd>{e.start}{e.end && ` to ${e.end}`}</dd></>}
+                            {e.location && <><dt>Where</dt><dd>{e.location}</dd></>}
+                        </dl>
+                    </div>
+                </article>
+            ))}
+            {dated.map(e => (
+                <article class="ev-feature" data-upcoming={e.href} data-date={iso(e.date)} hidden>
+                    <div class="datebox"><span>{e.date!.toLocaleDateString('en-GB', { weekday: 'short', timeZone: 'UTC' })}</span><b>{e.date!.getUTCDate()}</b><span>{e.date!.toLocaleDateString('en-GB', { month: 'short', timeZone: 'UTC' })}</span></div>
+                    <div>
+                        <span class="live">{e.type}</span>
+                        <h3><a href={e.href} style="text-decoration:none">{e.title}</a></h3>
+                        <p class="muted">{e.excerpt}</p>
+                        <dl>
+                            {e.start && <><dt>Time</dt><dd>{e.start}{e.end && ` to ${e.end}`}</dd></>}
+                            {e.location && <><dt>Where</dt><dd>{e.location}</dd></>}
+                        </dl>
+                    </div>
+                </article>
+            ))}
+            <div class="ev-empty" id="ev-empty">
+                <p class="eyebrow">Coming up</p>
+                <h3>Nothing else announced yet</h3>
+                <p class="muted">Follow <a href={site.instagram} target="_blank" rel="noopener">{site.instagramHandle}</a> on Instagram or join the <a href={site.discord} target="_blank" rel="noopener">Discord</a> to hear first.</p>
+            </div>
+        </div>
+
+        <div style="padding-bottom:96px">
+            {years.map(y => (
+                <div class="year">
+                    <h2>{y}</h2>
+                    <ul class="ev-rows">
+                        {dated.filter(e => e.date!.getUTCFullYear() === y).map(e => (
+                            <li data-past={iso(e.date)}><a href={e.href}><time datetime={iso(e.date)}>{day(e.date!)}</time><strong>{e.title}</strong><span class="chip">{e.type}</span></a></li>
+                        ))}
+                    </ul>
+                </div>
+            ))}
+        </div>
+    </div>
+</Base>
+
+<script>
+    import { upcoming, type ClientEvent } from '../../scripts/next-event';
+
+    const box = document.getElementById('upcoming')!;
+    const next = upcoming(JSON.parse(box.dataset.events!) as ClientEvent[]);
+    const soon = new Set(next.map(o => o.event.href));
+
+    // Show upcoming cards soonest first; drop them from the past list.
+    next.forEach(o => {
+        const card = box.querySelector<HTMLElement>(`[data-upcoming="${o.event.href}"]`);
+        if (!card) return;
+        card.hidden = false;
+        box.insertBefore(card, document.getElementById('ev-empty'));
+        const q = (r: string) => card.querySelector<HTMLElement>(`[data-r="${r}"]`);
+        q('day') && (q('day')!.textContent = String(o.when.getDate()));
+        q('mon') && (q('mon')!.textContent = o.when.toLocaleDateString('en-GB', { month: 'short' }));
+    });
+    document.querySelectorAll<HTMLElement>('[data-past]').forEach(li => {
+        const href = li.querySelector('a')!.getAttribute('href')!;
+        if (soon.has(href)) li.hidden = true;
+    });
+    document.querySelectorAll<HTMLElement>('.year').forEach(y => {
+        y.hidden = ![...y.querySelectorAll<HTMLElement>('li')].some(li => !li.hidden);
+    });
+</script>

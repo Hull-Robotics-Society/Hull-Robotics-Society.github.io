@@ -1,0 +1,31 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import Article from '../../layouts/Article.astro';
+import { formatDate } from '../../lib/site';
+
+export async function getStaticPaths() {
+    return (await getCollection('events')).map(e => ({ params: { slug: e.id }, props: { e } }));
+}
+
+const { e } = Astro.props as { e: CollectionEntry<'events'> };
+const { Content, headings } = await render(e);
+const weekdays = ['Sundays', 'Mondays', 'Tuesdays', 'Wednesdays', 'Thursdays', 'Fridays', 'Saturdays'];
+const meta: [string, string][] = [];
+if (e.data.recurring) meta.push(['When', `${weekdays[e.data.weekday ?? 1]} in term time`]);
+if (e.data.date) meta.push(['Date', formatDate(e.data.date)]);
+if (e.data.start) meta.push(['Time', e.data.end ? `${e.data.start} to ${e.data.end}` : e.data.start]);
+if (e.data.location) meta.push(['Where', e.data.location]);
+---
+
+<Article
+    title={e.data.title}
+    excerpt={e.data.excerpt}
+    eyebrow={`Event · ${e.data.type}`}
+    back={{ href: '/events/', label: 'All events' }}
+    meta={meta}
+    headings={headings}
+    filePath={e.filePath}
+    cover={e.data.cover}
+>
+    <Content />
+</Article>

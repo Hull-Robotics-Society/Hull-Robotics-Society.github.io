@@ -1,0 +1,61 @@
+---
+import type { CadPart } from '../lib/site';
+
+interface Props {
+    parts: CadPart[];
+}
+
+// Three.js STL viewer with a tray of parts. three.js only loads once the viewer scrolls into view.
+const { parts } = Astro.props;
+const groups = [...new Set(parts.map(p => p.group))];
+const first = parts[0];
+---
+
+<div class="cad" data-cad={JSON.stringify(parts)}>
+    <div class="cad-stage">
+        <div class="cad-status">Loading 3D viewer…</div>
+        <div class="cad-hud">
+            <div class="cad-title"><b data-r="name">{first.name}</b><span data-r="dims">{first.file}</span></div>
+            <div class="cad-tools">
+                <button type="button" data-r="wire" aria-pressed="false">Wireframe</button>
+                <button type="button" data-r="spin" aria-pressed="true">Spin</button>
+                <button type="button" data-r="zin" aria-label="Zoom in">+</button>
+                <button type="button" data-r="zout" aria-label="Zoom out">−</button>
+                <button type="button" data-r="reset">Reset</button>
+            </div>
+        </div>
+        <span class="cad-hint">Drag to rotate · right-drag to pan</span>
+        <a class="cad-dl" data-r="dl" href={first.blob} target="_blank" rel="noopener">Download STL ↗</a>
+    </div>
+    <div class="cad-bar">
+        <span class="count">{parts.length} {parts.length === 1 ? 'part' : 'parts'}</span>
+        {groups.length > 1 && (
+            <div class="cad-groups" data-r="groups" role="group" aria-label="Filter parts">
+                {['All', ...groups].map(g => <button type="button" data-g={g} aria-pressed={g === 'All' ? 'true' : 'false'}>{g}</button>)}
+            </div>
+        )}
+    </div>
+    <div class="cad-tray" data-r="tray" aria-label="Parts">
+        {parts.map((p, i) => (
+            <button type="button" data-part={p.id} aria-pressed={i === 0 ? 'true' : 'false'}>
+                <span class="thumb"><span class="emblem" style="width:28px;height:27px;opacity:.35"></span></span>
+                <b>{p.name}</b>
+                <small>{p.group}</small>
+            </button>
+        ))}
+    </div>
+    <p class="cad-note">New parts appear here automatically when their STL files are added to the repository.</p>
+</div>
+
+<script>
+    // Each viewer starts when it scrolls near the screen, so pages without one never load three.js.
+    for (const host of document.querySelectorAll<HTMLElement>('[data-cad]')) {
+        const io = new IntersectionObserver(async entries => {
+            if (!entries.some(e => e.isIntersecting)) return;
+            io.disconnect();
+            const { mountCad } = await import('../scripts/cad-viewer');
+            mountCad(host);
+        }, { rootMargin: '300px' });
+        io.observe(host);
+    }
+</script>

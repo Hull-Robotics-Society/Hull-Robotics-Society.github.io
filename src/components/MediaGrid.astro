@@ -1,0 +1,51 @@
+---
+import type { MediaItem } from '../lib/site';
+
+interface Props {
+    items: MediaItem[];
+}
+
+// Masonry of photos and videos. Photos open full size in a lightbox.
+const { items } = Astro.props;
+---
+
+<div class="masonry" data-lightbox>
+    {items.map(m => (
+        <figure>
+            {m.kind === 'video'
+                ? <video src={m.src} poster={m.poster} controls playsinline preload="none" aria-label={m.alt}></video>
+                : <img src={m.src} alt={m.alt} loading="lazy" decoding="async" />}
+        </figure>
+    ))}
+</div>
+
+<script>
+    for (const grid of document.querySelectorAll<HTMLElement>('[data-lightbox]')) {
+        grid.addEventListener('click', e => {
+            const img = (e.target as HTMLElement).closest('img');
+            if (!img) return;
+
+            const box = document.createElement('div');
+            box.className = 'lightbox';
+            box.setAttribute('role', 'dialog');
+            box.setAttribute('aria-modal', 'true');
+            box.setAttribute('aria-label', img.alt);
+            const big = img.cloneNode() as HTMLImageElement;
+            big.removeAttribute('loading');
+            const close = document.createElement('button');
+            close.className = 'icon-btn';
+            close.type = 'button';
+            close.setAttribute('aria-label', 'Close');
+            close.style.background = 'var(--surface)';
+            close.textContent = '✕';
+            box.append(big, close);
+
+            const done = () => { box.remove(); removeEventListener('keydown', esc); img.focus(); };
+            const esc = (ev: KeyboardEvent) => { if (ev.key === 'Escape') done(); };
+            box.addEventListener('click', ev => { if (ev.target === box || ev.target === close) done(); });
+            addEventListener('keydown', esc);
+            document.body.appendChild(box);
+            close.focus();
+        });
+    }
+</script>

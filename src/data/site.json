@@ -1,0 +1,17 @@
+{
+    "name": "Hull University Robotics Society",
+    "short": "HULLRS",
+    "description": "A student society at the University of Hull for anyone who wants to wire, print and program real robots. No experience needed.",
+    "email": "uniofhullroboticsociety@gmail.com",
+    "join": "https://hulluniunion.com/activities/view/Robotics",
+    "discord": "https://discord.gg/DaNcZb7zvd",
+    "instagram": "https://instagram.com/hull_rs",
+    "instagramHandle": "@hull_rs",
+    "github": "https://github.com/Hull-Robotics-Society",
+    "youtube": "https://www.youtube.com/@hulluniroboticssociety913",
+    "location": "Robot Lab, Applied Science building",
+    "address": "University of Hull, Cottingham Road, Hull HU6 7RX",
+    "maps": "https://www.openstreetmap.org/search?query=University%20of%20Hull%20Applied%20Science",
+    "sourceRepo": "https://github.com/Hull-Robotics-Society/Hull-Robotics-Society.github.io",
+    "sourceBranch": "gh-pages"
+}

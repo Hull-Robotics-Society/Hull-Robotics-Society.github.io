@@ -1,0 +1,30 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import Article from '../../../layouts/Article.astro';
+import areas from '../../../data/research-areas.json';
+import { formatDate, readingTime } from '../../../lib/site';
+
+export async function getStaticPaths() {
+    return (await getCollection('research')).map(a => {
+        const [area, article] = a.id.split('/');
+        return { params: { area, article }, props: { a } };
+    });
+}
+
+const { a } = Astro.props as { a: CollectionEntry<'research'> };
+const { Content, headings } = await render(a);
+const area = (areas as Record<string, { title: string; image: string }>)[a.data.area];
+---
+
+<Article
+    title={a.data.title}
+    excerpt={a.data.excerpt}
+    eyebrow={`Research · ${area?.title ?? a.data.area}`}
+    back={{ href: `/research/#${a.data.area}`, label: 'Research' }}
+    meta={[['Published', formatDate(a.data.date)], ['Reading time', readingTime(a.body)]]}
+    headings={headings}
+    filePath={a.filePath}
+    cover={area?.image}
+>
+    <Content />
+</Article>

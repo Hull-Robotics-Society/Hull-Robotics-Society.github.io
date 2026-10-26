@@ -1,97 +1,123 @@
-# Hull University Robotics Society Website
+# Hull University Robotics Society website
 
-This is the official website for the Hull University Robotics Society.  
-It showcases our projects, research, tutorials, and events.
+The source of [hull-robotics-society.github.io](https://hull-robotics-society.github.io), built with [Astro](https://astro.build).
+Every page is generated from Markdown files. You never edit a list of links by hand: add a file and it shows up everywhere it should.
 
-## Structure
+## Adding content
 
-- `_pages/` — Main site pages (research, tutorials, projects, etc.)
-- `_projects/` — Project collections
-- `_neuro/` — Neuroscience research articles
-- `_tutorials/` — Tutorials and workshop guides
-- `_data/` — Site data files
-- `images/` — Image assets for the website
+Everything lives in `src/content/`. Copy an existing file next to the one you want to add, change the front matter (the block between the `---` lines) and write the body in Markdown.
+Photos and videos go in `public/`, and you link them with a path that starts with `/`, for example `/images/dalek/new-photo.jpg`.
 
-## Editing and Committing Changes
+### A build-log entry
 
-1. **Clone the repository (gh-pages branch):**
-   ```sh
-   git clone --branch gh-pages https://github.com/Hull-Robotics-Society/Hull-Robotics-Society.github.io.git
-   cd Hull-Robotics-Society.github.io
-   ```
+Create `src/content/logs/<project>/<entry>.md`:
 
-## Local Setup for Editing (Jekyll)
+```markdown
+---
+title: "Upgrading the Electronics"
+slug: dalek/dalek-electronics-upgrade   # becomes /projects/dalek/dalek-electronics-upgrade/
+project: dalek                          # lower-case project id
+date: 2024-09-10
+excerpt: "One sentence for the build log."
+---
 
-### Windows
+Your write-up…
+```
 
-1. Install [Ruby+Devkit](https://rubyinstaller.org/downloads/) (recommended version: 3.x).
-2. Open a new command prompt and run:
-   ```sh
-   gem install bundler
-   ```
-3. Install Jekyll and dependencies:
-   ```sh
-   bundle install
-   ```
-4. Start the local server:
-   ```sh
-   bundle exec jekyll serve
-   ```
-5. Visit `http://localhost:4000` in your browser.
+Leave out `date` for a reference page that is not part of the timeline, like the Dalek schematics. Its button appears in the project's fact sheet.
 
-### Linux (Ubuntu/Debian/Fedora/Arch)
+### An event
 
-1. Install Ruby and build tools:
-   ```sh
-   sudo apt update
-   sudo apt install ruby-full build-essential zlib1g-dev
-   ```
-   *(Fedora/Arch: use your package manager for ruby and build tools)*
+Create `src/content/events/<slug>.md`:
 
-2. Install Bundler:
-   ```sh
-   gem install bundler
-   ```
+```markdown
+---
+title: "KiCad workshop"
+type: "Workshop"        # Project night, Workshop, Film night, Showcase, Fair, Social or Competition
+date: 2026-11-12
+start: "17:00"
+end: "19:00"
+location: "Robot Lab, Applied Science building"
+excerpt: "One sentence for the events list."
+cover: "/images/events/kicad.jpg"   # optional
+---
+```
 
-3. Install Jekyll and dependencies:
-   ```sh
-   bundle install
-   ```
+Upcoming events go to the top of the Events page and into the "Next up" bar on the homepage. Once they have ended they move to the past list on their own: the site rebuilds every morning.
+A regular session uses `recurring: weekly` and `weekday: 1` (0 = Sunday, 1 = Monday, …) instead of a `date`.
 
-4. Start the local server:
-   ```sh
-   bundle exec jekyll serve
-   ```
+### A tutorial
 
-5. Visit `http://localhost:4000` in your browser.
+Create `src/content/tutorials/<slug>.md` with `title`, `date`, `excerpt`, `level` (Beginner, Intermediate or Advanced), `duration` and optionally `needs`, `session`, `cover` and `tags`.
+Use `##` headings for the steps. With three or more of them, the page gets a contents list.
 
-### macOS
+### A journal post
 
-1. Install Homebrew (if not already installed):
-   ```sh
-   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-   ```
-2. Install Ruby:
-   ```sh
-   brew install ruby
-   ```
-3. Add Ruby to your PATH (if needed), then install Bundler:
-   ```sh
-   gem install bundler
-   ```
-4. Install Jekyll and dependencies:
-   ```sh
-   bundle install
-   ```
-5. Start the local server:
-   ```sh
-   bundle exec jekyll serve
-   ```
-6. Visit `http://localhost:4000` in your browser.
+Create `src/content/journal/<slug>.md` with `title`, `date`, `excerpt` and `cover`.
+Add `eventType: Showcase` (or Fair, Social, Competition, Workshop) to also list the post on the Events page.
 
-## Notes
+### A research article
 
-- All content is written in Markdown.
-- Use descriptive commit messages.
-- For new pages, ensure you set the correct front matter (see existing files for examples).
-- If you add a new collection, update `_config.yml` accordingly.
+Create `src/content/research/<area>/<slug>.md` with `title`, `area`, `date` and `excerpt`.
+Research areas (title, picture, summary, related projects) are described in `src/data/research-areas.json`.
+
+### A new project
+
+Create `src/content/projects/<id>.md`. The body is the overview; the front matter controls the rest:
+
+| Field | What it does |
+| --- | --- |
+| `order` | Position on the Projects page |
+| `status` | `active`, `paused` or `new` |
+| `started` | Start date, shown as "since …" |
+| `tagline` / `summary` | Header text on the project page / text on its card |
+| `tags`, `filters` | Chips on the card / which filter buttons it answers to (`ros`, `electronics`, `humanoid`, `eeg`, `3d`) |
+| `cover`, `hero` | Card picture / wide header picture |
+| `gallery` | Folders in `public/` whose photos and videos are listed automatically, e.g. `[images/dalek, media/dalek]` |
+| `cad` | GitHub repository and folders whose `.stl` files appear in the 3D viewer (see `dalek.md`) |
+| `roster` | Card in "Meet the machines" on the homepage. Leave it out to keep the project off the homepage |
+
+### 3D models
+
+The 3D viewer lists every `.stl` file in the folders named under `cad`, straight from GitHub, each time the site is built.
+Export new parts as STL (millimetres) into one of those folders and they appear on the next build. Give a part a nicer name with `cad.names`.
+SolidWorks files (`.SLDPRT`, `.SLDASM`) can't be shown in a browser and need an STL export first.
+
+### Committee and contact details
+
+- Committee members: `src/data/committee.json`. The section on the About page stays hidden while the list is empty.
+- Links, email and address: `src/data/site.json`.
+- Homepage photo collage: `src/data/home.json`.
+
+## Running it locally
+
+You need [Node.js](https://nodejs.org) 22.12 or newer.
+
+```bash
+npm install
+```
+
+```bash
+npm run dev
+```
+
+Then open <http://localhost:4321>. Pages reload as you save files. `npm run build` produces the finished site in `dist/`.
+
+## Publishing
+
+Pushing to the `gh-pages` branch runs `.github/workflows/deploy.yml`, which builds the site and publishes it to GitHub Pages.
+The repository's **Settings → Pages → Source** must be set to **GitHub Actions**.
+
+## Layout of the code
+
+```
+src/content/        Markdown content (see above)
+src/content.config.ts  Which fields each kind of content has
+src/data/           Site-wide settings, research areas, committee, homepage collage
+src/pages/          One file per page type; [brackets] are generated for every entry
+src/components/     Header, roster, 3D viewer, photo grid, …
+src/layouts/        Page frame (Base) and long-form article layout
+src/styles/         Design tokens and styles (light theme by default, dark via the toggle)
+public/             Photos, videos and other files served as they are
+scripts/            One-off migration tools used when moving from Jekyll
+```

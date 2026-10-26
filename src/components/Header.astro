@@ -1,0 +1,43 @@
+---
+import site from '../data/site.json';
+
+const nav = [
+    { href: '/projects/', label: 'Projects', match: ['/projects', '/research'] },
+    { href: '/tutorials/', label: 'Tutorials', match: ['/tutorials'] },
+    { href: '/events/', label: 'Events', match: ['/events'] },
+    { href: '/journal/', label: 'Journal', match: ['/journal'] },
+    { href: '/about/', label: 'About', match: ['/about'] }
+];
+const here = Astro.url.pathname;
+---
+
+<header class="site-header">
+    <div class="wrap">
+        <a class="brand" href="/" aria-label="HullRS home"><span class="emblem" aria-hidden="true"></span><b>HULLRS</b></a>
+        <nav class="nav" aria-label="Main">
+            {nav.map(n => (
+                <a href={n.href} aria-current={n.match.some(m => here.startsWith(m)) ? 'page' : undefined}>{n.label}</a>
+            ))}
+        </nav>
+        <div class="header-actions">
+            <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch light / dark">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"></circle><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"></path></svg>
+            </button>
+            <a class="btn" href={site.join} target="_blank" rel="noopener">Join HullRS</a>
+        </div>
+    </div>
+</header>
+
+<script>
+    const root = document.documentElement;
+    const button = document.getElementById('theme-toggle')!;
+    const label = () => button.setAttribute('aria-label', root.dataset.theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    label();
+    button.addEventListener('click', () => {
+        const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+        if (next === 'dark') root.dataset.theme = 'dark';
+        else delete root.dataset.theme;
+        try { localStorage.setItem('hullrs-theme', next); } catch (e) {}
+        label();
+    });
+</script>

@@ -1,0 +1,48 @@
+---
+import Base from '../layouts/Base.astro';
+import HeroBoard from '../components/HeroBoard.astro';
+import NextUp from '../components/NextUp.astro';
+import Roster from '../components/Roster.astro';
+import Collage from '../components/Collage.astro';
+import site from '../data/site.json';
+---
+
+<Base>
+    <div class="hero">
+        <div class="wrap">
+            <div>
+                <p class="eyebrow">{site.name}</p>
+                <h1>We build robots.<br /><span>Come build one with us.</span></h1>
+                <p class="hero-lede">A student society for anyone who wants to wire, print and program real machines. No experience needed, every course welcome.</p>
+                <div class="hero-cta">
+                    <a class="btn" href="/projects/">See our projects</a>
+                    <a class="btn ghost" href="/events/">Come to a project night</a>
+                </div>
+            </div>
+            <HeroBoard />
+        </div>
+        <div class="wrap">
+            <NextUp />
+        </div>
+    </div>
+
+    <Roster />
+    <Collage />
+
+    <div class="join" id="join">
+        <div class="wrap">
+            <div>
+                <p class="eyebrow">Join us</p>
+                <h2>No experience?<br /><span>Perfect.</span></h2>
+                <p class="hero-lede" style="margin-top:20px">Membership is through the Hull University Union. Open to every University of Hull student and alumni. Turn up to a project night first if you want to see what it's like.</p>
+                <a class="link-arrow" href="/about/" style="display:inline-block;margin-top:20px">More about the society →</a>
+            </div>
+            <div class="join-list">
+                <a href={site.join} target="_blank" rel="noopener">Become a member <span>hulluniunion.com ↗</span></a>
+                <a href={site.discord} target="_blank" rel="noopener">Chat on Discord <span>discord.gg ↗</span></a>
+                <a href={site.instagram} target="_blank" rel="noopener">Follow on Instagram <span>{site.instagramHandle} ↗</span></a>
+                <a href={site.github} target="_blank" rel="noopener">Read our code <span>GitHub ↗</span></a>
+            </div>
+        </div>
+    </div>
+</Base>

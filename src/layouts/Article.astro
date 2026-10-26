@@ -1,0 +1,86 @@
+---
+import type { MarkdownHeading } from 'astro';
+import Base from './Base.astro';
+import site from '../data/site.json';
+import { editUrl } from '../lib/site';
+
+interface Props {
+    title: string;
+    excerpt?: string;
+    eyebrow: string;
+    back: { href: string; label: string };
+    meta?: [string, string][];
+    headings?: MarkdownHeading[];
+    filePath?: string;
+    cover?: string;
+    pager?: { prev?: { href: string; title: string }; next?: { href: string; title: string }; label: string };
+}
+
+// Long-form page for build logs, tutorials, journal posts, research and events.
+const { title, excerpt, eyebrow, back, meta = [], headings = [], filePath, cover, pager } = Astro.props;
+const toc = headings.filter(h => h.depth === 2 || h.depth === 3);
+const showToc = toc.filter(h => h.depth === 2).length >= 3;
+---
+
+<Base title={title} description={excerpt} image={cover}>
+    <div class="a-head">
+        <div class="wrap">
+            <a class="crumb" href={back.href}>← {back.label}</a>
+            <p class="eyebrow" style="margin-top:16px">{eyebrow}</p>
+            <h1>{title}</h1>
+            {excerpt && <p class="lede">{excerpt}</p>}
+            {meta.length > 0 && (
+                <dl class="a-meta">
+                    {meta.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
+                </dl>
+            )}
+        </div>
+    </div>
+    <div class:list={['wrap', 'a-body', { 'no-toc': !showToc }]}>
+        {showToc && (
+            <nav class="toc" aria-label="On this page">
+                <p class="eyebrow">On this page</p>
+                {toc.map(h => <a href={`#${h.slug}`} class={`depth-${h.depth}`} data-toc>{h.text}</a>)}
+            </nav>
+        )}
+        <div style="min-width:0">
+            <article class="prose-md">
+                <slot />
+            </article>
+            <p style="margin-top:48px"><a class="edit-link" href={editUrl(filePath, site.sourceRepo, site.sourceBranch)} target="_blank" rel="noopener">Spotted a mistake? Edit this page on GitHub ↗</a></p>
+            {pager && (pager.prev || pager.next) && (
+                <nav class="pager" aria-label={pager.label}>
+                    {pager.prev ? <a href={pager.prev.href}><span>← Previous</span><strong>{pager.prev.title}</strong></a> : <span></span>}
+                    {pager.next && <a href={pager.next.href}><span>Next →</span><strong>{pager.next.title}</strong></a>}
+                </nav>
+            )}
+        </div>
+    </div>
+</Base>
+
+<script>
+    import { scrollToY } from '../scripts/scroll';
+
+    // Highlight the section being read and scroll smoothly from the contents list.
+    const links = [...document.querySelectorAll<HTMLAnchorElement>('[data-toc]')];
+    if (links.length) {
+        const target = (a: HTMLAnchorElement) => document.getElementById(decodeURIComponent(a.hash.slice(1)));
+        links.forEach(a => a.addEventListener('click', e => {
+            const el = target(a);
+            if (!el) return;
+            e.preventDefault();
+            scrollToY(el.getBoundingClientRect().top + scrollY - 88);
+            history.replaceState(null, '', a.hash);
+        }));
+        const update = () => {
+            let on = links[0];
+            for (const a of links) {
+                const el = target(a);
+                if (el && el.getBoundingClientRect().top < innerHeight * 0.35) on = a;
+            }
+            links.forEach(a => a.classList.toggle('on', a === on));
+        };
+        addEventListener('scroll', update, { passive: true });
+        update();
+    }
+</script>

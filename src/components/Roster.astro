@@ -1,0 +1,110 @@
+---
+import { projects, formatMonth, statusLabel } from '../lib/site';
+
+// Every project with a `roster` block, in the order the projects started.
+const bots = (await projects())
+    .filter(p => p.data.roster)
+    .sort((a, b) => a.data.started.getTime() - b.data.started.getTime());
+---
+
+<div class="roster" id="roster" style={`--n:${bots.length}`}>
+    <div class="roster-track">
+        <div class="roster-stage">
+            <div class="wrap">
+                <div>
+                    <div class="roster-head">
+                        <p class="eyebrow">The robot roster</p>
+                        <h2>Meet the machines</h2>
+                    </div>
+                    <ul class="roster-list" role="tablist" aria-label="Robots">
+                        {bots.map((p, i) => (
+                            <li>
+                                <button type="button" role="tab" data-i={i} aria-selected={i === 0 ? 'true' : 'false'}>
+                                    {p.data.title}<small>since {formatMonth(p.data.started)}</small>
+                                </button>
+                            </li>
+                        ))}
+                    </ul>
+                    <div class="progress"><i id="roster-progress"></i></div>
+                </div>
+                <div class="bot-cards">
+                    {bots.map((p, i) => {
+                        const r = p.data.roster!;
+                        const fit = r.imageFit === 'contain' ? 'object-fit:contain;background:#fff' : undefined;
+                        const chip = p.data.status === 'new' ? 'chip soon' : 'chip status';
+                        return (
+                            <article class:list={['bot', { on: i === 0 }]} data-i={i}>
+                                <figure>
+                                    {r.video ? (
+                                        <video src={r.video} poster={r.image} muted loop playsinline autoplay={i === 0} preload="metadata" aria-label={`${p.data.title} in action`}></video>
+                                    ) : r.image ? (
+                                        <img src={r.image} alt={p.data.title} loading="lazy" decoding="async" style={fit} />
+                                    ) : (
+                                        <div class="no-photo"><div><span class="emblem"></span><p class="mono muted" style="margin-top:12px">Photo coming soon</p></div></div>
+                                    )}
+                                    <span class={`tag ${chip}`}>{statusLabel[p.data.status]}</span>
+                                </figure>
+                                <div class="spec">
+                                    <p class="eyebrow">{r.eyebrow}</p>
+                                    <h3>{p.data.title}</h3>
+                                    <p class="muted">{p.data.summary}</p>
+                                    <dl>
+                                        {r.specs.map(([k, v]) => <><dt>{k}</dt><dd>{v}</dd></>)}
+                                    </dl>
+                                    <a class="btn" href={`/projects/${p.id}/`}>Read the build log →</a>
+                                </div>
+                            </article>
+                        );
+                    })}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    import { scrollToY } from '../scripts/scroll';
+
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const roster = document.getElementById('roster')!;
+    const bots = [...roster.querySelectorAll<HTMLElement>('.bot')];
+    const tabs = [...roster.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+    const bar = document.getElementById('roster-progress')!;
+    const pinned = () => !reduce && matchMedia('(min-width: 901px)').matches;
+    let current = 0;
+
+    function setBot(i: number) {
+        if (i === current) return;
+        current = i;
+        bots.forEach((b, k) => b.classList.toggle('on', k === i));
+        tabs.forEach((t, k) => t.setAttribute('aria-selected', String(k === i)));
+        bots.forEach((b, k) => {
+            const v = b.querySelector('video');
+            if (v) k === i ? v.play().catch(() => {}) : v.pause();
+        });
+    }
+
+    tabs.forEach(t => t.addEventListener('click', () => {
+        const i = Number(t.dataset.i);
+        const span = roster.querySelector<HTMLElement>('.roster-track')!.offsetHeight - innerHeight;
+        const top = roster.getBoundingClientRect().top + scrollY;
+        if (pinned() && span > 0) scrollToY(top + span * (i + 0.5) / bots.length);
+        else setBot(i);
+    }));
+
+    function update() {
+        if (!pinned()) return;
+        const r = roster.getBoundingClientRect();
+        const p = Math.min(1, Math.max(0, -r.top / (roster.offsetHeight - innerHeight)));
+        bar.style.setProperty('--p', String(p));
+        setBot(Math.min(bots.length - 1, Math.floor(p * bots.length)));
+    }
+    let ticking = false;
+    addEventListener('scroll', () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => { ticking = false; update(); });
+    }, { passive: true });
+    addEventListener('resize', update);
+    update();
+</script>

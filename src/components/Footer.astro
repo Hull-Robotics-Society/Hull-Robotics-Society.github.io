@@ -1,0 +1,30 @@
+---
+import site from '../data/site.json';
+---
+
+<footer>
+    <div class="wrap">
+        <a class="brand" href="/"><span class="emblem" aria-hidden="true"></span><b>HULLRS</b></a>
+        <p>{site.name} · {site.location}, University of Hull</p>
+        <p class="copy-mail"><span>{site.email}</span><button type="button" id="copy-mail">Copy</button></p>
+    </div>
+</footer>
+
+<script>
+    const button = document.getElementById('copy-mail');
+    button?.addEventListener('click', () => {
+        const text = button.previousElementSibling as HTMLElement;
+        navigator.clipboard.writeText(text.textContent ?? '')
+            .then(() => {
+                button.textContent = 'Copied';
+                setTimeout(() => (button.textContent = 'Copy'), 1500);
+            })
+            .catch(() => {
+                const range = document.createRange();
+                range.selectNodeContents(text);
+                const sel = getSelection();
+                sel?.removeAllRanges();
+                sel?.addRange(range);
+            });
+    });
+</script>

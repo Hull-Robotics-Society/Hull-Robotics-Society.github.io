@@ -1,0 +1,4 @@
+{
+    "_help": "Add one entry per committee member, e.g. { \"name\": \"Alex Smith\", \"role\": \"President\", \"photo\": \"/images/committee/alex.jpg\" }. The section on the About page stays hidden while the list is empty.",
+    "members": []
+}

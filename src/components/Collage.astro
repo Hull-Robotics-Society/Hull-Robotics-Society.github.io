@@ -1,0 +1,45 @@
+---
+import home from '../data/home.json';
+
+// Three photo columns that drift at different speeds while scrolling.
+const speeds = [-0.06, 0.05, -0.03];
+---
+
+<div class="collage">
+    <div class="wrap">
+        <div class="collage-head">
+            <h2>Out of the lab and into the world</h2>
+            <a class="link-arrow" href="/journal/">Read the journal →</a>
+        </div>
+        <div class="cols" id="cols">
+            {home.collage.map((col, i) => (
+                <div class="col" data-speed={speeds[i]}>
+                    {col.map(shot => (
+                        <figure class="shot">
+                            <img src={shot.src} alt={shot.alt} loading="lazy" decoding="async" />
+                            <figcaption>{shot.caption}</figcaption>
+                        </figure>
+                    ))}
+                </div>
+            ))}
+        </div>
+    </div>
+</div>
+
+<script>
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const cols = [...document.querySelectorAll<HTMLElement>('#cols .col')];
+        const update = () => cols.forEach(c => {
+            const r = c.parentElement!.getBoundingClientRect();
+            const off = (r.top + r.height / 2 - innerHeight / 2) * Number(c.dataset.speed);
+            c.style.transform = `translateY(${off.toFixed(1)}px)`;
+        });
+        let ticking = false;
+        addEventListener('scroll', () => {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(() => { ticking = false; update(); });
+        }, { passive: true });
+        update();
+    }
+</script>

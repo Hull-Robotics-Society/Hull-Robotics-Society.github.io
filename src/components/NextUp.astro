@@ -1,0 +1,31 @@
+---
+import { allEvents, clientEvents } from '../lib/events';
+
+// Server-side fallback is the weekly session; the browser swaps in whatever is really next.
+const events = clientEvents(await allEvents());
+const weekly = events.find(e => e.weekday !== undefined && !e.date);
+---
+
+<a class="next-up" href={weekly?.href ?? '/events/'} id="next-up" data-events={JSON.stringify(events)}>
+    <span class="live">Next up</span>
+    <strong data-r="title">{weekly?.title ?? 'See what is on'}</strong>
+    <span class="mono muted" data-r="when">{weekly ? `Mondays, ${weekly.start} to ${weekly.end}` : ''}</span>
+    <span class="mono muted" data-r="where">{weekly?.location}</span>
+    <span class="go">Details →</span>
+</a>
+
+<script>
+    import { upcoming, dayLabel, timeRange, type ClientEvent } from '../scripts/next-event';
+
+    const el = document.getElementById('next-up') as HTMLAnchorElement | null;
+    if (el) {
+        const next = upcoming(JSON.parse(el.dataset.events!) as ClientEvent[])[0];
+        if (next) {
+            const q = (r: string) => el.querySelector<HTMLElement>(`[data-r="${r}"]`)!;
+            el.href = next.event.href;
+            q('title').textContent = next.event.title;
+            q('when').textContent = [dayLabel(next.when), timeRange(next.event)].filter(Boolean).join(', ');
+            q('where').textContent = next.event.location;
+        }
+    }
+</script>

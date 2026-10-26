@@ -1,0 +1,97 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import CadViewer from '../../../components/CadViewer.astro';
+import MediaGrid from '../../../components/MediaGrid.astro';
+import { projects, logsOf, formatDate, formatMonth, statusLabel, gallery, cadParts, type Project } from '../../../lib/site';
+
+export async function getStaticPaths() {
+    const all = await projects();
+    return all.map((p, i) => ({
+        params: { project: p.id },
+        props: { p, prev: all[(i + all.length - 1) % all.length], next: all[(i + 1) % all.length] }
+    }));
+}
+
+interface Props {
+    p: Project;
+    prev: Project;
+    next: Project;
+}
+
+const { p, prev, next } = Astro.props;
+const { Content } = await render(p);
+const logs = await logsOf(p);
+const docs = (await getCollection('logs')).filter(l => l.data.project === p.id.toLowerCase() && !l.data.date);
+const media = gallery(p.data.gallery, p.data.title);
+const parts = p.data.cad ? await cadParts(p.data.cad) : [];
+const chip = p.data.status === 'new' ? 'chip soon' : 'chip status';
+---
+
+<Base title={p.data.title} description={p.data.tagline} image={p.data.hero ?? p.data.cover}>
+    <div class:list={['p-hero', { empty: !p.data.hero }]}>
+        {p.data.hero && <img src={p.data.hero} alt="" />}
+        <div class="wrap">
+            <a class="crumb" href="/projects/">← All projects</a>
+            <p class="eyebrow" style="margin-top:16px">Project · {p.data.status === 'new' ? 'Just started' : 'Active'} since {formatMonth(p.data.started)}</p>
+            <h1>{p.data.title}</h1>
+            <p>{p.data.tagline}</p>
+        </div>
+    </div>
+    <div class="wrap p-body">
+        <div>
+            <div class="prose">
+                <h2>Overview</h2>
+                <Content />
+                <h2>Build log</h2>
+            </div>
+            {logs.length
+                ? (
+                    <ol class="timeline">
+                        {logs.map(l => (
+                            <li class="reveal">
+                                <a href={`/projects/${l.id}/`}>
+                                    <time datetime={l.data.date!.toISOString().slice(0, 10)}>{formatDate(l.data.date)}</time>
+                                    <strong>{l.data.title}</strong>
+                                    <span>{l.data.excerpt}</span>
+                                </a>
+                            </li>
+                        ))}
+                    </ol>
+                )
+                : <p class="muted">No entries yet.</p>}
+
+            {parts.length > 0 && (
+                <>
+                    <div class="prose" id="cad"><h2 style="margin-top:56px">Explore the CAD</h2><p>Parts straight from our <a href={`https://github.com/${p.data.cad!.repo}`} target="_blank" rel="noopener">GitHub repository</a>. Drag to turn a part around and pick another from the row below.</p></div>
+                    <CadViewer parts={parts} />
+                </>
+            )}
+
+            {media.length > 0 && (
+                <>
+                    <div class="prose" id="media"><h2 style="margin-top:56px">Photos and video</h2></div>
+                    <MediaGrid items={media} />
+                </>
+            )}
+
+            <nav class="pager" aria-label="More projects">
+                <a href={`/projects/${prev.id}/`}><span>← Previous project</span><strong>{prev.data.title}</strong></a>
+                <a href={`/projects/${next.id}/`}><span>Next project →</span><strong>{next.data.title}</strong></a>
+            </nav>
+        </div>
+        <aside class="facts" aria-label="Project facts">
+            <p class="eyebrow">Fact sheet</p>
+            <dl>
+                <dt>Status</dt><dd><span class={chip}>{statusLabel[p.data.status]}</span></dd>
+                <dt>Started</dt><dd>{formatMonth(p.data.started)}</dd>
+                <dt>Updates</dt><dd>{logs.length} {logs.length === 1 ? 'log entry' : 'log entries'}</dd>
+                {p.data.stack && <><dt>Stack</dt><dd>{p.data.stack}</dd></>}
+                {p.data.seenAt && <><dt>Events</dt><dd>{p.data.seenAt}</dd></>}
+            </dl>
+            {p.data.repo && <a class="btn" href={p.data.repo} target="_blank" rel="noopener">Code on GitHub ↗</a>}
+            {parts.length > 0 && <a class="btn ghost" href="#cad">3D models</a>}
+            {docs.map(d => <a class="btn ghost" href={`/projects/${d.id}/`}>{d.data.title.replace(`${p.data.title} `, '')}</a>)}
+        </aside>
+    </div>
+</Base>

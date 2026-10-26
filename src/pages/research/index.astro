@@ -1,0 +1,42 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import ProjectTabs from '../../components/ProjectTabs.astro';
+import areas from '../../data/research-areas.json';
+import { formatDate } from '../../lib/site';
+
+const articles = (await getCollection('research')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const list = Object.entries(areas as Record<string, any>)
+    .map(([key, area]) => ({ key, area, articles: articles.filter(a => a.data.area === key) }))
+    .filter(x => x.articles.length);
+---
+
+<Base title="Research" description="The reading, experiments and write-ups behind Hull University Robotics Society builds.">
+    <ProjectTabs active="research" />
+    <div class="wrap" style="padding-bottom:64px">
+        {list.map(({ key, area, articles }) => (
+            <article class="r-area" id={key}>
+                <img src={area.image} alt="" loading="lazy" decoding="async" />
+                <div class="body">
+                    <div class="meta" style="display:flex;gap:8px;flex-wrap:wrap">
+                        <span class="chip status">{area.status}</span>
+                        {area.tags.map((t: string) => <span class="chip">{t}</span>)}
+                    </div>
+                    <h2>{area.title}</h2>
+                    <p class="muted">{area.summary}</p>
+                    <ul class="r-papers">
+                        {articles.map(a => (
+                            <li><a href={`/research/${a.id}/`}><time>{formatDate(a.data.date)}</time><strong>{a.data.title}</strong><span class="muted">{a.data.excerpt}</span></a></li>
+                        ))}
+                    </ul>
+                    {area.usedIn?.length > 0 && (
+                        <div class="r-links">
+                            <span class="mono muted">Used in</span>
+                            {area.usedIn.map((u: { label: string; href: string }) => <a class="chip" href={u.href} style="text-decoration:none">{u.label} →</a>)}
+                        </div>
+                    )}
+                </div>
+            </article>
+        ))}
+    </div>
+</Base>
