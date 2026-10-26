@@ -112,13 +112,14 @@
 .lightbox-credit { position: absolute; left: 50%; right: auto; bottom: max(16px, env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); }
 
 /* ---------- About this website ---------- */
-.site-notes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+.site-notes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 28px 32px; }
+.site-notes > div { min-width: 0; overflow-wrap: anywhere; }
 .site-notes h3 { font-size: var(--step-1); margin-bottom: 8px; }
 .site-notes .muted { font-size: .95rem; line-height: 1.55; }
 .site-list { margin-top: 12px; font-size: .9rem; }
 .site-list summary { cursor: pointer; color: var(--accent); font-family: var(--font-display); font-weight: 600; }
 .site-list ul { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 4px; }
 .site-list a { color: var(--accent); }
-@media (max-width: 900px) { .site-notes { grid-template-columns: minmax(0, 1fr); } }
 footer .colophon { flex-basis: 100%; font-size: .82rem; }
 footer .colophon a { color: var(--accent); }
+.site-notes .muted a { color: var(--accent); }
