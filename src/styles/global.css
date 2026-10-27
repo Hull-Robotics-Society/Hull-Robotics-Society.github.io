@@ -84,7 +84,7 @@ p { margin: 0; }
 .site-header .wrap { display: flex; align-items: center; gap: 24px; min-height: 64px; }
 .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
 .emblem { -webkit-mask: url("/images/site/emblem.png") center / contain no-repeat; mask: url("/images/site/emblem.png") center / contain no-repeat; background: var(--accent); }
-.brand .emblem { width: 34px; height: 33px; }
+.brand .emblem { width: 34px; height: 34px; }
 .brand b { font-family: var(--font-brand); font-weight: 800; letter-spacing: .08em; font-size: 1.05rem; }
 .nav { display: flex; gap: 4px; margin-left: auto; }
 .nav a {
@@ -129,7 +129,7 @@ p { margin: 0; }
 .board .traces path { fill: none; stroke: var(--trace); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 0; }
 .board .pads circle { fill: var(--bg); stroke: var(--accent); stroke-width: 2.2; }
 .board .pulse { fill: var(--accent); filter: drop-shadow(0 0 6px var(--accent)); }
-.board .emblem { position: absolute; left: 50%; top: 50%; width: 47%; aspect-ratio: 290 / 280; transform: translate(-50%, -50%); }
+.board .emblem { position: absolute; left: 50%; top: 50%; width: 45%; aspect-ratio: 1; transform: translate(-50%, -50%); }
 .board .ring { position: absolute; left: 50%; top: 50%; width: 58%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; border: 1px dashed var(--line); }
 @media (prefers-reduced-motion: no-preference) {
   .js .board .traces path { stroke-dashoffset: 1; animation: draw 1.6s cubic-bezier(.6,.1,.2,1) forwards; animation-delay: calc(var(--i) * 90ms); }
@@ -195,7 +195,7 @@ p { margin: 0; }
   background:
     linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 24px 24px,
     linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0 / 24px 24px, var(--surface-2); }
-.no-photo .emblem { width: 64px; height: 62px; opacity: .6; margin-inline: auto; }
+.no-photo .emblem { width: 64px; height: 64px; opacity: .6; margin-inline: auto; }
 @media (max-width: 900px) {
   .roster-track { height: auto; }
   .roster-stage { position: static; height: auto; min-height: 0; padding-block: 64px; }
@@ -480,7 +480,7 @@ pre { background: var(--surface-2); border: 1px solid var(--line); border-radius
 .committee { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 160px), 1fr)); gap: 16px; }
 .member { display: grid; gap: 4px; }
 .member .ph { aspect-ratio: 1; border-radius: 10px; border: 1px dashed var(--line); display: grid; place-items: center; background: var(--surface); margin-bottom: 8px; }
-.member .ph .emblem { width: 44px; height: 42px; opacity: .45; }
+.member .ph .emblem { width: 44px; height: 44px; opacity: .45; }
 .member b { font-family: var(--font-display); font-size: 1.05rem; }
 @media (max-width: 860px) {
   .a-intro, .find, .mission { grid-template-columns: 1fr; }

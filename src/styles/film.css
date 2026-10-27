@@ -36,7 +36,7 @@
 .film-hero-grid { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: center; }
 .film-poster { position: relative; aspect-ratio: 1; border-radius: 12px; overflow: hidden; background: #0f1c19; box-shadow: 0 30px 60px -20px rgba(0,0,0,.8), 0 0 0 1px rgba(255,255,255,.08); display: grid; place-items: center; }
 .film-poster img { width: 100%; height: 100%; object-fit: cover; }
-.film-poster .emblem { width: 96px; height: 93px; opacity: .5; }
+.film-poster .emblem { width: 96px; height: 96px; opacity: .5; }
 @media (prefers-reduced-motion: no-preference) {
     .film-poster { transform: perspective(900px) rotateY(6deg) rotateX(2deg); transition: transform .5s cubic-bezier(.2,.8,.2,1); }
     .film-poster:hover { transform: none; }
@@ -111,7 +111,7 @@
 .film-card-img { aspect-ratio: 1; border-radius: 10px; overflow: hidden; background: var(--surface-2); display: grid; place-items: center; box-shadow: var(--shadow); }
 .film-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
 .film-card:hover .film-card-img img { transform: scale(1.04); }
-.film-card-img .emblem { width: 48px; height: 46px; opacity: .4; }
+.film-card-img .emblem { width: 48px; height: 48px; opacity: .4; }
 .film-card b { font-family: var(--font-display); font-weight: 600; line-height: 1.2; margin-top: 4px; }
 .film-card small { color: var(--muted); }
 

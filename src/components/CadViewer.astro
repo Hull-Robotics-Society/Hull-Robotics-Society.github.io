@@ -38,7 +38,7 @@ const first = parts[0];
     <div class="cad-tray" data-r="tray" aria-label="Parts">
         {parts.map((p, i) => (
             <button type="button" data-part={p.id} aria-pressed={i === 0 ? 'true' : 'false'}>
-                <span class="thumb"><span class="emblem" style="width:28px;height:27px;opacity:.35"></span></span>
+                <span class="thumb"><span class="emblem" style="width:28px;height:28px;opacity:.35"></span></span>
                 <b>{p.name}</b>
                 <small>{p.group}</small>
             </button>
