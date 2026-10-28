@@ -1,4 +1,13 @@
 {
     "_help": "Announcements shown as a banner at the top of every page between `from` and `until` (YYYY-MM-DD, both optional). `tone` is info or warning. To cancel one week of a weekly session, add the date to `cancelled` in that event's file instead; its notice is created automatically.",
-    "notices": []
+    "notices": [
+        {
+            "text": "Emergency General Meeting on Monday 9 November, 17:00 in the Robotics Lab: we're electing a new Vice President.",
+            "from": "2026-11-03",
+            "until": "2026-11-09",
+            "tone": "info",
+            "link": "/events/egm-term1-2026/",
+            "linkText": "Find out how to stand"
+        }
+    ]
 }
