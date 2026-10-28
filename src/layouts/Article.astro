@@ -77,7 +77,7 @@ const technical = /Build log|Documentation|Tutorial/.test(eyebrow);
             const el = target(a);
             if (!el) return;
             e.preventDefault();
-            scrollToY(el.getBoundingClientRect().top + scrollY - 88);
+            scrollToY(el.getBoundingClientRect().top + scrollY - document.querySelector<HTMLElement>('.site-header')!.offsetHeight - 24);
             history.replaceState(null, '', a.hash);
         }));
         const update = () => {

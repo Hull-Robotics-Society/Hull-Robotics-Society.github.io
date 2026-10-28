@@ -15,8 +15,8 @@
 
 .prose-md { max-width: 72ch; min-width: 0; font-size: 1.04rem; overflow-wrap: break-word; }
 .prose-md > * + * { margin-top: 1em; }
-.prose-md h1, .prose-md h2 { font-size: var(--step-2); margin-top: 2em; scroll-margin-top: 96px; }
-.prose-md h3 { font-size: var(--step-1); margin-top: 1.8em; scroll-margin-top: 96px; }
+.prose-md h1, .prose-md h2 { font-size: var(--step-2); margin-top: 2em; scroll-margin-top: calc(var(--header-h, 64px) + 32px); }
+.prose-md h3 { font-size: var(--step-1); margin-top: 1.8em; scroll-margin-top: calc(var(--header-h, 64px) + 32px); }
 .prose-md h4 { font-family: var(--font-display); font-size: 1.05rem; margin-top: 1.5em; }
 .prose-md > :first-child { margin-top: 0; }
 .prose-md p { margin: 0; }
@@ -51,7 +51,7 @@
 /* ---------- Homepage roster without photo ---------- */
 .bot figure .no-photo { height: 100%; }
 @media (max-width: 860px) { .a-body .toc { display: none; } }
-.prose[id], #media { scroll-margin-top: 88px; }
+.prose[id], #media { scroll-margin-top: calc(var(--header-h, 64px) + 24px); }
 
 /* ---------- Executive team (About) ---------- */
 .team { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
@@ -86,11 +86,12 @@
 .search-subs a::before { content: "↳ "; color: var(--muted); }
 
 /* ---------- Notice banners ---------- */
-.notice { background: color-mix(in srgb, var(--accent) 12%, var(--surface)); border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, var(--line)); }
-.notice.warning { background: color-mix(in srgb, var(--signal) 16%, var(--surface)); border-bottom-color: color-mix(in srgb, var(--signal) 45%, var(--line)); }
+/* Tinted but see-through: the sticky header's blur shows through, like the navigation bar */
+.notice { background: color-mix(in srgb, var(--accent) 14%, transparent); border-bottom: 1px solid color-mix(in srgb, var(--accent) 30%, transparent); }
+.notice.warning { background: color-mix(in srgb, var(--signal) 18%, transparent); border-bottom-color: color-mix(in srgb, var(--signal) 35%, transparent); }
 .notice .wrap { display: flex; align-items: center; gap: 12px; padding-block: 10px; }
-.notice p { flex: 1; font-size: .95rem; font-weight: 500; }
-.notice a { color: var(--accent); margin-left: 4px; white-space: nowrap; }
+.notice p { flex: 1; min-width: 0; font-size: .95rem; font-weight: 500; }
+.notice a { color: var(--accent); margin-left: 4px; }
 .notice.warning a { color: var(--fg); }
 .notice button { background: none; border: 0; color: var(--muted); cursor: pointer; font-size: 1rem; padding: 4px 8px; border-radius: 4px; }
 .notice button:hover { color: var(--fg); background: color-mix(in srgb, var(--fg) 8%, transparent); }
@@ -123,3 +124,8 @@
 footer .colophon { flex-basis: 100%; font-size: .82rem; }
 footer .colophon a { color: var(--accent); }
 .site-notes .muted a { color: var(--accent); }
+/* Banners sit inside the sticky header; undo the header's own row layout for them */
+.site-header .notice .wrap { min-height: 0; gap: 12px; flex-wrap: nowrap; padding-block: 8px; }
+.site-header .notices { border-top: 1px solid var(--line); }
+.site-header .notice:last-child { border-bottom: 0; }
+@media (max-width: 600px) { .notice p { font-size: .88rem; } .site-header .notice .wrap { padding-block: 6px; } }

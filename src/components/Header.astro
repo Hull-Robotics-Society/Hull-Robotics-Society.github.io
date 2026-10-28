@@ -1,6 +1,7 @@
 ---
 import site from '../data/site.json';
 import Search from './Search.astro';
+import Notices from './Notices.astro';
 
 const nav = [
     { href: '/projects/', label: 'Projects', match: ['/projects', '/research'] },
@@ -28,9 +29,16 @@ const here = Astro.url.pathname;
             <a class="btn" href={site.join} target="_blank" rel="noopener">Join HullRS</a>
         </div>
     </div>
+    <Notices />
 </header>
 
 <script>
+    // Sticky elements and anchor jumps sit below the header, whose height changes with notice banners
+    const header = document.querySelector<HTMLElement>('.site-header')!;
+    const setHeight = () => document.documentElement.style.setProperty('--header-h', `${header.offsetHeight}px`);
+    new ResizeObserver(setHeight).observe(header);
+    setHeight();
+
     const root = document.documentElement;
     const button = document.getElementById('theme-toggle')!;
     const label = () => button.setAttribute('aria-label', root.dataset.theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
