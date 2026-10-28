@@ -38,8 +38,10 @@
     async function load(): Promise<Pagefind | null> {
         if (pagefind) return pagefind;
         try {
-            // Built next to the site by `pagefind --site dist`; missing while running `astro dev`
-            pagefind = await import(/* @vite-ignore */ '/pagefind/pagefind.js');
+            // Built next to the site by `pagefind --site dist`; missing while running `astro dev`.
+            // The path is a variable so Vite doesn't try to resolve it at dev time.
+            const index = '/pagefind/pagefind.js';
+            pagefind = await import(/* @vite-ignore */ index);
         } catch {
             status.textContent = 'Search is available on the built site (npm run build, then npm run preview).';
         }
