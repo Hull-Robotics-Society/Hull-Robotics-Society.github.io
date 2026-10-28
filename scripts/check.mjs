@@ -10,6 +10,10 @@ const pub = path.join(root, 'public');
 const MAX_IMAGE_MB = 1;
 const MAX_VIDEO_MB = 25;
 
+// Languages the code highlighter (Shiki) knows, plus its plain-text names
+const { bundledLanguages } = await import('shiki');
+const languages = new Set([...Object.keys(bundledLanguages), 'text', 'txt', 'plaintext', 'plain', 'ansi']);
+
 const errors = [];
 const warnings = [];
 const rel = p => path.relative(root, p).replace(/\\/g, '/');
@@ -79,7 +83,11 @@ for (const e of entries) {
             if (jekyllKeys.includes(key)) warnings.push(`${at} "${key}:" is from the old site and is ignored; remove it`);
             return;
         }
-        if (/^\s*(```|~~~)/.test(line)) code = !code;
+        const fence = line.match(/^\s*(?:```|~~~)\s*([\w+#-]*)/);
+        if (fence && !code && fence[1] && !languages.has(fence[1].toLowerCase())) {
+            errors.push(`${at} uses the code language "${fence[1]}", which the highlighter doesn't know (use e.g. cpp for Arduino, or text)`);
+        }
+        if (fence) code = !code;
         if (code || i <= end) return;
         const prose = line.replace(/`[^`]*`/g, '');
         if (/\sstyle=|\salign=|<center|<font/i.test(prose)) errors.push(`${at} has a hand-made layout (style=, align=, <center>); use <figure> and <div class="media-row"> instead (see the README)`);

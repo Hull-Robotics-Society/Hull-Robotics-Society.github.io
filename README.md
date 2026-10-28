@@ -542,6 +542,7 @@ Looks over all content and media in a few seconds, without building the site. **
 - links to pictures or videos that don't exist in `public/`;
 - two events or journal posts with the same file name (they would share one address);
 - a film night without a poster.
+- a code block in a language the highlighter doesn't know (write ` ```cpp ` for Arduino sketches, ` ```text ` for plain output).
 
 **Warnings** are worth a look: an event or post in the wrong academic-year folder, media that no page uses (often left behind when a page was renamed or deleted), photos over 1 MB or videos over 25 MB, videos without a preview image, and film posters without a credit.
 

@@ -75,7 +75,7 @@ This addition allowed the Dalek to navigate more efficiently, especially in tigh
 
 Here’s a snippet of the Arduino code that handles the joystick and relays for movement and lighting control:
 
-```arduino
+```cpp
 // Pin Definitions
 int joyX = A0; // Joystick X-axis (left-right)
 int joyY = A1; // Joystick Y-axis (forward-backward)
