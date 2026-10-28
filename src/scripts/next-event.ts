@@ -48,12 +48,33 @@ export function nextOccurrence(e: ClientEvent, now = new Date()): Date | null {
     return at(day, e.end || e.start, 23) >= now ? at(day, e.start, 0) : null;
 }
 
-/** Upcoming occurrences, soonest first. */
+/** When an occurrence ends: its `end` time, else two hours after `start`, else the end of the day. */
+function endOf(o: Occurrence): Date {
+    if (o.event.end) return at(o.when, o.event.end, 23);
+    if (o.event.start) return new Date(o.when.getTime() + 2 * 3600e3);
+    return at(o.when, '23:59', 23);
+}
+
+const isRegular = (e: ClientEvent) => e.weekday !== undefined && !e.date;
+
+/**
+ * Upcoming occurrences, soonest first.
+ * A one-off event that overlaps a regular weekly session goes before it, so "Next up"
+ * shows e.g. the EGM rather than the Project Meeting happening at the same time.
+ */
 export function upcoming(events: ClientEvent[], now = new Date()): Occurrence[] {
-    return events
+    const list = events
         .map(event => ({ event, when: nextOccurrence(event, now) }))
         .filter((o): o is Occurrence => o.when !== null)
         .sort((a, b) => a.when.getTime() - b.when.getTime());
+
+    for (let i = 0; i < list.length; i++) {
+        if (!isRegular(list[i].event)) continue;
+        // The first one-off event later in the list that overlaps this session moves in front of it
+        const j = list.findIndex((o, k) => k > i && !isRegular(o.event) && o.when < endOf(list[i]) && list[i].when < endOf(o));
+        if (j > i) list.splice(i, 0, ...list.splice(j, 1));
+    }
+    return list;
 }
 
 /** "Tonight", "Tomorrow" or "Mon 2 Nov" */

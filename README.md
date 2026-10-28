@@ -192,6 +192,7 @@ Details, what to bring, …
 What happens automatically:
 
 - Until it has ended, the event is listed at the top of the Events page and, if it's the soonest thing on, in the "Next up" bar on the homepage.
+- If a one-off event overlaps a weekly session (Project Meeting or Project Day) in time, the one-off event wins: it's shown in "Next up" and listed first on the Events page. The weekly session still appears on the Events page; cancel it as well if it doesn't happen that day.
 - Afterwards it moves to the list of past events under its year. The live site rebuilds every morning, but the visitor's browser already sorts by today's date, so it moves at the right moment.
 - Every dated event with a `start` time gets an "Add to calendar" file at `/events/<name>.ics` (shown as a button on film nights while they're upcoming).
 
