@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
 import committee from '../data/committee.json';
 import { getCollection } from 'astro:content';
-import { allCredits } from '../lib/site';
+import { allCredits, projects, logUrl } from '../lib/site';
 
 // The weekly sessions come from the events collection, so times are only kept in one place.
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -22,8 +22,9 @@ interface Member {
 const members = committee.members as Member[];
 
 // Pages marked `aiAssisted: true`, listed for transparency
+const allProjects = await projects();
 const aiPages = [
-    ...(await getCollection('logs')).filter(x => x.data.aiAssisted).map(x => ({ title: x.data.title, href: `/projects/${x.id}/` })),
+    ...(await getCollection('logs')).filter(x => x.data.aiAssisted).map(x => ({ title: x.data.title, href: logUrl(allProjects.find(p => p.id.toLowerCase() === x.data.project)?.id ?? x.data.project, x.id) })),
     ...(await getCollection('tutorials')).filter(x => x.data.aiAssisted).map(x => ({ title: x.data.title, href: `/tutorials/${x.id}/` })),
     ...(await getCollection('research')).filter(x => x.data.aiAssisted).map(x => ({ title: x.data.title, href: `/research/${x.id}/` })),
     ...(await getCollection('journal')).filter(x => x.data.aiAssisted).map(x => ({ title: x.data.title, href: `/journal/${x.id}/` })),
@@ -77,6 +78,7 @@ const credits = allCredits();
                 <div class="hero-cta" style="margin-top:0">
                     <a class="btn" href={site.join} target="_blank" rel="noopener">Become a member</a>
                     <a class="btn ghost" href={site.discord} target="_blank" rel="noopener">Say hi on Discord</a>
+                    <a class="btn ghost" href={site.merch} target="_blank" rel="noopener">Get the merch ↗</a>
                 </div>
             </div>
         </div>
@@ -102,6 +104,7 @@ const credits = allCredits();
                         <dt>YouTube</dt><dd><a href={site.youtube} target="_blank" rel="noopener">Our channel</a></dd>
                         <dt>GitHub</dt><dd><a href={site.github} target="_blank" rel="noopener">Hull-Robotics-Society</a></dd>
                         <dt>Union</dt><dd><a href={site.join} target="_blank" rel="noopener">Society page and membership</a></dd>
+                        <dt>Merch</dt><dd><a href={site.merch} target="_blank" rel="noopener">Society merch in the Union shop</a></dd>
                     </dl>
                 </div>
             </div>

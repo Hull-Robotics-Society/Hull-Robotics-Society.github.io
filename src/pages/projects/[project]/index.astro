@@ -4,7 +4,7 @@ import Base from '../../../layouts/Base.astro';
 import CadViewer from '../../../components/CadViewer.astro';
 import MediaGrid from '../../../components/MediaGrid.astro';
 import Credit from '../../../components/Credit.astro';
-import { projects, logsOf, formatDate, formatMonth, statusLabel, gallery, cadParts, type Project } from '../../../lib/site';
+import { projects, logsOf, formatDate, formatMonth, statusLabel, statusChip, logUrl, gallery, cadParts, type Project } from '../../../lib/site';
 
 export async function getStaticPaths() {
     const all = await projects();
@@ -26,7 +26,7 @@ const logs = await logsOf(p);
 const docs = (await getCollection('logs')).filter(l => l.data.project === p.id.toLowerCase() && !l.data.date);
 const media = gallery(p.data.gallery, p.data.title);
 const parts = p.data.cad ? await cadParts(p.data.cad) : [];
-const chip = p.data.status === 'new' ? 'chip soon' : 'chip status';
+const chip = statusChip[p.data.status];
 ---
 
 <Base title={p.data.title} description={p.data.tagline} image={p.data.hero ?? p.data.cover} search="Project">
@@ -35,7 +35,7 @@ const chip = p.data.status === 'new' ? 'chip soon' : 'chip status';
         <Credit src={p.data.hero} />
         <div class="wrap">
             <a class="crumb" href="/projects/" data-pagefind-ignore>← All projects</a>
-            <p class="eyebrow" style="margin-top:16px" data-pagefind-ignore>Project · {p.data.status === 'new' ? 'Just started' : 'Active'} since {formatMonth(p.data.started)}</p>
+            <p class="eyebrow" style="margin-top:16px" data-pagefind-ignore>Project · {statusLabel[p.data.status]} since {formatMonth(p.data.started)}</p>
             <h1>{p.data.title}</h1>
             <p>{p.data.tagline}</p>
         </div>
@@ -52,7 +52,7 @@ const chip = p.data.status === 'new' ? 'chip soon' : 'chip status';
                     <ol class="timeline">
                         {logs.map(l => (
                             <li class="reveal">
-                                <a href={`/projects/${l.id}/`}>
+                                <a href={logUrl(p.id, l.id)}>
                                     <time datetime={l.data.date!.toISOString().slice(0, 10)}>{formatDate(l.data.date)}</time>
                                     <strong>{l.data.title}</strong>
                                     <span>{l.data.excerpt}</span>
@@ -93,7 +93,7 @@ const chip = p.data.status === 'new' ? 'chip soon' : 'chip status';
             </dl>
             {p.data.repo && <a class="btn" href={p.data.repo} target="_blank" rel="noopener">Code on GitHub ↗</a>}
             {parts.length > 0 && <a class="btn ghost" href="#cad">3D models</a>}
-            {docs.map(d => <a class="btn ghost" href={`/projects/${d.id}/`}>{d.data.title}</a>)}
+            {docs.map(d => <a class="btn ghost" href={logUrl(p.id, d.id)}>{d.data.title}</a>)}
         </aside>
     </div>
 </Base>

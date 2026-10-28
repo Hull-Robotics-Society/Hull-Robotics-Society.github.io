@@ -1,5 +1,5 @@
 ---
-import { projects, formatMonth, statusLabel } from '../lib/site';
+import { projects, formatMonth, statusLabel, statusChip } from '../lib/site';
 import Credit from './Credit.astro';
 
 // Every project with a `roster` block, in the order the projects started.
@@ -32,7 +32,7 @@ const bots = (await projects())
                     {bots.map((p, i) => {
                         const r = p.data.roster!;
                         const fit = r.imageFit === 'contain' ? 'object-fit:contain;background:#fff' : undefined;
-                        const chip = p.data.status === 'new' ? 'chip soon' : 'chip status';
+                        const chip = statusChip[p.data.status];
                         return (
                             <article class:list={['bot', { on: i === 0 }]} data-i={i}>
                                 <figure>

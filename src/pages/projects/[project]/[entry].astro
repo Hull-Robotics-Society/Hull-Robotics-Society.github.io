@@ -1,7 +1,7 @@
 ---
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import Article from '../../../layouts/Article.astro';
-import { projects, formatDate, readingTime, type Project } from '../../../lib/site';
+import { projects, formatDate, readingTime, logUrl, type Project } from '../../../lib/site';
 
 export async function getStaticPaths() {
     const all = await projects();
@@ -33,7 +33,7 @@ const { Content, headings } = await render(l);
 const meta: [string, string][] = [];
 if (l.data.date) meta.push(['Published', formatDate(l.data.date)]);
 meta.push(['Reading time', readingTime(l.body)]);
-const link = (x?: CollectionEntry<'logs'>) => x && { href: `/projects/${x.id}/`, title: x.data.title };
+const link = (x?: CollectionEntry<'logs'>) => x && { href: logUrl(project.id, x.id), title: x.data.title };
 ---
 
 <Article

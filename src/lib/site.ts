@@ -37,6 +37,12 @@ export async function logsOf(project: Project): Promise<Log[]> {
 }
 
 export const statusLabel = { active: 'Active', paused: 'Paused', new: 'Just started' } as const;
+export const statusChip = { active: 'chip status', paused: 'chip status paused', new: 'chip soon' } as const;
+
+/** URL of a build-log entry: /projects/<project id>/<file or slug name>/ */
+export function logUrl(projectId: string, logId: string): string {
+    return `/projects/${projectId}/${logId.split('/').pop()}/`;
+}
 
 /** Link to the Markdown source of an entry, so members can fix or extend it on GitHub. */
 export function editUrl(filePath: string | undefined, repo: string, branch: string): string {

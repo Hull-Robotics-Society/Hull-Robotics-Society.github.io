@@ -2,7 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import ProjectTabs from '../../components/ProjectTabs.astro';
 import Credit from '../../components/Credit.astro';
-import { projects, logsOf, formatMonth, statusLabel } from '../../lib/site';
+import { projects, logsOf, formatMonth, statusLabel, statusChip } from '../../lib/site';
 
 const list = await Promise.all((await projects()).map(async p => ({ p, logs: await logsOf(p) })));
 
@@ -29,7 +29,7 @@ const used = Object.keys(labels).filter(k => list.some(({ p }) => p.data.filters
                     </div>
                     <div class="body">
                         <div class="meta">
-                            <span class={p.data.status === 'new' ? 'chip soon' : 'chip status'}>{statusLabel[p.data.status]}</span>
+                            <span class={statusChip[p.data.status]}>{statusLabel[p.data.status]}</span>
                             {p.data.tags.map(t => <span class="chip">{t}</span>)}
                         </div>
                         <h3>{p.data.title}</h3>

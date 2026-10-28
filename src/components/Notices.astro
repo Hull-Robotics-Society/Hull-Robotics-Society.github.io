@@ -27,7 +27,9 @@ const cancellations: Notice[] = (await getCollection('events')).flatMap(e => e.d
     linkText: c.note ?? 'Details',
     tone: 'warning' as const
 })));
-const manual: Notice[] = (data.notices as Omit<Notice, 'id'>[]).map((n, i) => ({ id: `notice-${i}-${n.text.length}`, ...n }));
+// The id is a hash of the text: editing a notice shows it again to visitors who closed the old version
+const hash = (s: string) => [...s].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7).toString(36);
+const manual: Notice[] = (data.notices as Omit<Notice, 'id'>[]).map(n => ({ id: `notice-${hash(n.text)}`, ...n }));
 const notices = [...cancellations, ...manual];
 ---
 

@@ -1,27 +1,23 @@
-"""One-off media optimisation for the Jekyll -> Astro migration.
+"""Shrink photos and videos in public/ before committing them.
 
-Copies images/, media/ and assets/videos/ into public/ under the same paths, so every
-existing /images/... and /media/... link keeps working, but:
-    - photos wider than 1600 px are scaled down and re-compressed,
-    - videos are re-encoded to H.264 (max 1280 px on the long side) with a poster frame.
+Pass the files or folders you just added; they are optimised in place:
+    - photos wider than 1600 px are scaled down and re-compressed (kept as they are if that wouldn't help),
+    - videos are re-encoded to H.264 MP4 (max 1280 px on the long side) and get a poster image
+      with the same name (.jpg), which the gallery uses as the preview.
 
-Requires ffmpeg and ffprobe on PATH. Safe to re-run: existing outputs are skipped.
+Requires ffmpeg and ffprobe on PATH. Safe to re-run: videos that already have a poster are skipped.
+(This script was first used to move the old Jekyll media into public/.)
 
 Usage:
-    python scripts/optimise-media.py
+    python scripts/optimise-media.py public/images/varsity-2027
+    python scripts/optimise-media.py public/media/dalek/new-clip.mov
 """
 import json
 import pathlib
 import shutil
 import subprocess
+import sys
 
-ROOT = pathlib.Path(__file__).resolve().parent.parent
-SOURCES = [
-    'images',
-    'media',
-    'assets/videos'
-]
-OUT = ROOT / 'public'
 MAX_IMAGE = 1600
 MAX_VIDEO = 1280
 
@@ -94,29 +90,51 @@ def video(src, dst):
     )
 
 
+def optimise(src):
+    """
+    Optimise one file in place.
+
+    Parameters:
+        src: photo or video below public/
+
+    Returns:
+        (size before, size after) in bytes
+    """
+    before = src.stat().st_size
+    ext = src.suffix.lower()
+    if ext in ('.jpg', '.jpeg', '.png'):
+        tmp = src.with_name(src.stem + '.tmp' + src.suffix)
+        image(src, tmp)
+        tmp.replace(src)
+        return before, src.stat().st_size
+    if ext in ('.mp4', '.mov', '.webm', '.m4v'):
+        out = src.with_suffix('.mp4')
+        if out.with_suffix('.jpg').exists():
+            return before, before
+        tmp = src.with_name(src.stem + '.tmp.mp4')
+        video(src, tmp)
+        tmp.with_suffix('.jpg').replace(out.with_suffix('.jpg'))
+        tmp.replace(out)
+        if out != src:
+            src.unlink()
+        return before, out.stat().st_size
+    return before, before
+
+
 def main():
-    before = after = 0
-    for folder in SOURCES:
-        for src in sorted((ROOT / folder).rglob('*')):
-            if not src.is_file():
-                continue
+    paths = [pathlib.Path(a) for a in sys.argv[1:]]
+    if not paths:
+        sys.exit(__doc__)
 
-            dst = OUT / src.relative_to(ROOT)
-            dst.parent.mkdir(parents=True, exist_ok=True)
-            ext = src.suffix.lower()
-            if not dst.exists():
-                if ext in ('.jpg', '.jpeg', '.png', '.svg'):
-                    image(src, dst)
-                elif ext in ('.mp4', '.mov', '.webm'):
-                    video(src, dst)
-                else:
-                    shutil.copy2(src, dst)
+    files = sorted(f for p in paths for f in ([p] if p.is_file() else p.rglob('*')) if f.is_file() and '.tmp.' not in f.name)
+    total_before = total_after = 0
+    for f in files:
+        before, after = optimise(f)
+        total_before += before
+        total_after += after
+        print('%-70s %8.1f MB -> %6.1f MB' % (f, before / 1e6, after / 1e6), flush=True)
 
-            before += src.stat().st_size
-            after += dst.stat().st_size
-            print('%-70s %8.1f MB -> %6.1f MB' % (src.relative_to(ROOT), src.stat().st_size / 1e6, dst.stat().st_size / 1e6), flush=True)
-
-    print('total %.0f MB -> %.0f MB' % (before / 1e6, after / 1e6))
+    print('total %.1f MB -> %.1f MB' % (total_before / 1e6, total_after / 1e6))
 
 
 if __name__ == '__main__':
