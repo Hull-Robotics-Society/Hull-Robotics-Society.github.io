@@ -213,7 +213,7 @@ It always shows its next occurrence on the Events page, in "Next up" and on the 
 A film night is an event with `type: "Film night"` plus a `film` block. It gets a cinema-style page (poster, ticket, cast, trailer, more film nights) and appears in the "Film nights" poster row on the Events page. Copy `terminator-screening.md` to start:
 
 ```yaml
-cover: "/images/terminator.png"        # the poster; square works best
+cover: "/images/terminator.png"        # the poster; portrait (about 5:7, like a cinema poster) works best
 bring: "Bring your own snacks!"
 film:
   title: "The Terminator"              # the film's title (the event title can differ)

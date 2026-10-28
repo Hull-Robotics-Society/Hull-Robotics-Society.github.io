@@ -33,8 +33,9 @@
         radial-gradient(ellipse at 20% 40%, transparent 0, rgba(5,10,9,.35) 55%, rgba(5,10,9,.85) 100%),
         linear-gradient(180deg, rgba(5,10,9,.2), rgba(5,10,9,.9));
 }
-.film-hero-grid { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: center; }
-.film-poster { position: relative; aspect-ratio: 1; border-radius: 12px; overflow: hidden; background: #0f1c19; box-shadow: 0 30px 60px -20px rgba(0,0,0,.8), 0 0 0 1px rgba(255,255,255,.08); display: grid; place-items: center; }
+.film-hero-grid { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: center; }
+/* Portrait 5:7 frames match cinema posters; other shapes are cropped to fit */
+.film-poster { position: relative; aspect-ratio: 5 / 7; border-radius: 12px; overflow: hidden; background: #0f1c19; box-shadow: 0 30px 60px -20px rgba(0,0,0,.8), 0 0 0 1px rgba(255,255,255,.08); display: grid; place-items: center; }
 .film-poster img { width: 100%; height: 100%; object-fit: cover; }
 .film-poster .emblem { width: 96px; height: 96px; opacity: .5; }
 @media (prefers-reduced-motion: no-preference) {
@@ -62,7 +63,7 @@
 .film-hero .btn.film-ghost:hover { border-color: var(--c-accent); }
 @media (max-width: 760px) {
     .film-hero-grid { grid-template-columns: 1fr; }
-    .film-poster { max-width: 260px; }
+    .film-poster { max-width: 220px; }
 }
 
 /* ---------- Body ---------- */
@@ -106,9 +107,9 @@
 
 /* ---------- Poster shelf ---------- */
 .film-shelf { border-top: 1px solid var(--line); padding-block: 56px 88px; }
-.film-row { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(160px, 200px); gap: 18px; overflow-x: auto; padding-bottom: 8px; scroll-snap-type: x proximity; }
+.film-row { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(140px, 170px); gap: 18px; overflow-x: auto; padding-bottom: 8px; scroll-snap-type: x proximity; }
 .film-card { display: grid; gap: 6px; text-decoration: none; scroll-snap-align: start; }
-.film-card-img { aspect-ratio: 1; border-radius: 10px; overflow: hidden; background: var(--surface-2); display: grid; place-items: center; box-shadow: var(--shadow); }
+.film-card-img { aspect-ratio: 5 / 7; border-radius: 10px; overflow: hidden; background: var(--surface-2); display: grid; place-items: center; box-shadow: var(--shadow); }
 .film-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
 .film-card:hover .film-card-img img { transform: scale(1.04); }
 .film-card-img .emblem { width: 48px; height: 48px; opacity: .4; }
