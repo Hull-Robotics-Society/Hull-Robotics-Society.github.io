@@ -420,7 +420,19 @@ pre { background: var(--surface-2); border: 1px solid var(--line); border-radius
 @media (max-width: 860px) { .t-body { grid-template-columns: minmax(0, 1fr); } .toc { position: static; display: none; } }
 
 /* ---------- Events ---------- */
-.ev-up { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 20px; margin-bottom: 64px; }
+/* Weekly sessions as a slim strip, one-off events below in equal columns */
+.ev-week, .ev-coming { display: grid; gap: 14px; }
+.ev-week { margin-bottom: 40px; }
+.ev-coming { margin-bottom: 64px; }
+.ev-week-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 12px; }
+.ev-week-card { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 16px; align-items: center; padding: 14px 18px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); text-decoration: none; transition: border-color .2s; }
+.ev-week-card:hover { border-color: var(--accent); }
+.ev-week-day { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; text-transform: uppercase; letter-spacing: .04em; color: var(--accent); text-align: center; border-right: 1px solid var(--line); padding-right: 14px; }
+.ev-week-body { display: grid; gap: 3px; min-width: 0; }
+.ev-week-body strong { font-family: var(--font-display); font-weight: 600; font-size: 1.1rem; }
+.ev-week-next { font-size: .75rem; color: var(--accent); }
+.ev-week-next.skipped { color: var(--signal); }
+.ev-up { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 .ev-feature { display: grid; grid-template-columns: 112px 1fr; gap: 24px; padding: 24px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
 .datebox { border: 1px solid var(--accent); border-radius: var(--radius); text-align: center; padding: 10px 0; align-self: start; }
 .datebox b { display: block; font-family: var(--font-display); font-size: 2.6rem; line-height: 1; }

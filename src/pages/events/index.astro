@@ -9,7 +9,7 @@ const items = await allEvents();
 const films = (await getCollection('events'))
     .filter(e => e.data.film)
     .sort((a, b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0));
-const recurring = items.filter(e => e.recurring);
+const recurring = items.filter(e => e.recurring).sort((a, b) => ((a.weekday ?? 0) + 6) % 7 - ((b.weekday ?? 0) + 6) % 7);
 const dated = items.filter(e => e.date);
 const client = clientEvents(items);
 
@@ -27,41 +27,45 @@ const weekdays = ['Sundays', 'Mondays', 'Tuesdays', 'Wednesdays', 'Thursdays', '
         <p>Weekly Project Meetings and Project Days, workshops, showcases and film nights. Upcoming events sort themselves to the top.</p>
     </div>
     <div class="wrap">
-        <div class="ev-up" id="upcoming" data-events={JSON.stringify(client)}>
-            {recurring.map(e => (
-                <article class="ev-feature" data-upcoming={e.href}>
-                    <div class="datebox"><span data-r="dow">{weekdays[e.weekday ?? 1].slice(0, 3)}</span><b data-r="day">–</b><span data-r="mon"></span></div>
-                    <div>
-                        <span class="live">Every {weekdays[e.weekday ?? 1].slice(0, -1)} in term time</span>
-                        <h3><a href={e.href} style="text-decoration:none">{e.title}</a></h3>
-                        <p class="muted">{e.excerpt}</p>
-                        <dl>
-                            {e.start && <><dt>Time</dt><dd>{e.start}{e.end && ` to ${e.end}`}</dd></>}
-                            {e.location && <><dt>Where</dt><dd>{e.location}</dd></>}
-                        </dl>
-                    </div>
-                </article>
-            ))}
-            {dated.map(e => (
-                <article class="ev-feature" data-upcoming={e.href} data-date={iso(e.date)} hidden>
-                    <div class="datebox"><span>{e.date!.toLocaleDateString('en-GB', { weekday: 'short', timeZone: 'UTC' })}</span><b>{e.date!.getUTCDate()}</b><span>{e.date!.toLocaleDateString('en-GB', { month: 'short', timeZone: 'UTC' })}</span></div>
-                    <div>
-                        <span class="live">{e.type}</span>
-                        <h3><a href={e.href} style="text-decoration:none">{e.title}</a></h3>
-                        <p class="muted">{e.excerpt}</p>
-                        <dl>
-                            {e.start && <><dt>Time</dt><dd>{e.start}{e.end && ` to ${e.end}`}</dd></>}
-                            {e.location && <><dt>Where</dt><dd>{e.location}</dd></>}
-                        </dl>
-                    </div>
-                </article>
-            ))}
-            <div class="ev-empty" id="ev-empty">
-                <p class="eyebrow">Coming up</p>
-                <h3>Nothing else announced yet</h3>
-                <p class="muted">Follow <a href={site.instagram} target="_blank" rel="noopener">{site.instagramHandle}</a> on Instagram or join the <a href={site.discord} target="_blank" rel="noopener">Discord</a> to hear first.</p>
+        <section class="ev-week" aria-labelledby="week-h">
+            <h2 class="eyebrow" id="week-h">Every week in term time</h2>
+            <div class="ev-week-grid">
+                {recurring.map(e => (
+                    <a class="ev-week-card" href={e.href} data-weekly={e.href}>
+                        <span class="ev-week-day">{weekdays[e.weekday ?? 1].slice(0, 3)}</span>
+                        <span class="ev-week-body">
+                            <strong>{e.title}</strong>
+                            <span class="mono muted">{e.start}{e.end && `–${e.end}`} · {e.location}</span>
+                            <span class="ev-week-next mono" data-r="next">Every {weekdays[e.weekday ?? 1].slice(0, -1)}</span>
+                        </span>
+                    </a>
+                ))}
             </div>
-        </div>
+        </section>
+
+        <section class="ev-coming" aria-labelledby="coming-h">
+            <h2 class="eyebrow" id="coming-h">Coming up</h2>
+            <div class="ev-up" id="upcoming" data-events={JSON.stringify(client)}>
+                {dated.map(e => (
+                    <article class="ev-feature" data-upcoming={e.href} data-date={iso(e.date)} hidden>
+                        <div class="datebox"><span>{e.date!.toLocaleDateString('en-GB', { weekday: 'short', timeZone: 'UTC' })}</span><b>{e.date!.getUTCDate()}</b><span>{e.date!.toLocaleDateString('en-GB', { month: 'short', timeZone: 'UTC' })}</span></div>
+                        <div>
+                            <span class="live">{e.type}</span>
+                            <h3><a href={e.href} style="text-decoration:none">{e.title}</a></h3>
+                            <p class="muted">{e.excerpt}</p>
+                            <dl>
+                                {e.start && <><dt>Time</dt><dd>{e.start}{e.end && ` to ${e.end}`}</dd></>}
+                                {e.location && <><dt>Where</dt><dd>{e.location}</dd></>}
+                            </dl>
+                        </div>
+                    </article>
+                ))}
+                <div class="ev-empty" id="ev-empty">
+                    <h3>Nothing else announced yet</h3>
+                    <p class="muted">Follow <a href={site.instagram} target="_blank" rel="noopener">{site.instagramHandle}</a> on Instagram or join the <a href={site.discord} target="_blank" rel="noopener">Discord</a> to hear first.</p>
+                </div>
+            </div>
+        </section>
 
         {films.length > 0 && (
             <section class="films-index" id="films" aria-labelledby="films-h">
@@ -94,22 +98,37 @@ const weekdays = ['Sundays', 'Mondays', 'Tuesdays', 'Wednesdays', 'Thursdays', '
 </Base>
 
 <script>
-    import { upcoming, type ClientEvent } from '../../scripts/next-event';
+    import { upcoming, dayLabel, isoDay, type ClientEvent } from '../../scripts/next-event';
 
     const box = document.getElementById('upcoming')!;
-    const next = upcoming(JSON.parse(box.dataset.events!) as ClientEvent[]);
+    const events = JSON.parse(box.dataset.events!) as ClientEvent[];
+    const next = upcoming(events);
     const soon = new Set(next.map(o => o.event.href));
+    const nice = (d: Date) => d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
 
-    // Show upcoming cards soonest first; drop them from the past list.
-    next.forEach(o => {
+    // One-off events: show the upcoming ones soonest first, keep the empty-state card last when it's still needed
+    const oneOff = next.filter(o => o.event.weekday === undefined || o.event.date);
+    oneOff.forEach(o => {
         const card = box.querySelector<HTMLElement>(`[data-upcoming="${o.event.href}"]`);
         if (!card) return;
         card.hidden = false;
         box.insertBefore(card, document.getElementById('ev-empty'));
-        const q = (r: string) => card.querySelector<HTMLElement>(`[data-r="${r}"]`);
-        q('day') && (q('day')!.textContent = String(o.when.getDate()));
-        q('mon') && (q('mon')!.textContent = o.when.toLocaleDateString('en-GB', { month: 'short' }));
     });
+    // With an even number of cards the empty-state card would sit alone; only keep it when it fills a gap or nothing is on
+    document.getElementById('ev-empty')!.hidden = oneOff.length > 0 && oneOff.length % 2 === 0;
+
+    // Weekly sessions: their next date, and any cancelled week in the next fortnight
+    const today = isoDay(new Date());
+    const fortnight = isoDay(new Date(Date.now() + 14 * 864e5));
+    next.filter(o => o.event.weekday !== undefined && !o.event.date).forEach(o => {
+        const card = document.querySelector<HTMLElement>(`[data-weekly="${o.event.href}"]`);
+        if (!card) return;
+        const skipped = (o.event.cancelled ?? []).filter(d => d >= today && d <= fortnight).map(d => nice(new Date(d + 'T12:00:00')));
+        const line = card.querySelector<HTMLElement>('[data-r="next"]')!;
+        line.textContent = `Next: ${dayLabel(o.when)}` + (skipped.length ? ` · not on ${skipped.join(', ')}` : '');
+        line.classList.toggle('skipped', skipped.length > 0);
+    });
+
     document.querySelectorAll<HTMLElement>('[data-past]').forEach(li => {
         const href = li.querySelector('a')!.getAttribute('href')!;
         if (soon.has(href)) li.hidden = true;
