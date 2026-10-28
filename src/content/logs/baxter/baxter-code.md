@@ -36,7 +36,7 @@ And then you should see the code come to life :)
 
 ---
 
-# 10. Baxter arm positions
+## 10. Baxter arm positions
 
 Please note
 
@@ -85,12 +85,11 @@ rqt_image_view
 
 Here is a quick, simple example: 
 
-<video width="100%" controls>
-  <source src="/media/baxter/baxter_rqt_example.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+<figure>
+  <video controls preload="none" poster="/media/logs/baxter/baxter-code/baxter_rqt_example.jpg" src="/media/logs/baxter/baxter-code/baxter_rqt_example.mp4" width="1030" height="460"></video>
+</figure>
 
-# 11. Programming Baxter through scripts
+## 11. Programming Baxter through scripts
 
 Here is some test code, plain and simple arm movemnt remeber stand clear!
 

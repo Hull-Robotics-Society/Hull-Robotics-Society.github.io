@@ -2,7 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import ProjectTabs from '../../components/ProjectTabs.astro';
 import Credit from '../../components/Credit.astro';
-import { projects, logsOf, formatMonth, statusLabel, statusChip } from '../../lib/site';
+import { projects, logsOf, formatMonth, statusLabel, statusChip, coverOf } from '../../lib/site';
 
 const list = await Promise.all((await projects()).map(async p => ({ p, logs: await logsOf(p) })));
 
@@ -22,10 +22,10 @@ const used = Object.keys(labels).filter(k => list.some(({ p }) => p.data.filters
             {list.map(({ p, logs }) => (
                 <a class="card" href={`/projects/${p.id}/`} data-tags={p.data.filters.join(' ')}>
                     <div class="media">
-                        {p.data.cover
-                            ? <img src={p.data.cover} alt={p.data.title} loading="lazy" decoding="async" style={p.data.coverFit === 'contain' ? 'object-fit:contain;background:#fff' : undefined} />
+                        {coverOf(p)
+                            ? <img src={coverOf(p)} alt={p.data.title} loading="lazy" decoding="async" style={p.data.coverFit === 'contain' ? 'object-fit:contain;background:#fff' : undefined} />
                             : <div class="no-photo"><div><span class="emblem"></span><p class="mono muted" style="margin-top:12px">Photo coming soon</p></div></div>}
-                        <Credit src={p.data.cover} linked={false} />
+                        <Credit src={coverOf(p)} linked={false} />
                     </div>
                     <div class="body">
                         <div class="meta">

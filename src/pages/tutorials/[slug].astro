@@ -1,7 +1,7 @@
 ---
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import Article from '../../layouts/Article.astro';
-import { formatDate } from '../../lib/site';
+import { formatDate, coverOf, entryMedia } from '../../lib/site';
 
 export async function getStaticPaths() {
     return (await getCollection('tutorials')).map(t => ({ params: { slug: t.id }, props: { t } }));
@@ -12,6 +12,7 @@ const { Content, headings } = await render(t);
 const meta: [string, string][] = [['Level', t.data.level], ['Time', t.data.duration]];
 if (t.data.needs) meta.push(['You need', t.data.needs]);
 meta.push(['Updated', formatDate(t.data.date)]);
+const cover = coverOf(t);
 ---
 
 <Article
@@ -23,7 +24,8 @@ meta.push(['Updated', formatDate(t.data.date)]);
     headings={headings}
     filePath={t.filePath}
     aiAssisted={t.data.aiAssisted}
-    cover={t.data.cover}
+    media={entryMedia(t, t.data.title, [cover])}
+    cover={cover}
 >
     <Content />
 </Article>

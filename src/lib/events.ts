@@ -1,5 +1,5 @@
 import { getCollection } from 'astro:content';
-import { formatDate } from './site';
+import { formatDate, coverOf } from './site';
 
 export interface EventItem {
     title: string;
@@ -30,7 +30,7 @@ export async function allEvents(): Promise<EventItem[]> {
         end: e.data.end,
         location: e.data.location,
         excerpt: e.data.excerpt,
-        cover: e.data.cover
+        cover: coverOf(e)
     }));
     const posts = (await getCollection('journal'))
         .filter(j => j.data.eventType)
@@ -40,7 +40,7 @@ export async function allEvents(): Promise<EventItem[]> {
             type: j.data.eventType!,
             date: j.data.date,
             excerpt: j.data.excerpt,
-            cover: j.data.cover
+            cover: coverOf(j)
         }));
     return [...events, ...posts].sort((a, b) => (b.date?.getTime() ?? 0) - (a.date?.getTime() ?? 0));
 }

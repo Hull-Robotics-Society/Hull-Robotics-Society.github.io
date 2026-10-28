@@ -1,7 +1,7 @@
 ---
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import Article from '../../layouts/Article.astro';
-import { formatDate, readingTime } from '../../lib/site';
+import { formatDate, readingTime, coverOf, entryMedia } from '../../lib/site';
 
 export async function getStaticPaths() {
     const posts = (await getCollection('journal')).sort((a, b) => a.data.date.getTime() - b.data.date.getTime() || a.id.localeCompare(b.id));
@@ -28,8 +28,8 @@ const link = (x?: CollectionEntry<'journal'>) => x && { href: `/journal/${x.id}/
     headings={headings}
     filePath={p.filePath}
     aiAssisted={p.data.aiAssisted}
-    gallery={p.data.gallery}
-    cover={p.data.cover}
+    media={entryMedia(p, p.data.title)}
+    cover={coverOf(p)}
     pager={{ prev: link(prev), next: link(next), label: 'More from the journal' }}
 >
     <Content />

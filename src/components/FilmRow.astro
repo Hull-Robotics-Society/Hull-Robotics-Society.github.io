@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { coverOf } from '../lib/site';
 
 interface Props {
     films: CollectionEntry<'events'>[];
@@ -16,7 +17,7 @@ const shortDate = (d?: Date) => d?.toLocaleDateString('en-GB', { day: 'numeric',
     {films.map(f => (
         <a class="film-card" href={`/events/${f.id}/`} data-date={iso(f.data.date)} data-end={f.data.end ?? f.data.start ?? '23:59'}>
             <span class="film-card-img">
-                {f.data.cover ? <img src={f.data.cover} alt="" loading="lazy" decoding="async" /> : <span class="emblem"></span>}
+                {coverOf(f) ? <img src={coverOf(f)} alt="" loading="lazy" decoding="async" /> : <span class="emblem"></span>}
                 <span class="film-card-badge" hidden>Upcoming</span>
             </span>
             <b>{f.data.film?.title ?? f.data.title}</b>

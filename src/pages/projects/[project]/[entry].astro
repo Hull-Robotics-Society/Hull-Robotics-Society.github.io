@@ -1,7 +1,7 @@
 ---
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import Article from '../../../layouts/Article.astro';
-import { projects, formatDate, readingTime, logUrl, type Project } from '../../../lib/site';
+import { projects, formatDate, readingTime, logUrl, coverOf, entryMedia, type Project } from '../../../lib/site';
 
 export async function getStaticPaths() {
     const all = await projects();
@@ -45,7 +45,8 @@ const link = (x?: CollectionEntry<'logs'>) => x && { href: logUrl(project.id, x.
     headings={headings}
     filePath={l.filePath}
     aiAssisted={l.data.aiAssisted}
-    cover={project.data.hero ?? project.data.cover}
+    media={entryMedia(l, l.data.title)}
+    cover={project.data.hero ?? coverOf(project)}
     pager={{ prev: link(prev), next: link(next), label: 'More from this build log' }}
 >
     <Content />

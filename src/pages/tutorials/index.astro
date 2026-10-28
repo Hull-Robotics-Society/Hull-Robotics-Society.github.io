@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import { coverOf } from '../../lib/site';
 
 const tutorials = (await getCollection('tutorials')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
@@ -15,7 +16,7 @@ const tutorials = (await getCollection('tutorials')).sort((a, b) => b.data.date.
         <div class="grid3">
             {tutorials.map(t => (
                 <a class="card" href={`/tutorials/${t.id}/`}>
-                    <div class="media">{t.data.cover && <img src={t.data.cover} alt="" loading="lazy" decoding="async" />}</div>
+                    <div class="media">{coverOf(t) && <img src={coverOf(t)} alt="" loading="lazy" decoding="async" />}</div>
                     <div class="body">
                         <p class="eyebrow">{t.data.tags[0] ?? 'Tutorial'} · {t.data.level}</p>
                         <h3>{t.data.title}</h3>

@@ -57,11 +57,10 @@ Node-RED plays a crucial role in enabling seamless communication between the **O
 
 One of the key features of our Node-RED setup is the use of interactive dashboards on the OSRC. These dashboards provide a user-friendly interface for monitoring and controlling the robots in real time. They are accessible via a web browser and are fully customizable to suit different use cases.
 
-<div style="text-align: center;">
-   <img src="/images/osrc/dashboard.jpg" alt="Dalek dashboard"/>
-</div>
-
-> *Above: A custom node-red dashboard used by our Dalek.*
+<figure>
+  <img src="/media/logs/osrc/nodered/dashboard.jpg" alt="Dalek dashboard" />
+  <figcaption>A custom Node-RED dashboard used by our Dalek.</figcaption>
+</figure>
 
 #### Features of the Dashboards
 

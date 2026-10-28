@@ -2,35 +2,31 @@
     "_help": "Image credits. `path` is a file or a folder in public/ (a folder covers everything inside it). The most specific match wins. `credit` is shown next to the image and listed on the About page; `link` and `licence` are optional. Photos without an entry are the society's own.",
     "credits": [
         {
-            "path": "/images/klaus.jpg",
+            "path": "/media/events/2024-25/klaus-screening/poster.jpg",
             "credit": "Klaus poster © Netflix",
             "note": "Used to promote our screening"
         },
         {
-            "path": "/images/lotr-fellowship.jpg",
+            "path": "/media/events/2025-26/lotr-fellowship-christmas-2025/poster.jpg",
             "credit": "The Fellowship of the Ring poster © New Line Cinema",
             "note": "Used to promote our screening"
         },
         {
-            "path": "/images/terminator.png",
+            "path": "/media/events/2025-26/terminator-screening/poster.png",
             "credit": "The Terminator poster © Orion Pictures",
             "note": "Used to promote our screening"
         },
         {
-            "path": "/images/wall-e.jpg",
+            "path": "/media/events/2024-25/walle-screening/poster.jpg",
             "credit": "WALL·E poster © Disney / Pixar",
             "note": "Used to promote our screening"
         },
         {
-            "path": "/images/baxter.jpeg",
+            "path": "/media/projects/baxter/cover.jpeg",
             "credit": "Baxter press image © Rethink Robotics"
         },
         {
-            "path": "/images/pepper.jpeg",
-            "credit": "Pepper press image © SoftBank Robotics"
-        },
-        {
-            "path": "/images/mary-poppins.jpg",
+            "path": "/media/events/2026-27/mary-poppins-screening/poster.jpg",
             "credit": "Mary Poppins poster © Walt Disney Productions"
         }
     ]

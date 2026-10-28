@@ -7,7 +7,9 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build && pagefind --site dist",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "new": "node scripts/new.mjs",
+    "check": "node scripts/check.mjs"
   },
   "engines": {
     "node": ">=22.12.0"

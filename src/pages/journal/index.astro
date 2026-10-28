@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import { formatDate } from '../../lib/site';
+import { formatDate, coverOf } from '../../lib/site';
 
 const posts = (await getCollection('journal')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime() || a.id.localeCompare(b.id));
 ---
@@ -19,7 +19,7 @@ const posts = (await getCollection('journal')).sort((a, b) => b.data.date.getTim
                     <a href={`/journal/${p.id}/`}>
                         <div class="k"><span class="mono muted">{formatDate(p.data.date)}</span><span class="chip">{p.data.eventType ?? 'Blog'}</span></div>
                         <div><h3>{p.data.title}</h3><p class="muted">{p.data.excerpt}</p></div>
-                        {p.data.cover ? <img src={p.data.cover} alt="" loading="lazy" decoding="async" /> : <span></span>}
+                        {coverOf(p) ? <img src={coverOf(p)} alt="" loading="lazy" decoding="async" /> : <span></span>}
                     </a>
                 </li>
             ))}

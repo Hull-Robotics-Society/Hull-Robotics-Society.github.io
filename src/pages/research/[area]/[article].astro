@@ -2,7 +2,7 @@
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import Article from '../../../layouts/Article.astro';
 import areas from '../../../data/research-areas.json';
-import { formatDate, readingTime } from '../../../lib/site';
+import { formatDate, readingTime, entryMedia } from '../../../lib/site';
 
 export async function getStaticPaths() {
     return (await getCollection('research')).map(a => {
@@ -25,6 +25,7 @@ const area = (areas as Record<string, { title: string; image: string }>)[a.data.
     headings={headings}
     filePath={a.filePath}
     aiAssisted={a.data.aiAssisted}
+    media={entryMedia(a, a.data.title, [area?.image])}
     cover={area?.image}
 >
     <Content />

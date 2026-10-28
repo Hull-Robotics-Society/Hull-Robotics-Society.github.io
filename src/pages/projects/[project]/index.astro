@@ -4,7 +4,7 @@ import Base from '../../../layouts/Base.astro';
 import CadViewer from '../../../components/CadViewer.astro';
 import MediaGrid from '../../../components/MediaGrid.astro';
 import Credit from '../../../components/Credit.astro';
-import { projects, logsOf, formatDate, formatMonth, statusLabel, statusChip, logUrl, gallery, cadParts, type Project } from '../../../lib/site';
+import { projects, logsOf, formatDate, formatMonth, statusLabel, statusChip, logUrl, coverOf, entryMedia, cadParts, type Project } from '../../../lib/site';
 
 export async function getStaticPaths() {
     const all = await projects();
@@ -24,12 +24,13 @@ const { p, prev, next } = Astro.props;
 const { Content } = await render(p);
 const logs = await logsOf(p);
 const docs = (await getCollection('logs')).filter(l => l.data.project === p.id.toLowerCase() && !l.data.date);
-const media = gallery(p.data.gallery, p.data.title);
+const cover = coverOf(p);
+const media = entryMedia(p, p.data.title, [cover, p.data.hero, p.data.roster?.video, p.data.roster?.image]);
 const parts = p.data.cad ? await cadParts(p.data.cad) : [];
 const chip = statusChip[p.data.status];
 ---
 
-<Base title={p.data.title} description={p.data.tagline} image={p.data.hero ?? p.data.cover} search="Project">
+<Base title={p.data.title} description={p.data.tagline} image={p.data.hero ?? cover} search="Project">
     <div class:list={['p-hero', { empty: !p.data.hero }]}>
         {p.data.hero && <img src={p.data.hero} alt="" />}
         <Credit src={p.data.hero} />

@@ -16,7 +16,7 @@ mkdir -p ~/ros_baxter_ws/src
 
 ---
 
-# 2. Navigate to Source Directory
+## 2. Navigate to Source Directory
 
 Move into the workspace source folder:
 
@@ -26,7 +26,7 @@ cd ~/ros_baxter_ws/src
 
 ---
 
-# 3. Initialise wstool
+## 3. Initialise wstool
 
 Initialise the workspace using wstool:
 
@@ -38,7 +38,7 @@ wstool init .
 
 ---
 
-# 4. Merge Baxter Repositories
+## 4. Merge Baxter Repositories
 
 Download the Baxter SDK repositories:
 
@@ -56,7 +56,7 @@ After merging, you should see the following packages:
 
 ---
 
-# 5. Update Workspace
+## 5. Update Workspace
 
 From inside the src folder, run:
 
@@ -78,7 +78,7 @@ ls /opt/ros/noetic
 
 ---
 
-# 6. Verify Installation
+## 6. Verify Installation
 
 List the contents to confirm everything downloaded correctly:
 
@@ -102,7 +102,7 @@ This needs to be:
 except OSEerror as e:
 ```
 
-# 7. Setting up a connection to Baxter
+## 7. Setting up a connection to Baxter
 Within baxter_ws, you will need to set both the host and user ID. This needs to be done by the staff.
 
 Once started, you can start with topics and programming Baxter
@@ -115,7 +115,7 @@ catkin_make
 
 ---
 
-# 8. Starting with Baxter
+## 8. Starting with Baxter
 
 After home making is done, it is now time to launch and enable Baxter. 
 

@@ -3,7 +3,7 @@ import type { MarkdownHeading } from 'astro';
 import Base from './Base.astro';
 import site from '../data/site.json';
 import MediaGrid from '../components/MediaGrid.astro';
-import { editUrl, gallery } from '../lib/site';
+import { editUrl, type MediaItem } from '../lib/site';
 
 interface Props {
     title: string;
@@ -15,14 +15,13 @@ interface Props {
     filePath?: string;
     cover?: string;
     aiAssisted?: boolean;
-    // Folders or files below public/ shown as a photo and video grid under the text
-    gallery?: string[];
+    // Photos and videos shown as a grid under the text
+    media?: MediaItem[];
     pager?: { prev?: { href: string; title: string }; next?: { href: string; title: string }; label: string };
 }
 
 // Long-form page for build logs, tutorials, journal posts, research and events.
-const { title, excerpt, eyebrow, back, meta = [], headings = [], filePath, cover, pager, aiAssisted = false, gallery: galleryPaths = [] } = Astro.props;
-const media = gallery(galleryPaths, title);
+const { title, excerpt, eyebrow, back, meta = [], headings = [], filePath, cover, pager, aiAssisted = false, media = [] } = Astro.props;
 const toc = headings.filter(h => h.depth === 2 || h.depth === 3);
 const showToc = toc.filter(h => h.depth === 2).length >= 3;
 const technical = /Build log|Documentation|Tutorial/.test(eyebrow);
@@ -59,6 +58,19 @@ const technical = /Build log|Documentation|Tutorial/.test(eyebrow);
             <article class="prose-md">
                 <slot />
             </article>
+            <script is:inline>
+                // Pictures side by side (.media-row) share the width by their shape, so they line up at one
+                // height and fill the column. Runs before the pictures load, so nothing jumps.
+                for (const row of document.querySelectorAll('.prose-md .media-row')) {
+                    const items = [...row.children];
+                    const ratios = items.map(m => +m.getAttribute('width') / +m.getAttribute('height'));
+                    if (!items.length || ratios.some(r => !r)) continue;
+                    // ×100 because flex only hands out all the space when the factors add up to at least 1
+                    items.forEach((m, i) => { m.style.flex = `${ratios[i] * 100} 1 0`; });
+                    row.style.maxWidth = `calc(440px * ${ratios.reduce((a, b) => a + b)} + 12px * ${items.length - 1})`;
+                    row.classList.add('fit');
+                }
+            </script>
             {media.length > 0 && (
                 <section class="a-gallery" id="media" aria-labelledby="media-h" data-pagefind-ignore>
                     <h2 id="media-h">Photos and video</h2>

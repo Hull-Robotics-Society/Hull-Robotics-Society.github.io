@@ -3,7 +3,7 @@ import { getCollection, render, type CollectionEntry } from 'astro:content';
 import Article from '../../layouts/Article.astro';
 import Base from '../../layouts/Base.astro';
 import FilmNight from '../../components/FilmNight.astro';
-import { formatDate } from '../../lib/site';
+import { formatDate, coverOf, entryMedia } from '../../lib/site';
 
 export async function getStaticPaths() {
     const events = await getCollection('events');
@@ -20,6 +20,7 @@ interface Props {
 
 const { e, films } = Astro.props;
 const { Content, headings } = await render(e);
+const cover = coverOf(e);
 const weekdays = ['Sundays', 'Mondays', 'Tuesdays', 'Wednesdays', 'Thursdays', 'Fridays', 'Saturdays'];
 const meta: [string, string][] = [];
 if (e.data.recurring) meta.push(['When', `${weekdays[e.data.weekday ?? 1]} in term time`]);
@@ -30,7 +31,7 @@ if (e.data.location) meta.push(['Where', e.data.location]);
 
 {e.data.film
     ? (
-        <Base title={e.data.title} description={e.data.excerpt} image={e.data.cover} search="Film night">
+        <Base title={e.data.title} description={e.data.excerpt} image={cover} search="Film night">
             <FilmNight e={e} others={films.filter(f => f.id !== e.id)}>
                 <Content />
             </FilmNight>
@@ -45,9 +46,9 @@ if (e.data.location) meta.push(['Where', e.data.location]);
             meta={meta}
             headings={headings}
             filePath={e.filePath}
-    aiAssisted={e.data.aiAssisted}
-    gallery={e.data.gallery}
-            cover={e.data.cover}
+            aiAssisted={e.data.aiAssisted}
+            media={entryMedia(e, e.data.title)}
+            cover={cover}
         >
             <Content />
         </Article>

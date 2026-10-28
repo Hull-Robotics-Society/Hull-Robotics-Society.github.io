@@ -9,10 +9,9 @@ summary: An open-source handheld remote for controlling any robot over ROS or MQ
 tags: [ROS 2, Raspberry Pi]
 filters: [ros, electronics, 3d]
 stack: Raspberry Pi 5, Teensy 3.6, ROS, ROS 2, Node-RED, MQTT
-cover: /images/OSRC.png
-hero: /images/osrc/dashboard.jpg
+hero: /media/logs/osrc/nodered/dashboard.jpg
 repo: https://github.com/Hull-Robotics-Society/ros-controller
-gallery: [images/osrc]
+gallery: [media/logs/osrc]
 cad:
   repo: Hull-Robotics-Society/ros-controller
   folders: ["[01] 3D Models/[01] Controller"]
@@ -24,7 +23,7 @@ cad:
     "[01] 3D Models/[01] Controller": Enclosure
 roster:
   eyebrow: Designed in-house
-  image: /images/osrc/dashboard.jpg
+  image: /media/logs/osrc/nodered/dashboard.jpg
   specs:
     - ["Compute", "Raspberry Pi 5, 7-inch touchscreen"]
     - ["Input", "Dual joysticks, buttons"]

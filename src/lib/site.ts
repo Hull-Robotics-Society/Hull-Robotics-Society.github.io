@@ -57,9 +57,50 @@ export interface MediaItem {
 }
 
 /**
+ * The media folder of a content entry: its Markdown path mirrored below public/media/.
+ * src/content/events/2026-27/egm.md → media/events/2026-27/egm
+ */
+export function mediaFolder(filePath?: string): string | undefined {
+    if (!filePath) return undefined;
+    return 'media/' + filePath.replace(/\\/g, '/').replace(/^src\/content\//, '').replace(/\.md$/, '');
+}
+
+const isCover = (file: string) => /^cover\.(jpe?g|png|webp)$/i.test(path.posix.basename(file));
+const isPoster = (file: string) => /^poster\.(jpe?g|png|webp)$/i.test(path.posix.basename(file));
+
+interface Entry {
+    filePath?: string;
+    body?: string;
+    data: { cover?: string; gallery?: string[] };
+}
+
+/** The cover of an entry: `cover` from front matter, otherwise cover.* or poster.* in its media folder. */
+export function coverOf(entry: Entry): string | undefined {
+    if (entry.data.cover) return entry.data.cover;
+    const folder = mediaFolder(entry.filePath);
+    const root = folder && path.join(process.cwd(), 'public', folder);
+    if (!root || !fs.existsSync(root)) return undefined;
+    const file = fs.readdirSync(root).sort().find(f => isCover(f) || isPoster(f));
+    return file && `/${folder}/${file}`;
+}
+
+/**
+ * Photos and videos of an entry: everything in its media folder plus the folders and files in `gallery`.
+ * Files already used in the text, and the ones listed in `shown` (a hero image, say), are left out.
+ */
+export function entryMedia(entry: Entry, title: string, shown: (string | undefined)[] = []): MediaItem[] {
+    const folder = mediaFolder(entry.filePath);
+    const used = (entry.body ?? '') + ' ' + shown.filter(Boolean).join(' ');
+    const seen = new Set<string>();
+    return gallery([...(folder ? [folder] : []), ...(entry.data.gallery ?? [])], title)
+        .filter(m => !used.includes(m.src) && !seen.has(m.src) && seen.add(m.src));
+}
+
+/**
  * List photos and videos below public/, so a gallery fills itself.
  * Each entry is a folder (everything inside it) or a single file.
  * A .jpg with the same name as an .mp4 is that video's poster and is not listed on its own.
+ * Film posters (poster.*) are never listed; a cover (cover.*) comes first.
  */
 export function gallery(entries: string[], title: string): MediaItem[] {
     const items: MediaItem[] = [];
@@ -74,7 +115,8 @@ export function gallery(entries: string[], title: string): MediaItem[] {
         const root = path.join(process.cwd(), 'public', folder);
         const all = (fs.readdirSync(root, { recursive: !single }) as string[])
             .map(f => f.replace(/\\/g, '/'))
-            .sort();
+            .filter(f => !isPoster(f))
+            .sort((a, b) => Number(isCover(b)) - Number(isCover(a)) || a.localeCompare(b));
         const name = path.posix.basename(clean);
         const stemOf = (f: string) => f.replace(/\.[^.]+$/, '');
         const files = single
@@ -88,7 +130,7 @@ export function gallery(entries: string[], title: string): MediaItem[] {
             if (/\.mp4$/i.test(f)) {
                 const poster = files.find(x => x !== f && x.replace(/\.[^.]+$/, '') === stem && /\.jpe?g$/i.test(x));
                 items.push({ src: url, kind: 'video', poster: poster && '/' + folder + '/' + poster, alt: title + ' video' });
-            } else if (/\.(jpe?g|png)$/i.test(f) && !videos.has(stem)) {
+            } else if (/\.(jpe?g|png|webp)$/i.test(f) && !videos.has(stem)) {
                 items.push({ src: url, kind: 'image', alt: title + ' photo' });
             }
         }

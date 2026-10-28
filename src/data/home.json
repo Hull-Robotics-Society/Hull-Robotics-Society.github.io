@@ -1,16 +1,16 @@
 {
     "collage": [
         [
-            { "src": "/images/dalek/100-leaders/dalek-100-03.jpg", "alt": "The Dalek at the Top 100 Leaders event", "caption": "Top 100 Leaders · May 2025" },
-            { "src": "/images/film-night-banner.jpg", "alt": "Film night banner", "caption": "Film nights" }
+            { "src": "/media/events/2024-25/daleks-day-out/dalek-100-03.jpg", "alt": "The Dalek at the Top 100 Leaders event", "caption": "Top 100 Leaders · May 2025" },
+            { "src": "/images/site/film-night-banner.jpg", "alt": "Film night banner", "caption": "Film nights" }
         ],
         [
             { "src": "/images/site/freshers.jpg", "alt": "The HullRS stand with Pepper at Freshers Fair", "caption": "Freshers Fair · Sep 2026" },
-            { "src": "/images/varsity/dalek-crepe.jpg", "alt": "The Dalek outside a crêpe stand at Varsity", "caption": "Varsity · Mar 2026" }
+            { "src": "/media/journal/2025-26/varsity-2026/cover.jpg", "alt": "The Dalek outside a crêpe stand at Varsity", "caption": "Varsity · Mar 2026" }
         ],
         [
-            { "src": "/images/emotiv/fitting-headset.jpg", "alt": "Fitting an EEG headset", "caption": "Mind control research" },
-            { "src": "/images/dalek/50-years/dalek50-5.jpeg", "alt": "The Dalek with a camera tripod", "caption": "Dalek 50 · 2025" }
+            { "src": "/media/logs/dalek/dalek-mind-control/fitting-headset.jpg", "alt": "Fitting an EEG headset", "caption": "Mind control research" },
+            { "src": "/media/projects/dalek/50-years/dalek50-5.jpeg", "alt": "The Dalek with a camera tripod", "caption": "Dalek 50 · 2025" }
         ]
     ]
 }

@@ -8,14 +8,13 @@ summary: Bringing a Rethink Robotics dual-arm cobot back into service.
 tags: [ROS, Python]
 filters: [ros]
 stack: ROS, Python
-cover: /images/baxter.jpeg
 coverFit: contain
-hero: /images/baxter.jpeg
+hero: /media/projects/baxter/cover.jpeg
 repo: https://github.com/reeceherbert887/Baxter
-gallery: [images/baxter, media/baxter]
+gallery: [media/logs/baxter]
 roster:
   eyebrow: Research robot
-  image: /images/baxter.jpeg
+  image: /media/projects/baxter/cover.jpeg
   imageFit: contain
   specs:
     - ["Arms", "2 × 7 joints, series elastic actuators"]

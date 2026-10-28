@@ -91,7 +91,7 @@ These concepts influenced the development of many modern collaborative robots us
 
 ---
 
-# 2. Baxter at the University of Hull
+## 2. Baxter at the University of Hull
 
 The University of Hull robotics laboratories include Baxter alongside other robots such as NAO, Pepper, and TurtleBot3. Students use these platforms to learn about robotics, AI, and real-world robot programming.
 

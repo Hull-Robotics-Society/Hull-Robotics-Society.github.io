@@ -5,6 +5,11 @@ import { z } from 'astro/zod';
 // Dates in front matter are written as YYYY-MM-DD.
 const date = z.coerce.date();
 
+// Events and journal posts are filed in academic-year folders (events/2026-27/…, events/weekly/…).
+// The folder only keeps things tidy: the page address comes from the file name (or `slug`).
+const byFileName = ({ entry, data }: { entry: string; data: Record<string, unknown> }) =>
+    (data.slug as string | undefined) ?? entry.replace(/\\/g, '/').split('/').pop()!.replace(/\.md$/, '');
+
 /** A robot or build. One Markdown file per project; the body is the overview. */
 const projects = defineCollection({
     loader: glob({ base: './src/content/projects', pattern: '*.md' }),
@@ -91,7 +96,7 @@ const tutorials = defineCollection({
 
 /** Events. Leave `date` empty and set `recurring: weekly` for a regular session. */
 const events = defineCollection({
-    loader: glob({ base: './src/content/events', pattern: '*.md' }),
+    loader: glob({ base: './src/content/events', pattern: '**/*.md', generateId: byFileName }),
     schema: z.object({
         // Photo and video folders (or single files) below public/, shown as a grid under the text
         gallery: z.array(z.string()).default([]),
@@ -130,7 +135,7 @@ const events = defineCollection({
 
 /** Stories from the society. Set `eventType` to also list a post on the Events page. */
 const journal = defineCollection({
-    loader: glob({ base: './src/content/journal', pattern: '*.md' }),
+    loader: glob({ base: './src/content/journal', pattern: '**/*.md', generateId: byFileName }),
     schema: z.object({
         // Photo and video folders (or single files) below public/, shown as a grid under the text
         gallery: z.array(z.string()).default([]),

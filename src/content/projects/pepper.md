@@ -9,13 +9,13 @@ tags: [Humanoid, HTML]
 filters: [humanoid]
 stack: SoftBank Pepper, NAOqi, Choregraphe, HTML
 seenAt: Freshers Fair, Graduation 2026
-cover: /images/graduation/pepper-grad.png
-hero: /images/graduation/pepper-grad.png
+cover: /media/journal/2025-26/graduation-2025-26/cover.png
+hero: /media/journal/2025-26/graduation-2025-26/cover.png
 repo: https://github.com/reeceherbert887/Pepper_Stuff
-gallery: [images/graduation, media/graduation, media/freshers]
+gallery: [media/journal/2025-26/graduation-2025-26, media/journal/2026-27/freshers-day-2026]
 roster:
   eyebrow: Front of house
-  image: /images/graduation/pepper-grad.png
+  image: /media/journal/2025-26/graduation-2025-26/cover.png
   specs:
     - ["Type", "SoftBank Pepper humanoid"]
     - ["We built", "Tablet web apps, choreography"]

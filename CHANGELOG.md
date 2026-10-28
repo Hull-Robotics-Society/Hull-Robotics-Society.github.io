@@ -25,14 +25,22 @@ Rebuilt the website from scratch with Astro, replacing the Jekyll site based on 
 - Notice banners: cancelled weekly sessions (a `cancelled` date list on the event) and announcements from `src/data/notices.json` appear at the top of every page while they are current, and "Next up" skips cancelled weeks.
 - Navigation reduced to Projects, Tutorials, Events, Journal and About. Research is a tab next to Projects; the blog is now the Journal.
 - All listings generate themselves from the Markdown files. No hand-maintained link lists any more.
-- Project galleries replace the separate gallery pages: every photo and video in a project's folder appears on its page.
+- Galleries replace the separate gallery pages: every photo and video in a page's media folder appears in a grid on that page (projects, events, journal posts, build logs), apart from the ones already used in the text.
 - The Events page sorts upcoming events to the top in the visitor's browser, and a daily rebuild moves past events to the archive.
 - 3D viewer (three.js) on project pages: lists the STL files from the project's GitHub repository at build time and shows them with turntable previews. Live for the Dalek and the OSRC.
+
+### Content structure
+- Events and journal posts are filed in academic-year folders (`events/2026-27/…`, 1 August to 31 July); weekly sessions in `events/weekly/`. Page addresses still come from the file name only, so no URL changed.
+- Every page has its own media folder that mirrors its Markdown file (`src/content/events/2026-27/egm.md` → `public/media/events/2026-27/egm/`). `cover.*` (or `poster.*` for film nights) in it is the cover, everything else the gallery, so most pages need no `cover:` or `gallery:` lines. `public/images/` now only holds design files and committee photos.
+- All existing photos and videos moved into this layout; four unused images (Transformer, Dalek and Pepper pictures and a brain diagram) were removed.
+- `npm run new` asks what to add, the title and the date, and creates the file from a template in `templates/` in the right folder, with its media folder.
+- Pictures in the text use three patterns styled by the site: `<figure>` with `<figcaption>` and `media-row`, which lines pictures and videos up side by side at one height and fills the width of the text without stretching or cropping. The hand-made layouts from the old site are gone: the Top 100 Leaders photos were stretched its opening clip only 125 px wide beside a short list, a caption showed as raw text, and the Baxter build logs had extra top-level headings that were missing from "On this page".
+- `npm run check` reports old-site layouts (`style=`, `align=`, `<center>`), Jekyll template syntax, `#` headings, missing empty lines after HTML blocks, captions written as text, videos without a preview image and old Jekyll front matter fields. It also lists placeholder text, broken media links, clashing addresses, film nights without a poster, entries in the wrong year folder, unused media, oversized files and videos without a preview image.
 
 ### Transparency
 - Footer note and an "About this website" section on the About page: who runs the site, how AI tools were used (with a list of AI-assisted pages) and image credits.
 - `aiAssisted: true` in front matter shows a short note under a page's title. It is set on the Pepper documentation and the Baxter × Pepper dance write-up.
-- Image credits from `src/data/credits.json`, by file or whole folder, shown on the photos themselves (galleries, lightbox, project headers, film posters, roster, collage, project cards). Film posters and the Baxter and Pepper press images are credited.
+- Image credits from `src/data/credits.json`, by file or whole folder, shown on the photos themselves (galleries, lightbox, project headers, film posters, roster, collage, project cards). Film posters and the Baxter press image are credited.
 
 ### Media and performance
 - Photos scaled to at most 1600 px and videos re-encoded to H.264 with poster frames: media went from 384 MB to 106 MB.

@@ -8,11 +8,10 @@ tags: ["neuroscience", "brain signals", "cobots", "robotics"]
 ---
 Neuroscience is the study of the nervous system, focusing on the brain and its complex network of neurons. Understanding how the brain works is essential for developing technologies that interact with or mimic neural processes, especially in fields like robotics and cobotics.
 
-<div style="text-align: center;">
-  <img src="/images/neuro/brain-anatomy.jpg" alt="Diagram of the human brain highlighting major regions such as the motor cortex, sensory cortex, and visual cortex." style="width: 100%; max-width: 900px;">
-  <br>
-  <em>Figure 1: Anatomy of the human brain showing regions commonly targeted by neuroimaging techniques for different functions.</em>
-</div>
+<figure>
+  <img src="/media/research/neuro/introduction/brain-anatomy.jpg" alt="Diagram of the human brain highlighting major regions such as the motor cortex, sensory cortex, and visual cortex." />
+  <figcaption>Figure 1: Anatomy of the human brain showing regions commonly targeted by neuroimaging techniques for different functions.</figcaption>
+</figure>
 
 ## How Brain Technologies Work
 
@@ -22,20 +21,18 @@ Modern neuroscience leverages various technologies to observe, record, and inter
 
 - **Electroencephalography (EEG):** Measures electrical activity on the scalp, reflecting the collective firing of neurons. EEG is non-invasive and widely used for real-time monitoring.
 
-<div style="text-align: center;">
-  <img src="/images/neuro/eeg-cap.jpg" alt="EEG cap placed on a participant, showing electrode positions over the scalp." style="width: 100%; max-width: 900px;">
-  <br>
-  <em>Figure 2: EEG setup for recording electrical activity from the brain surface.</em>
-</div>
+<figure>
+  <img src="/media/research/neuro/introduction/eeg-cap.jpg" alt="EEG cap placed on a participant, showing electrode positions over the scalp." />
+  <figcaption>Figure 2: EEG setup for recording electrical activity from the brain surface.</figcaption>
+</figure>
 
 - **Magnetoencephalography (MEG):** Detects magnetic fields produced by neural activity, offering high temporal resolution.
 - **Functional Magnetic Resonance Imaging (fMRI):** Tracks changes in blood flow, indicating active brain regions during specific tasks.
 
-<div style="text-align: center;">
-  <img src="/images/neuro/fmri.jpg" alt="fMRI scan showing activation in the motor cortex during movement." style="width: 100%; max-width: 900px;">
-  <br>
-  <em>Figure 3: fMRI image highlighting motor cortex activation during motor execution.</em>
-</div>
+<figure>
+  <img src="/media/research/neuro/introduction/fmri.jpg" alt="fMRI scan showing activation in the motor cortex during movement." />
+  <figcaption>Figure 3: fMRI image highlighting motor cortex activation during motor execution.</figcaption>
+</figure>
 
 - **Near-Infrared Spectroscopy (NIRS):** Uses light to measure blood oxygenation, providing insights into brain activity.
 - **Implantable Electrodes:** Used in research and clinical settings for direct measurement of neural signals within the brain.
@@ -48,11 +45,10 @@ Neurons communicate through electrical impulses called action potentials. When g
 
 Raw brain signals are complex and noisy. Advanced algorithms filter and interpret these signals, extracting meaningful patterns related to movement, thought, or emotion. This processed data can then be used to control devices, such as robotic arms or cobots, enabling direct interaction between the brain and technology.
 
-<div style="text-align: center;">
-  <img src="/images/neuro/eeg-processing.jpg" alt="Example of processed EEG signals." style="width: 100%; max-width: 900px;">
-  <br>
-  <em>Figure 4: Processed EEG signals.</em>
-</div>
+<figure>
+  <img src="/media/research/neuro/introduction/eeg-processing.jpg" alt="Example of processed EEG signals." />
+  <figcaption>Figure 4: Processed EEG signals.</figcaption>
+</figure>
 
 ## Applications in Cobots
 

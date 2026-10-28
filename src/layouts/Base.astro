@@ -23,7 +23,7 @@ interface Props {
     search?: string;
 }
 
-const { title, description = site.description, image = '/images/hullrs-web-banner.jpg', search } = Astro.props;
+const { title, description = site.description, image = '/images/site/hullrs-web-banner.jpg', search } = Astro.props;
 const fullTitle = title ? `${title} · HullRS` : `${site.name} · HullRS`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---

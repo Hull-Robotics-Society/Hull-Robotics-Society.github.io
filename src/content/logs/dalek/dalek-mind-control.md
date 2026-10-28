@@ -26,27 +26,27 @@ Here’s how it works:
     - Remove each sensor from the headset.  
     - Moisten the felt pads with the provided saline solution.  
     - Reinsert the sensors into the headset.  
-    ![Wetting the electrodes](/images/emotiv/wetting-electrodes.jpg)  
+    ![Wetting the electrodes](/media/logs/dalek/dalek-mind-control/wetting-electrodes.jpg)  
     *Caption: Applying saline solution to the felt pads.*
 
 3. **Fitting the Headset**  
     - Place the headset on your head, ensuring the sensors make good contact with your scalp.  
     - Adjust the arms for a snug fit.  
-    ![Fitting the headset](/images/emotiv/fitting-headset.jpg)  
+    ![Fitting the headset](/media/logs/dalek/dalek-mind-control/fitting-headset.jpg)  
     *Caption: Proper placement of the headset on the user.*
 
 4. **Connecting to Software**  
     - Power on the headset.  
     - Open the Emotiv software on your computer or mobile device.  
     - Pair the headset via Bluetooth.  
-    ![Connecting to Emotiv software](/images/emotiv/software-connection.jpg)  
+    ![Connecting to Emotiv software](/media/logs/dalek/dalek-mind-control/software-connection.jpg)  
     *Caption: Pairing the headset with the Emotiv app.*
 
 5. **Signal Quality Check**  
     - Use the Emotiv app to check sensor contact quality.  
     - For best results, the signal quailty should be 100% across the headset and EEG quality shoulkd be over 90%.
     - Adjust the headset or re-wet sensors if needed for optimal readings.  
-    ![Signal quality check](/images/emotiv/signal-quality.jpg)  
+    ![Signal quality check](/media/logs/dalek/dalek-mind-control/signal-quality.jpg)  
     *Caption: Checking sensor contact quality in the app.*
 
 6. **Preparing for Training**  
@@ -98,13 +98,13 @@ Create a profile for motor imagery tasks (e.g., "Cube Manipulation").
 4. **Select Motor Imagery Task**  
 Choose a simple task, such as imagining moving a cube forward.
 
-![Motor Imagery Task Selection](/images/emotiv/eeg-training.jpg)  
+![Motor Imagery Task Selection](/media/logs/dalek/dalek-mind-control/eeg-training.jpg)  
 *Caption: Selecting the cube manipulation task in the Emotiv app.*
 
 5. **Begin Training**  
 Follow on-screen instructions to focus on the movement. Visualize the cube moving, but do not move physically.
 
-![Motor Imagery Training](/images/emotiv/eeg-mi-training.jpg)  
+![Motor Imagery Training](/media/logs/dalek/dalek-mind-control/eeg-mi-training.jpg)  
 *Caption: User concentrating on motor imagery during training.*
 
 6. **Repeat and Refine**  

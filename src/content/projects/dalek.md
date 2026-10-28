@@ -10,9 +10,9 @@ filters: [electronics, eeg]
 stack: Arduino, Raspberry Pi, Node-RED, Emotiv EEG
 seenAt: Freshers Fair, Top 100 Leaders, Varsity 2026
 cover: /images/site/dalek.jpg
-hero: /images/dalek/100-leaders/dalek-100-03.jpg
+hero: /media/events/2024-25/daleks-day-out/dalek-100-03.jpg
 repo: https://github.com/Hull-Robotics-Society/Dalek
-gallery: [images/dalek, media/dalek]
+gallery: [media/events/2024-25/daleks-day-out]
 cad:
   repo: Hull-Robotics-Society/Dalek
   folders: ["[01] 3D Models", "[02] Electronics"]
@@ -27,7 +27,7 @@ cad:
     "[02] Electronics": Electronics
 roster:
   eyebrow: Flagship build
-  video: /media/loops/dalek-dance.mp4
+  video: /media/projects/dalek/loop.mp4
   image: /images/site/dalek.jpg
   specs:
     - ["Base", "Electric wheelchair, DB9 controller"]

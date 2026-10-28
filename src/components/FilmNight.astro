@@ -3,6 +3,7 @@ import type { CollectionEntry } from 'astro:content';
 import '../styles/film.css';
 import Credit from './Credit.astro';
 import FilmRow from './FilmRow.astro';
+import { coverOf } from '../lib/site';
 
 interface Props {
     e: CollectionEntry<'events'>;
@@ -16,16 +17,17 @@ const d = e.data.date;
 const iso = d?.toISOString().slice(0, 10);
 const longDate = d?.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 const time = e.data.start ? (e.data.end ? `${e.data.start} – ${e.data.end}` : e.data.start) : undefined;
+const poster = coverOf(e);
 const facts = [f.year, f.director && `Dir. ${f.director}`, f.runtime].filter(Boolean);
 ---
 
 <section class="film-hero" data-date={iso} data-end={e.data.end ?? e.data.start ?? '23:59'}>
-    {e.data.cover && <img class="film-backdrop" src={e.data.cover} alt="" aria-hidden="true" />}
+    {poster && <img class="film-backdrop" src={poster} alt="" aria-hidden="true" />}
     <div class="wrap film-hero-grid">
         <div class="film-poster">
-            {e.data.cover ? <img src={e.data.cover} alt={`${f.title} poster`} /> : <span class="emblem"></span>}
+            {poster ? <img src={poster} alt={`${f.title} poster`} /> : <span class="emblem"></span>}
             <span class="film-stamp" data-r="stamp" data-pagefind-ignore>Screened</span>
-            <Credit src={e.data.cover} />
+            <Credit src={poster} />
         </div>
         <div class="film-head">
             <a class="crumb" href="/events/" data-pagefind-ignore>← All events</a>
@@ -66,7 +68,7 @@ const facts = [f.year, f.director && `Dir. ${f.director}`, f.runtime].filter(Boo
             <>
                 <h2 class="film-h" id="trailer">Trailer</h2>
                 <div class="film-trailer" data-yt={f.trailer} data-title={`${f.title} trailer`}>
-                    {e.data.cover && <img src={e.data.cover} alt="" aria-hidden="true" />}
+                    {poster && <img src={poster} alt="" aria-hidden="true" />}
                     <button type="button" aria-label={`Play the ${f.title} trailer`}><span aria-hidden="true">▶</span></button>
                     <p class="film-note" data-pagefind-ignore>Plays from YouTube once you press play.</p>
                 </div>

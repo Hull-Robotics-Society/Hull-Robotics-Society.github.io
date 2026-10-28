@@ -7,7 +7,6 @@ level: "Beginner"
 duration: "About 60 minutes"
 needs: "A laptop with KiCad installed"
 session: "Give It A Go"
-cover: "/images/keychain.png"
 tags: ["KiCad", "TinkerCAD", "Electronics"]
 ---
 *Using TinkerCAD and KiCad*
@@ -21,11 +20,10 @@ tags: ["KiCad", "TinkerCAD", "Electronics"]
 - Navigate to **"Circuits"**
 - Click **"Create New Circuit"**
 
-<div style="text-align: center;">
-  <img src="/images/tutorials/keychain/create.svg" alt="Creating a new account and circuit project" style="width: 100%; max-width: 900px;">
-  <br>
-  <em>Figure 1: Creating a new account and circuit project in TinkerCAD.</em>
-</div>
+<figure>
+  <img src="/media/tutorials/keychain/create.svg" alt="Creating a new account and circuit project" />
+  <figcaption>Figure 1: Creating a new account and circuit project in TinkerCAD.</figcaption>
+</figure>
 
 ---
 
@@ -38,11 +36,10 @@ tags: ["KiCad", "TinkerCAD", "Electronics"]
 - Connect them using wires
 - Click **"Start Simulation"** to test
 
-<div style="text-align: center;">
-  <img src="/images/tutorials/keychain/circuit.svg" alt="Creating a new LED circuit" style="width: 100%; max-width: 900px;">
-  <br>
-  <em>Figure 2: Creating a new LED circuit in TinkerCAD.</em>
-</div>
+<figure>
+  <img src="/media/tutorials/keychain/circuit.svg" alt="Creating a new LED circuit" />
+  <figcaption>Figure 2: Creating a new LED circuit in TinkerCAD.</figcaption>
+</figure>
 
 ---
 
@@ -52,11 +49,10 @@ tags: ["KiCad", "TinkerCAD", "Electronics"]
 - Select **.BRD** (Eagle Board File)
 - Save it to your device
 
-<div style="text-align: center;">
-  <img src="/images/tutorials/keychain/export.svg" alt="Exporting .BRD for KiCAD" style="width: 100%; max-width: 900px;">
-  <br>
-  <em>Figure 3: Exporting your circuit as a .BRD file for KiCAD.</em>
-</div>
+<figure>
+  <img src="/media/tutorials/keychain/export.svg" alt="Exporting .BRD for KiCAD" />
+  <figcaption>Figure 3: Exporting your circuit as a .BRD file for KiCAD.</figcaption>
+</figure>
 
 ---
 
@@ -67,11 +63,10 @@ tags: ["KiCad", "TinkerCAD", "Electronics"]
 - Select your **.BRD** file
 - Choose **Auto-Match Layers**
 
-<div style="text-align: center;">
-  <img src="/images/tutorials/keychain/kicad.svg" alt="KiCAD setup" style="width: 100%; max-width: 900px;">
-  <br>
-  <em>Figure 4: Setting up your project in KiCAD.</em>
-</div>
+<figure>
+  <img src="/media/tutorials/keychain/kicad.svg" alt="KiCAD setup" />
+  <figcaption>Figure 4: Setting up your project in KiCAD.</figcaption>
+</figure>
 
 ---
 
@@ -81,11 +76,10 @@ tags: ["KiCad", "TinkerCAD", "Electronics"]
   - Reposition components
   - Start routing tracks
 
-<div style="text-align: center;">
-  <img src="/images/tutorials/keychain/optimise.svg" alt="Optimising the circuit layout" style="width: 100%; max-width: 900px;">
-  <br>
-  <em>Figure 5: Optimising the circuit layout in KiCAD.</em>
-</div>
+<figure>
+  <img src="/media/tutorials/keychain/optimise.svg" alt="Optimising the circuit layout" />
+  <figcaption>Figure 5: Optimising the circuit layout in KiCAD.</figcaption>
+</figure>
 
 ---
 
@@ -97,11 +91,10 @@ tags: ["KiCad", "TinkerCAD", "Electronics"]
   - **F** to flip components
 - Ensure tracks don’t overlap
 
-<div style="text-align: center;">
-  <img src="/images/tutorials/keychain/routing.svg" alt="Routing trace lines for the circuit" style="width: 100%; max-width: 900px;">
-  <br>
-  <em>Figure 6: Routing trace lines for the circuit.</em>
-</div>
+<figure>
+  <img src="/media/tutorials/keychain/routing.svg" alt="Routing trace lines for the circuit" />
+  <figcaption>Figure 6: Routing trace lines for the circuit.</figcaption>
+</figure>
 
 ---
 
@@ -110,11 +103,10 @@ tags: ["KiCad", "TinkerCAD", "Electronics"]
 - Use KiCad’s 3D viewer to inspect your board
 - Look for spacing and design issues
 
-<div style="text-align: center;">
-  <img src="/images/tutorials/keychain/3D.svg" alt="A 3D view of the circuit for final checks" style="width: 100%; max-width: 900px;">
-  <br>
-  <em>Figure 7: A 3D view of the circuit for final checks.</em>
-</div>
+<figure>
+  <img src="/media/tutorials/keychain/3D.svg" alt="A 3D view of the circuit for final checks" />
+  <figcaption>Figure 7: A 3D view of the circuit for final checks.</figcaption>
+</figure>
 
 ---
 
@@ -126,11 +118,10 @@ tags: ["KiCad", "TinkerCAD", "Electronics"]
 - Zip the folder
 - Email the zipped files to us
 
-<div style="text-align: center;">
-  <img src="/images/tutorials/keychain/drill-files.svg" alt="Saving drill files for final submission" style="width: 100%; max-width: 900px;">
-  <br>
-  <em>Figure 8: Saving drill files for final submission.</em>
-</div>
+<figure>
+  <img src="/media/tutorials/keychain/drill-files.svg" alt="Saving drill files for final submission" />
+  <figcaption>Figure 8: Saving drill files for final submission.</figcaption>
+</figure>
 
 ---
 
