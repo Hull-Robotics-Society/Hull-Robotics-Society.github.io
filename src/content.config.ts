@@ -96,7 +96,7 @@ const events = defineCollection({
         // Shows a short note that the page was drafted with AI assistance and reviewed
         aiAssisted: z.boolean().default(false),
         title: z.string(),
-        type: z.enum(['Project meeting', 'Project day', 'Workshop', 'Film night', 'Showcase', 'Fair', 'Social', 'Competition']),
+        type: z.enum(['Project meeting', 'Project day', 'Workshop', 'Film night', 'Showcase', 'Fair', 'Social', 'Competition', 'Executive']),
         date: date.optional(),
         recurring: z.enum(['weekly']).optional(),
         weekday: z.number().min(0).max(6).optional(),

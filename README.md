@@ -181,7 +181,7 @@ Details, what to bring, …
 | Field | Required | What it does |
 | --- | --- | --- |
 | `title` | yes | Name of the event. |
-| `type` | yes | One of `Project meeting`, `Project day`, `Workshop`, `Film night`, `Showcase`, `Fair`, `Social`, `Competition` (spelled exactly like this). Shown as a label; `Film night` with a `film` block gets the cinema page (below). |
+| `type` | yes | One of `Project meeting`, `Project day`, `Workshop`, `Film night`, `Showcase`, `Fair`, `Social`, `Competition`, `Executive` (spelled exactly like this). Use `Executive` for committee business such as executive meetings, EGMs and AGMs. Shown as a label; `Film night` with a `film` block gets the cinema page (below). |
 | `date` | yes for one-off events | The day it happens. |
 | `start`, `end` | no | Times as `"HH:MM"`. An event counts as upcoming until its `end` (or `start`, or the end of the day). |
 | `location` | no | Where it happens. The lab is written `Robotics Lab, Applied Science building`. |
