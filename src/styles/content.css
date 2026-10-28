@@ -129,3 +129,8 @@ footer .colophon a { color: var(--accent); }
 .site-header .notices { border-top: 1px solid var(--line); }
 .site-header .notice:last-child { border-bottom: 0; }
 @media (max-width: 600px) { .notice p { font-size: .88rem; } .site-header .notice .wrap { padding-block: 6px; } }
+.team-card.vacant { border-style: dashed; background: transparent; }
+.team-card.vacant .team-face { background: transparent; box-shadow: 0 0 0 1px var(--line); }
+.team-card.vacant .team-initial { color: var(--muted); }
+.team-card.vacant h3 { color: var(--muted); }
+.team-robot a { color: var(--accent); }

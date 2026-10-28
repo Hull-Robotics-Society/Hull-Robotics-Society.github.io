@@ -1,5 +1,5 @@
 {
-    "_help": "The Executive Team on the About page, in this order. Keep `about` to one formal sentence. Optional per member: photo (path in public/), robot (favourite robot). Update the year when the committee changes.",
+    "_help": "The Executive Team on the About page, in this order. Per member: name, role, a one-sentence `about`, favourite `robot`. Photos: put a square picture at public/images/committee/<role>.jpg (e.g. vice-president.jpg) and it is shown automatically; `photo` overrides that path. An open role: { \"role\": \"Vice President\", \"vacant\": true }. Update `year` when a new committee is elected.",
     "year": "2026–27",
     "source": "https://www.instagram.com/hull_rs/p/DdUHWiZDXke/",
     "members": [
@@ -10,10 +10,8 @@
             "robot": "Sophia"
         },
         {
-            "name": "Dan",
             "role": "Vice President",
-            "about": "Final-year Robotics and AI student.",
-            "robot": "GLaDOS"
+            "vacant": true
         },
         {
             "name": "Ben",

@@ -412,11 +412,47 @@ cad:
 | File | What's in it |
 | --- | --- |
 | `src/data/site.json` | Society name, email, links (Union page, merch in the Union shop, Discord, Instagram, GitHub, YouTube), lab name, address, map link, and the GitHub repository and branch used for "Edit this page on GitHub". |
-| `src/data/committee.json` | The Executive Team on the About page: `year` (e.g. "2026–27"), `source` (link to the announcement post) and `members`, each with `name`, `role`, a one-sentence `about`, favourite `robot` and an optional `photo`. The section is hidden while `members` is empty. Update it when a new committee is elected. |
+| `src/data/committee.json` | The Executive Team on the About page, see [below](#the-executive-team). |
 | `src/data/notices.json` | Notice banners, see [above](#any-other-announcement). |
 | `src/data/credits.json` | Image credits, see [above](#image-credits). |
 | `src/data/research-areas.json` | Research areas, see [above](#a-research-article). |
 | `src/data/home.json` | Homepage photo collage. |
+
+### The Executive Team
+
+`src/data/committee.json` lists the committee shown on the About page, in the order given:
+
+```json
+{
+    "year": "2026–27",
+    "source": "https://www.instagram.com/hull_rs/p/…",
+    "members": [
+        { "name": "Reece", "role": "President", "about": "One formal sentence.", "robot": "Sophia" },
+        { "role": "Vice President", "vacant": true }
+    ]
+}
+```
+
+| Field | What it does |
+| --- | --- |
+| `year` | Shown under the heading, e.g. "2026–27". |
+| `source` | Optional link to the announcement post ("Meet the committee on Instagram"). |
+| `name`, `role` | Shown on the card. Keep `role` spelled the same way each year, because the photo is found by it (below). |
+| `about` | One formal sentence, e.g. course and year. |
+| `robot` | Optional "Favourite robot" line. |
+| `vacant` | `true` for an open role: the card shows "Vacant" and invites people to get in touch. `name`, `robot` and the photo are then ignored; `about` replaces the default invitation text if you want your own. |
+| `photo` | Optional path to a picture somewhere else; overrides the automatic one. |
+
+**Profile pictures are picked up automatically.** Put a picture named after the role in `public/images/committee/`: lower case, spaces become hyphens, as `.jpg`, `.jpeg`, `.png` or `.webp`:
+
+| Role | File |
+| --- | --- |
+| President | `public/images/committee/president.jpg` |
+| Vice President | `public/images/committee/vice-president.jpg` |
+| Treasurer | `public/images/committee/treasurer.jpg` |
+| Project Manager | `public/images/committee/project-manager.jpg` |
+
+Use a square photo of the face, about 400×400 px (it's shown as a small circle). Without a picture, the card shows the person's first initial. When a new committee is elected, replace the files and update the names in `committee.json`. The section is hidden while `members` is empty.
 
 The footer note about AI tools and the "About this website" section are in `src/components/Footer.astro` and `src/pages/about.astro`.
 

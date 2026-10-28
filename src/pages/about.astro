@@ -3,6 +3,8 @@ import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
 import committee from '../data/committee.json';
 import { getCollection } from 'astro:content';
+import fs from 'node:fs';
+import path from 'node:path';
 import { allCredits, projects, logUrl } from '../lib/site';
 
 // The weekly sessions come from the events collection, so times are only kept in one place.
@@ -13,13 +15,25 @@ const sessions = (await getCollection('events'))
     .map(e => ({ day: days[e.data.weekday ?? 1], title: e.data.title, href: `/events/${e.id}/`, start: e.data.start, end: e.data.end }));
 
 interface Member {
-    name: string;
+    name?: string;
     role: string;
     about?: string;
     robot?: string;
     photo?: string;
+    vacant?: boolean;
 }
-const members = committee.members as Member[];
+
+// Profile pictures are picked up from public/images/committee/<role>.jpg (e.g. vice-president.jpg),
+// so updating a photo only means replacing that file. A `photo` in committee.json overrides it.
+const photoDir = path.join(process.cwd(), 'public', 'images', 'committee');
+const photoFiles = fs.existsSync(photoDir) ? fs.readdirSync(photoDir) : [];
+const roleSlug = (role: string) => role.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const photoFor = (m: Member) => {
+    if (m.photo) return m.photo;
+    const file = photoFiles.find(f => f.replace(/\.(jpe?g|png|webp)$/i, '').toLowerCase() === roleSlug(m.role));
+    return file && `/images/committee/${file}`;
+};
+const members = (committee.members as Member[]).map(m => ({ ...m, photo: m.vacant ? undefined : photoFor(m) }));
 
 // Pages marked `aiAssisted: true`, listed for transparency
 const allProjects = await projects();
@@ -118,21 +132,33 @@ const credits = allCredits();
                 </div>
                 <div style="display:grid;gap:16px">
                     <ul class="team">
-                        {members.map(m => (
-                            <li class="team-card">
-                                <div class="team-face">
-                                    {m.photo
-                                        ? <img src={m.photo} alt={`${m.name}, ${m.role}`} loading="lazy" decoding="async" />
-                                        : <span class="team-initial" aria-hidden="true">{m.name.slice(0, 1)}</span>}
-                                </div>
-                                <div class="team-body">
-                                    <p class="eyebrow">{m.role}</p>
-                                    <h3>{m.name}</h3>
-                                    {m.about && <p class="muted">{m.about}</p>}
-                                    {m.robot && <p class="team-robot">Favourite robot: {m.robot}</p>}
-                                </div>
-                            </li>
-                        ))}
+                        {members.map(m => m.vacant
+                            ? (
+                                <li class="team-card vacant">
+                                    <div class="team-face"><span class="team-initial" aria-hidden="true">?</span></div>
+                                    <div class="team-body">
+                                        <p class="eyebrow">{m.role}</p>
+                                        <h3>Vacant</h3>
+                                        <p class="muted">{m.about ?? 'This role is currently open. Interested in joining the committee?'}</p>
+                                        <p class="team-robot"><a href={`mailto:${site.email}`}>Get in touch</a> or ask us at a Project Meeting.</p>
+                                    </div>
+                                </li>
+                            )
+                            : (
+                                <li class="team-card">
+                                    <div class="team-face">
+                                        {m.photo
+                                            ? <img src={m.photo} alt={`${m.name}, ${m.role}`} loading="lazy" decoding="async" />
+                                            : <span class="team-initial" aria-hidden="true">{(m.name ?? '?').slice(0, 1)}</span>}
+                                    </div>
+                                    <div class="team-body">
+                                        <p class="eyebrow">{m.role}</p>
+                                        <h3>{m.name}</h3>
+                                        {m.about && <p class="muted">{m.about}</p>}
+                                        {m.robot && <p class="team-robot">Favourite robot: {m.robot}</p>}
+                                    </div>
+                                </li>
+                            ))}
                     </ul>
                     {committee.source && <p><a class="edit-link" href={committee.source} target="_blank" rel="noopener">Meet the committee on Instagram ↗</a></p>}
                 </div>
