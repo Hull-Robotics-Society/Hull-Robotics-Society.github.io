@@ -2,7 +2,7 @@
 
 ## 2.0.0 (unreleased)
 
-Rebuilt the website from scratch with Astro, replacing the Jekyll site based on the Minimal Mistakes theme.
+Rebuilt the website from scratch with Astro (7.4; needs Node.js 22.23.4 or newer), replacing the Jekyll site based on the Minimal Mistakes theme.
 
 ### Design
 - New design in light and dark themes: a light theme by default and a dark "lab" look via the toggle in the header. The logo green is the accent colour, with Chakra Petch, IBM Plex Sans and JetBrains Mono as typefaces (self-hosted).

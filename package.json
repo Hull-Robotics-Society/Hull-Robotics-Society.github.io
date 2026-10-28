@@ -12,7 +12,7 @@
     "check": "node scripts/check.mjs"
   },
   "engines": {
-    "node": ">=22.12.0"
+    "node": ">=22.23.4"
   },
   "dependencies": {
     "@astrojs/sitemap": "3.7.4",
@@ -20,7 +20,7 @@
     "@fontsource/ibm-plex-sans": "5.3.0",
     "@fontsource/jetbrains-mono": "5.3.0",
     "@fontsource/orbitron": "5.3.0",
-    "astro": "7.3.8",
+    "astro": "7.4.3",
     "three": "0.186.1"
   },
   "devDependencies": {

@@ -502,7 +502,7 @@ The footer note about AI tools and the "About this website" section are in `src/
 
 ## Running and testing it locally
 
-You need [Git](https://git-scm.com) and [Node.js](https://nodejs.org) 22.12 or newer (the LTS version is fine). Open a terminal in the project folder; the first time, install the dependencies:
+You need [Git](https://git-scm.com) and [Node.js](https://nodejs.org) 22.23.4 or newer (the current LTS version is fine). Open a terminal in the project folder; the first time, install the dependencies:
 
 ```bash
 npm install
