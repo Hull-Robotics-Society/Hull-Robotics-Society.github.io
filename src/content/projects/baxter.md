@@ -10,7 +10,7 @@ filters: [ros]
 stack: ROS, Python
 coverFit: contain
 hero: /media/projects/baxter/cover.jpeg
-repo: https://github.com/reeceherbert887/Baxter
+repo: https://github.com/reeceherbert887/Pepper-Baxter-Dance
 gallery: [media/logs/baxter]
 roster:
   eyebrow: Research robot

@@ -453,7 +453,7 @@ cad:
 
 | File | What's in it |
 | --- | --- |
-| `src/data/site.json` | Society name, email, links (Union page, merch in the Union shop, Discord, Instagram, GitHub, YouTube), lab name, address, map link, and the GitHub repository and branch used for "Edit this page on GitHub". |
+| `src/data/site.json` | Society name, email, links (Union page, merch in the Union shop, Discord, Instagram, GitHub, YouTube; leave `youtube` empty to hide that line on the About page), lab name, address, map link, and the GitHub repository and branch used for "Edit this page on GitHub". |
 | `src/data/committee.json` | The Executive Team on the About page, see [below](#the-executive-team). |
 | `src/data/notices.json` | Notice banners, see [above](#any-other-announcement). |
 | `src/data/credits.json` | Image credits, see [above](#image-credits). |

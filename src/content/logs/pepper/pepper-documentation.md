@@ -1180,9 +1180,9 @@ tar -czf ~/Pepper_Backups/Pepper_Stuff_$(date +%Y%m%d).tar.gz \
 ### Legacy Pepper / Choregraphe background
 
 - [United Robotics Group — Pepper developer documentation](https://unitedrobotics.group/en-us/robots/pepper/documentation) — distinguishes Pepper 2.5/NAOqi Python development from Pepper 2.9 Android/QiSDK.
-- [Aldebaran 2.5 documentation — Choregraphe project structure](https://www.arabicrobotics.com/Aldebaran/aldeb-doc-2.5.7.1/software/choregraphe/objects/choregraphe_project.html) — reference for `.pml`, project files and project packaging.
-- [Aldebaran 2.5 documentation — Behaviours](https://www.arabicrobotics.com/Aldebaran/aldeb-doc-2.5.7.1/software/choregraphe/objects/behavior.html) — explanation of Choregraphe boxes and behaviour graphs.
-- [Aldebaran 2.5 documentation — Creating an application](https://www.arabicrobotics.com/Aldebaran/aldeb-doc-2.5.7.1/getting_started/creating_applications/index.html) — background on creating Choregraphe applications.
+- [Aldebaran 2.5 documentation — Choregraphe project structure](https://doc.aldebaran.com/2-5/software/choregraphe/objects/choregraphe_project.html) — reference for `.pml`, project files and project packaging.
+- [Aldebaran 2.5 documentation — Behaviours](https://doc.aldebaran.com/2-5/software/choregraphe/objects/behavior.html) — explanation of Choregraphe boxes and behaviour graphs.
+- [Aldebaran 2.5 documentation — Creating an application](https://doc.aldebaran.com/2-5/getting_started/creating_applications/index.html) — background on creating Choregraphe applications.
 - [Aldebaran `ALTabletService` Java wrapper](https://github.com/aldebaran/jnaoqi/blob/master/src/main/java/com/aldebaran/qi/helper/ALTabletService.java) — API method names such as `loadApplication`, `showWebview` and `hideWebview`; verify version compatibility before adapting.
 
 **Provenance note:** External pages above describe the platform and API patterns; they are **not substitutes for reading this repository's source or testing its actual robot behaviour**. The original `Pepper-Documentation/` contents need to be checked from a clone or a working connected repository before issuing a fully source-verified revision.

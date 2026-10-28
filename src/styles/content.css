@@ -131,8 +131,6 @@
 .site-list summary { cursor: pointer; color: var(--accent); font-family: var(--font-display); font-weight: 600; }
 .site-list ul { margin: 8px 0 0; padding-left: 18px; display: grid; gap: 4px; }
 .site-list a { color: var(--accent); }
-footer .colophon { flex-basis: 100%; font-size: .82rem; }
-footer .colophon a { color: var(--accent); }
 .site-notes .muted a { color: var(--accent); }
 /* Banners sit inside the sticky header; undo the header's own row layout for them */
 .site-header .notice .wrap { min-height: 0; gap: 12px; flex-wrap: nowrap; padding-block: 8px; }

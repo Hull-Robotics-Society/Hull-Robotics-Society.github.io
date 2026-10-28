@@ -50,6 +50,9 @@ Rebuilt the website from scratch with Astro (7.4; needs Node.js 22.23.4 or newer
 - Every old build-log, tutorial, event and research URL still works. The blog, gallery and "all-…" pages redirect to their new homes, and the `transfomer` typo URL redirects to `transformer`.
 
 ### Fixes
+- Footer: logo, address and email in one row with the AI note centred underneath, instead of the note sitting alone on the left.
+- On phones, all five menu links now fit in one row (down to 320 px wide screens) instead of "About" being cut off.
+- Broken outside links: the Aldebaran Pepper documentation now links to the official doc.aldebaran.com instead of a mirror with an invalid certificate, and the Dalek "Source Code" link points to the `[03] Code` folder. The Baxter "Code on GitHub" button now opens the Pepper–Baxter dance repository (the only public Baxter code), and the About page links to the society's YouTube channel @UoH_RobSoc.
 - Clearer build-log and journal titles and one-line summaries (OSRC, Baxter, Pepper, Transformer, Dalek and Journal), replacing ones like "Pepper Projects: HTML" / "Detailed Project Documentation". "Freshers Fair 2" is now correctly "Pepper at Refreshers".
 - Spelling and grammar fixes in the Journal posts, including "Robotics Society of Hope" and unfilled "[insert name]" placeholders for the Dalek.
 - Weekly sessions now match reality: the Monday Project Meeting (17:00 to 19:00) and the new Wednesday Project Day (13:30 to 17:00), both in term time. Their times live in one place and feed the homepage, Events and About.
