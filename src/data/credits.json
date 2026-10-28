@@ -28,6 +28,10 @@
         {
             "path": "/images/pepper.jpeg",
             "credit": "Pepper press image © SoftBank Robotics"
+        },
+        {
+            "path": "/images/mary-poppins.jpg",
+            "credit": "Mary Poppins poster © Walt Disney Productions"
         }
     ]
 }
