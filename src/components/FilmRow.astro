@@ -1,0 +1,49 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+    films: CollectionEntry<'events'>[];
+}
+
+// Row of film night posters. Upcoming screenings are marked and moved to the front in the
+// browser, which knows today's date; the build lists them newest first.
+const { films } = Astro.props;
+const iso = (d?: Date) => d?.toISOString().slice(0, 10) ?? '';
+const shortDate = (d?: Date) => d?.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }) ?? '';
+---
+
+<div class="film-row" data-film-row>
+    {films.map(f => (
+        <a class="film-card" href={`/events/${f.id}/`} data-date={iso(f.data.date)} data-end={f.data.end ?? f.data.start ?? '23:59'}>
+            <span class="film-card-img">
+                {f.data.cover ? <img src={f.data.cover} alt="" loading="lazy" decoding="async" /> : <span class="emblem"></span>}
+                <span class="film-card-badge" hidden>Upcoming</span>
+            </span>
+            <b>{f.data.film?.title ?? f.data.title}</b>
+            <small class="mono">{shortDate(f.data.date)}{f.data.start && ` · ${f.data.start}`}</small>
+        </a>
+    ))}
+</div>
+
+<script>
+    for (const row of document.querySelectorAll<HTMLElement>('[data-film-row]')) {
+        const now = new Date();
+        const cards = [...row.querySelectorAll<HTMLElement>('.film-card')];
+        const upcoming = cards
+            .filter(c => c.dataset.date && new Date(`${c.dataset.date}T${c.dataset.end}:00`) >= now)
+            .sort((a, b) => a.dataset.date!.localeCompare(b.dataset.date!));
+
+        // Soonest upcoming first, then the past screenings in their original (newest first) order
+        upcoming.reverse().forEach(c => {
+            c.classList.add('upcoming');
+            c.querySelector<HTMLElement>('.film-card-badge')!.hidden = false;
+            row.prepend(c);
+        });
+
+        const count = row.closest('section')?.querySelector<HTMLElement>('[data-film-count]');
+        if (count) {
+            const past = cards.length - upcoming.length;
+            count.textContent = [past && `${past} ${past === 1 ? 'screening' : 'screenings'} so far`, upcoming.length && `${upcoming.length} coming up`].filter(Boolean).join(' · ');
+        }
+    }
+</script>

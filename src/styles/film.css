@@ -117,3 +117,14 @@
 .film-card small { color: var(--muted); }
 
 .films-index { margin-bottom: 64px; }
+
+/* Upcoming screenings in a poster row: outlined poster, badge, date in the accent colour */
+.film-card-img { position: relative; }
+.film-card.upcoming .film-card-img { box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--accent), var(--shadow); }
+.film-card.upcoming small { color: var(--accent); font-weight: 500; }
+.film-card-badge {
+    position: absolute; left: 8px; top: 8px;
+    font-family: var(--font-mono); font-size: .66rem; letter-spacing: .14em; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 4px; background: var(--signal); color: var(--bg);
+}
+.film-row { padding: 6px 6px 8px; margin-inline: -6px; }

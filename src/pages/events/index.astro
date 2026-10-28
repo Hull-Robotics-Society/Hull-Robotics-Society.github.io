@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import FilmRow from '../../components/FilmRow.astro';
 import { allEvents, clientEvents } from '../../lib/events';
 import site from '../../data/site.json';
 import '../../styles/film.css';
@@ -69,16 +70,8 @@ const weekdays = ['Sundays', 'Mondays', 'Tuesdays', 'Wednesdays', 'Thursdays', '
 
         {films.length > 0 && (
             <section class="films-index" id="films" aria-labelledby="films-h">
-                <div class="section-head"><h2 id="films-h">Film nights</h2><span class="mono muted">{films.length} screenings so far</span></div>
-                <div class="film-row">
-                    {films.map(f => (
-                        <a class="film-card" href={`/events/${f.id}/`}>
-                            <span class="film-card-img">{f.data.cover ? <img src={f.data.cover} alt="" loading="lazy" decoding="async" /> : <span class="emblem"></span>}</span>
-                            <b>{f.data.film!.title}</b>
-                            <small class="mono">{f.data.date && day(f.data.date)} {f.data.date?.getUTCFullYear()}</small>
-                        </a>
-                    ))}
-                </div>
+                <div class="section-head"><h2 id="films-h">Film nights</h2><span class="mono muted" data-film-count>{films.length} screenings</span></div>
+                <FilmRow films={films} />
             </section>
         )}
 

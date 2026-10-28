@@ -2,6 +2,7 @@
 import type { CollectionEntry } from 'astro:content';
 import '../styles/film.css';
 import Credit from './Credit.astro';
+import FilmRow from './FilmRow.astro';
 
 interface Props {
     e: CollectionEntry<'events'>;
@@ -14,7 +15,6 @@ const f = e.data.film!;
 const d = e.data.date;
 const iso = d?.toISOString().slice(0, 10);
 const longDate = d?.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
-const shortDate = (x?: Date) => x?.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
 const time = e.data.start ? (e.data.end ? `${e.data.start} – ${e.data.end}` : e.data.start) : undefined;
 const facts = [f.year, f.director && `Dir. ${f.director}`, f.runtime].filter(Boolean);
 ---
@@ -96,15 +96,7 @@ const facts = [f.year, f.director && `Dir. ${f.director}`, f.runtime].filter(Boo
     <div class="film-shelf" data-pagefind-ignore>
         <div class="wrap">
             <div class="section-head"><h2>More film nights</h2><a class="link-arrow" href="/events/#films">All film nights →</a></div>
-            <div class="film-row">
-                {others.map(o => (
-                    <a class="film-card" href={`/events/${o.id}/`}>
-                        <span class="film-card-img">{o.data.cover ? <img src={o.data.cover} alt="" loading="lazy" decoding="async" /> : <span class="emblem"></span>}</span>
-                        <b>{o.data.film?.title ?? o.data.title}</b>
-                        <small class="mono">{shortDate(o.data.date)}</small>
-                    </a>
-                ))}
-            </div>
+            <FilmRow films={others} />
         </div>
     </div>
 )}
