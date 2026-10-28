@@ -3,7 +3,7 @@ title: "KiCAD and Thymio Robotics Session"
 slug: kicad-thymio-session
 type: "Workshop"
 date: 2025-09-19
-location: "Robot Lab, Applied Science building"
+location: "Robotics Lab, Applied Science building"
 excerpt: "Join us for an exciting hands-on workshop exploring KiCAD PCB design and Thymio robots in the Robotics Lab! Learn, build and code with us."
 ---
 Join us for an exciting hands-on workshop exploring KiCAD PCB design and Thymio robots in the Robotics Lab! Learn, build and code with us.

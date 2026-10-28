@@ -101,7 +101,10 @@ const events = defineCollection({
         recurring: z.enum(['weekly']).optional(),
         weekday: z.number().min(0).max(6).optional(),
         // Dates a weekly session does not happen; shown as a notice and skipped by "Next up"
-        cancelled: z.array(z.coerce.date()).default([]),
+        cancelled: z.array(z.union([
+            z.coerce.date().transform(date => ({ date, note: undefined as string | undefined, link: undefined as string | undefined })),
+            z.object({ date: z.coerce.date(), note: z.string().optional(), link: z.string().optional() })
+        ])).default([]),
         start: z.string().optional(),
         end: z.string().optional(),
         location: z.string().optional(),

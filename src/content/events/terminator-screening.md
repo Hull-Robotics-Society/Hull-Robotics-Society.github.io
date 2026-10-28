@@ -5,7 +5,7 @@ type: "Film night"
 date: 2025-10-27
 start: "17:00"
 end: "19:00"
-location: "Robotics Lab, University of Hull"
+location: "Robotics Lab, Applied Science building"
 bring: "Bring your own snacks!"
 excerpt: "A sci-fi movie night with the legendary classic The Terminator, the story that redefined science fiction and robotics."
 cover: "/images/terminator.png"

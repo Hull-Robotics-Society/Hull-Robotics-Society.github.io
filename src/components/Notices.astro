@@ -17,13 +17,14 @@ const iso = (d: Date) => d.toISOString().slice(0, 10);
 const nice = (d: Date) => d.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'UTC' });
 
 // One notice per cancelled session, shown from a week before until the day itself
-const cancellations: Notice[] = (await getCollection('events')).flatMap(e => e.data.cancelled.map(d => ({
-    id: `cancel-${e.id}-${iso(d)}`,
-    text: `No ${e.data.title} on ${nice(d)}.`,
-    from: iso(new Date(d.getTime() - 7 * 864e5)),
-    until: iso(d),
-    link: `/events/${e.id}/`,
-    linkText: 'Details',
+// A note and link replace the default "Details" link, e.g. to point at what happens instead
+const cancellations: Notice[] = (await getCollection('events')).flatMap(e => e.data.cancelled.map(c => ({
+    id: `cancel-${e.id}-${iso(c.date)}`,
+    text: `No ${e.data.title} on ${nice(c.date)}.`,
+    from: iso(new Date(c.date.getTime() - 7 * 864e5)),
+    until: iso(c.date),
+    link: c.link ?? `/events/${e.id}/`,
+    linkText: c.note ?? 'Details',
     tone: 'warning' as const
 })));
 const manual: Notice[] = (data.notices as Omit<Notice, 'id'>[]).map((n, i) => ({ id: `notice-${i}-${n.text.length}`, ...n }));

@@ -37,7 +37,7 @@ type: "Workshop"        # Project meeting, Project day, Workshop, Film night, Sh
 date: 2026-11-12
 start: "17:00"
 end: "19:00"
-location: "Robot Lab, Applied Science building"
+location: "Robotics Lab, Applied Science building"
 excerpt: "One sentence for the events list."
 cover: "/images/events/kicad.jpg"   # optional
 ---
@@ -58,7 +58,7 @@ type: "Film night"
 date: 2025-10-27
 start: "17:00"
 end: "19:00"
-location: "Robotics Lab, University of Hull"
+location: "Robotics Lab, Applied Science building"
 bring: "Bring your own snacks!"
 excerpt: "One or two sentences for the events list and the page header."
 cover: "/images/terminator.png"        # the poster, square works best
@@ -125,7 +125,18 @@ SolidWorks files (`.SLDPRT`, `.SLDASM`) can't be shown in a browser and need an 
   cancelled: [2026-11-02]
   ```
 
-  A banner ("No Project Meeting on Monday 2 November") appears on every page during the week before, and "Next up" skips that week.
+  A banner ("No Project Meeting on Monday 2 November. Details →") appears on every page during the week before, and "Next up" skips that week.
+
+  If something else happens instead, give the date a note and a link. The note becomes the banner's link text:
+
+  ```yaml
+  cancelled:
+    - date: 2026-11-02
+      note: "Mary Poppins film night instead, starting 16:30"
+      link: /events/mary-poppins-screening/
+  ```
+
+  Plain dates and dates with a note can be mixed in the same list.
 - For any other announcement, add an entry to `src/data/notices.json`:
 
   ```json
