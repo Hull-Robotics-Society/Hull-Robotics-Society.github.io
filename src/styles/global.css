@@ -282,13 +282,21 @@ p { margin: 0; }
 /* ---------- Footer ---------- */
 footer { border-top: 1px solid var(--line); padding-block: 40px 28px; }
 /* Logo, address and email in one row; the small print centred below */
-footer .wrap { display: grid; grid-template-columns: auto 1fr auto; gap: 16px 40px; align-items: center; }
+footer .wrap { display: grid; grid-template-columns: 1fr auto 1fr; gap: 16px 40px; align-items: center; }
+footer .brand { justify-self: start; }
+footer .copy-mail { justify-self: end; }
 footer p { color: var(--muted); font-size: .9rem; }
-footer .address { text-align: center; }
-footer .colophon { grid-column: 1 / -1; margin-top: 4px; text-align: center; font-size: .82rem; }
+/* Equal outer columns keep the name and address on the page's centre line, whatever the logo and email widths */
+footer .address { text-align: center; text-wrap: balance; }
+footer .address span { display: block; }
+footer .address span:first-child { color: var(--fg); font-weight: 600; }
+footer .colophon { grid-column: 1 / -1; margin-top: 20px; text-align: center; font-size: .78rem; text-wrap: balance; }
 footer .colophon a { color: var(--accent); }
-@media (max-width: 760px) {
-    footer .wrap { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+/* Below ~1100px there isn't room for equal outer columns, so everything stacks on the centre line */
+@media (max-width: 1100px) {
+    footer .wrap { grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; }
+    footer .brand, footer .copy-mail { justify-self: center; }
+    footer .copy-mail { flex-wrap: wrap; justify-content: center; }
 }
 .copy-mail { display: inline-flex; gap: 8px; align-items: center; }
 .copy-mail button { font: inherit; font-size: .75rem; background: none; border: 1px solid var(--line); color: var(--muted); border-radius: 4px; padding: 2px 8px; cursor: pointer; }

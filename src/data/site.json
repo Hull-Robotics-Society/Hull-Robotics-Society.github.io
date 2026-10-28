@@ -12,7 +12,7 @@
     "youtube": "https://www.youtube.com/@UoH_RobSoc",
     "location": "Robotics Lab, Applied Science building",
     "address": "University of Hull, Cottingham Road, Hull HU6 7RX",
-    "maps": "https://www.openstreetmap.org/search?query=University%20of%20Hull%20Applied%20Science",
+    "maps": "https://www.openstreetmap.org/?mlat=53.77208&mlon=-0.36929#map=19/53.772080/-0.369289",
     "sourceRepo": "https://github.com/Hull-Robotics-Society/Hull-Robotics-Society.github.io",
     "sourceBranch": "gh-pages"
 }
