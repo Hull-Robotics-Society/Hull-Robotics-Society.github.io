@@ -5,10 +5,6 @@ date: 2026-03-23
 excerpt: "The Dalek came to Varsity, and other societies got to take it for a test drive."
 cover: "/images/varsity/dalek-crepe.jpg"
 eventType: "Showcase"
+gallery: [media/varsity, images/varsity]
 ---
-Perhaps one of our strangest events in recent memory: with Varsity been and gone, we had the great idea to bring our Dalek along for the day. That wasn't the only reason we brought it, though. Other societies got the chance to test-drive and play around with the Dalek, and it gave a shout-out to each society: 
-
-<video controls width="100%" poster="/images/varsity/dalek-crepe.jpg">
-  <source src="/media/varsity/disney-vid.mp4" type="video/mp4">
-  Your browser does not support the video tag. Download the video <a href="/media/varsity/disney-vid.mp4">here</a>.
-</video>
+Perhaps one of our strangest events in recent memory: with Varsity been and gone, we had the great idea to bring our Dalek along for the day. That wasn't the only reason we brought it, though. Other societies got the chance to test-drive and play around with the Dalek, and it gave a shout-out to each society. You can watch the clips below.

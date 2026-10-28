@@ -10,7 +10,7 @@ interface Props {
 const { items } = Astro.props;
 ---
 
-<div class="masonry" data-lightbox>
+<div class="masonry" data-lightbox data-count={Math.min(items.length, 3)}>
     {items.map(m => (
         <figure>
             {m.kind === 'video'

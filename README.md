@@ -361,6 +361,8 @@ python scripts/optimise-media.py public/images/varsity-2027
 
 You can pass a folder or single files. It scales photos to at most 1600 px wide, re-encodes videos to MP4 (at most 1280 px) and creates a preview image for each video with the same name (`clip.mp4` → `clip.jpg`). It changes the files in place and can be run again safely.
 
+**Galleries for journal posts and events.** Add `gallery:` to a journal post or event to show a "Photos and video" grid under its text, e.g. `gallery: [media/freshers]`. Entries can be whole folders or single files (`gallery: [media/varsity/dalek-dance.mp4, images/varsity/dalek-crepe.jpg]`). Prefer this over `<video>` tags in the text: the grid shows each video's preview image and opens photos full size.
+
 **Project galleries fill themselves.** Every photo (`.jpg`, `.jpeg`, `.png`) and video (`.mp4`) in the folders listed under a project's `gallery:` appears under "Photos and video" on its page, sorted by file name; subfolders are included. A `.jpg` with the same name as an `.mp4` is used as that video's preview and isn't shown separately. Photos open full size when clicked.
 
 The homepage photo collage is set in `src/data/home.json`: three columns, each a list of photos with `src`, `alt` (a description for screen readers) and `caption`.

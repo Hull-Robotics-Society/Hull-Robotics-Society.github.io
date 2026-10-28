@@ -2,7 +2,8 @@
 import type { MarkdownHeading } from 'astro';
 import Base from './Base.astro';
 import site from '../data/site.json';
-import { editUrl } from '../lib/site';
+import MediaGrid from '../components/MediaGrid.astro';
+import { editUrl, gallery } from '../lib/site';
 
 interface Props {
     title: string;
@@ -14,11 +15,14 @@ interface Props {
     filePath?: string;
     cover?: string;
     aiAssisted?: boolean;
+    // Folders or files below public/ shown as a photo and video grid under the text
+    gallery?: string[];
     pager?: { prev?: { href: string; title: string }; next?: { href: string; title: string }; label: string };
 }
 
 // Long-form page for build logs, tutorials, journal posts, research and events.
-const { title, excerpt, eyebrow, back, meta = [], headings = [], filePath, cover, pager, aiAssisted = false } = Astro.props;
+const { title, excerpt, eyebrow, back, meta = [], headings = [], filePath, cover, pager, aiAssisted = false, gallery: galleryPaths = [] } = Astro.props;
+const media = gallery(galleryPaths, title);
 const toc = headings.filter(h => h.depth === 2 || h.depth === 3);
 const showToc = toc.filter(h => h.depth === 2).length >= 3;
 const technical = /Build log|Documentation|Tutorial/.test(eyebrow);
@@ -55,6 +59,12 @@ const technical = /Build log|Documentation|Tutorial/.test(eyebrow);
             <article class="prose-md">
                 <slot />
             </article>
+            {media.length > 0 && (
+                <section class="a-gallery" id="media" aria-labelledby="media-h" data-pagefind-ignore>
+                    <h2 id="media-h">Photos and video</h2>
+                    <MediaGrid items={media} />
+                </section>
+            )}
             <p style="margin-top:48px" data-pagefind-ignore><a class="edit-link" href={editUrl(filePath, site.sourceRepo, site.sourceBranch)} target="_blank" rel="noopener">Spotted a mistake? Edit this page on GitHub ↗</a></p>
             {pager && (pager.prev || pager.next) && (
                 <nav class="pager" aria-label={pager.label} data-pagefind-ignore>

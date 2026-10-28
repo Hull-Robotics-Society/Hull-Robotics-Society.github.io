@@ -57,18 +57,29 @@ export interface MediaItem {
 }
 
 /**
- * List photos and videos in folders below public/, so a project's gallery fills itself.
+ * List photos and videos below public/, so a gallery fills itself.
+ * Each entry is a folder (everything inside it) or a single file.
  * A .jpg with the same name as an .mp4 is that video's poster and is not listed on its own.
  */
-export function gallery(folders: string[], title: string): MediaItem[] {
+export function gallery(entries: string[], title: string): MediaItem[] {
     const items: MediaItem[] = [];
-    for (const folder of folders) {
-        const root = path.join(process.cwd(), 'public', folder);
-        if (!fs.existsSync(root)) continue;
+    for (const entry of entries) {
+        const clean = entry.replace(/^\/+|\/+$/g, '');
+        const target = path.join(process.cwd(), 'public', clean);
+        if (!fs.existsSync(target)) continue;
 
-        const files = (fs.readdirSync(root, { recursive: true }) as string[])
+        // A single file is handled like a folder that only contains it (plus its poster, if any)
+        const single = fs.statSync(target).isFile();
+        const folder = single ? path.posix.dirname(clean) : clean;
+        const root = path.join(process.cwd(), 'public', folder);
+        const all = (fs.readdirSync(root, { recursive: !single }) as string[])
             .map(f => f.replace(/\\/g, '/'))
             .sort();
+        const name = path.posix.basename(clean);
+        const stemOf = (f: string) => f.replace(/\.[^.]+$/, '');
+        const files = single
+            ? all.filter(f => f === name || (/\.mp4$/i.test(name) && /\.jpe?g$/i.test(f) && stemOf(f) === stemOf(name)))
+            : all;
         const videos = new Set(files.filter(f => /\.mp4$/i.test(f)).map(f => f.replace(/\.mp4$/i, '')));
 
         for (const f of files) {

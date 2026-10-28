@@ -93,6 +93,8 @@ const tutorials = defineCollection({
 const events = defineCollection({
     loader: glob({ base: './src/content/events', pattern: '*.md' }),
     schema: z.object({
+        // Photo and video folders (or single files) below public/, shown as a grid under the text
+        gallery: z.array(z.string()).default([]),
         // Shows a short note that the page was drafted with AI assistance and reviewed
         aiAssisted: z.boolean().default(false),
         title: z.string(),
@@ -130,6 +132,8 @@ const events = defineCollection({
 const journal = defineCollection({
     loader: glob({ base: './src/content/journal', pattern: '*.md' }),
     schema: z.object({
+        // Photo and video folders (or single files) below public/, shown as a grid under the text
+        gallery: z.array(z.string()).default([]),
         // Shows a short note that the page was drafted with AI assistance and reviewed
         aiAssisted: z.boolean().default(false),
         title: z.string(),

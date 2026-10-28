@@ -134,3 +134,10 @@ footer .colophon a { color: var(--accent); }
 .team-card.vacant .team-initial { color: var(--muted); }
 .team-card.vacant h3 { color: var(--muted); }
 .team-robot a { color: var(--accent); }
+
+/* Gallery under a journal post or event */
+.a-gallery { margin-top: 48px; max-width: 900px; }
+.a-gallery h2 { font-size: var(--step-2); margin-bottom: 16px; }
+/* One or two items fill the width instead of leaving empty columns */
+.masonry[data-count="1"] { columns: 1; max-width: 720px; }
+.masonry[data-count="2"] { columns: 2 220px; }
