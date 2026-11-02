@@ -550,13 +550,13 @@ Looks over all content and media in a few seconds, without building the site. **
 
 ## Publishing
 
-The live site is built and published by GitHub Actions (`.github/workflows/deploy.yml`) whenever something is pushed to the **`gh-pages`** branch. It takes about two minutes; progress is shown under the repository's **Actions** tab.
+The live site is built and published by GitHub Actions (`.github/workflows/deploy.yml`) whenever something is pushed to the **`main`** branch. It takes about two minutes; progress is shown under the repository's **Actions** tab.
 
 - The repository's **Settings → Pages → Source** must be set to **GitHub Actions**.
-- The workflow also rebuilds the site every morning at 05:00 UTC, which keeps the past/upcoming event lists in sync. GitHub only runs scheduled workflows from the repository's **default branch**, so set **Settings → General → Default branch** to `gh-pages` (or this daily rebuild won't happen).
+- The workflow also rebuilds the site every morning at 05:00 UTC, which keeps the past/upcoming event lists in sync. GitHub only runs scheduled workflows from the repository's **default branch**, so `main` must stay the default branch under **Settings → General** (or this daily rebuild won't happen).
 - It can also be started by hand: **Actions → Deploy website → Run workflow**.
 
-A good way to work: make changes on your own branch, open a pull request into `gh-pages`, and let someone else look at it before merging. The pull request doesn't publish anything; merging does.
+A good way to work: make changes on your own branch, open a pull request into `main`, and let someone else look at it before merging. The pull request doesn't publish anything; merging does.
 
 ---
 

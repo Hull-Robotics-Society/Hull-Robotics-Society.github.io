@@ -2,7 +2,7 @@ name: Deploy website
 
 on:
     push:
-        branches: [gh-pages]
+        branches: [main]
     # Rebuild every morning so upcoming events move to "past" on their own
     schedule:
         - cron: '0 5 * * *'
