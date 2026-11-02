@@ -26,7 +26,7 @@ Rebuilt the website from scratch with Astro (7.4; needs Node.js 22.23.4 or newer
 - Navigation reduced to Projects, Tutorials, Events, Journal and About. Research is a tab next to Projects; the blog is now the Journal.
 - All listings generate themselves from the Markdown files. No hand-maintained link lists any more.
 - Galleries replace the separate gallery pages: every photo and video in a page's media folder appears in a grid on that page (projects, events, journal posts, build logs), apart from the ones already used in the text.
-- The Events page sorts upcoming events to the top in the visitor's browser, and a daily rebuild moves past events to the archive.
+- The Events page sorts upcoming events to the top and moves past events to the archive in the visitor's browser. A daily rebuild picks up new STL files for the 3D viewer.
 - 3D viewer (three.js) on project pages: lists the STL files from the project's GitHub repository at build time and shows them with turntable previews. Live for the Dalek and the OSRC.
 
 ### Content structure

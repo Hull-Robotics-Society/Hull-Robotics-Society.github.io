@@ -228,7 +228,7 @@ What happens automatically:
 
 - Until it has ended, the event is listed at the top of the Events page and, if it's the soonest thing on, in the "Next up" bar on the homepage.
 - If a one-off event overlaps a weekly session (Project Meeting or Project Day) in time, the one-off event wins: it's shown in "Next up" and listed first on the Events page. The weekly session still appears on the Events page; cancel it as well if it doesn't happen that day.
-- Afterwards it moves to the list of past events under its year. The live site rebuilds every morning, but the visitor's browser already sorts by today's date, so it moves at the right moment.
+- Afterwards it moves to the list of past events under its year. The visitor's browser sorts by today's date, so it moves at the right moment without a rebuild.
 - Every dated event with a `start` time gets an "Add to calendar" file at `/events/<name>.ics` (shown as a button on film nights while they're upcoming).
 
 ### Weekly sessions
@@ -553,7 +553,7 @@ Looks over all content and media in a few seconds, without building the site. **
 The live site is built and published by GitHub Actions (`.github/workflows/deploy.yml`) whenever something is pushed to the **`main`** branch. It takes about two minutes; progress is shown under the repository's **Actions** tab.
 
 - The repository's **Settings → Pages → Source** must be set to **GitHub Actions**.
-- The workflow also rebuilds the site every morning at 05:00 UTC, which keeps the past/upcoming event lists in sync. GitHub only runs scheduled workflows from the repository's **default branch**, so `main` must stay the default branch under **Settings → General** (or this daily rebuild won't happen).
+- The workflow also rebuilds the site every morning at 05:00 UTC, which brings in new STL files from the projects' repositories for the 3D viewer (upcoming and past events don't depend on it; the browser sorts those). In a public repository, GitHub turns this schedule off after 60 days without repository activity; turn it back on with **Actions → Deploy website → Enable workflow**. GitHub only runs scheduled workflows from the repository's **default branch**, so `main` must stay the default branch under **Settings → General** (or this daily rebuild won't happen).
 - It can also be started by hand: **Actions → Deploy website → Run workflow**.
 
 A good way to work: make changes on your own branch, open a pull request into `main`, and let someone else look at it before merging. The pull request doesn't publish anything; merging does.
@@ -566,7 +566,7 @@ A good way to work: make changes on your own branch, open a pull request into `m
 - **`YAMLException` / "bad indentation"**: something in the front matter isn't valid. Check quotes (text with a colon needs them) and indentation (two spaces, no tabs).
 - **`Unexpected token` in a `.json` file**: a missing comma between entries, a comma after the last entry, or text without double quotes.
 - **A photo doesn't show**: run `npm run check`, which lists broken paths. Check that the path starts with `/`, doesn't include `public`, and matches the file name exactly. Upper and lower case matter on the live site, even if they don't on Windows. A photo in a page's media folder only appears automatically if the folder has exactly the same path as the Markdown file.
-- **A page didn't move from "upcoming" to "past"**: the browser sorts by today's date, so reload. The live site also rebuilds every morning.
+- **A page didn't move from "upcoming" to "past"**: the browser sorts by today's date, so reload.
 - **`npm` is not recognised**: Node.js isn't installed, or the terminal was opened before it was installed. Open a new terminal.
 
 ---

@@ -3,7 +3,8 @@ name: Deploy website
 on:
     push:
         branches: [main]
-    # Rebuild every morning so upcoming events move to "past" on their own
+    # Rebuild every morning so new STL files in project repositories reach the 3D viewer.
+    # Upcoming and past events are sorted in the visitor's browser and don't need this.
     schedule:
         - cron: '0 5 * * *'
     workflow_dispatch:
