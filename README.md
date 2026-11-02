@@ -556,7 +556,9 @@ The live site is built and published by GitHub Actions (`.github/workflows/deplo
 - The workflow also rebuilds the site every morning at 05:00 UTC, which brings in new STL files from the projects' repositories for the 3D viewer (upcoming and past events don't depend on it; the browser sorts those). In a public repository, GitHub turns this schedule off after 60 days without repository activity; turn it back on with **Actions → Deploy website → Enable workflow**. GitHub only runs scheduled workflows from the repository's **default branch**, so `main` must stay the default branch under **Settings → General** (or this daily rebuild won't happen).
 - It can also be started by hand: **Actions → Deploy website → Run workflow**.
 
-A good way to work: make changes on your own branch, open a pull request into `main`, and let someone else look at it before merging. The pull request doesn't publish anything; merging does.
+**Changes go in through pull requests.** `main` is protected, so make your changes on your own branch or fork and open a pull request into `main`. Another committee member with write access approves it, and merging publishes the site; the pull request itself publishes nothing.
+
+Every pull request automatically runs `npm run check` and a full build (`.github/workflows/check.yml`). The result appears at the bottom of the pull request. If it fails, open **Details** to see why. Run from a fork for the first time, it may wait for a maintainer to press **Approve workflows to run**.
 
 ---
 
