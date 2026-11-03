@@ -1,7 +1,7 @@
 ---
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import Article from '../../layouts/Article.astro';
-import { formatDate, coverOf, entryMedia } from '../../lib/site';
+import { projects, formatDate, coverOf, entryMedia } from '../../lib/site';
 
 export async function getStaticPaths() {
     return (await getCollection('tutorials')).map(t => ({ params: { slug: t.id }, props: { t } }));
@@ -12,6 +12,9 @@ const { Content, headings } = await render(t);
 const meta: [string, string][] = [['Level', t.data.level], ['Time', t.data.duration]];
 if (t.data.needs) meta.push(['You need', t.data.needs]);
 meta.push(['Updated', formatDate(t.data.date)]);
+if (t.data.author) meta.push(['Written by', t.data.author]);
+const linked = (await projects()).filter(p => t.data.projects.includes(p.id.toLowerCase()));
+const related = linked.length ? { label: linked.length === 1 ? 'Project' : 'Projects', links: linked.map(p => ({ href: `/projects/${p.id}/`, title: p.data.title })) } : undefined;
 const cover = coverOf(t);
 ---
 
@@ -21,6 +24,7 @@ const cover = coverOf(t);
     eyebrow={`Tutorial${t.data.session ? ` · ${t.data.session} session` : ''}`}
     back={{ href: '/tutorials/', label: 'All tutorials' }}
     meta={meta}
+    related={related}
     headings={headings}
     filePath={t.filePath}
     aiAssisted={t.data.aiAssisted}

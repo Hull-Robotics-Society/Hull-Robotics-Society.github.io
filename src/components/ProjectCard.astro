@@ -1,0 +1,35 @@
+---
+import Credit from './Credit.astro';
+import { projects, logsOf, formatMonth, statusLabel, statusChip, coverOf, type Project } from '../lib/site';
+
+interface Props {
+    p: Project;
+}
+
+// A project's card on the Projects page and on the pages of the robots it uses.
+const { p } = Astro.props;
+const logs = await logsOf(p);
+const robots = (await projects()).filter(r => p.data.robots.includes(r.id.toLowerCase()));
+---
+
+<a class="card" href={`/projects/${p.id}/`} data-tags={p.data.filters.join(' ')}>
+    <div class="media">
+        {coverOf(p)
+            ? <img src={coverOf(p)} alt={p.data.title} loading="lazy" decoding="async" style={p.data.coverFit === 'contain' ? 'object-fit:contain;background:#fff' : undefined} />
+            : <div class="no-photo"><div><span class="emblem"></span><p class="mono muted" style="margin-top:12px">Photo coming soon</p></div></div>}
+        <Credit src={coverOf(p)} linked={false} />
+    </div>
+    <div class="body">
+        <div class="meta">
+            <span class={statusChip[p.data.status]}>{statusLabel[p.data.status]}</span>
+            {robots.map(r => <span class="chip robot">{r.data.title}</span>)}
+            {p.data.tags.map(t => <span class="chip">{t}</span>)}
+        </div>
+        <h3>{p.data.title}</h3>
+        <p class="muted">{p.data.summary}</p>
+        <div class="stats">
+            <span>{logs.length} {logs.length === 1 ? 'log entry' : 'log entries'}</span>
+            {(logs.length > 0 || p.data.started) && <span>{logs.length ? `Last update ${formatMonth(logs[0].data.date)}` : `Started ${formatMonth(p.data.started)}`}</span>}
+        </div>
+    </div>
+</a>

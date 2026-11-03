@@ -4,14 +4,21 @@ import Base from '../../../layouts/Base.astro';
 import CadViewer from '../../../components/CadViewer.astro';
 import MediaGrid from '../../../components/MediaGrid.astro';
 import Credit from '../../../components/Credit.astro';
-import { projects, logsOf, formatDate, formatMonth, statusLabel, statusChip, logUrl, coverOf, entryMedia, cadParts, type Project } from '../../../lib/site';
+import LogTimeline from '../../../components/LogTimeline.astro';
+import ProjectCard from '../../../components/ProjectCard.astro';
+import { projects, projectsUsing, tutorialsOf, logsOf, formatMonth, statusLabel, statusChip, logUrl, coverOf, entryMedia, cadParts, type Project } from '../../../lib/site';
 
 export async function getStaticPaths() {
     const all = await projects();
-    return all.map((p, i) => ({
-        params: { project: p.id },
-        props: { p, prev: all[(i + all.length - 1) % all.length], next: all[(i + 1) % all.length] }
-    }));
+    return all.map(p => {
+        // Previous and next stay within the same tab: robots lead to robots, projects to projects
+        const cycle = all.filter(x => x.data.kind === p.data.kind);
+        const i = cycle.indexOf(p);
+        return {
+            params: { project: p.id },
+            props: { p, prev: cycle[(i + cycle.length - 1) % cycle.length], next: cycle[(i + 1) % cycle.length] }
+        };
+    });
 }
 
 interface Props {
@@ -28,6 +35,10 @@ const cover = coverOf(p);
 const media = entryMedia(p, p.data.title, [cover, p.data.hero, p.data.roster?.video, p.data.roster?.image]);
 const parts = p.data.cad ? await cadParts(p.data.cad) : [];
 const chip = statusChip[p.data.status];
+const hub = p.data.layout === 'hub';
+const uses = hub ? await projectsUsing(p) : [];
+const tutorials = hub ? await tutorialsOf(p) : [];
+const robots = (await projects()).filter(r => p.data.robots.includes(r.id.toLowerCase()));
 ---
 
 <Base title={p.data.title} description={p.data.tagline} image={p.data.hero ?? cover} search="Project">
@@ -35,8 +46,8 @@ const chip = statusChip[p.data.status];
         {p.data.hero && <img src={p.data.hero} alt="" />}
         <Credit src={p.data.hero} />
         <div class="wrap">
-            <a class="crumb" href="/projects/" data-pagefind-ignore>← All projects</a>
-            <p class="eyebrow" style="margin-top:16px" data-pagefind-ignore>Project · {statusLabel[p.data.status]} since {formatMonth(p.data.started)}</p>
+            <a class="crumb" href={p.data.kind === 'project' ? '/projects/all/' : '/projects/'} data-pagefind-ignore>← {hub && p.data.kind === 'robot' ? 'All robots' : 'All projects'}</a>
+            <p class="eyebrow" style="margin-top:16px" data-pagefind-ignore>Project · {statusLabel[p.data.status]}{p.data.started && ` since ${formatMonth(p.data.started)}`}</p>
             <h1>{p.data.title}</h1>
             <p>{p.data.tagline}</p>
         </div>
@@ -46,23 +57,60 @@ const chip = statusChip[p.data.status];
             <div class="prose">
                 <h2>Overview</h2>
                 <Content />
-                <h2>Build log</h2>
+                {!hub && <h2>Build log</h2>}
             </div>
-            {logs.length
-                ? (
-                    <ol class="timeline">
-                        {logs.map(l => (
+            {!hub && (logs.length
+                ? <LogTimeline logs={logs} projectId={p.id} />
+                : <p class="muted">No entries yet.</p>)}
+
+            {uses.length > 0 && (
+                <>
+                    <div class="prose" id="projects"><h2 style="margin-top:56px">Projects with {p.data.title}</h2></div>
+                    <div class="proj-grid in-page">
+                        {uses.map(x => <ProjectCard p={x} />)}
+                    </div>
+                </>
+            )}
+
+            {tutorials.length > 0 && (
+                <>
+                    <div class="prose" id="tutorials"><h2 style="margin-top:56px">Tutorials</h2></div>
+                    <ul class="timeline plain">
+                        {tutorials.map(t => (
                             <li class="reveal">
-                                <a href={logUrl(p.id, l.id)}>
-                                    <time datetime={l.data.date!.toISOString().slice(0, 10)}>{formatDate(l.data.date)}</time>
-                                    <strong>{l.data.title}</strong>
-                                    <span>{l.data.excerpt}</span>
+                                <a href={`/tutorials/${t.id}/`}>
+                                    <small>{t.data.level} · {t.data.duration}</small>
+                                    <strong>{t.data.title}</strong>
+                                    <span>{t.data.excerpt}</span>
                                 </a>
                             </li>
                         ))}
-                    </ol>
-                )
-                : <p class="muted">No entries yet.</p>}
+                    </ul>
+                </>
+            )}
+
+            {hub && logs.length > 0 && (
+                <>
+                    <div class="prose" id="build-log"><h2 style="margin-top:56px">Build log</h2></div>
+                    <LogTimeline logs={logs} projectId={p.id} />
+                </>
+            )}
+
+            {hub && docs.length > 0 && (
+                <>
+                    <div class="prose" id="documentation"><h2 style="margin-top:56px">Documentation</h2></div>
+                    <ul class="timeline plain">
+                        {docs.map(d => (
+                            <li class="reveal">
+                                <a href={logUrl(p.id, d.id)}>
+                                    <strong>{d.data.title}</strong>
+                                    <span>{d.data.excerpt}</span>
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </>
+            )}
 
             {parts.length > 0 && (
                 <>
@@ -78,23 +126,25 @@ const chip = statusChip[p.data.status];
                 </>
             )}
 
-            <nav class="pager" aria-label="More projects" data-pagefind-ignore>
-                <a href={`/projects/${prev.id}/`}><span>← Previous project</span><strong>{prev.data.title}</strong></a>
-                <a href={`/projects/${next.id}/`}><span>Next project →</span><strong>{next.data.title}</strong></a>
+            <nav class="pager" aria-label={`More ${p.data.kind}s`} data-pagefind-ignore>
+                <a href={`/projects/${prev.id}/`}><span>← Previous {p.data.kind}</span><strong>{prev.data.title}</strong></a>
+                <a href={`/projects/${next.id}/`}><span>Next {p.data.kind} →</span><strong>{next.data.title}</strong></a>
             </nav>
         </div>
         <aside class="facts" aria-label="Project facts" data-pagefind-ignore>
             <p class="eyebrow">Fact sheet</p>
             <dl>
                 <dt>Status</dt><dd><span class={chip}>{statusLabel[p.data.status]}</span></dd>
-                <dt>Started</dt><dd>{formatMonth(p.data.started)}</dd>
-                <dt>Updates</dt><dd>{logs.length} {logs.length === 1 ? 'log entry' : 'log entries'}</dd>
+                {p.data.started && <><dt>Started</dt><dd>{formatMonth(p.data.started)}</dd></>}
+                {robots.length > 0 && <><dt>{robots.length === 1 ? 'Robot' : 'Robots'}</dt><dd>{robots.map((r, i) => <>{i > 0 && ', '}<a href={`/projects/${r.id}/`}>{r.data.title}</a></>)}</dd></>}
+                {(!hub || logs.length > 0) && <><dt>Updates</dt><dd>{logs.length} {logs.length === 1 ? 'log entry' : 'log entries'}</dd></>}
+                {p.data.author && <><dt>Written by</dt><dd>{p.data.author}</dd></>}
                 {p.data.stack && <><dt>Stack</dt><dd>{p.data.stack}</dd></>}
                 {p.data.seenAt && <><dt>Events</dt><dd>{p.data.seenAt}</dd></>}
             </dl>
             {p.data.repo && <a class="btn" href={p.data.repo} target="_blank" rel="noopener">Code on GitHub ↗</a>}
             {parts.length > 0 && <a class="btn ghost" href="#cad">3D models</a>}
-            {docs.map(d => <a class="btn ghost" href={logUrl(p.id, d.id)}>{d.data.title}</a>)}
+            {!hub && docs.map(d => <a class="btn ghost" href={logUrl(p.id, d.id)}>{d.data.title}</a>)}
         </aside>
     </div>
 </Base>

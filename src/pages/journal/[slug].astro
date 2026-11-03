@@ -24,7 +24,7 @@ const link = (x?: CollectionEntry<'journal'>) => x && { href: `/journal/${x.id}/
     excerpt={p.data.excerpt}
     eyebrow={`Journal · ${p.data.eventType ?? 'Blog'}`}
     back={{ href: '/journal/', label: 'Journal' }}
-    meta={[['Published', formatDate(p.data.date)], ['Reading time', readingTime(p.body)]]}
+    meta={[['Published', formatDate(p.data.date)], ['Reading time', readingTime(p.body)], ...(p.data.author ? [['Written by', p.data.author] as [string, string]] : [])]}
     headings={headings}
     filePath={p.filePath}
     aiAssisted={p.data.aiAssisted}

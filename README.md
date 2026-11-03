@@ -134,13 +134,17 @@ Create `src/content/projects/<id>.md`. The `<id>` becomes the address (`/project
 | Field | Required | What it does |
 | --- | --- | --- |
 | `title` | yes | The project's name. |
-| `order` | yes | Position on the Projects page and in "Previous / Next project" (1 = first). |
+| `kind` | no | `robot` (default) or `project`: which tab it appears in, Robots (`/projects/`) or Projects (`/projects/all/`). |
+| `robots` | no | For a project that uses robots: their ids, e.g. `[baxter, pepper]`. They appear as tags on its card and as links in its fact sheet. |
+| `layout` | no | `classic` (default) or `hub`. See [Robots and their projects](#robots-and-their-projects). |
+| `author` | no | Who wrote the page, shown as "Written by" in the fact sheet. |
+| `order` | yes | Position in its tab and in the previous and next links at the bottom of the page, which stay within the tab (1 = first). |
 | `status` | yes | `active` (green "Active" chip), `paused` (grey "Paused" chip) or `new` (amber "Just started" chip). |
-| `started` | yes | Date the project started, shown as "since Aug 2024". Also sets the order of the homepage robot cards. |
+| `started` | no | Date the project started, shown as "since Aug 2024". Also sets the order of the homepage robot cards. |
 | `tagline` | yes | One or two sentences in the big header of the project page. |
 | `summary` | yes | One sentence on the project's card. |
 | `tags` | no | Small chips on the project's card, e.g. `[ROS, Python]`. Free text. |
-| `filters` | no | Which filter buttons on the Projects page show this project. Choose from `ros`, `electronics`, `humanoid`, `eeg`, `3d`. Other values are ignored; to add a new filter button, add it to `labels` in `src/pages/projects/index.astro`. |
+| `filters` | no | Which filter buttons on the Projects page show this project. Choose from `ros`, `electronics`, `humanoid`, `eeg`, `3d`. Other values are ignored; to add a new filter button, add it to `labels` in `src/components/ProjectGrid.astro`. |
 | `stack` | no | "Stack" line in the fact sheet, e.g. `Raspberry Pi, ROS 2`. |
 | `seenAt` | no | "Events" line in the fact sheet, e.g. `Freshers Fair, Varsity 2026`. |
 | `cover` | no | Picture on the project's card. Without it, `cover.jpg` (or `.png`, `.webp`) in `public/media/projects/<id>/` is used; without either, a "Photo coming soon" placeholder is shown. |
@@ -166,6 +170,21 @@ roster:
 
 Without `image` and `video`, the card shows "Photo coming soon".
 
+### Robots and their projects
+
+The Projects area has three tabs: **Robots**, **Projects** and **Research**. A project that uses robots gets its own file in `src/content/projects/`, with its own overview, code link, photos and build log:
+
+```yaml
+kind: project
+robots: [baxter, pepper]
+layout: hub
+repo: https://github.com/...    # the code of this project only; a robot's repo holds the code that runs the robot
+```
+
+A page with `layout: hub` shows these sections, and leaves out any that are empty: Overview, Projects with this robot, Tutorials, Build log, Documentation, 3D models, Photos and video. To move another robot to this page, add `layout: hub` to its file. A project is only listed on the pages of robots that use `hub`.
+
+To list a tutorial on a project's page, add `projects: [baxter]` to the tutorial. It also stays on the Tutorials page, and links back to the project. This needs the project to use `layout: hub`.
+
 ### A build-log entry
 
 Create `src/content/logs/<project>/<name>.md`, where `<project>` is the project's id in lower case. It appears in the project's "Build log" timeline, newest first, at `/projects/<project id>/<name>/`.
@@ -185,9 +204,10 @@ Your write-up…
 | --- | --- | --- |
 | `title` | yes | Heading of the entry. |
 | `project` | yes | The project's id in **lower case** (the OSRC's file is `osrc.md`, so `project: osrc`). |
-| `date` | no | Date of the entry. Leave it out for a reference page that isn't part of the timeline (like "Dalek files"); it then gets a button in the project's fact sheet instead. |
+| `date` | no | Date of the entry. Leave it out for a reference page that isn't part of the timeline (like "Dalek files"); it then gets a button in the project's fact sheet instead (on a `hub` page, a line under Documentation). |
 | `excerpt` | no | One sentence under the title in the timeline and the page header. |
 | `tags` | no | Free-text tags, e.g. `[Arduino, Relays]` (stored for future use, not shown yet). |
+| `author` | no | Who wrote the page, shown as "Written by". Also works on tutorials, research articles, journal posts and events (not film night pages). |
 | `aiAssisted` | no | See [AI-assisted pages](#ai-assisted-pages). |
 
 ---

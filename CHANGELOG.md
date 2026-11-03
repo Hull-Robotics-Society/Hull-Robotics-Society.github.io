@@ -21,6 +21,11 @@ Rebuilt the website from scratch with Astro (7.4; needs Node.js 22.23.4 or newer
 - The Events page has a film night poster shelf, and every dated event offers an "Add to calendar" (.ics) file while it is upcoming.
 
 ### Content and navigation
+- The Projects area has Robots (`/projects/`), Projects (`/projects/all/`) and Research tabs. A project can use several robots (`robots:`), has its own code link, shown as tags on its card, and is listed on those robots' pages.
+- New `layout: hub` for project pages: Overview, Projects, Tutorials, Build log, Documentation and media, with empty sections left out. Only Baxter and the Baxter × Pepper dance use it so far.
+- Tutorials can belong to projects (`projects:`), which list them and are linked back.
+- Optional `author:` on projects, build logs, tutorials, research articles, journal posts and events, shown as "Written by".
+- Baxter: the dance moved to its own project at `/projects/baxter-pepper-dance/`. The old introduction, setup, code, arm and music video articles are retired ahead of a rewrite; their addresses redirect to Baxter's page and the originals remain on `archive/gh-pages`.
 - Site search (Pagefind) in the header, also on Ctrl+K and `/`: searches every build log, tutorial, event, film night, journal post, research article and the About page, entirely in the browser.
 - Notice banners: cancelled weekly sessions (a `cancelled` date list on the event) and announcements from `src/data/notices.json` appear at the top of every page while they are current, and "Next up" skips cancelled weeks.
 - Navigation reduced to Projects, Tutorials, Events, Journal and About. Research is a tab next to Projects; the blog is now the Journal.

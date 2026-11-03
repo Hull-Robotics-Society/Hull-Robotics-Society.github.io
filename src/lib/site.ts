@@ -28,6 +28,18 @@ export async function projects(): Promise<Project[]> {
     return (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
 }
 
+/** Projects that use a robot, in project order. */
+export async function projectsUsing(robot: Project): Promise<Project[]> {
+    return (await projects()).filter(p => p.data.robots.includes(robot.id.toLowerCase()));
+}
+
+/** Tutorials that belong to a project, newest first. */
+export async function tutorialsOf(project: Project): Promise<CollectionEntry<'tutorials'>[]> {
+    return (await getCollection('tutorials'))
+        .filter(t => t.data.projects.includes(project.id.toLowerCase()))
+        .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+}
+
 /** Dated build-log entries of a project, newest first. Undated documentation is left out. */
 export async function logsOf(project: Project): Promise<Log[]> {
     const key = project.id.toLowerCase();

@@ -1,0 +1,36 @@
+---
+import ProjectCard from './ProjectCard.astro';
+import type { Project } from '../lib/site';
+
+interface Props {
+    items: Project[];
+}
+
+// The filter chips and cards of the Robots and Projects tabs.
+const { items } = Astro.props;
+
+// Filter chips: only the ones some card in this tab actually uses
+const labels: Record<string, string> = { ros: 'ROS', electronics: 'Electronics', humanoid: 'Humanoid', eeg: 'EEG / Neuro', '3d': '3D printing' };
+const used = Object.keys(labels).filter(k => items.some(p => p.data.filters.includes(k)));
+---
+
+<div class="wrap">
+    <div class="filters" id="filters" role="group" aria-label="Filter projects">
+        <button type="button" aria-pressed="true" data-f="all">All</button>
+        {used.map(k => <button type="button" aria-pressed="false" data-f={k}>{labels[k]}</button>)}
+    </div>
+    <div class="proj-grid" id="proj-grid">
+        {items.map(p => <ProjectCard p={p} />)}
+    </div>
+</div>
+
+<script>
+    const buttons = [...document.querySelectorAll<HTMLButtonElement>('#filters button')];
+    buttons.forEach(b => b.addEventListener('click', () => {
+        buttons.forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+        const f = b.dataset.f!;
+        document.querySelectorAll<HTMLElement>('#proj-grid .card').forEach(c => {
+            c.hidden = f !== 'all' && !c.dataset.tags!.split(' ').includes(f);
+        });
+    }));
+</script>

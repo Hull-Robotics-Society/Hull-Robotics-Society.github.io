@@ -2,6 +2,7 @@
 title: OSRC
 slug: OSRC
 order: 2
+kind: project
 status: active
 started: 2025-01-10
 tagline: The Open Source Robotics Controller, a fully 3D-printed handheld remote for any robot that speaks ROS, ROS 2 or MQTT.

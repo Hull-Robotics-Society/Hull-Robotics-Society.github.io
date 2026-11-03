@@ -27,6 +27,7 @@ if (e.data.recurring) meta.push(['When', `${weekdays[e.data.weekday ?? 1]} in te
 if (e.data.date) meta.push(['Date', formatDate(e.data.date)]);
 if (e.data.start) meta.push(['Time', e.data.end ? `${e.data.start} to ${e.data.end}` : e.data.start]);
 if (e.data.location) meta.push(['Where', e.data.location]);
+if (e.data.author) meta.push(['Written by', e.data.author]);
 ---
 
 {e.data.film

@@ -1,0 +1,23 @@
+---
+import { formatDate, logUrl, type Log } from '../lib/site';
+
+interface Props {
+    logs: Log[];
+    projectId: string;
+}
+
+// Dated build-log entries of a project page.
+const { logs, projectId } = Astro.props;
+---
+
+<ol class="timeline">
+    {logs.map(l => (
+        <li class="reveal">
+            <a href={logUrl(projectId, l.id)}>
+                <time datetime={l.data.date!.toISOString().slice(0, 10)}>{formatDate(l.data.date)}</time>
+                <strong>{l.data.title}</strong>
+                <span>{l.data.excerpt}</span>
+            </a>
+        </li>
+    ))}
+</ol>
