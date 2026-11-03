@@ -48,8 +48,8 @@ export async function logsOf(project: Project): Promise<Log[]> {
         .sort((a, b) => b.data.date!.getTime() - a.data.date!.getTime() || b.id.localeCompare(a.id));
 }
 
-export const statusLabel = { active: 'Active', paused: 'Paused', new: 'Just started' } as const;
-export const statusChip = { active: 'chip status', paused: 'chip status paused', new: 'chip soon' } as const;
+export const statusLabel = { active: 'Active', paused: 'Paused', new: 'Just started', done: 'Completed' } as const;
+export const statusChip = { active: 'chip status', paused: 'chip status paused', new: 'chip soon', done: 'chip status done' } as const;
 
 /** URL of a build-log entry: /projects/<project id>/<file or slug name>/ */
 export function logUrl(projectId: string, logId: string): string {

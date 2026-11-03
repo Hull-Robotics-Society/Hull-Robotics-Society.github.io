@@ -23,7 +23,7 @@ const projects = defineCollection({
         // `hub` shows projects, tutorials and documentation on the page and hides empty sections
         layout: z.enum(['classic', 'hub']).default('classic'),
         author: z.string().optional(),
-        status: z.enum(['active', 'paused', 'new']),
+        status: z.enum(['active', 'paused', 'new', 'done']),
         started: date.optional(),
         tagline: z.string(),
         summary: z.string(),

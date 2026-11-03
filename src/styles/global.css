@@ -254,7 +254,15 @@ p { margin: 0; }
 .chip.status { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
 .chip.status::before { content: "● "; }
 .chip.status.paused { color: var(--muted); border-color: var(--line); }
-.chip.robot { color: var(--fg); }
+.chip.status.done { color: var(--muted); border-color: var(--line); }
+.chip.status.done::before { content: "✓ "; }
+.chip.robot { color: var(--fg); background: color-mix(in srgb, var(--accent) 14%, transparent); border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
+.chip.bare { justify-self: start; padding: 0; border: 0; }
+.card .meta.robots { margin-top: 0; }
+.card .body.spread { display: flex; flex-direction: column; }
+.card .body.spread .bare { align-self: flex-start; }
+.card .body.spread .foot { margin-top: auto; display: grid; gap: 8px; }
+.card .body.spread .stats { justify-content: space-between; }
 .chip.soon { color: var(--signal); border-color: color-mix(in srgb, var(--signal) 45%, transparent); }
 
 /* reveal on scroll: visible at rest, animated only where scroll timelines exist */

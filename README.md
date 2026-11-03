@@ -135,11 +135,11 @@ Create `src/content/projects/<id>.md`. The `<id>` becomes the address (`/project
 | --- | --- | --- |
 | `title` | yes | The project's name. |
 | `kind` | no | `robot` (default) or `project`: which tab it appears in, Robots (`/projects/`) or Projects (`/projects/all/`). |
-| `robots` | no | For a project that uses robots: their ids, e.g. `[baxter, pepper]`. They appear as tags on its card and as links in its fact sheet. |
+| `robots` | no | For a project that uses robots: their ids, e.g. `[baxter, pepper]`. They appear as highlighted tags under the title on its card, and as links in its fact sheet. |
 | `layout` | no | `classic` (default) or `hub`. See [Robots and their projects](#robots-and-their-projects). |
 | `author` | no | Who wrote the page, shown as "Written by" in the fact sheet. |
 | `order` | yes | Position in its tab and in the previous and next links at the bottom of the page, which stay within the tab (1 = first). |
-| `status` | yes | `active` (green "Active" chip), `paused` (grey "Paused" chip) or `new` (amber "Just started" chip). |
+| `status` | yes | `active` (green "Active" chip), `paused` (grey "Paused" chip), `new` (amber "Just started" chip) or `done` (grey "✓ Completed" chip, for a finished project). |
 | `started` | no | Date the project started, shown as "since Aug 2024". Also sets the order of the homepage robot cards. |
 | `tagline` | yes | One or two sentences in the big header of the project page. |
 | `summary` | yes | One sentence on the project's card. |

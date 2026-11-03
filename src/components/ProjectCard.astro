@@ -19,17 +19,17 @@ const robots = (await projects()).filter(r => p.data.robots.includes(r.id.toLowe
             : <div class="no-photo"><div><span class="emblem"></span><p class="mono muted" style="margin-top:12px">Photo coming soon</p></div></div>}
         <Credit src={coverOf(p)} linked={false} />
     </div>
-    <div class="body">
-        <div class="meta">
-            <span class={statusChip[p.data.status]}>{statusLabel[p.data.status]}</span>
-            {robots.map(r => <span class="chip robot">{r.data.title}</span>)}
-            {p.data.tags.map(t => <span class="chip">{t}</span>)}
-        </div>
+    <div class="body spread">
+        <span class={`${statusChip[p.data.status]} bare`}>{statusLabel[p.data.status]}</span>
         <h3>{p.data.title}</h3>
+        {robots.length > 0 && <div class="meta robots">{robots.map(r => <span class="chip robot">{r.data.title}</span>)}</div>}
         <p class="muted">{p.data.summary}</p>
-        <div class="stats">
-            <span>{logs.length} {logs.length === 1 ? 'log entry' : 'log entries'}</span>
-            {(logs.length > 0 || p.data.started) && <span>{logs.length ? `Last update ${formatMonth(logs[0].data.date)}` : `Started ${formatMonth(p.data.started)}`}</span>}
+        <div class="foot">
+            {p.data.tags.length > 0 && <div class="meta">{p.data.tags.map(t => <span class="chip">{t}</span>)}</div>}
+            <div class="stats">
+                <span>{logs.length} {logs.length === 1 ? 'log entry' : 'log entries'}</span>
+                {(logs.length > 0 || p.data.started) && <span>{logs.length ? `Last update ${formatMonth(logs[0].data.date)}` : `Started ${formatMonth(p.data.started)}`}</span>}
+            </div>
         </div>
     </div>
 </a>

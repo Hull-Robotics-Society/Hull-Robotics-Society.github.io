@@ -47,7 +47,7 @@ const robots = (await projects()).filter(r => p.data.robots.includes(r.id.toLowe
         <Credit src={p.data.hero} />
         <div class="wrap">
             <a class="crumb" href={p.data.kind === 'project' ? '/projects/all/' : '/projects/'} data-pagefind-ignore>← {hub && p.data.kind === 'robot' ? 'All robots' : 'All projects'}</a>
-            <p class="eyebrow" style="margin-top:16px" data-pagefind-ignore>Project · {statusLabel[p.data.status]}{p.data.started && ` since ${formatMonth(p.data.started)}`}</p>
+            <p class="eyebrow" style="margin-top:16px" data-pagefind-ignore>Project · {statusLabel[p.data.status]}{p.data.started && p.data.status !== 'done' && ` since ${formatMonth(p.data.started)}`}</p>
             <h1>{p.data.title}</h1>
             <p>{p.data.tagline}</p>
         </div>

@@ -4,7 +4,7 @@ order: 6
 kind: project
 robots: [baxter, pepper]
 layout: hub
-status: active
+status: done
 tagline: A 30-second dance routine for Baxter and Pepper.
 summary: A 30-second dance routine for Baxter and Pepper.
 tags: [ROS, Python, Choregraphe]
