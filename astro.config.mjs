@@ -27,8 +27,8 @@ const redirects = {
     // Baxter's old build log: the dance became its own project, the other articles were retired
     '/projects/baxter/baxter-pepper-dance': '/projects/baxter-pepper-dance/baxter-side/',
     '/projects/baxter/baxter-introduction': '/projects/baxter/',
-    '/projects/baxter/baxter-setup': '/projects/baxter/',
-    '/projects/baxter/baxter-code': '/projects/baxter/',
+    '/projects/baxter/baxter-setup': '/projects/baxter/before-the-bridge/',
+    '/projects/baxter/baxter-code': '/projects/baxter/before-the-bridge/',
     '/projects/baxter/baxter-arm-segment': '/projects/baxter/',
     '/projects/baxter/baxter-music-video': '/projects/baxter/'
 };
