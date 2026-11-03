@@ -115,6 +115,7 @@ Normal Markdown works: `## Headings`, **bold**, lists, links, `inline code`, cod
   ```
 
   A row fills the width of the text and lines its pictures up at one height (at most 440 px), so a single portrait video in a row is shown at a sensible size too. For that, every picture and video in a row needs `width` and `height`, its real size in pixels; `npm run check` tells you the right numbers to paste. The caption is optional. Leave an **empty line after each block**, or the next line of Markdown is shown as raw text.
+- A diagram is an SVG drawing written into the page inside `<figure class="diagram">`, so it changes colour with the light and dark themes. Draw it with the site's classes instead of colours: `dg-box` (a box), `dg-key` (a highlighted box), `dg-zone` (a shaded area), `dg-wire` and `dg-link` (lines), `dg-tip` (arrow heads), and `dg-t`, `dg-s`, `dg-m` for titles, small text and code (`dg-c` centres text). Make it about 400 units wide (`viewBox="0 0 400 …"`) so the text stays readable on phones.
 - Start sections with `##` (and `###` below that). The page title is the only `#` heading.
 - YouTube: paste the embed code from YouTube's *Share → Embed*. It is shown full width automatically.
 - Link to other pages of the site with paths like `[the Dalek](/projects/dalek/)`.
@@ -147,7 +148,7 @@ Create `src/content/projects/<id>.md`. The `<id>` becomes the address (`/project
 | `filters` | no | Which filter buttons on the Projects page show this project. Choose from `ros`, `electronics`, `humanoid`, `eeg`, `3d`. Other values are ignored; to add a new filter button, add it to `labels` in `src/components/ProjectGrid.astro`. |
 | `stack` | no | "Stack" line in the fact sheet, e.g. `Raspberry Pi, ROS 2`. |
 | `seenAt` | no | "Events" line in the fact sheet, e.g. `Freshers Fair, Varsity 2026`. |
-| `cover` | no | Picture on the project's card. Without it, `cover.jpg` (or `.png`, `.webp`) in `public/media/projects/<id>/` is used; without either, a "Photo coming soon" placeholder is shown. |
+| `cover` | no | Picture on the project's card. Without it, `cover.jpg` (or `.png`, `.webp`) in `public/media/projects/<id>/` is used; without either, the card draws circuit traces with the project's initials. |
 | `coverFit` | no | `cover` (default: fills the card and crops the edges) or `contain` (shows the whole picture on white, good for product shots). |
 | `hero` | no | Wide picture behind the header of the project page. Without one, a circuit-grid background is shown. |
 | `repo` | no | Link for the "Code on GitHub" button. |
@@ -181,7 +182,9 @@ layout: hub
 repo: https://github.com/...    # the code of this project only; a robot's repo holds the code that runs the robot
 ```
 
-A page with `layout: hub` shows these sections, and leaves out any that are empty: Overview, Projects with this robot, Tutorials, Build log, Documentation, 3D models, Photos and video. To move another robot to this page, add `layout: hub` to its file. A project is only listed on the pages of robots that use `hub`.
+A page with `layout: hub` shows these sections, and leaves out any that are empty: Overview, Build log, Tutorials, Documentation, 3D models, Photos and video, Projects with this robot. To move another robot to this page, add `layout: hub` to its file. A project is only listed on the pages of robots that use `hub`.
+
+Every project page with three or more sections lists them under "On this page" in its fact sheet, with how many entries each has. The fact sheet's only button is "Code on GitHub" (from `repo`): everything on the page itself is reached through that list.
 
 To list a tutorial on a project's page, add `projects: [baxter]` to the tutorial. It also stays on the Tutorials page, and links back to the project. This needs the project to use `layout: hub`.
 
@@ -204,7 +207,8 @@ Your write-up…
 | --- | --- | --- |
 | `title` | yes | Heading of the entry. |
 | `project` | yes | The project's id in **lower case** (the OSRC's file is `osrc.md`, so `project: osrc`). |
-| `date` | no | Date of the entry. Leave it out for a reference page that isn't part of the timeline (like "Dalek files"); it then gets a button in the project's fact sheet instead (on a `hub` page, a line under Documentation). |
+| `date` | no | Date of the entry. Leave it out for a reference page that isn't part of the timeline (like "Dalek files"); it is then listed under "Documentation" on the project's page instead. |
+| `alsoIn` | no | Other projects whose build log should list this entry too, e.g. `[baxter]`. The page itself stays under `project`; the other timeline links to it and says where it is from. |
 | `excerpt` | no | One sentence under the title in the timeline and the page header. |
 | `tags` | no | Free-text tags, e.g. `[Arduino, Relays]` (stored for future use, not shown yet). |
 | `author` | no | Who wrote the page, shown as "Written by". Also works on tutorials, research articles, journal posts and events (not film night pages). |
@@ -366,11 +370,14 @@ Create `src/content/tutorials/<name>.md`. Use `##` headings for the steps; with 
 | `date` | yes | Last updated, shown as "Updated". Newest tutorials are listed first. |
 | `excerpt` | yes | One or two sentences on the card and in the header. |
 | `level` | yes | `Beginner`, `Intermediate` or `Advanced`. |
-| `duration` | yes | Free text, e.g. `"About 60 minutes"`. |
-| `needs` | no | What people need, shown as "You need". |
+| `duration` | yes | Free text, kept short so it fits on the card, e.g. `"About 60 minutes"` or `"About 2 hours"`. |
+| `needs` | no | What people need, shown as a "Before you start" checklist. One line, or a list with one thing per line (`- A laptop`). |
+| `series` | no | Tutorials that build on each other share a series name, e.g. `"Getting started with Baxter"`. They are listed together on the Tutorials page, and each says "part 1 of 2" and links to the parts before and after it. |
+| `part` | with `series` | The part's number in its series: `1`, `2`, … |
+| `projects` | no | Projects this tutorial belongs to, e.g. `[baxter]`. It is listed on their pages, and the first one decides which filter chip it falls under on the Tutorials page. Tutorials without a project are filed under "Workshops". |
 | `session` | no | The workshop it comes from, e.g. `"Give It A Go"` → "Tutorial · Give It A Go session". |
-| `cover` | no | Picture on the card. Without it, `cover.png` (or `.jpg`) in `public/media/tutorials/<name>/` is used. |
-| `tags` | no | The first tag is the card's category label; the first two are shown as chips. |
+| `cover` | no | Picture on the card. Without it, `cover.png` (or `.jpg`) in `public/media/tutorials/<name>/` is used, and without that the card draws circuit traces with the part number (in a series) or the level as bars. |
+| `tags` | no | Up to three are shown as chips on the card. A workshop tutorial's first tag is also its card label. |
 
 ### A journal post
 

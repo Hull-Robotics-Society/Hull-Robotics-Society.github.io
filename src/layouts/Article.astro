@@ -36,6 +36,7 @@ const technical = /Build log|Documentation|Tutorial/.test(eyebrow);
             <p class="eyebrow" style="margin-top:16px" data-pagefind-ignore>{eyebrow}</p>
             <h1>{title}</h1>
             {excerpt && <p class="lede">{excerpt}</p>}
+            <slot name="head" />
             {(meta.length > 0 || related) && (
                 <dl class="a-meta" data-pagefind-ignore>
                     {meta.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}

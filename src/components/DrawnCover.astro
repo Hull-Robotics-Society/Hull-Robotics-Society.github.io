@@ -1,0 +1,57 @@
+---
+import { levelSteps, type Tutorial } from '../lib/site';
+
+interface Props {
+    // Seeds the pattern, so each page gets its own and keeps it between builds
+    seed: string;
+    // Shown large on the right: a tutorial's part number ("01") or a project's initials ("BR").
+    // Without it, the level is shown as bars.
+    mark?: string;
+    level?: Tutorial['data']['level'];
+}
+
+// Stand-in cover for a tutorial or project without a picture: circuit traces in the theme's colours
+// in the left half, and a mark or the level in the right half, with clear space between them.
+const { seed, mark, level = 'Beginner' } = Astro.props;
+
+let h = 2166136261;
+for (const c of seed) h = Math.imul(h ^ c.charCodeAt(0), 16777619);
+const random = () => {
+    h = Math.imul(h ^ (h >>> 15), 2246822507);
+    h = Math.imul(h ^ (h >>> 13), 3266489909);
+    return ((h ^= h >>> 16) >>> 0) / 4294967296;
+};
+
+// Traces run in from the left edge, bend twice by 45 degrees and end in a pad before x = 150.
+// All traces bend the same way by the same amount, like a bus on a board, and by less than
+// their spacing, so none cross.
+const rises = [0, 1].map(() => (random() < 0.5 ? -1 : 1) * (8 + random() * 6));
+const traces = Array.from({ length: 6 }, (_, i) => {
+    let x = 0;
+    let y = 40 + i * 24 + random() * 4;
+    const points = [[x, y]];
+    for (const rise of rises) {
+        x += 30 + random() * 15;
+        points.push([x, y]);
+        x += Math.abs(rise);
+        y += rise;
+        points.push([x, y]);
+    }
+    x = Math.min(150, x + 10 + random() * 40);
+    points.push([x, y]);
+    return { d: 'M' + points.map(p => p.map(n => n.toFixed(1)).join(' ')).join('L'), end: [x, y], lit: i === 2 };
+});
+const steps = levelSteps[level];
+---
+
+<svg class="drawn-cover" viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    {traces.map(t => (
+        <g class:list={{ lit: t.lit }}>
+            <path d={t.d} />
+            <circle cx={t.end[0]} cy={t.end[1]} r="4.5" />
+        </g>
+    ))}
+    {mark
+        ? <text x="300" y="150" text-anchor="end">{mark}</text>
+        : [0, 1, 2].map(i => <rect class:list={{ on: i < steps }} x={206 + i * 30} y={150 - (i + 1) * 30} width="20" height={(i + 1) * 30} rx="3" />)}
+</svg>

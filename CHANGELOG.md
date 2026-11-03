@@ -22,8 +22,14 @@ Rebuilt the website from scratch with Astro (7.4; needs Node.js 22.23.4 or newer
 
 ### Content and navigation
 - The Projects area has Robots (`/projects/`), Projects (`/projects/all/`) and Research tabs. A project can use several robots (`robots:`), has its own code link, shown as tags on its card, and is listed on those robots' pages.
-- New `layout: hub` for project pages: Overview, Projects, Tutorials, Build log, Documentation and media, with empty sections left out. Only Baxter and the Baxter × Pepper dance use it so far.
+- New `layout: hub` for project pages: Overview, Build log, Tutorials, Documentation, media, and the projects using the robot at the end, with empty sections left out. Only Baxter and the Baxter × Pepper dance use it so far.
 - Tutorials can belong to projects (`projects:`), which list them and are linked back.
+- Tutorials can form a series (`series:` and `part:`): the parts are listed together on the Tutorials page, and each says which part it is and links to the parts before and after it.
+- The Tutorials page filters by project (Workshops for tutorials without one) and by level, in the browser. Cards show the level as three dots and the time with a clock, apart from the tags; cards without a picture draw circuit traces in the theme's colours, with the part number of a series or the level as bars beside them. Project cards without a picture draw the same, with the project's initials. The tutorial list on a project page shows level and time the same way as the cards, and lists each series first, in part order.
+- A tutorial's header shows its level and time as badges, the author and date as one line, and what you need as a "Before you start" checklist (`needs:` can now be a list).
+- Project pages list their sections ("On this page", with how many entries each has) in the fact sheet: a list beside the text on wide screens, a row of chips above it on phones. The fact sheet keeps only the "Code on GitHub" button; the "3D models" button is gone, and reference pages such as "Dalek files" are listed under a Documentation section on every project page instead of as buttons.
+- A build-log entry can also appear in other projects' timelines (`alsoIn:`), linking to its one page, and counts on that project's card and fact sheet.
+- Tables with a second line under a name (`<small>`) stack their rows on phones instead of scrolling sideways.
 - New `done` project status, shown as "Completed", for finished projects such as the Baxter × Pepper dance.
 - Optional `author:` on projects, build logs, tutorials, research articles, journal posts and events, shown as "Written by".
 - Baxter: the dance moved to its own project at `/projects/baxter-pepper-dance/`. The old introduction, setup, code, arm and music video articles are retired ahead of a rewrite; their addresses redirect to Baxter's page and the originals remain on `archive/gh-pages`.
@@ -41,6 +47,8 @@ Rebuilt the website from scratch with Astro (7.4; needs Node.js 22.23.4 or newer
 - All existing photos and videos moved into this layout; four unused images (Transformer, Dalek and Pepper pictures and a brain diagram) were removed.
 - `npm run new` asks what to add, the title and the date, and creates the file from a template in `templates/` in the right folder, with its media folder.
 - Pictures in the text use three patterns styled by the site: `<figure>` with `<figcaption>` and `media-row`, which lines pictures and videos up side by side at one height and fills the width of the text without stretching or cropping. The hand-made layouts from the old site are gone: the Top 100 Leaders photos were stretched its opening clip only 125 px wide beside a short list, a caption showed as raw text, and the Baxter build logs had extra top-level headings that were missing from "On this page".
+- Diagrams: inline SVG in a `<figure class="diagram">`, drawn with the site's `dg-` classes, so they follow the light and dark themes.
+- Project overviews use the same text styles as build logs (headings, lists, code, tables, pictures).
 - Every pull request automatically runs `npm run check` and a full build before it is reviewed.
 - `npm run check` reports old-site layouts (`style=`, `align=`, `<center>`), Jekyll template syntax, `#` headings, missing empty lines after HTML blocks, captions written as text, videos without a preview image, old Jekyll front matter fields and code blocks in languages the highlighter doesn't know (the Dalek electronics sketch was labelled `arduino`; it is now highlighted as C++). It also lists placeholder text, broken media links, clashing addresses, film nights without a poster, entries in the wrong year folder, unused media, oversized files and videos without a preview image.
 
@@ -63,6 +71,8 @@ Rebuilt the website from scratch with Astro (7.4; needs Node.js 22.23.4 or newer
 - Clearer build-log and journal titles and one-line summaries (OSRC, Baxter, Pepper, Transformer, Dalek and Journal), replacing ones like "Pepper Projects: HTML" / "Detailed Project Documentation". "Freshers Fair 2" is now correctly "Pepper at Refreshers".
 - Spelling and grammar fixes in the Journal posts, including "Robotics Society of Hope" and unfilled "[insert name]" placeholders for the Dalek.
 - Weekly sessions now match reality: the Monday Project Meeting (17:00 to 19:00) and the new Wednesday Project Day (13:30 to 17:00), both in term time. Their times live in one place and feed the homepage, Events and About.
+- Paragraphs in build logs, tutorials and other Markdown pages had no space between them; they now do.
+- A code block inside a numbered or bulleted list no longer widens the whole page; it scrolls inside its box. The last column of a wide table keeps a readable width on phones instead of being squeezed.
 - "Univeristy" and "Kindgom" typos, the broken `/what-we-do/` link, the empty Dalek update list, `tock_sticky` typos, relative video posters and placeholder images that never loaded.
 
 ### Removed

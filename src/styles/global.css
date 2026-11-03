@@ -366,6 +366,13 @@ footer .colophon a { color: var(--accent); }
 .facts dt { font-family: var(--font-mono); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); padding-top: 3px; }
 .facts dd { margin: 0; }
 .facts .btn { justify-content: center; }
+/* "On this page" in the fact sheet: a list on desktop, a row of chips once the sheet sits above the text */
+.p-nav { display: grid; gap: 2px; border-top: 1px solid var(--line); padding-top: 14px; }
+.p-nav .eyebrow { margin-bottom: 6px; }
+.p-nav a { display: flex; justify-content: space-between; gap: 8px; text-decoration: none; color: var(--muted); font-size: .9rem; padding: 4px 0 4px 12px; border-left: 2px solid var(--line); }
+.p-nav a:hover { color: var(--fg); }
+.p-nav a.on { color: var(--fg); border-left-color: var(--accent); }
+.p-nav a span { font-family: var(--font-mono); font-size: .72rem; color: var(--muted); }
 .prose { max-width: 68ch; }
 .prose h2 { font-size: var(--step-2); margin-block: 48px 16px; }
 .prose h2:first-child { margin-top: 0; }
@@ -377,6 +384,7 @@ footer .colophon a { color: var(--accent); }
 .timeline a { display: grid; gap: 4px; padding: 14px 16px; border-radius: var(--radius); text-decoration: none; border: 1px solid transparent; }
 .timeline a:hover { background: var(--surface); border-color: var(--line); }
 .timeline time { font-family: var(--font-mono); font-size: .75rem; color: var(--accent); letter-spacing: .06em; }
+.timeline time .from { color: var(--muted); }
 .timeline strong { font-family: var(--font-display); font-size: var(--step-1); font-weight: 600; }
 .timeline span { color: var(--muted); font-size: .95rem; }
 .timeline small { font-family: var(--font-mono); font-size: .75rem; color: var(--accent); letter-spacing: .06em; }
@@ -394,7 +402,13 @@ footer .colophon a { color: var(--accent); }
 .pager a span { font-family: var(--font-mono); font-size: .72rem; color: var(--muted); }
 .pager a strong { font-family: var(--font-display); font-size: var(--step-1); }
 .pager a:last-child { text-align: right; }
-@media (max-width: 900px) { .p-body { grid-template-columns: minmax(0, 1fr); } .facts { position: static; order: -1; } }
+@media (max-width: 900px) {
+  .p-body { grid-template-columns: minmax(0, 1fr); } .facts { position: static; order: -1; }
+  .p-nav { display: flex; flex-wrap: wrap; gap: 8px; }
+  .p-nav .eyebrow { flex-basis: 100%; margin-bottom: 0; }
+  .p-nav a { border: 1px solid var(--line); border-radius: 99px; padding: 4px 11px; font-size: .82rem; }
+  .p-nav a.on { border-color: var(--line); }
+}
 
 /* CAD viewer */
 .cad { min-width: 0; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--surface); margin-top: 8px; }

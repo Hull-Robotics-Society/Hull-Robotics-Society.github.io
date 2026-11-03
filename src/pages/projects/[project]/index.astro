@@ -6,7 +6,8 @@ import MediaGrid from '../../../components/MediaGrid.astro';
 import Credit from '../../../components/Credit.astro';
 import LogTimeline from '../../../components/LogTimeline.astro';
 import ProjectCard from '../../../components/ProjectCard.astro';
-import { projects, projectsUsing, tutorialsOf, logsOf, formatMonth, statusLabel, statusChip, logUrl, coverOf, entryMedia, cadParts, type Project } from '../../../lib/site';
+import TutorialFacts from '../../../components/TutorialFacts.astro';
+import { projects, projectsUsing, tutorialsOf, timelineOf, formatMonth, statusLabel, statusChip, logUrl, coverOf, entryMedia, cadParts, type Project } from '../../../lib/site';
 
 export async function getStaticPaths() {
     const all = await projects();
@@ -29,7 +30,7 @@ interface Props {
 
 const { p, prev, next } = Astro.props;
 const { Content } = await render(p);
-const logs = await logsOf(p);
+const logs = await timelineOf(p);
 const docs = (await getCollection('logs')).filter(l => l.data.project === p.id.toLowerCase() && !l.data.date);
 const cover = coverOf(p);
 const media = entryMedia(p, p.data.title, [cover, p.data.hero, p.data.roster?.video, p.data.roster?.image]);
@@ -38,7 +39,25 @@ const chip = statusChip[p.data.status];
 const hub = p.data.layout === 'hub';
 const uses = hub ? await projectsUsing(p) : [];
 const tutorials = hub ? await tutorialsOf(p) : [];
+// Tutorials in a series come first, one group per series in part order; then the ones on their own, newest first
+const seriesNames = [...new Set(tutorials.map(t => t.data.series).filter(Boolean))] as string[];
+const tutorialGroups = [
+    ...seriesNames.map(series => ({ series, items: tutorials.filter(t => t.data.series === series).sort((a, b) => (a.data.part ?? 0) - (b.data.part ?? 0)) })),
+    { series: undefined, items: tutorials.filter(t => !t.data.series) }
+].filter(g => g.items.length > 0);
 const robots = (await projects()).filter(r => p.data.robots.includes(r.id.toLowerCase()));
+
+// "On this page": the sections this page actually shows, in page order, with how many entries each has
+const sections = [
+    { id: 'overview', label: 'Overview', show: true },
+    { id: 'build-log', label: 'Build log', count: logs.length, show: !hub },
+    { id: 'build-log', label: 'Build log', count: logs.length, show: hub && logs.length > 0 },
+    { id: 'tutorials', label: 'Tutorials', count: tutorials.length, show: tutorials.length > 0 },
+    { id: 'documentation', label: 'Documentation', count: docs.length, show: docs.length > 0 },
+    { id: 'cad', label: '3D models', show: parts.length > 0 },
+    { id: 'media', label: 'Photos and video', show: media.length > 0 },
+    { id: 'projects', label: 'Projects', count: uses.length, show: uses.length > 0 }
+].filter(s => s.show);
 ---
 
 <Base title={p.data.title} description={p.data.tagline} image={p.data.hero ?? cover} search="Project">
@@ -54,40 +73,16 @@ const robots = (await projects()).filter(r => p.data.robots.includes(r.id.toLowe
     </div>
     <div class="wrap p-body">
         <div>
-            <div class="prose">
+            <div class="prose" id="overview">
                 <h2>Overview</h2>
-                <Content />
-                {!hub && <h2>Build log</h2>}
             </div>
+            <div class="prose-md">
+                <Content />
+            </div>
+            {!hub && <div class="prose" id="build-log"><h2 style="margin-top:48px">Build log</h2></div>}
             {!hub && (logs.length
                 ? <LogTimeline logs={logs} projectId={p.id} />
                 : <p class="muted">No entries yet.</p>)}
-
-            {uses.length > 0 && (
-                <>
-                    <div class="prose" id="projects"><h2 style="margin-top:56px">Projects with {p.data.title}</h2></div>
-                    <div class="proj-grid in-page">
-                        {uses.map(x => <ProjectCard p={x} />)}
-                    </div>
-                </>
-            )}
-
-            {tutorials.length > 0 && (
-                <>
-                    <div class="prose" id="tutorials"><h2 style="margin-top:56px">Tutorials</h2></div>
-                    <ul class="timeline plain">
-                        {tutorials.map(t => (
-                            <li class="reveal">
-                                <a href={`/tutorials/${t.id}/`}>
-                                    <small>{t.data.level} · {t.data.duration}</small>
-                                    <strong>{t.data.title}</strong>
-                                    <span>{t.data.excerpt}</span>
-                                </a>
-                            </li>
-                        ))}
-                    </ul>
-                </>
-            )}
 
             {hub && logs.length > 0 && (
                 <>
@@ -96,7 +91,29 @@ const robots = (await projects()).filter(r => p.data.robots.includes(r.id.toLowe
                 </>
             )}
 
-            {hub && docs.length > 0 && (
+            {tutorials.length > 0 && (
+                <>
+                    <div class="prose" id="tutorials"><h2 style="margin-top:56px">Tutorials</h2></div>
+                    {tutorialGroups.map(g => (
+                        <>
+                            {tutorialGroups.length > 1 && <p class="eyebrow t-list-head">{g.series ? `${g.series} · ${g.items.length} parts` : 'On their own'}</p>}
+                            <ul class="timeline plain">
+                                {g.items.map(t => (
+                                    <li class="reveal">
+                                        <a href={`/tutorials/${t.id}/`}>
+                                            <small class="t-line">{g.series && <span class="t-part">Part {t.data.part}</span>}<TutorialFacts level={t.data.level} duration={t.data.duration} /></small>
+                                            <strong>{t.data.title}</strong>
+                                            <span>{t.data.excerpt}</span>
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </>
+                    ))}
+                </>
+            )}
+
+            {docs.length > 0 && (
                 <>
                     <div class="prose" id="documentation"><h2 style="margin-top:56px">Documentation</h2></div>
                     <ul class="timeline plain">
@@ -126,6 +143,15 @@ const robots = (await projects()).filter(r => p.data.robots.includes(r.id.toLowe
                 </>
             )}
 
+            {uses.length > 0 && (
+                <>
+                    <div class="prose" id="projects"><h2 style="margin-top:56px">Projects with {p.data.title}</h2></div>
+                    <div class="proj-grid in-page">
+                        {uses.map(x => <ProjectCard p={x} />)}
+                    </div>
+                </>
+            )}
+
             <nav class="pager" aria-label={`More ${p.data.kind}s`} data-pagefind-ignore>
                 <a href={`/projects/${prev.id}/`}><span>← Previous {p.data.kind}</span><strong>{prev.data.title}</strong></a>
                 <a href={`/projects/${next.id}/`}><span>Next {p.data.kind} →</span><strong>{next.data.title}</strong></a>
@@ -142,9 +168,40 @@ const robots = (await projects()).filter(r => p.data.robots.includes(r.id.toLowe
                 {p.data.stack && <><dt>Stack</dt><dd>{p.data.stack}</dd></>}
                 {p.data.seenAt && <><dt>Events</dt><dd>{p.data.seenAt}</dd></>}
             </dl>
+            {sections.length >= 3 && (
+                <nav class="p-nav" aria-label="On this page">
+                    <p class="eyebrow">On this page</p>
+                    {sections.map(s => <a href={`#${s.id}`} data-p-nav>{s.label}{s.count !== undefined && <span>{s.count}</span>}</a>)}
+                </nav>
+            )}
             {p.data.repo && <a class="btn" href={p.data.repo} target="_blank" rel="noopener">Code on GitHub ↗</a>}
-            {parts.length > 0 && <a class="btn ghost" href="#cad">3D models</a>}
-            {!hub && docs.map(d => <a class="btn ghost" href={logUrl(p.id, d.id)}>{d.data.title}</a>)}
         </aside>
     </div>
 </Base>
+
+<script>
+    import { scrollToY } from '../../../scripts/scroll';
+
+    // "On this page" in the fact sheet: scroll smoothly to a section and mark the one being read
+    const links = [...document.querySelectorAll<HTMLAnchorElement>('[data-p-nav]')];
+    if (links.length) {
+        const target = (a: HTMLAnchorElement) => document.getElementById(a.hash.slice(1));
+        links.forEach(a => a.addEventListener('click', e => {
+            const el = target(a);
+            if (!el) return;
+            e.preventDefault();
+            scrollToY(el.getBoundingClientRect().top + scrollY - document.querySelector<HTMLElement>('.site-header')!.offsetHeight - 24);
+            history.replaceState(null, '', a.hash);
+        }));
+        const update = () => {
+            let on = links[0];
+            for (const a of links) {
+                const el = target(a);
+                if (el && el.getBoundingClientRect().top < innerHeight * 0.35) on = a;
+            }
+            links.forEach(a => a.classList.toggle('on', a === on));
+        };
+        addEventListener('scroll', update, { passive: true });
+        update();
+    }
+</script>

@@ -1,23 +1,30 @@
 ---
-import { formatDate, logUrl, type Log } from '../lib/site';
+import { formatDate, logUrl, projects, type Log } from '../lib/site';
 
 interface Props {
     logs: Log[];
     projectId: string;
 }
 
-// Dated build-log entries of a project page.
+// Dated build-log entries of a project page. An entry from another project (listed here through
+// its `alsoIn`) links to its own page and says where it comes from.
 const { logs, projectId } = Astro.props;
+const all = await projects();
+const owner = (l: Log) => all.find(p => p.id.toLowerCase() === l.data.project);
 ---
 
 <ol class="timeline">
-    {logs.map(l => (
-        <li class="reveal">
-            <a href={logUrl(projectId, l.id)}>
-                <time datetime={l.data.date!.toISOString().slice(0, 10)}>{formatDate(l.data.date)}</time>
-                <strong>{l.data.title}</strong>
-                <span>{l.data.excerpt}</span>
-            </a>
-        </li>
-    ))}
+    {logs.map(l => {
+        const own = l.data.project === projectId.toLowerCase();
+        const from = own ? undefined : owner(l);
+        return (
+            <li class="reveal">
+                <a href={logUrl(from?.id ?? projectId, l.id)}>
+                    <time datetime={l.data.date!.toISOString().slice(0, 10)}>{formatDate(l.data.date)}{from && <span class="from"> · from {from.data.title}</span>}</time>
+                    <strong>{l.data.title}</strong>
+                    <span>{l.data.excerpt}</span>
+                </a>
+            </li>
+        );
+    })}
 </ol>

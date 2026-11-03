@@ -66,6 +66,8 @@ const logs = defineCollection({
         aiAssisted: z.boolean().default(false),
         title: z.string(),
         project: z.string(),
+        // Ids of other projects whose build log also lists this entry; the page stays under `project`
+        alsoIn: z.array(z.string()).default([]),
         date: date.optional(),
         excerpt: z.string().default(''),
         tags: z.array(z.string()).default([])
@@ -100,7 +102,11 @@ const tutorials = defineCollection({
         excerpt: z.string(),
         level: z.enum(['Beginner', 'Intermediate', 'Advanced']),
         duration: z.string(),
-        needs: z.string().optional(),
+        // What people need before they start: one line, or a list shown as a checklist
+        needs: z.union([z.string(), z.array(z.string())]).optional(),
+        // Tutorials that build on each other: the same series name, numbered by part
+        series: z.string().optional(),
+        part: z.number().optional(),
         // Ids of the projects this tutorial belongs to; it is listed on their `hub` pages
         projects: z.array(z.string()).default([]),
         session: z.string().optional(),

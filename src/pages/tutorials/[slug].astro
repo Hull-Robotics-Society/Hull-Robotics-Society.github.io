@@ -1,35 +1,53 @@
 ---
-import { getCollection, render, type CollectionEntry } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import Article from '../../layouts/Article.astro';
-import { projects, formatDate, coverOf, entryMedia } from '../../lib/site';
+import TutorialFacts from '../../components/TutorialFacts.astro';
+import { projects, formatDate, coverOf, entryMedia, seriesOf, needsList, type Tutorial } from '../../lib/site';
 
 export async function getStaticPaths() {
     return (await getCollection('tutorials')).map(t => ({ params: { slug: t.id }, props: { t } }));
 }
 
-const { t } = Astro.props as { t: CollectionEntry<'tutorials'> };
+const { t } = Astro.props as { t: Tutorial };
 const { Content, headings } = await render(t);
-const meta: [string, string][] = [['Level', t.data.level], ['Time', t.data.duration]];
-if (t.data.needs) meta.push(['You need', t.data.needs]);
-meta.push(['Updated', formatDate(t.data.date)]);
-if (t.data.author) meta.push(['Written by', t.data.author]);
 const linked = (await projects()).filter(p => t.data.projects.includes(p.id.toLowerCase()));
-const related = linked.length ? { label: linked.length === 1 ? 'Project' : 'Projects', links: linked.map(p => ({ href: `/projects/${p.id}/`, title: p.data.title })) } : undefined;
+const needs = needsList(t.data.needs);
 const cover = coverOf(t);
+
+// A part of a series names the series in its eyebrow and links to the parts before and after it
+const series = await seriesOf(t);
+const at = series.findIndex(x => x.id === t.id);
+const link = (x?: Tutorial) => x && { href: `/tutorials/${x.id}/`, title: x.data.title };
+const pager = series.length > 1 ? { prev: link(series[at - 1]), next: link(series[at + 1]), label: t.data.series! } : undefined;
+const eyebrow = ['Tutorial', t.data.session && `${t.data.session} session`, series.length > 1 && `${t.data.series} · part ${at + 1} of ${series.length}`].filter(Boolean).join(' · ');
 ---
 
 <Article
     title={t.data.title}
     excerpt={t.data.excerpt}
-    eyebrow={`Tutorial${t.data.session ? ` · ${t.data.session} session` : ''}`}
+    eyebrow={eyebrow}
     back={{ href: '/tutorials/', label: 'All tutorials' }}
-    meta={meta}
-    related={related}
     headings={headings}
     filePath={t.filePath}
     aiAssisted={t.data.aiAssisted}
     media={entryMedia(t, t.data.title, [cover])}
     cover={cover}
+    pager={pager}
 >
+    <Fragment slot="head">
+        <div class="t-facts" data-pagefind-ignore>
+            <TutorialFacts level={t.data.level} duration={t.data.duration} />
+        </div>
+        <p class="t-byline" data-pagefind-ignore>
+            {t.data.author ? `${t.data.author} · updated` : 'Updated'} {formatDate(t.data.date)}
+            {linked.length > 0 && <> · part of {linked.map((p, i) => <>{i > 0 && ', '}<a href={`/projects/${p.id}/`}>{p.data.title}</a></>)}</>}
+        </p>
+        {needs.length > 0 && (
+            <div class="t-needs">
+                <p class="eyebrow">Before you start</p>
+                <ul>{needs.map(n => <li>{n}</li>)}</ul>
+            </div>
+        )}
+    </Fragment>
     <Content />
 </Article>
