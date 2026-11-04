@@ -9,5 +9,5 @@ const items = (await projects()).filter(p => p.data.kind === 'project');
 
 <Base title="Projects" description="Projects from the Hull University Robotics Society, including the ones we build with our robots.">
     <ProjectTabs active="projects" />
-    <ProjectGrid items={items} />
+    <ProjectGrid items={items} sort="updated" />
 </Base>

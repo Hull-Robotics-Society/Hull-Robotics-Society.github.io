@@ -22,8 +22,9 @@ Rebuilt the website from scratch with Astro (7.4; needs Node.js 22.23.4 or newer
 
 ### Content and navigation
 - The Projects area has Robots (`/projects/`), Projects (`/projects/all/`) and Research tabs. A project can use several robots (`robots:`), has its own code link, shown as tags on its card, and is listed on those robots' pages.
+- The tabs sort themselves: robots A to Z, projects by their most recent build-log entry (or start date), research areas by their newest article. A sort menu next to the filter chips switches between A to Z, last updated and newest first. The hand-set `order:` field is gone.
 - New `layout: hub` for project pages: Overview, Build log, Tutorials, Documentation, media, and the projects using the robot at the end, with empty sections left out. Only Baxter and the Baxter × Pepper dance use it so far.
-- Tutorials can belong to projects (`projects:`), which list them and are linked back.
+- Tutorials can belong to projects (`projects:`), which list them and are linked back. Tutorials without a project can name a `topic:` (e.g. Arduino), which becomes their filter chip on the Tutorials page.
 - Tutorials can form a series (`series:` and `part:`): the parts are listed together on the Tutorials page, and each says which part it is and links to the parts before and after it.
 - The Tutorials page filters by project (Workshops for tutorials without one) and by level, in the browser. Cards show the level as three dots and the time with a clock, apart from the tags; cards without a picture draw circuit traces in the theme's colours, with the part number of a series or the level as bars beside them. Project cards without a picture draw the same, with the project's initials. The tutorial list on a project page shows level and time the same way as the cards, and lists each series first, in part order.
 - A tutorial's header shows its level and time as badges, the author and date as one line, and what you need as a "Before you start" checklist (`needs:` can now be a list).

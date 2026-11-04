@@ -1,6 +1,5 @@
 ---
 title: Pepper
-order: 4
 status: active
 started: 2026-10-12
 tagline: Our SoftBank humanoid and front-of-house robot, greeting visitors, running our own tablet apps and dancing with Baxter.

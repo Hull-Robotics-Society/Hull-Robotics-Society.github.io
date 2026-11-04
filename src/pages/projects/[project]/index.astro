@@ -7,13 +7,14 @@ import Credit from '../../../components/Credit.astro';
 import LogTimeline from '../../../components/LogTimeline.astro';
 import ProjectCard from '../../../components/ProjectCard.astro';
 import TutorialFacts from '../../../components/TutorialFacts.astro';
-import { projects, projectsUsing, tutorialsOf, timelineOf, formatMonth, statusLabel, statusChip, logUrl, coverOf, entryMedia, cadParts, type Project } from '../../../lib/site';
+import { projects, byLastUpdate, projectsUsing, tutorialsOf, timelineOf, formatMonth, statusLabel, statusChip, logUrl, coverOf, entryMedia, cadParts, type Project } from '../../../lib/site';
 
 export async function getStaticPaths() {
     const all = await projects();
+    // Previous and next stay within the same tab and follow its order: robots A to Z, projects most recently updated first
+    const tabs = { robot: all.filter(x => x.data.kind === 'robot'), project: await byLastUpdate(all.filter(x => x.data.kind === 'project')) };
     return all.map(p => {
-        // Previous and next stay within the same tab: robots lead to robots, projects to projects
-        const cycle = all.filter(x => x.data.kind === p.data.kind);
+        const cycle = tabs[p.data.kind];
         const i = cycle.indexOf(p);
         return {
             params: { project: p.id },

@@ -139,9 +139,8 @@ Create `src/content/projects/<id>.md`. The `<id>` becomes the address (`/project
 | `robots` | no | For a project that uses robots: their ids, e.g. `[baxter, pepper]`. They appear as highlighted tags under the title on its card, and as links in its fact sheet. |
 | `layout` | no | `classic` (default) or `hub`. See [Robots and their projects](#robots-and-their-projects). |
 | `author` | no | Who wrote the page, shown as "Written by" in the fact sheet. |
-| `order` | yes | Position in its tab and in the previous and next links at the bottom of the page, which stay within the tab (1 = first). |
 | `status` | yes | `active` (green "Active" chip), `paused` (grey "Paused" chip), `new` (amber "Just started" chip) or `done` (grey "✓ Completed" chip, for a finished project). |
-| `started` | no | Date the project started, shown as "since Aug 2024". Also sets the order of the homepage robot cards. |
+| `started` | no | Date the project started, shown as "since Aug 2024". Also sets the order of the homepage robot cards, and counts as the project's last update until it has a build-log entry. |
 | `tagline` | yes | One or two sentences in the big header of the project page. |
 | `summary` | yes | One sentence on the project's card. |
 | `tags` | no | Small chips on the project's card, e.g. `[ROS, Python]`. Free text. |
@@ -185,6 +184,8 @@ repo: https://github.com/...    # the code of this project only; a robot's repo 
 A page with `layout: hub` shows these sections, and leaves out any that are empty: Overview, Build log, Tutorials, Documentation, 3D models, Photos and video, Projects with this robot. To move another robot to this page, add `layout: hub` to its file. A project is only listed on the pages of robots that use `hub`.
 
 Every project page with three or more sections lists them under "On this page" in its fact sheet, with how many entries each has. The fact sheet's only button is "Code on GitHub" (from `repo`): everything on the page itself is reached through that list.
+
+There is no order to set by hand. The Robots tab lists robots A to Z, and the Projects tab puts the most recently updated first: the project with the newest build-log entry (its own, or one listed through `alsoIn`), or else the newest `started` date. Visitors can switch with the sort menu next to the filter chips. The previous and next links at the bottom of a project page follow the same order. Research areas are listed with the newest article first.
 
 To list a tutorial on a project's page, add `projects: [baxter]` to the tutorial. It also stays on the Tutorials page, and links back to the project. This needs the project to use `layout: hub`.
 
@@ -374,7 +375,8 @@ Create `src/content/tutorials/<name>.md`. Use `##` headings for the steps; with 
 | `needs` | no | What people need, shown as a "Before you start" checklist. One line, or a list with one thing per line (`- A laptop`). |
 | `series` | no | Tutorials that build on each other share a series name, e.g. `"Getting started with Baxter"`. They are listed together on the Tutorials page, and each says "part 1 of 2" and links to the parts before and after it. |
 | `part` | with `series` | The part's number in its series: `1`, `2`, … |
-| `projects` | no | Projects this tutorial belongs to, e.g. `[baxter]`. It is listed on their pages, and the first one decides which filter chip it falls under on the Tutorials page. Tutorials without a project are filed under "Workshops". |
+| `projects` | no | Projects this tutorial belongs to, e.g. `[baxter]`. It is listed on their pages, and the first one decides which filter chip it falls under on the Tutorials page. Tutorials without a project are filed under their `topic`, or else under "Workshops". |
+| `topic` | no | For a tutorial that belongs to no project: the filter chip it falls under on the Tutorials page, e.g. `"Arduino"`. The chip appears as soon as one tutorial uses it. |
 | `session` | no | The workshop it comes from, e.g. `"Give It A Go"` → "Tutorial · Give It A Go session". |
 | `cover` | no | Picture on the card. Without it, `cover.png` (or `.jpg`) in `public/media/tutorials/<name>/` is used, and without that the card draws circuit traces with the part number (in a series) or the level as bars. |
 | `tags` | no | Up to three are shown as chips on the card. A workshop tutorial's first tag is also its card label. |

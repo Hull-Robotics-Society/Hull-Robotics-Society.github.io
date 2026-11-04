@@ -12,6 +12,7 @@ needs:                           # shown as a "Before you start" checklist
 # session: "Give It A Go"
 tags: []
 # projects: [baxter]             # projects this tutorial belongs to; the first is its filter chip
+# topic: "Arduino"               # without a project: the filter chip it falls under
 # Images: put them in public/{{media}}/ and link them as /{{media}}/name.png
 # cover.png there becomes the card image on the Tutorials page.
 ---

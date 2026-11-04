@@ -170,9 +170,10 @@
 .t-needs li::before { content: ""; position: absolute; left: 2px; top: .38em; width: 10px; height: 5px; border-left: 2px solid var(--accent); border-bottom: 2px solid var(--accent); transform: rotate(-45deg); }
 
 /* Tutorials page: filters, series and the drawn stand-in covers */
-.t-filters { align-items: center; justify-content: space-between; }
-.t-filters [role="group"] { display: flex; gap: 8px; flex-wrap: wrap; }
-.t-filters select { font-family: var(--font-mono); font-size: .78rem; padding: 7px 12px; border-radius: 99px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
+/* Filter chips on the left, a sort or level menu on the right (Tutorials, Robots and Projects pages) */
+.t-filters, .p-filters { align-items: center; justify-content: space-between; }
+:is(.t-filters, .p-filters) [role="group"] { display: flex; gap: 8px; flex-wrap: wrap; }
+:is(.t-filters, .p-filters) select { font-family: var(--font-mono); font-size: .78rem; padding: 7px 12px; border-radius: 99px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
 .t-group + .t-group { margin-top: 56px; }
 .t-group h2 { font-size: var(--step-2); margin: 6px 0 20px; }
 .drawn-cover { width: 100%; height: 100%; display: block; background: var(--surface-2); }

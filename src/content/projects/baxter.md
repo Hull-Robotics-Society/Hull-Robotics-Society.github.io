@@ -1,6 +1,5 @@
 ---
 title: Baxter
-order: 3
 layout: hub
 status: active
 started: 2026-01-16

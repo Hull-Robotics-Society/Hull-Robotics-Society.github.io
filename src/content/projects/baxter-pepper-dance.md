@@ -1,6 +1,5 @@
 ---
 title: Baxter × Pepper dance
-order: 6
 kind: project
 robots: [baxter, pepper]
 layout: hub

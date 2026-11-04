@@ -1,7 +1,6 @@
 ---
 title: "{{title}}"
 # author: "Your name"
-order: {{order}}                 # position on the Projects page
 kind: robot                      # robot or project: the tab it appears in
 # robots: [baxter]               # for a project: the robots it uses
 # layout: hub                    # the page with Projects, Tutorials and Documentation sections

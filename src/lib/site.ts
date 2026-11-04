@@ -24,11 +24,12 @@ export function readingTime(body = ''): string {
     return Math.max(1, Math.round(words / 200)) + ' min read';
 }
 
+/** All robots and projects, A to Z by title. */
 export async function projects(): Promise<Project[]> {
-    return (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+    return (await getCollection('projects')).sort((a, b) => a.data.title.localeCompare(b.data.title));
 }
 
-/** Projects that use a robot, in project order. */
+/** Projects that use a robot, A to Z. */
 export async function projectsUsing(robot: Project): Promise<Project[]> {
     return (await projects()).filter(p => p.data.robots.includes(robot.id.toLowerCase()));
 }
@@ -64,6 +65,17 @@ export async function timelineOf(project: Project): Promise<Log[]> {
     return (await getCollection('logs'))
         .filter(l => l.data.date && (l.data.project === key || l.data.alsoIn.includes(key)))
         .sort((a, b) => b.data.date!.getTime() - a.data.date!.getTime() || b.id.localeCompare(a.id));
+}
+
+/** When a project last changed: its newest build-log entry (its own or one listed through `alsoIn`), else its start date. */
+export async function lastUpdate(project: Project): Promise<Date | undefined> {
+    return (await timelineOf(project))[0]?.data.date ?? project.data.started;
+}
+
+/** Projects with the most recent change first; ones without any date go last, A to Z. */
+export async function byLastUpdate(list: Project[]): Promise<Project[]> {
+    const when = new Map(await Promise.all(list.map(async p => [p, (await lastUpdate(p))?.getTime() ?? 0] as const)));
+    return [...list].sort((a, b) => when.get(b)! - when.get(a)! || a.data.title.localeCompare(b.data.title));
 }
 
 export const statusLabel = { active: 'Active', paused: 'Paused', new: 'Just started', done: 'Completed' } as const;

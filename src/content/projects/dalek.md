@@ -1,6 +1,5 @@
 ---
 title: Dalek
-order: 1
 status: active
 started: 2024-08-15
 tagline: A full-size Dalek on a repurposed electric wheelchair, driven by joystick, by Node-RED, and by an EEG headset reading the operator's brain signals.

@@ -15,7 +15,6 @@ const projects = defineCollection({
     loader: glob({ base: './src/content/projects', pattern: '*.md' }),
     schema: z.object({
         title: z.string(),
-        order: z.number(),
         // Which section of the Projects page it appears in
         kind: z.enum(['robot', 'project']).default('robot'),
         // Ids of the robots a project uses. Such a project is listed on those robots' `hub` pages.
@@ -109,6 +108,8 @@ const tutorials = defineCollection({
         part: z.number().optional(),
         // Ids of the projects this tutorial belongs to; it is listed on their `hub` pages
         projects: z.array(z.string()).default([]),
+        // Filter chip on the Tutorials page for a tutorial without a project, e.g. "Arduino"
+        topic: z.string().optional(),
         session: z.string().optional(),
         cover: z.string().optional(),
         tags: z.array(z.string()).default([])

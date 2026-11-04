@@ -1,6 +1,5 @@
 ---
 title: Transformer
-order: 5
 status: new
 started: 2026-01-17
 tagline: Our newest build, a servo-driven walking robot with a Raspberry Pi and an ESP32 at its core.

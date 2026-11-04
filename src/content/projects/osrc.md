@@ -1,7 +1,6 @@
 ---
 title: OSRC
 slug: OSRC
-order: 2
 kind: project
 status: active
 started: 2025-01-10

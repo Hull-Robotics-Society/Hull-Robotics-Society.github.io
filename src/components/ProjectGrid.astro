@@ -1,13 +1,16 @@
 ---
 import ProjectCard from './ProjectCard.astro';
-import type { Project } from '../lib/site';
+import { byLastUpdate, type Project } from '../lib/site';
 
 interface Props {
     items: Project[];
+    // How the cards are sorted until a visitor picks another order
+    sort: 'title' | 'updated';
 }
 
-// The filter chips and cards of the Robots and Projects tabs.
-const { items } = Astro.props;
+// The filter chips, sort menu and cards of the Robots and Projects tabs.
+const { items, sort } = Astro.props;
+const sorted = sort === 'updated' ? await byLastUpdate(items) : items;
 
 // Filter chips: only the ones some card in this tab actually uses
 const labels: Record<string, string> = { ros: 'ROS', electronics: 'Electronics', humanoid: 'Humanoid', eeg: 'EEG / Neuro', '3d': '3D printing' };
@@ -15,12 +18,19 @@ const used = Object.keys(labels).filter(k => items.some(p => p.data.filters.incl
 ---
 
 <div class="wrap">
-    <div class="filters" id="filters" role="group" aria-label="Filter projects">
-        <button type="button" aria-pressed="true" data-f="all">All</button>
-        {used.map(k => <button type="button" aria-pressed="false" data-f={k}>{labels[k]}</button>)}
+    <div class="filters p-filters">
+        <div id="filters" role="group" aria-label="Filter projects">
+            <button type="button" aria-pressed="true" data-f="all">All</button>
+            {used.map(k => <button type="button" aria-pressed="false" data-f={k}>{labels[k]}</button>)}
+        </div>
+        <select id="p-sort" aria-label="Sort">
+            <option value="title" selected={sort === 'title'}>A to Z</option>
+            <option value="updated" selected={sort === 'updated'}>Last updated</option>
+            <option value="started">Newest first</option>
+        </select>
     </div>
     <div class="proj-grid" id="proj-grid">
-        {items.map(p => <ProjectCard p={p} />)}
+        {sorted.map(p => <ProjectCard p={p} />)}
     </div>
 </div>
 
@@ -33,4 +43,15 @@ const used = Object.keys(labels).filter(k => items.some(p => p.data.filters.incl
             c.hidden = f !== 'all' && !c.dataset.tags!.split(' ').includes(f);
         });
     }));
+
+    // Sort in the browser: A to Z, most recent build-log entry first, or most recently started first
+    const grid = document.getElementById('proj-grid')!;
+    document.getElementById('p-sort')!.addEventListener('change', e => {
+        const by = (e.target as HTMLSelectElement).value;
+        const title = (c: HTMLElement) => c.dataset.title!;
+        const cards = [...grid.querySelectorAll<HTMLElement>('.card')].sort((a, b) => by === 'title'
+            ? title(a).localeCompare(title(b))
+            : +b.dataset[by]! - +a.dataset[by]! || title(a).localeCompare(title(b)));
+        grid.append(...cards);
+    });
 </script>

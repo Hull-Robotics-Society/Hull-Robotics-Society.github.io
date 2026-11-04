@@ -7,10 +7,12 @@ import { projects, type Tutorial } from '../../lib/site';
 const tutorials = (await getCollection('tutorials')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 const allProjects = await projects();
 
-// Each tutorial is filed under the first project it names; tutorials without one are workshops
+// Each tutorial is filed under the first project it names, else under its topic; the rest are workshops
 const groupOf = (t: Tutorial) => {
     const p = allProjects.find(x => x.id.toLowerCase() === t.data.projects[0]);
-    return p ? { id: p.id.toLowerCase(), label: p.data.title } : { id: 'workshops', label: 'Workshops' };
+    if (p) return { id: p.id.toLowerCase(), label: p.data.title };
+    if (t.data.topic) return { id: `topic-${t.data.topic.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`, label: t.data.topic };
+    return { id: 'workshops', label: 'Workshops' };
 };
 const groups = [...new Map(tutorials.map(t => [groupOf(t).id, groupOf(t)])).values()]
     .sort((a, b) => (a.id === 'workshops' ? 1 : 0) - (b.id === 'workshops' ? 1 : 0));
