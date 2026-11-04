@@ -23,7 +23,14 @@ const redirects = {
     '/gallery/pepper': '/projects/pepper/#media',
     '/gallery/transformer': '/projects/transformer/',
     '/gallery/general': '/projects/',
-    '/gallery/events': '/events/'
+    '/gallery/events': '/events/',
+    // Baxter's old build log: the dance became its own project, the other articles were retired
+    '/projects/baxter/baxter-pepper-dance': '/projects/baxter-pepper-dance/baxter-side/',
+    '/projects/baxter/baxter-introduction': '/projects/baxter/',
+    '/projects/baxter/baxter-setup': '/projects/baxter/',
+    '/projects/baxter/baxter-code': '/projects/baxter/',
+    '/projects/baxter/baxter-arm-segment': '/projects/baxter/',
+    '/projects/baxter/baxter-music-video': '/projects/baxter/'
 };
 
 export default defineConfig({

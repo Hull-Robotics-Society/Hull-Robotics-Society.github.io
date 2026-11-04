@@ -99,9 +99,8 @@ async function main() {
     const file = path.join(base, folder, `${slug}.md`);
     const rel = path.relative(root, file).replace(/\\/g, '/');
     const media = 'media/' + rel.replace(/^src\/content\//, '').replace(/\.md$/, '');
-    const order = markdownFiles(path.join(root, 'src/content/projects')).length + 1;
 
-    const values = { title: title.replace(/"/g, '\\"'), type, date, location: site.location, project, media, slug, order };
+    const values = { title: title.replace(/"/g, '\\"'), type, date, location: site.location, project, media, slug };
     const text = fs.readFileSync(path.join(root, 'templates', kind.template), 'utf8')
         .replace(/\{\{(\w+)\}\}/g, (_, key) => String(values[key] ?? ''));
 

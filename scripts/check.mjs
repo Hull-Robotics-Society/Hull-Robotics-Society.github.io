@@ -80,7 +80,8 @@ for (const e of entries) {
         const at = `${e.file}:${i + 1}`;
         if (i > 0 && i < end) {
             const key = line.match(/^(\w+):/)?.[1];
-            if (jekyllKeys.includes(key)) warnings.push(`${at} "${key}:" is from the old site and is ignored; remove it`);
+            // Projects have a `layout` field of their own
+            if (jekyllKeys.includes(key) && !(key === 'layout' && e.collection === 'projects')) warnings.push(`${at} "${key}:" is from the old site and is ignored; remove it`);
             return;
         }
         const fence = line.match(/^\s*(?:```|~~~)\s*([\w+#-]*)/);
@@ -204,6 +205,16 @@ for (const file of [...media, ...images]) {
     if (/\.mov$/i.test(file)) warnings.push(`public/${file} is a .mov; browsers need .mp4 (python scripts/optimise-media.py converts it)`);
     if (/\.mp4$/i.test(file) && !media.concat(images).some(f => /\.jpe?g$/i.test(f) && f.replace(/\.[^.]+$/, '') === file.replace(/\.mp4$/i, ''))) {
         warnings.push(`public/${file} has no poster frame (python scripts/optimise-media.py makes one)`);
+    }
+}
+
+// 8. Links between pages by id: robots of a project, projects of a tutorial
+const projectIds = new Set(entries.filter(e => e.collection === 'projects').map(e => path.posix.basename(e.file, '.md').toLowerCase()));
+for (const e of entries.filter(x => ['projects', 'tutorials'].includes(x.collection))) {
+    const name = e.collection === 'projects' ? 'robots' : 'projects';
+    const list = e.text.match(new RegExp(`^${name}:\\s*\\[([^\\]]*)\\]`, 'm'))?.[1] ?? '';
+    for (const id of list.split(',').map(x => x.trim().replace(/^["']|["']$/g, '')).filter(Boolean)) {
+        if (!projectIds.has(id)) errors.push(`${e.file} lists "${id}" under ${name}:, but there is no src/content/projects/${id}.md`);
     }
 }
 

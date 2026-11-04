@@ -5,7 +5,7 @@ import Credit from './Credit.astro';
 // Every project with a `roster` block, in the order the projects started.
 const bots = (await projects())
     .filter(p => p.data.roster)
-    .sort((a, b) => a.data.started.getTime() - b.data.started.getTime());
+    .sort((a, b) => (a.data.started?.getTime() ?? 0) - (b.data.started?.getTime() ?? 0));
 ---
 
 <div class="roster" id="roster" style={`--n:${bots.length}`}>

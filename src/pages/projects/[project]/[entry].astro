@@ -33,6 +33,7 @@ const { Content, headings } = await render(l);
 const meta: [string, string][] = [];
 if (l.data.date) meta.push(['Published', formatDate(l.data.date)]);
 meta.push(['Reading time', readingTime(l.body)]);
+if (l.data.author) meta.push(['Written by', l.data.author]);
 const link = (x?: CollectionEntry<'logs'>) => x && { href: logUrl(project.id, x.id), title: x.data.title };
 ---
 

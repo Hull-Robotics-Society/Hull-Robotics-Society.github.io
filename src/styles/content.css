@@ -19,10 +19,10 @@
 .prose-md h3 { font-size: var(--step-1); margin-top: 1.8em; scroll-margin-top: calc(var(--header-h, 64px) + 32px); }
 .prose-md h4 { font-family: var(--font-display); font-size: 1.05rem; margin-top: 1.5em; }
 .prose-md > :first-child { margin-top: 0; }
-.prose-md p { margin: 0; }
 .prose-md p, .prose-md li { color: color-mix(in srgb, var(--fg) 90%, var(--muted)); }
 .prose-md a { color: var(--accent); text-underline-offset: 3px; }
 .prose-md ul, .prose-md ol { padding-left: 1.4em; display: grid; gap: .35em; }
+.prose-md li { min-width: 0; }   /* lets a code block inside a list item scroll instead of widening the page */
 .prose-md li::marker { color: var(--accent); }
 .prose-md strong { color: var(--fg); }
 .prose-md hr { border: 0; border-top: 1px dashed var(--line); margin-block: 2em; }
@@ -34,6 +34,19 @@
 .prose-md iframe { width: 100%; aspect-ratio: 16 / 9; height: auto; border: 0; border-radius: var(--radius); }
 .prose-md table { display: block; overflow-x: auto; border-collapse: collapse; font-size: .92rem; max-width: 100%; }
 .prose-md th, .prose-md td { border: 1px solid var(--line); padding: 6px 10px; text-align: left; vertical-align: top; }
+/* Wide tables scroll sideways on phones; keep the last (usually descriptive) column readable instead of squeezed */
+.prose-md td:last-child { min-width: 18ch; }
+/* A second, quieter line in a table cell, e.g. a topic's type under its name */
+.prose-md td small { display: block; margin-top: 3px; font-size: .8rem; color: var(--muted); }
+.prose-md td small code { font-size: .95em; }
+/* On phones such a table stacks each row (name, then what it is) instead of scrolling sideways */
+@media (max-width: 600px) {
+  .prose-md table:has(td small) { border-top: 1px solid var(--line); }
+  .prose-md table:has(td small) thead { display: none; }
+  .prose-md table:has(td small) :is(tbody, tr, td) { display: block; }
+  .prose-md table:has(td small) tr { border-bottom: 1px solid var(--line); padding: 8px 0; }
+  .prose-md table:has(td small) td { border: 0; padding: 2px 0; min-width: 0; overflow-wrap: anywhere; }
+}
 .prose-md th { background: var(--surface); font-family: var(--font-display); }
 .prose-md em { color: var(--muted); }
 
@@ -47,6 +60,21 @@
 .prose-md .media-row > img, .prose-md .media-row > video { height: clamp(190px, 52vw, 440px); width: auto; max-width: 100%; object-fit: contain; margin: 0; }
 .prose-md .media-row.fit { flex-wrap: nowrap; margin-inline: auto; }
 .prose-md .media-row.fit > img, .prose-md .media-row.fit > video { width: 0; min-width: 0; height: auto; }
+
+/* Diagrams: inline SVG in a <figure class="diagram">, drawn with these classes so they follow the theme toggle */
+.prose-md figure.diagram { margin: 28px auto 0; max-width: 560px; }
+.diagram svg { width: 100%; height: auto; }
+.prose-md .diagram figcaption { margin-top: 8px; font-size: .9rem; font-style: italic; color: var(--muted); }
+.dg-box { fill: var(--surface); stroke: var(--line); stroke-width: 1.5; }
+.dg-key { fill: var(--surface); stroke: var(--accent); stroke-width: 1.5; }
+.dg-zone { fill: var(--surface-2); }
+.dg-wire { stroke: var(--trace); stroke-width: 2; fill: none; }
+.dg-link { stroke: var(--accent); stroke-width: 2; fill: none; }
+.dg-tip { fill: var(--accent); }
+.dg-t { font: 600 14px var(--font-display); fill: var(--fg); }
+.dg-s { font: 400 13px var(--font-body); fill: var(--muted); }
+.dg-m { font: 500 12px var(--font-mono); fill: var(--accent); }
+.dg-c { text-anchor: middle; }
 
 .a-meta { display: flex; flex-wrap: wrap; gap: 10px 28px; margin: 24px 0 0; }
 .a-meta div { display: grid; gap: 2px; }
@@ -67,14 +95,15 @@
 .team { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
 @media (min-width: 1100px) { .team { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 @media (max-width: 420px) { .team { grid-template-columns: minmax(0, 1fr); } }
-.team-card { display: grid; gap: 14px; align-content: start; padding: 20px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+.team-card { display: grid; grid-template-rows: auto 1fr; gap: 14px; padding: 20px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
 .team-face { width: 64px; height: 64px; border-radius: 50%; overflow: hidden; display: grid; place-items: center; background: color-mix(in srgb, var(--accent) 10%, var(--surface-2)); box-shadow: 0 0 0 3px var(--surface), 0 0 0 4px color-mix(in srgb, var(--accent) 45%, var(--line)); }
 .team-face img { width: 100%; height: 100%; object-fit: cover; }
 .team-initial { font-family: var(--font-brand); font-weight: 800; font-size: 1.5rem; color: var(--accent); }
-.team-body { display: grid; gap: 6px; align-content: start; min-width: 0; }
+/* The body fills the card, so the last line (favourite robot) sits at the bottom of every card in a row */
+.team-body { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 .team-body h3 { font-size: var(--step-1); }
 .team-body .muted { font-size: .92rem; line-height: 1.5; }
-.team-robot { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .02em; color: var(--muted); margin-top: 4px; }
+.team-robot { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .02em; color: var(--muted); margin-top: auto; padding-top: 4px; }
 
 /* ---------- Site search ---------- */
 .search { width: min(680px, calc(100vw - 32px)); max-height: min(80vh, 720px); margin: 10vh auto auto; padding: 0; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); color: var(--fg); box-shadow: 0 30px 80px -20px rgba(0,0,0,.45); overflow: hidden; display: none; flex-direction: column; }
@@ -115,6 +144,46 @@
 .shot .credit-overlay { top: 8px; bottom: auto; }
 .film-poster .credit-overlay { left: 8px; right: 8px; text-align: center; }
 .p-hero .credit-overlay { right: max(16px, env(safe-area-inset-right, 0px)); bottom: 12px; }
+
+/* ---------- Tutorials ---------- */
+/* Level (three dots, filled up to the level) and time, on the tutorial page and its card */
+.t-fact { display: inline-flex; align-items: center; gap: 7px; font-family: var(--font-mono); font-size: .78rem; letter-spacing: .02em; color: var(--fg); white-space: nowrap; }
+.t-fact.level i { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+.t-fact.level[data-n="1"] i:nth-child(n+2), .t-fact.level[data-n="2"] i:nth-child(3) { background: none; box-shadow: inset 0 0 0 1.5px var(--line); }
+.t-fact.level i:nth-child(3) { margin-right: 3px; }
+.t-fact.time svg { width: 15px; height: 15px; fill: none; stroke: var(--accent); stroke-width: 1.6; stroke-linecap: round; }
+.card .stats .t-fact { font-size: .72rem; color: var(--muted); }
+/* In the tutorial list on a project page: level and time side by side above the title */
+.timeline small.t-line { display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.timeline small.t-line .t-fact { font-size: .75rem; color: var(--muted); }
+.timeline small.t-line .t-part { color: var(--accent); }
+/* A series and the tutorials on their own each get a small heading in that list */
+.t-list-head { margin: 28px 0 2px 16px; }
+#tutorials + .t-list-head { margin-top: 0; }
+.t-facts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.t-facts .t-fact { padding: 6px 12px; border: 1px solid var(--line); border-radius: 99px; background: var(--surface); }
+.t-byline { margin-top: 12px; font-size: .9rem; color: var(--muted); }
+.t-byline a { color: var(--accent); }
+/* "Before you start": what a tutorial needs, as a checklist */
+.t-needs { margin-top: 22px; max-width: 62ch; padding: 14px 18px 16px; border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 8px; background: var(--surface); }
+.t-needs ul { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 6px; }
+.t-needs li { position: relative; padding-left: 24px; }
+.t-needs li::before { content: ""; position: absolute; left: 2px; top: .38em; width: 10px; height: 5px; border-left: 2px solid var(--accent); border-bottom: 2px solid var(--accent); transform: rotate(-45deg); }
+
+/* Tutorials page: filters, series and the drawn stand-in covers */
+/* Filter chips on the left, a sort or level menu on the right (Tutorials, Robots and Projects pages) */
+.t-filters, .p-filters { align-items: center; justify-content: space-between; }
+:is(.t-filters, .p-filters) [role="group"] { display: flex; gap: 8px; flex-wrap: wrap; }
+:is(.t-filters, .p-filters) select { font-family: var(--font-mono); font-size: .78rem; padding: 7px 12px; border-radius: 99px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
+.t-group + .t-group { margin-top: 56px; }
+.t-group h2 { font-size: var(--step-2); margin: 6px 0 20px; }
+.drawn-cover { width: 100%; height: 100%; display: block; background: var(--surface-2); }
+.drawn-cover path { fill: none; stroke: var(--trace); stroke-width: 3; stroke-linejoin: round; }
+.drawn-cover circle { fill: var(--surface-2); stroke: var(--trace); stroke-width: 3; }
+.drawn-cover .lit path, .drawn-cover .lit circle { stroke: var(--accent); }
+.drawn-cover text { font: 600 92px var(--font-display); fill: none; stroke: var(--accent); stroke-width: 2; }
+.drawn-cover rect { fill: none; stroke: var(--accent); stroke-width: 2; }
+.drawn-cover rect.on { fill: var(--accent); }
 
 /* ---------- AI-assistance note ---------- */
 .ai-note { margin-top: 22px; max-width: 70ch; display: block; padding: 10px 14px; border: 1px dashed color-mix(in srgb, var(--accent) 45%, var(--line)); border-radius: 8px; font-size: .9rem; line-height: 1.5; color: var(--muted); }

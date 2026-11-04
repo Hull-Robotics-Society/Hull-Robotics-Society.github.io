@@ -1,5 +1,6 @@
 ---
 title: "{{title}}"
+# author: "Your name"
 project: {{project}}
 date: {{date}}                   # leave out for documentation pages that are not part of the timeline
 excerpt: "TODO: one or two sentences, shown on the project's timeline."

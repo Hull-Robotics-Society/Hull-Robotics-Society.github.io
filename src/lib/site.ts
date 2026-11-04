@@ -24,20 +24,62 @@ export function readingTime(body = ''): string {
     return Math.max(1, Math.round(words / 200)) + ' min read';
 }
 
+/** All robots and projects, A to Z by title. */
 export async function projects(): Promise<Project[]> {
-    return (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+    return (await getCollection('projects')).sort((a, b) => a.data.title.localeCompare(b.data.title));
 }
 
-/** Dated build-log entries of a project, newest first. Undated documentation is left out. */
-export async function logsOf(project: Project): Promise<Log[]> {
+/** Projects that use a robot, A to Z. */
+export async function projectsUsing(robot: Project): Promise<Project[]> {
+    return (await projects()).filter(p => p.data.robots.includes(robot.id.toLowerCase()));
+}
+
+/** Tutorials that belong to a project, newest first. */
+export async function tutorialsOf(project: Project): Promise<CollectionEntry<'tutorials'>[]> {
+    return (await getCollection('tutorials'))
+        .filter(t => t.data.projects.includes(project.id.toLowerCase()))
+        .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+}
+
+export type Tutorial = CollectionEntry<'tutorials'>;
+
+/** How many of the three level dots are filled */
+export const levelSteps = { Beginner: 1, Intermediate: 2, Advanced: 3 } as const;
+
+/** All parts of a tutorial's series, in order; empty for a tutorial on its own. */
+export async function seriesOf(t: Tutorial): Promise<Tutorial[]> {
+    if (!t.data.series) return [];
+    return (await getCollection('tutorials'))
+        .filter(x => x.data.series === t.data.series)
+        .sort((a, b) => (a.data.part ?? 0) - (b.data.part ?? 0));
+}
+
+/** The `needs` field of a tutorial as a list, whether it was written as one line or as a list. */
+export function needsList(needs?: string | string[]): string[] {
+    return needs === undefined ? [] : Array.isArray(needs) ? needs : [needs];
+}
+
+/** The build-log timeline of a project page: its own entries plus those of other projects that name it in `alsoIn`. */
+export async function timelineOf(project: Project): Promise<Log[]> {
     const key = project.id.toLowerCase();
     return (await getCollection('logs'))
-        .filter(l => l.data.project === key && l.data.date)
+        .filter(l => l.data.date && (l.data.project === key || l.data.alsoIn.includes(key)))
         .sort((a, b) => b.data.date!.getTime() - a.data.date!.getTime() || b.id.localeCompare(a.id));
 }
 
-export const statusLabel = { active: 'Active', paused: 'Paused', new: 'Just started' } as const;
-export const statusChip = { active: 'chip status', paused: 'chip status paused', new: 'chip soon' } as const;
+/** When a project last changed: its newest build-log entry (its own or one listed through `alsoIn`), else its start date. */
+export async function lastUpdate(project: Project): Promise<Date | undefined> {
+    return (await timelineOf(project))[0]?.data.date ?? project.data.started;
+}
+
+/** Projects with the most recent change first; ones without any date go last, A to Z. */
+export async function byLastUpdate(list: Project[]): Promise<Project[]> {
+    const when = new Map(await Promise.all(list.map(async p => [p, (await lastUpdate(p))?.getTime() ?? 0] as const)));
+    return [...list].sort((a, b) => when.get(b)! - when.get(a)! || a.data.title.localeCompare(b.data.title));
+}
+
+export const statusLabel = { active: 'Active', paused: 'Paused', new: 'Just started', done: 'Completed' } as const;
+export const statusChip = { active: 'chip status', paused: 'chip status paused', new: 'chip soon', done: 'chip status done' } as const;
 
 /** URL of a build-log entry: /projects/<project id>/<file or slug name>/ */
 export function logUrl(projectId: string, logId: string): string {

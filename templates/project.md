@@ -1,7 +1,10 @@
 ---
 title: "{{title}}"
-order: {{order}}                 # position on the Projects page
-status: "new"                    # active, paused or new
+# author: "Your name"
+kind: robot                      # robot or project: the tab it appears in
+# robots: [baxter]               # for a project: the robots it uses
+# layout: hub                    # the page with Projects, Tutorials and Documentation sections
+status: "new"                    # active, paused, new or done
 started: {{date}}
 tagline: "TODO: one line under the title."
 summary: "TODO: two or three sentences for the project card."

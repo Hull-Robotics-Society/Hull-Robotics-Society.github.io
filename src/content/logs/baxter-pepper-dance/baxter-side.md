@@ -1,7 +1,7 @@
 ---
 title: "Baxter × Pepper dance: Baxter's side"
-slug: baxter/baxter-pepper-dance
-project: baxter
+slug: baxter-pepper-dance/baxter-side
+project: baxter-pepper-dance
 date: 2026-10-12
 excerpt: "How Baxter's half of the 30-second dance works, from joint captures to smooth, safe motion."
 aiAssisted: true

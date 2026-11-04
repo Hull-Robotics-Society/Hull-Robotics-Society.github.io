@@ -1,5 +1,6 @@
 ---
 title: "{{title}}"
+# author: "Your name"
 type: "{{type}}"                 # Project meeting, Project day, Workshop, Film night, Showcase, Fair, Social, Competition or Executive
 date: {{date}}
 start: "17:00"

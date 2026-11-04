@@ -1,5 +1,6 @@
 ---
 title: "{{title}}"
+# author: "Your name"
 date: {{date}}
 excerpt: "TODO: one or two sentences, shown on cards and in search results."
 # eventType: "Showcase"          # also lists the post on the Events page: Showcase, Fair, Social, Competition or Workshop

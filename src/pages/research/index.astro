@@ -6,9 +6,11 @@ import areas from '../../data/research-areas.json';
 import { formatDate } from '../../lib/site';
 
 const articles = (await getCollection('research')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+// Areas with the newest article first; inside an area, articles are newest first too
 const list = Object.entries(areas as Record<string, any>)
     .map(([key, area]) => ({ key, area, articles: articles.filter(a => a.data.area === key) }))
-    .filter(x => x.articles.length);
+    .filter(x => x.articles.length)
+    .sort((a, b) => b.articles[0].data.date.getTime() - a.articles[0].data.date.getTime());
 ---
 
 <Base title="Research" description="The reading, experiments and write-ups behind Hull University Robotics Society builds.">

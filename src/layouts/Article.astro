@@ -11,6 +11,8 @@ interface Props {
     eyebrow: string;
     back: { href: string; label: string };
     meta?: [string, string][];
+    // Links shown with the details, such as the projects a tutorial belongs to
+    related?: { label: string; links: { href: string; title: string }[] };
     headings?: MarkdownHeading[];
     filePath?: string;
     cover?: string;
@@ -21,7 +23,7 @@ interface Props {
 }
 
 // Long-form page for build logs, tutorials, journal posts, research and events.
-const { title, excerpt, eyebrow, back, meta = [], headings = [], filePath, cover, pager, aiAssisted = false, media = [] } = Astro.props;
+const { title, excerpt, eyebrow, back, meta = [], related, headings = [], filePath, cover, pager, aiAssisted = false, media = [] } = Astro.props;
 const toc = headings.filter(h => h.depth === 2 || h.depth === 3);
 const showToc = toc.filter(h => h.depth === 2).length >= 3;
 const technical = /Build log|Documentation|Tutorial/.test(eyebrow);
@@ -34,9 +36,11 @@ const technical = /Build log|Documentation|Tutorial/.test(eyebrow);
             <p class="eyebrow" style="margin-top:16px" data-pagefind-ignore>{eyebrow}</p>
             <h1>{title}</h1>
             {excerpt && <p class="lede">{excerpt}</p>}
-            {meta.length > 0 && (
+            <slot name="head" />
+            {(meta.length > 0 || related) && (
                 <dl class="a-meta" data-pagefind-ignore>
                     {meta.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
+                    {related && <div><dt>{related.label}</dt><dd>{related.links.map((l, i) => <>{i > 0 && ', '}<a href={l.href}>{l.title}</a></>)}</dd></div>}
                 </dl>
             )}
             {aiAssisted && (

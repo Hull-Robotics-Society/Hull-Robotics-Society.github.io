@@ -10,14 +10,20 @@ const date = z.coerce.date();
 const byFileName = ({ entry, data }: { entry: string; data: Record<string, unknown> }) =>
     (data.slug as string | undefined) ?? entry.replace(/\\/g, '/').split('/').pop()!.replace(/\.md$/, '');
 
-/** A robot or build. One Markdown file per project; the body is the overview. */
+/** A robot or a project. One Markdown file each; the body is the overview. */
 const projects = defineCollection({
     loader: glob({ base: './src/content/projects', pattern: '*.md' }),
     schema: z.object({
         title: z.string(),
-        order: z.number(),
-        status: z.enum(['active', 'paused', 'new']),
-        started: date,
+        // Which section of the Projects page it appears in
+        kind: z.enum(['robot', 'project']).default('robot'),
+        // Ids of the robots a project uses. Such a project is listed on those robots' `hub` pages.
+        robots: z.array(z.string()).default([]),
+        // `hub` shows projects, tutorials and documentation on the page and hides empty sections
+        layout: z.enum(['classic', 'hub']).default('classic'),
+        author: z.string().optional(),
+        status: z.enum(['active', 'paused', 'new', 'done']),
+        started: date.optional(),
         tagline: z.string(),
         summary: z.string(),
         tags: z.array(z.string()).default([]),
@@ -53,10 +59,14 @@ const projects = defineCollection({
 const logs = defineCollection({
     loader: glob({ base: './src/content/logs', pattern: '**/*.md' }),
     schema: z.object({
+        // Who wrote the page, shown with its details
+        author: z.string().optional(),
         // Shows a short note that the page was drafted with AI assistance and reviewed
         aiAssisted: z.boolean().default(false),
         title: z.string(),
         project: z.string(),
+        // Ids of other projects whose build log also lists this entry; the page stays under `project`
+        alsoIn: z.array(z.string()).default([]),
         date: date.optional(),
         excerpt: z.string().default(''),
         tags: z.array(z.string()).default([])
@@ -67,6 +77,8 @@ const logs = defineCollection({
 const research = defineCollection({
     loader: glob({ base: './src/content/research', pattern: '**/*.md' }),
     schema: z.object({
+        // Who wrote the page, shown with its details
+        author: z.string().optional(),
         // Shows a short note that the page was drafted with AI assistance and reviewed
         aiAssisted: z.boolean().default(false),
         title: z.string(),
@@ -80,6 +92,8 @@ const research = defineCollection({
 const tutorials = defineCollection({
     loader: glob({ base: './src/content/tutorials', pattern: '*.md' }),
     schema: z.object({
+        // Who wrote the page, shown with its details
+        author: z.string().optional(),
         // Shows a short note that the page was drafted with AI assistance and reviewed
         aiAssisted: z.boolean().default(false),
         title: z.string(),
@@ -87,7 +101,15 @@ const tutorials = defineCollection({
         excerpt: z.string(),
         level: z.enum(['Beginner', 'Intermediate', 'Advanced']),
         duration: z.string(),
-        needs: z.string().optional(),
+        // What people need before they start: one line, or a list shown as a checklist
+        needs: z.union([z.string(), z.array(z.string())]).optional(),
+        // Tutorials that build on each other: the same series name, numbered by part
+        series: z.string().optional(),
+        part: z.number().optional(),
+        // Ids of the projects this tutorial belongs to; it is listed on their `hub` pages
+        projects: z.array(z.string()).default([]),
+        // Filter chip on the Tutorials page for a tutorial without a project, e.g. "Arduino"
+        topic: z.string().optional(),
         session: z.string().optional(),
         cover: z.string().optional(),
         tags: z.array(z.string()).default([])
@@ -100,6 +122,8 @@ const events = defineCollection({
     schema: z.object({
         // Photo and video folders (or single files) below public/, shown as a grid under the text
         gallery: z.array(z.string()).default([]),
+        // Who wrote the page, shown with its details
+        author: z.string().optional(),
         // Shows a short note that the page was drafted with AI assistance and reviewed
         aiAssisted: z.boolean().default(false),
         title: z.string(),
@@ -139,6 +163,8 @@ const journal = defineCollection({
     schema: z.object({
         // Photo and video folders (or single files) below public/, shown as a grid under the text
         gallery: z.array(z.string()).default([]),
+        // Who wrote the page, shown with its details
+        author: z.string().optional(),
         // Shows a short note that the page was drafted with AI assistance and reviewed
         aiAssisted: z.boolean().default(false),
         title: z.string(),
