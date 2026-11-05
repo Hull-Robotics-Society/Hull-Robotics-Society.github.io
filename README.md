@@ -447,11 +447,12 @@ Photos without a credit are treated as the society's own. To credit a photograph
 | --- | --- | --- |
 | `path` | yes | One file (`/media/events/2024-25/klaus-screening/poster.jpg`) or a whole folder ending in `/` (`/media/journal/2025-26/varsity-2026/`), which covers everything inside it. If several entries match, the most specific one wins. |
 | `credit` | yes | The text shown on the photo, e.g. "Photos: Jane Doe" or "Poster © Netflix". |
+| `short` | no | A shorter version for small pictures (project and tutorial cards, the homepage robots and collage) and for project headers on phones, e.g. "© Jane Doe". Without it, those show `credit`. Keep it to a few words, as it's cut off after one line. |
 | `link` | no | Makes the credit a link (e.g. to the photographer's page). |
 | `licence` | no | Added after the credit, e.g. "CC BY 4.0". |
 | `note` | no | Only shown in the list on the About page, e.g. "Used to promote our screening". |
 
-The credit is shown in the corner of the photo (galleries and their full-size view, project headers, film posters, homepage cards and collage, project cards) and listed under "About this website" on the About page.
+The credit is shown in the corner of the photo (galleries and their full-size view, project headers, film posters, homepage cards and collage, project and tutorial cards) and listed under "About this website" on the About page. Small pictures show it in smaller type on a single line, and the full text appears when you hover over it.
 
 ### 3D models
 

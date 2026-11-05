@@ -64,7 +64,7 @@ const sections = [
 <Base title={p.data.title} description={p.data.tagline} image={p.data.hero ?? cover} search="Project">
     <div class:list={['p-hero', { empty: !p.data.hero }]}>
         {p.data.hero && <img src={p.data.hero} alt="" />}
-        <Credit src={p.data.hero} />
+        <Credit src={p.data.hero} length="responsive" />
         <div class="wrap">
             <a class="crumb" href={p.data.kind === 'project' ? '/projects/all/' : '/projects/'} data-pagefind-ignore>← {hub && p.data.kind === 'robot' ? 'All robots' : 'All projects'}</a>
             <p class="eyebrow" style="margin-top:16px" data-pagefind-ignore>Project · {statusLabel[p.data.status]}{p.data.started && p.data.status !== 'done' && ` since ${formatMonth(p.data.started)}`}</p>

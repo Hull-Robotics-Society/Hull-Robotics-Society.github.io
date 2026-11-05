@@ -7,16 +7,28 @@ interface Props {
     variant?: 'overlay' | 'inline';
     // Set to false inside another link, where a nested link isn't allowed
     linked?: boolean;
+    // `full` is the credit with its licence, `short` the entry's short text on one line (for small
+    // pictures), `responsive` the full credit on wide screens and the short one on phones
+    length?: 'full' | 'short' | 'responsive';
 }
 
 // Credit for an image from src/data/credits.json; renders nothing for the society's own photos.
-const { src, variant = 'overlay', linked = true } = Astro.props;
+const { src, variant = 'overlay', linked = true, length = 'full' } = Astro.props;
 const c = creditFor(src);
-const text = c && [c.credit, c.licence].filter(Boolean).join(' · ');
+const full = c && [c.credit, c.licence].filter(Boolean).join(' · ');
+const short = c && (c.short ?? c.credit);
+const text = length === 'short' ? short : full;
 ---
 
 {c && (
-    <small class={`credit credit-${variant}`}>
-        {linked && c.link ? <a href={c.link} target="_blank" rel="noopener">{text}</a> : text}
+    <small class:list={['credit', `credit-${variant}`, { 'credit-one-line': length === 'short' }]} title={length === 'full' ? undefined : full}>
+        {length === 'responsive' ? (
+            <Fragment>
+                <span class="credit-full">{linked && c.link ? <a href={c.link} target="_blank" rel="noopener">{full}</a> : full}</span>
+                <span class="credit-short">{linked && c.link ? <a href={c.link} target="_blank" rel="noopener">{short}</a> : short}</span>
+            </Fragment>
+        ) : (
+            linked && c.link ? <a href={c.link} target="_blank" rel="noopener">{text}</a> : text
+        )}
     </small>
 )}

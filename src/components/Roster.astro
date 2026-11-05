@@ -44,7 +44,7 @@ const bots = (await projects())
                                         <div class="no-photo"><div><span class="emblem"></span><p class="mono muted" style="margin-top:12px">Photo coming soon</p></div></div>
                                     )}
                                     <span class={`tag ${chip}`}>{statusLabel[p.data.status]}</span>
-                                    {!r.video && <Credit src={r.image} />}
+                                    {!r.video && <Credit src={r.image} length="short" />}
                                 </figure>
                                 <div class="spec">
                                     <p class="eyebrow">{r.eyebrow}</p>

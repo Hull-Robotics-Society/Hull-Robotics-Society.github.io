@@ -21,7 +21,7 @@ const initials = p.data.title.split(/\s+/).filter(w => /^[A-Za-z]/.test(w)).slic
         {coverOf(p)
             ? <img src={coverOf(p)} alt={p.data.title} loading="lazy" decoding="async" style={p.data.coverFit === 'contain' ? 'object-fit:contain;background:#fff' : undefined} />
             : <DrawnCover seed={p.id} mark={initials} />}
-        <Credit src={coverOf(p)} linked={false} />
+        <Credit src={coverOf(p)} linked={false} length="short" />
     </div>
     <div class="body spread">
         <span class={`${statusChip[p.data.status]} bare`}>{statusLabel[p.data.status]}</span>
