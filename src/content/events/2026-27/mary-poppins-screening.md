@@ -1,12 +1,12 @@
 ---
 title: "Movie Night: Mary Poppins"
 type: "Film night"
-date: 2026-11-02
-start: "16:30"
+date: 2026-11-09
+start: "16:15"
 end: "19:00"
 location: "Robotics Lab, Applied Science building"
 bring: "Bring your own snacks!"
-excerpt: "A movie night with the much-loved classic Mary Poppins, in place of this week's Project Meeting. Note the earlier start at 16:30."
+excerpt: "A movie night with the much-loved classic Mary Poppins, in place of this week's Project Meeting. Note the earlier start at 16:15."
 film:
   title: "Mary Poppins"
   year: 1964
@@ -23,4 +23,4 @@ film:
     - ["Matthew Garber", "Michael Banks"]
   trailer: "YfkEQDPlb8g"                # the YouTube video id
 ---
-This week the usual Monday [Project Meeting](/events/weekly-meetup/) makes way for a film night in the Robotics Lab. We're starting half an hour earlier than normal, at 16:30, so grab your snacks and come along. Everyone is welcome!
+This week the usual Monday [Project Meeting](/events/weekly-meetup/) makes way for a film night in the Robotics Lab. We're starting 45 minutes earlier than normal, at 16:15, so grab your snacks and come along. Everyone is welcome!
