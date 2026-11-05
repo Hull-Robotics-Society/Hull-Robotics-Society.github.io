@@ -12,6 +12,7 @@ tags: [ROS 2, Docker, Python]
 filters: [ros]
 stack: ROS 1 Indigo, ROS 2 Jazzy and Lyrical, Docker, Python
 repo: https://github.com/Hull-Robotics-Society/baxter-ros2-bridge
+hero: /media/projects/baxter-ros2-bridge/hero.jpg
 ---
 
 [Baxter's](/projects/baxter/) software can't be updated, because the company that made it no longer exists. The robot speaks ROS 1 Indigo, a version from 2014, and ROS 1 itself reached its end of life in 2025. Today's robotics tools and courses use ROS 2.
