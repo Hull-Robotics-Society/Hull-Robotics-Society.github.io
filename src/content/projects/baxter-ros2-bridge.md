@@ -17,7 +17,7 @@ hero: /media/projects/baxter-ros2-bridge/hero.jpg
 
 [Baxter's](/projects/baxter/) software can't be updated, because the company that made it no longer exists. The robot speaks ROS 1 Indigo, a version from 2014, and ROS 1 itself reached its end of life in 2025. Today's robotics tools and courses use ROS 2.
 
-This project connects the two worlds. A *bridge* talks ROS 1 to the robot and ROS 2 to your programs, so you can write current Python on any ROS 2 computer and nothing on the robot changes.
+This project puts a *bridge* in between. It talks ROS 1 to the robot and ROS 2 to your programs, so you can write current Python on any ROS 2 computer and nothing on the robot changes.
 
 <figure class="diagram">
 <svg viewBox="0 0 400 356" role="img" aria-label="A Baxter runs ROS 1. A bridge in Docker connects it to programs that use ROS 2.">

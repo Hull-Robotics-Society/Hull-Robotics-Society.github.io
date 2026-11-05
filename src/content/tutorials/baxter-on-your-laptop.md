@@ -15,7 +15,7 @@ tags: [ROS 2, Docker, WSL, Baxter]
 
 The lab machines are the easiest way to work with Baxter ([Baxter on a lab machine](/tutorials/baxter-on-a-lab-machine/)). This tutorial is for your own laptop instead, with a network cable plugged straight into the robot. The [bridge](/projects/baxter-ros2-bridge/) needs Linux with Docker: on Windows that is WSL2, Ubuntu inside Windows.
 
-Commands in grey boxes are typed into a terminal. Where a command contains something in angle brackets, like `<robot name>`, replace the whole thing, brackets included.
+Commands in code boxes are typed into a terminal. Where a command contains something in angle brackets, like `<robot name>`, replace the whole thing, brackets included.
 
 ## Step 1: Linux on Windows (Windows only)
 

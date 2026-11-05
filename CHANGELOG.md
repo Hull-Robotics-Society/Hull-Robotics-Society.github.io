@@ -57,7 +57,7 @@ Rebuilt the website from scratch with Astro (7.4; needs Node.js 22.23.4 or newer
 
 ### Transparency
 - Footer note and an "About this website" section on the About page: who runs the site, how AI tools were used (with a list of AI-assisted pages) and image credits.
-- `aiAssisted: true` in front matter shows a short note under a page's title. It is set on the Pepper documentation and the Baxter × Pepper dance write-up.
+- `aiAssisted: true` in front matter shows a short note under a page's title. It is set on the Pepper documentation, the Baxter × Pepper dance write-up and the Baxter and bridge build logs.
 - Image credits from `src/data/credits.json`, by file or whole folder, shown on the photos themselves (galleries, lightbox, project headers, film posters, roster, collage, project and tutorial cards). Small pictures show an optional `short` text in smaller type on one line, as do project headers on phones. Film posters and the Baxter renders are credited.
 
 ### Media and performance

@@ -10,7 +10,8 @@ Robot 2 stands on a Mobility Base made by Dataspeed. This is a platform on four 
 
 ## How it is built
 
-- **The controller** drives the motors and listens to the wireless joystick. It works without any computer: with the base switched on and the e-stop released, the joystick drives the base.
+- **The controller** drives the motors and listens to the wireless joystick, a radio-control transmitter with Dataspeed's labels on it. The motors only work while the base's computer is switched on, but nothing has to run on it: with the base switched on and the e-stop released, the joystick drives the base.
+- **The e-stop** is one button for robot 2 and the base together, and stops both.
 - **The base's computer** runs Dataspeed's driver, which offers the base as ROS 1 topics. It is a ROS 1 system of its own, separate from the robot's, and nothing starts on it by itself: someone starts ROS and the base's programs after switching it on.
 - **The base's bridge** runs on the bridge machine next to the robot's bridge, and carries the base to ROS 2. Programs don't run on the base itself.
 
@@ -44,10 +45,10 @@ The library cuts every command down to its own limits. They can be raised in a p
 | --- | --- |
 | Computer | Ubuntu 16.04, ROS 1 Kinetic, Dataspeed's software 1.0.3 (from 2017) |
 | At boot | nothing starts; ROS and the base's programs are started by hand |
-| Battery | 24 V. It reported 61 % in October 2026, and reported "discharging" while on the charger. The base's batteries are known to have problems |
+| Battery | 24 V |
 | Clock | 9 days behind in October 2026: the computer's clock battery is flat and it has no time source, so everything the base sends carries the wrong time. To fix: replace the coin cell inside the computer, then set the time once |
 
-Switching off happens in a fixed order: bridges, then the robot, then the base's computer, then the joystick and e-stop, and the circuit breaker last. The breaker cuts power to everything, the computer included, so the computer has to be shut down before it. The tutorial lists the steps.
+Switching off happens in a fixed order: bridges, then the robot, then the base's computer, then the joystick, and the circuit breaker last. The e-stop stays released. The breaker cuts power to everything, the computer included, so the computer has to be shut down before it. The tutorial lists the steps.
 
 ## A newer system on its computer?
 

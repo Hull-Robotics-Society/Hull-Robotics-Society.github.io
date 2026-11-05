@@ -58,11 +58,11 @@ Every class has a guide in the [repository's `docs` folder](https://github.com/H
 | `tare`, `calibrate_arm` | the robot's own maintenance routines for the arms |
 | `base_status` | the Mobility Base's mode, battery, bumpers and speed |
 
-Run them with `ros2 run baxter_interface <tool>`, in a terminal set up with `source ~/baxter_ws/baxter.sh`, or with `docker compose run --rm client` in front on a computer without ROS 2. Anything that moves the robot asks first.
+Run them with `ros2 run baxter_interface <tool>`, in a terminal set up with `source ~/baxter_ws/baxter.sh`, or with `docker compose run --rm client` in front on a computer without ROS 2. `smoke_test`, `tare` and `calibrate_arm` ask before they start. `move_to_neutral` and `tuck_arms` move the arms straight away.
 
 ## Examples
 
-The [repository](https://github.com/Hull-Robotics-Society/baxter-ros2-bridge) has 17 short [example programs](https://github.com/Hull-Robotics-Society/baxter-ros2-bridge/tree/main/examples), one per part of the robot: reading the robot, moving an arm and a hand, the head, the screen, buttons, cameras, grippers, sensors, waving, teach-and-repeat, the trajectory action, `at_once()`, the head lights, two robots, the Mobility Base and MoveIt.
+The [repository](https://github.com/Hull-Robotics-Society/baxter-ros2-bridge) has 17 short [example programs](https://github.com/Hull-Robotics-Society/baxter-ros2-bridge/tree/main/examples): reading the robot, moving an arm and a hand, the head, the screen, buttons, cameras, grippers, sensors, waving, teach-and-repeat, the trajectory action, `at_once()`, the head lights, two robots, the Mobility Base and MoveIt.
 
 ## Seeing and planning
 

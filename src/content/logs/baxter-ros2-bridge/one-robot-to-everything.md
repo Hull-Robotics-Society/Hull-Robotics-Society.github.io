@@ -31,7 +31,7 @@ Robot 2 stands on a Dataspeed Mobility Base, and that day was also the first loo
 
 ## The first drive
 
-On 21 October the Mobility Base drove under program control for the first time: 10 cm forward and back again. The day also brought two things to look into. The base's computer clock was nine days behind, because its clock battery is flat. And the base reported "discharging" while it stood on the charger.
+On 21 October the Mobility Base drove under program control for the first time: 10 cm forward and back again. The day also showed that the base's computer clock was nine days behind, because its clock battery is flat.
 
 Driving the base through ROS also showed up a problem with its wheels. That gets an entry of its own once it is fixed.
 

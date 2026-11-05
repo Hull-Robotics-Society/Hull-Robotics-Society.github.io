@@ -10,7 +10,7 @@ The bridge is a Docker container that speaks ROS 1 to the robot and ROS 2 to eve
 
 ## Two ROS versions in one container
 
-At its heart is [ros1_bridge](https://github.com/ros2/ros1_bridge), a program that is a ROS 1 node and a ROS 2 node at the same time. For that it needs both installed side by side:
+The bridge is built on [ros1_bridge](https://github.com/ros2/ros1_bridge), a program that is a ROS 1 node and a ROS 2 node at the same time. For that it needs both installed side by side:
 
 1. **ROS 2 Jazzy** comes from the official base image. **ROS 1 Noetic** comes from a community package source, rebuilt for the same Ubuntu version. ROS 1 Noetic understands the robot's older ROS 1 Indigo without problems.
 2. **Baxter's own message types**, such as `JointCommand` or `EndpointState`, exist twice: once as Rethink's original ROS 1 definitions for the robot's software version, and once translated to ROS 2.

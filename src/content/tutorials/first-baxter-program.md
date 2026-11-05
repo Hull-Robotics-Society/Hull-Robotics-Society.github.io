@@ -127,6 +127,6 @@ Then end the session as in [part 1, step 6](/tutorials/baxter-on-a-lab-machine/#
 
 ## What next
 
-- The [repository](https://github.com/Hull-Robotics-Society/baxter-ros2-bridge) has 17 example programs in [`examples/`](https://github.com/Hull-Robotics-Society/baxter-ros2-bridge/tree/main/examples), one per part of the robot: cameras, grippers, buttons, sensors, teach-and-repeat and more.
+- The [repository](https://github.com/Hull-Robotics-Society/baxter-ros2-bridge) has 17 example programs in [`examples/`](https://github.com/Hull-Robotics-Society/baxter-ros2-bridge/tree/main/examples), from cameras, grippers, buttons and sensors to teach-and-repeat.
 - [The baxter_interface library](/projects/baxter-ros2-bridge/baxter-interface/) lists every class and its guide.
 - To keep your programs in a project of their own, or to work in VS Code, see [own-project.md](https://github.com/Hull-Robotics-Society/baxter-ros2-bridge/blob/main/docs/own-project.md).

@@ -49,4 +49,6 @@ Things the robots do that aren't obvious, found while working with them in 2026.
 ## The Mobility Base
 
 - **Nothing starts on the base's computer by itself.** ROS and the base's programs are started by hand each time.
+- **The base has to be switched on even for the joystick.** Its motors only work while its computer is on, although nothing has to run on it for the joystick.
+- **Robot 2 and the base share one e-stop button.** Pressed, it stops both.
 - **The base's clock was 9 days behind**, because the battery of the computer's clock is flat. Everything the base sends carries that time.

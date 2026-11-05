@@ -18,7 +18,7 @@ This tutorial sets up one of the university's lab machines to work with Baxter, 
 
 The lab machines run Windows, with WSL images (Ubuntu inside Windows) from the university's WSL manager, UoH-WSL. Their images come with ROS 2 Lyrical, MoveIt and RViz, and Docker. The [bridge](/projects/baxter-ros2-bridge/) runs in Docker, and your programs use the machine's own ROS 2.
 
-Commands in grey boxes are typed into the WSL terminal. Where a command contains something in angle brackets, like `<robot name>`, replace the whole thing, brackets included.
+Commands in code boxes are typed into the WSL terminal. Where a command contains something in angle brackets, like `<robot name>`, replace the whole thing, brackets included.
 
 **Save your WSL image in the WSL manager before you log out.** Without saving, everything you set up is gone the next time, and you start again at step 2.
 

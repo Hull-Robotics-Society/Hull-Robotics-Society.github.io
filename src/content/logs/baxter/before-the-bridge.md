@@ -11,7 +11,7 @@ When the society brought Baxter back into service in January 2026, it was progra
 
 ## The workstation
 
-The lab has one workstation for the robot. It runs Ubuntu 20.04 with ROS 1 Noetic, the last version of ROS 1, and the University's staff set up its connection to the robot. Rethink's SDK sits in a *catkin workspace*, the ROS 1 way of building a set of packages:
+The lab has one workstation for the robot. It runs Ubuntu 20.04 with ROS 1 Noetic, the last version of ROS 1, and the university's staff set up its connection to the robot. Rethink's SDK sits in a *catkin workspace*, the ROS 1 way of building a set of packages:
 
 ```bash
 mkdir -p ~/ros_baxter_ws/src

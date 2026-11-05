@@ -20,7 +20,7 @@ Robot 2 stands on a [Mobility Base](/projects/baxter/mobility-base/), a wheeled 
 ## Step 1: Before the base may move
 
 1. **Someone holds the joystick**, knows how it works, and stays with it. Pulling its left stick down stops the base at any time, whatever a program sends.
-2. **The base's e-stop is within reach.** Check it before the first drive of the day: with the e-stop pressed, the base must not move.
+2. **The e-stop is within reach.** Robot 2 and the base share one e-stop button, which stops both. Check it before the first drive of the day: with the e-stop pressed, the base must not move.
 3. **The robot's arms are tucked**, or in a pose that stays inside the base's outline.
 4. **The floor is clear**: at least 60 cm on every side, more in the driving direction. No cables on the floor that the wheels can catch, the network cable included.
 5. **The joystick allows programs**: it is switched on, its left stick is up ("enable") and its mode switch is on "Computer". In "Manual" the joystick drives and programs are ignored.
@@ -29,7 +29,7 @@ The base stops by itself if no command has arrived for a fifth of a second. A pr
 
 ## Step 2: Start the base's computer
 
-Nothing starts on the base's computer by itself. Log in with a monitor and keyboard, or over SSH, and start ROS in one terminal:
+Switch the base on with its power button. Its motors only work while its computer is on, even when you drive with the joystick. Nothing starts on the computer by itself, though: log in with a monitor and keyboard, or over SSH, and start ROS in one terminal:
 
 ```bash
 roscore
@@ -121,7 +121,7 @@ The circuit breaker cuts the battery off from everything, the base's computer in
 1. On the bridge machine: `docker compose --env-file .env.base down`, and `docker compose down` for the robot's bridge.
 2. Shut down the robot as usual, and wait until it is off.
 3. On the base's computer: Ctrl+C in the `roslaunch` terminal, then in the `roscore` terminal, then `sudo shutdown -h now`. Wait until it is off.
-4. Joystick off, e-stop pressed.
+4. Joystick off. Leave the e-stop released, as for the robot.
 5. Circuit breaker: press the red button. Charging works with the breaker off.
 
 ## What next
