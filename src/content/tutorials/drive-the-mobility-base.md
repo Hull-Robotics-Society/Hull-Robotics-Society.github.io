@@ -1,19 +1,19 @@
 ---
 title: "Drive the Mobility Base"
 author: Samuel Galla
-date: 2026-11-03
+date: 2026-11-05
 excerpt: "Start the base robot 2 stands on, watch its state from ROS 2, and drive it from a Python program."
 level: "Advanced"
 duration: "About an hour"
 needs:
-  - A bridge machine set up for robot 2
+  - A computer set up for Baxter, connected to robot 2
   - Access to the base's computer
   - A second person on the joystick
 projects: [baxter, baxter-ros2-bridge]
 tags: [Python, ROS 2, Baxter]
 ---
 
-Robot 2 stands on a [Mobility Base](/projects/baxter/mobility-base/), a wheeled platform. This tutorial starts the base, connects it to ROS 2 with a bridge of its own, and drives it a few centimetres from a program. Do [Your first Baxter program](/tutorials/first-baxter-program/) first.
+Robot 2 stands on a [Mobility Base](/projects/baxter/mobility-base/), a wheeled platform. This tutorial starts the base, connects it to ROS 2 with a bridge of its own, and drives it a few centimetres from a program. Do [Your first Baxter program](/tutorials/first-baxter-program/) first. The *bridge machine* below is the computer that runs the bridges.
 
 **The base carries a 75 kg robot.** Read step 1 before anything moves.
 
@@ -72,11 +72,13 @@ docker compose --env-file .env.base logs -f bridge   # wait for "Starting parame
 
 ## Step 5: Look at the base
 
+In a terminal set up with `source ~/baxter_ws/baxter.sh`:
+
 ```bash
-docker compose run --rm client ros2 run baxter_interface base_status -w
+ros2 run baxter_interface base_status -w
 ```
 
-This prints a line like the one below and updates it until you press Ctrl+C:
+(On a computer without ROS 2, put `docker compose run --rm client` in front, in the `baxter-ros2-bridge` folder.) This prints a line like the one below and updates it until you press Ctrl+C:
 
 ```
 mode 'waiting': the base waits for commands from a program | battery 61 % (24.1 V, discharging) | bumpers: none pressed | speed: forward +0.00, left +0.00 m/s, turn +0.00 rad/s
@@ -103,8 +105,10 @@ base.drive(forward=-0.05, seconds=2.0)   # and back
 Run it with the person on the joystick ready:
 
 ```bash
-docker compose run --rm client python3 drive_base.py
+python3 drive_base.py
 ```
+
+Without ROS 2, put the file in the `baxter-ros2-bridge` folder and run `docker compose run --rm client python3 drive_base.py` there.
 
 Directions are seen from the robot: `forward` is where Baxter looks, `left` is Baxter's left, and `turn` is counter-clockwise seen from above. `base.drive(left=0.05, seconds=2.0)` drives sideways.
 

@@ -3,6 +3,7 @@ title: "On the real robot"
 project: baxter-ros2-bridge
 alsoIn: [baxter]
 author: Samuel Galla
+aiAssisted: true
 date: 2026-10-05
 excerpt: "Three days with robot 1: what broke under the robot's real load, why the bridge moved to WSL2, and the first full check."
 ---

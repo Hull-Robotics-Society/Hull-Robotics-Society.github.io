@@ -7,10 +7,10 @@ author: Samuel Galla
 status: active
 started: 2026-10-01
 tagline: Programming our Baxters from ROS 2 and current Python, without changing the robots' own software.
-summary: A bridge and a Python library between Baxter's ROS 1 and ROS 2 Jazzy.
+summary: A bridge and a Python library between Baxter's ROS 1 and ROS 2.
 tags: [ROS 2, Docker, Python]
 filters: [ros]
-stack: ROS 1 Indigo, ROS 2 Jazzy, Docker, Python
+stack: ROS 1 Indigo, ROS 2 Jazzy and Lyrical, Docker, Python
 repo: https://github.com/Hull-Robotics-Society/baxter-ros2-bridge
 ---
 
@@ -43,15 +43,18 @@ This project connects the two worlds. A *bridge* talks ROS 1 to the robot and RO
 
 ### What is in it
 
-- **The bridge.** It runs in Docker on a Linux computer, or in WSL on Windows. It carries the topics and services the library needs, all the time.
+- **The bridge.** It runs in Docker on a Linux computer, or in WSL on Windows, and comes as a ready-made image. It carries the topics and services the library needs, all the time.
 - **`baxter_interface`.** A Python library with the same classes as Rethink's original one, such as `Limb`, `Head` and `Gripper`, plus simpler additions. These include moving a hand by a few centimetres, running several moves at once, and classes for the sensors.
 - **Command-line tools.** Enabling the robot, tucking the arms, cameras, the screen, calibration, and a robot check that tests everything step by step.
 - **MoveIt 2.** Motions planned around the robot itself and around obstacles, using the values of Rethink's original configuration.
 - **Several robots at once.** Each robot gets a name, and one program can use both of our Baxters.
 - **The Mobility Base.** A bridge of its own, and a `MobilityBase` class to read its state and drive it.
+- **Setup scripts.** One sets a computer up once, one writes a robot's settings at the start of a session, and one sets up a terminal. Programs use an installed ROS 2 (Jazzy or Lyrical), or a ready-made container on a computer without one.
 
 ### Where it stands
 
-The full robot check has passed on both robots. The Mobility Base has driven under program control, and the university's lab machines have moved a robot using their own ROS 2 installation. MoveIt works on the real robot so far only at a tenth of full speed.
+Version 1.0.0 came out on 4 November 2026 ([release notes](https://github.com/Hull-Robotics-Society/baxter-ros2-bridge/releases/tag/v1.0.0)). It has been used with robot 1, both from a Windows laptop and from the university's lab machines with their own ROS 2 Lyrical. From the laptop, the full robot check passed: 56 out of 56. On the lab machines, the examples, RViz and MoveIt ran on the robot. The Mobility Base has driven under program control.
 
-The [tutorials](#tutorials) below walk you through setting it up and writing a first program. The detailed guides for every part of the robot are in the [repository](https://github.com/Hull-Robotics-Society/baxter-ros2-bridge).
+Robot 2 passed the robot check in October with an earlier version, but version 1.0.0 hasn't been tried on it yet. Two real robots at the same time haven't been tried either. MoveIt works on the real robot so far only at a tenth of full speed.
+
+The [tutorials](#tutorials) below walk you through setting it up on a lab machine and writing a first program. The detailed guides for every part of the robot are in the [repository](https://github.com/Hull-Robotics-Society/baxter-ros2-bridge).

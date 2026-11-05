@@ -3,6 +3,7 @@ title: "From one robot to everything"
 project: baxter-ros2-bridge
 alsoIn: [baxter]
 author: Samuel Galla
+aiAssisted: true
 date: 2026-10-09
 excerpt: "Both robots in one program, the second robot and its Mobility Base, MoveIt, and finally the university's own lab machines."
 ---
@@ -38,4 +39,4 @@ Driving the base through ROS also showed up a problem with its wheels. That gets
 
 The real test of "from any of the lab's machines" came on 23 October, on one of the university's Windows computers. The bridge reached robot 1 over the university network, but no ROS 2 program saw a single Baxter topic.
 
-The lab machines' WSL uses a different network mode from my laptop (*bridged* instead of *mirrored*), and a network setting meant for the laptop pointed ROS 2 at an address that doesn't exist there. Without that setting, on 26 October, programs built with the lab machine's own ROS 2 tucked and untucked the robot's arms. They used the newer ROS 2 Lyrical, through the Jazzy bridge, without any of the bridge's ready-made containers. That was the goal from the start: the robots usable from the lab's own machines.
+The lab machines' WSL uses a different network mode from my laptop (*bridged* instead of *mirrored*), and a network setting meant for the laptop pointed ROS 2 at an address that doesn't exist there. Without that setting, on 26 October, programs built with the lab machine's own ROS 2 tucked and untucked the robot's arms. They used the newer ROS 2 Lyrical, through the Jazzy bridge, without any of the bridge's ready-made containers. That was the goal from the start: the robots usable from the lab's own machines. What was left was making that easy for everyone else: [version 1.0.0](/projects/baxter-ros2-bridge/version-1-0-0/).

@@ -2,6 +2,7 @@
 title: "Baxter before the bridge"
 project: baxter
 author: Samuel Galla
+aiAssisted: true
 date: 2026-01-18
 excerpt: "How we programmed Baxter in its first months with the society: one ROS 1 workstation and Rethink's original SDK."
 ---

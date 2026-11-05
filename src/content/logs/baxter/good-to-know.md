@@ -2,6 +2,7 @@
 title: "Good to know"
 project: baxter
 author: Samuel Galla
+aiAssisted: true
 excerpt: "Quirks of our Baxters that cost us time to find out."
 ---
 
@@ -11,9 +12,17 @@ Things the robots do that aren't obvious, found while working with them in 2026.
 
 - **Release the e-stop before switching Baxter on.** If the e-stop is pressed while the robot starts, it gets stuck in an odd state and refuses to enable: every request is answered with "robot is still resetting" in its own log. Shutting it down and starting it again with the e-stop released fixes it.
 - **Booting takes a few minutes.** The robot answers a ping before it accepts connections.
-- **On a direct cable, the robot's address can change** each time it restarts. Look it up again and update the bridge's settings.
+- **On a direct cable, the robot's address can change** each time it restarts. Run `add_robot.sh` again, then restart the bridge.
+- **Untuck before enabling.** `tuck_arms -u` enables the robot itself, with collision avoidance switched off for the move. A robot enabled while tucked moves its arms away from its body by itself, because its collision avoidance pushes them out.
 - **Disabling the motors makes the arms sink down slowly.** Make sure nothing is underneath them.
 - **The e-stop disables the robot.** After releasing it, the robot needs a reset and then enabling again.
+
+## The lab machines
+
+- **Save the WSL image** in the WSL manager before you log out. Otherwise everything you set up is gone at the next login.
+- **Run `add_robot.sh` every session.** The lab machine's own address can change from day to day, and the robot connects back to it.
+- **Run `source ~/baxter_ws/baxter.sh` in every terminal for Baxter.** The lab's terminals start with another ROS 2 domain and middleware (Cyclone DDS). Without it, programs don't see the robot, or see its topics but get no answer from its services.
+- **Two lab machines can both command the same robot.** Each keeps its ROS 2 to itself, so neither sees the other. Agree who drives.
 
 ## Arms
 

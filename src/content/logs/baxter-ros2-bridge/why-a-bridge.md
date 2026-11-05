@@ -3,6 +3,7 @@ title: "Why we built a bridge"
 project: baxter-ros2-bridge
 alsoIn: [baxter]
 author: Samuel Galla
+aiAssisted: true
 date: 2026-10-01
 excerpt: "Why the robots needed a new setup, why a bridge to ROS 2, and the first week of building it."
 ---

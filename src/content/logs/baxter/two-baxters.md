@@ -2,16 +2,19 @@
 title: "Our two Baxters and how they connect"
 project: baxter
 author: Samuel Galla
+aiAssisted: true
 excerpt: "The two robots, the Mobility Base, and how they all reach one ROS 2 program."
 ---
 
-The society has two Baxters, called **robot 1** and **robot 2** here. Robot 2 stands on a Dataspeed Mobility Base. Both run the same robot software (version 1.2.0), and in October 2026 both passed the same full check through the bridge. A program written for one therefore runs on the other.
+The society has two Baxters, called **robot 1** and **robot 2** here. Robot 2 stands on a Dataspeed Mobility Base. Both run the same robot software (version 1.2.0), and in October 2026 both passed the same full check through the bridge, with a version from before the first release. A program written for one therefore runs on the other.
 
 | | Robot 1 | Robot 2 |
 | --- | --- | --- |
 | Robot software | 1.2.0 | 1.2.0 |
 | Stands on | | the Mobility Base |
-| Full robot check through the bridge | passed, 7 October 2026 | passed, 12 October 2026 |
+| On the university network | `011603p0009.hull.ac.uk` | `011602p0013.hull.ac.uk` |
+| Full robot check through the bridge | passed, 7 October 2026 | passed, 12 October 2026 (one check skipped: no gripper mounted) |
+| Bridge version 1.0.0 | tested | not tried yet |
 
 The society has two electric grippers, which are mounted on whichever robot needs them. The library checks what is mounted each time a program starts.
 
@@ -80,10 +83,10 @@ The bridge has to reach the robot, and the robot has to reach the bridge back: i
 
 - **A cable straight to one robot.** The computer's wired connection is set to *link-local*, and the robot gives itself an address starting with `169.254.` after about a minute. The address can change when the robot restarts.
 - **A small switch** with the bridge machine, both robots and the base's computer on it, all with link-local addresses. This is how the base was first reached.
-- **The university network.** The robots have names there, and the university's lab machines reach a robot this way.
+- **The university network.** The robots have names there (in the table above), and the university's lab machines reach a robot this way: [Baxter on a lab machine](/tutorials/baxter-on-a-lab-machine/).
 
-Your own programs don't need to be on the robot's network at all. They only need to see the bridge machine's ROS 2 traffic, on the same *ROS 2 domain* (a number all programs of one ROS 2 system share; the bridge uses 42). Guest and university Wi-Fi often block the messages ROS 2 uses to find other programs. The bridge's repository explains how to name the other machine directly in that case.
+Your own programs don't need to be on the robot's network at all. They only need to see the bridge machine's ROS 2 traffic, on the same *ROS 2 domain* (a number all programs of one ROS 2 system share; the bridge uses 42). Guest and university Wi-Fi often block the messages ROS 2 uses to find other programs. The bridge's repository explains how to name the other machine directly in that case, in [own-machine.md](https://github.com/Hull-Robotics-Society/baxter-ros2-bridge/blob/main/docs/own-machine.md).
 
 ## Status
 
-The names and both bridges have been tested with stand-ins for two robots. Each robot and the base have worked through the bridge on their own. **Both real robots at the same time** haven't been tried yet.
+The names and both bridges have been tested with stand-ins for two robots. Each robot and the base have worked through the bridge on their own. **Both real robots at the same time** haven't been tried yet, and neither has robot 2 with version 1.0.0.

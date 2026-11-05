@@ -2,6 +2,7 @@
 title: "The Mobility Base"
 project: baxter
 author: Samuel Galla
+aiAssisted: true
 excerpt: "The wheeled platform robot 2 stands on: how it is built, its limits, and what we know about ours."
 ---
 

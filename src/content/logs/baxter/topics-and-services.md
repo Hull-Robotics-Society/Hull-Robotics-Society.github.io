@@ -2,6 +2,7 @@
 title: "Baxter's topics and services"
 project: baxter
 author: Samuel Galla
+aiAssisted: true
 excerpt: "What the robot offers in ROS 1, what the bridge carries to ROS 2, and under which names."
 ---
 
