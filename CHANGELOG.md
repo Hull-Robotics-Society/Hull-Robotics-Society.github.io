@@ -9,7 +9,7 @@ Rebuilt the website from scratch with Astro (7.4; needs Node.js 22.23.4 or newer
 - Homepage is now a scroll story:
   - The hero draws circuit traces into the logo.
   - A "Next up" bar always shows the next Project Meeting, Project Day or event.
-  - A pinned robot roster ("Meet the machines") swaps through the robots as you scroll.
+  - A pinned robot roster ("Meet the machines") swaps through the robots as you scroll. Each robot's status sits in the small line above its name, not on its photo, where it was hard to read.
   - A drifting photo collage and a Join section.
 - Calm, readable inner pages: project pages with a dated build-log timeline and fact sheet, long-form article pages with a sticky contents list, reading time and an "Edit this page on GitHub" link.
 - New About page with mission, what we do, why join, where to find us and contacts, plus the 2026–27 Executive Team (President, Vice President, Treasurer, Project Manager) as compact cards.
