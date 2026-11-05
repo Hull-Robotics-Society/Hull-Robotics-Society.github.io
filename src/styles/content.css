@@ -140,6 +140,12 @@
 .credit a { color: inherit; }
 .credit-overlay { position: absolute; right: 8px; bottom: 8px; z-index: 2; max-width: calc(100% - 16px); padding: 3px 7px; border-radius: 4px; background: rgba(5,10,9,.62); color: #e8f0ec; backdrop-filter: blur(4px); pointer-events: auto; }
 .credit-inline { display: block; color: var(--muted); margin-top: 6px; }
+.credit-one-line { font-size: .6rem; padding: 2px 6px; right: 6px; bottom: 6px; max-width: calc(100% - 12px); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.credit-short { display: none; }
+@media (max-width: 600px) {
+  .credit-full { display: none; }
+  .credit-short { display: inline; }
+}
 .card .media { position: relative; }
 .shot .credit-overlay { top: 8px; bottom: auto; }
 .film-poster .credit-overlay { left: 8px; right: 8px; text-align: center; }

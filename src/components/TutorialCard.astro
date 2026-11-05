@@ -1,6 +1,7 @@
 ---
 import TutorialFacts from './TutorialFacts.astro';
 import DrawnCover from './DrawnCover.astro';
+import Credit from './Credit.astro';
 import { coverOf, type Tutorial } from '../lib/site';
 
 interface Props {
@@ -20,6 +21,7 @@ const kicker = t.data.part ? `Part ${t.data.part}` : group.id === 'workshops' ? 
         {cover
             ? <img src={cover} alt="" loading="lazy" decoding="async" />
             : <DrawnCover seed={t.id} mark={t.data.part ? String(t.data.part).padStart(2, '0') : undefined} level={t.data.level} />}
+        <Credit src={cover} linked={false} length="short" />
     </div>
     <div class="body spread">
         <p class="eyebrow">{kicker}</p>

@@ -243,6 +243,7 @@ export async function cadParts(cad: NonNullable<Project['data']['cad']>): Promis
 export interface Credit {
     path: string;
     credit: string;
+    short?: string;
     link?: string;
     licence?: string;
     note?: string;

@@ -9,7 +9,7 @@ Rebuilt the website from scratch with Astro (7.4; needs Node.js 22.23.4 or newer
 - Homepage is now a scroll story:
   - The hero draws circuit traces into the logo.
   - A "Next up" bar always shows the next Project Meeting, Project Day or event.
-  - A pinned robot roster ("Meet the machines") swaps through the robots as you scroll.
+  - A pinned robot roster ("Meet the machines") swaps through the robots as you scroll. Each robot's status sits in the small line above its name, not on its photo, where it was hard to read.
   - A drifting photo collage and a Join section.
 - Calm, readable inner pages: project pages with a dated build-log timeline and fact sheet, long-form article pages with a sticky contents list, reading time and an "Edit this page on GitHub" link.
 - New About page with mission, what we do, why join, where to find us and contacts, plus the 2026–27 Executive Team (President, Vice President, Treasurer, Project Manager) as compact cards.
@@ -25,15 +25,17 @@ Rebuilt the website from scratch with Astro (7.4; needs Node.js 22.23.4 or newer
 - The tabs sort themselves: robots A to Z, projects by their most recent build-log entry (or start date), research areas by their newest article. A sort menu next to the filter chips switches between A to Z, last updated and newest first. The hand-set `order:` field is gone.
 - New `layout: hub` for project pages: Overview, Build log, Tutorials, Documentation, media, and the projects using the robot at the end, with empty sections left out. Only Baxter and the Baxter × Pepper dance use it so far.
 - Tutorials can belong to projects (`projects:`), which list them and are linked back. Tutorials without a project can name a `topic:` (e.g. Arduino), which becomes their filter chip on the Tutorials page.
-- Tutorials can form a series (`series:` and `part:`): the parts are listed together on the Tutorials page, and each says which part it is and links to the parts before and after it.
+- Tutorials can form a series (`series:` and `part:`): the parts are listed together on the Tutorials page, and each says which part it is and links to the parts before and after it. The first is "Getting started with Baxter".
 - The Tutorials page filters by project (Workshops for tutorials without one) and by level, in the browser. Cards show the level as three dots and the time with a clock, apart from the tags; cards without a picture draw circuit traces in the theme's colours, with the part number of a series or the level as bars beside them. Project cards without a picture draw the same, with the project's initials. The tutorial list on a project page shows level and time the same way as the cards, and lists each series first, in part order.
 - A tutorial's header shows its level and time as badges, the author and date as one line, and what you need as a "Before you start" checklist (`needs:` can now be a list).
 - Project pages list their sections ("On this page", with how many entries each has) in the fact sheet: a list beside the text on wide screens, a row of chips above it on phones. The fact sheet keeps only the "Code on GitHub" button; the "3D models" button is gone, and reference pages such as "Dalek files" are listed under a Documentation section on every project page instead of as buttons.
-- A build-log entry can also appear in other projects' timelines (`alsoIn:`), linking to its one page, and counts on that project's card and fact sheet.
-- Tables with a second line under a name (`<small>`) stack their rows on phones instead of scrolling sideways.
+- A build-log entry can also appear in other projects' timelines (`alsoIn:`), linking to its one page, and counts on that project's card and fact sheet. The bridge's four entries ("Why we built a bridge", "On the real robot", "From one robot to everything" and "Version 1.0.0") are listed on Baxter's page too.
+- Tables with a second line under a name (`<small>`) stack their rows on phones instead of scrolling sideways. Baxter's topic tables use this.
 - New `done` project status, shown as "Completed", for finished projects such as the Baxter × Pepper dance.
 - Optional `author:` on projects, build logs, tutorials, research articles, journal posts and events, shown as "Written by".
-- Baxter: the dance moved to its own project at `/projects/baxter-pepper-dance/`. The old introduction, setup, code, arm and music video articles are retired ahead of a rewrite; their addresses redirect to Baxter's page and the originals remain on `archive/gh-pages`.
+- Baxter: the dance moved to its own project at `/projects/baxter-pepper-dance/`. The old introduction, setup, code, arm and music video articles are retired; the originals remain on `archive/gh-pages`. The setup and code addresses redirect to the new "Baxter before the bridge" log, the others to Baxter's page.
+- Baxter documentation: a rewritten Baxter page (the robot, how it is programmed, the two robots, safety), and a new Baxter ROS 2 bridge project. Documentation pages on the two robots and how they connect, every bridged topic and service, the Mobility Base, known quirks, how the bridge works and the `baxter_interface` library. Tutorials for a lab machine (from a fresh WSL image to a moving robot, and how to end a session), a first program, your own laptop and driving the Mobility Base, all following the bridge's release 1.0.0 (its setup scripts and ready-made images). Build logs on the setup before the bridge, why it was built, and the release.
+- Baxter's page, the bridge project and the four Baxter tutorials have rendered covers and headers instead of photos: Rethink's and Dataspeed's CAD models in grey clay on an off-white background, with one element in the society's green. The grippers are mounted as on the real robot.
 - Site search (Pagefind) in the header, also on Ctrl+K and `/`: searches every build log, tutorial, event, film night, journal post, research article and the About page, entirely in the browser.
 - Notice banners: cancelled weekly sessions (a `cancelled` date list on the event) and announcements from `src/data/notices.json` appear at the top of every page while they are current, and "Next up" skips cancelled weeks.
 - Navigation reduced to Projects, Tutorials, Events, Journal and About. Research is a tab next to Projects; the blog is now the Journal.
@@ -48,15 +50,15 @@ Rebuilt the website from scratch with Astro (7.4; needs Node.js 22.23.4 or newer
 - All existing photos and videos moved into this layout; four unused images (Transformer, Dalek and Pepper pictures and a brain diagram) were removed.
 - `npm run new` asks what to add, the title and the date, and creates the file from a template in `templates/` in the right folder, with its media folder.
 - Pictures in the text use three patterns styled by the site: `<figure>` with `<figcaption>` and `media-row`, which lines pictures and videos up side by side at one height and fills the width of the text without stretching or cropping. The hand-made layouts from the old site are gone: the Top 100 Leaders photos were stretched its opening clip only 125 px wide beside a short list, a caption showed as raw text, and the Baxter build logs had extra top-level headings that were missing from "On this page".
-- Diagrams: inline SVG in a `<figure class="diagram">`, drawn with the site's `dg-` classes, so they follow the light and dark themes.
+- Diagrams: inline SVG in a `<figure class="diagram">`, drawn with the site's `dg-` classes, so they follow the light and dark themes. The first two show the Baxter bridge and how the two robots connect.
 - Project overviews use the same text styles as build logs (headings, lists, code, tables, pictures).
 - Every pull request automatically runs `npm run check` and a full build before it is reviewed.
 - `npm run check` reports old-site layouts (`style=`, `align=`, `<center>`), Jekyll template syntax, `#` headings, missing empty lines after HTML blocks, captions written as text, videos without a preview image, old Jekyll front matter fields and code blocks in languages the highlighter doesn't know (the Dalek electronics sketch was labelled `arduino`; it is now highlighted as C++). It also lists placeholder text, broken media links, clashing addresses, film nights without a poster, entries in the wrong year folder, unused media, oversized files and videos without a preview image.
 
 ### Transparency
 - Footer note and an "About this website" section on the About page: who runs the site, how AI tools were used (with a list of AI-assisted pages) and image credits.
-- `aiAssisted: true` in front matter shows a short note under a page's title. It is set on the Pepper documentation and the Baxter × Pepper dance write-up.
-- Image credits from `src/data/credits.json`, by file or whole folder, shown on the photos themselves (galleries, lightbox, project headers, film posters, roster, collage, project cards). Film posters and the Baxter press image are credited.
+- `aiAssisted: true` in front matter shows a short note under a page's title. It is set on the Pepper documentation, the Baxter × Pepper dance write-up and the Baxter and bridge build logs.
+- Image credits from `src/data/credits.json`, by file or whole folder, shown on the photos themselves (galleries, lightbox, project headers, film posters, roster, collage, project and tutorial cards). Small pictures show an optional `short` text in smaller type on one line, as do project headers on phones. Film posters and the Baxter renders are credited.
 
 ### Media and performance
 - Photos scaled to at most 1600 px and videos re-encoded to H.264 with poster frames: media went from 384 MB to 106 MB.

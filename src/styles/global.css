@@ -187,7 +187,7 @@ p { margin: 0; }
 .bot.on { opacity: 1; visibility: visible; transform: none; transition: opacity .45s ease, transform .55s cubic-bezier(.2,.8,.2,1); }
 .bot figure { margin: 0; position: relative; background: var(--surface-2); min-height: 0; }
 .bot figure img, .bot figure video { width: 100%; height: 100%; object-fit: cover; }
-.bot figure .tag { position: absolute; left: 12px; bottom: 12px; }
+.bot-eyebrow { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; }
 .bot .spec { padding: clamp(20px, 3vw, 32px); display: flex; flex-direction: column; gap: 14px; min-width: 0; overflow-y: auto; }
 .bot h3 { font-size: var(--step-3); }
 .bot dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; margin: 0; font-size: .88rem; border-top: 1px solid var(--line); padding-top: 14px; }

@@ -115,7 +115,7 @@ Normal Markdown works: `## Headings`, **bold**, lists, links, `inline code`, cod
   ```
 
   A row fills the width of the text and lines its pictures up at one height (at most 440 px), so a single portrait video in a row is shown at a sensible size too. For that, every picture and video in a row needs `width` and `height`, its real size in pixels; `npm run check` tells you the right numbers to paste. The caption is optional. Leave an **empty line after each block**, or the next line of Markdown is shown as raw text.
-- A diagram is an SVG drawing written into the page inside `<figure class="diagram">`, so it changes colour with the light and dark themes. Draw it with the site's classes instead of colours: `dg-box` (a box), `dg-key` (a highlighted box), `dg-zone` (a shaded area), `dg-wire` and `dg-link` (lines), `dg-tip` (arrow heads), and `dg-t`, `dg-s`, `dg-m` for titles, small text and code (`dg-c` centres text). Make it about 400 units wide (`viewBox="0 0 400 …"`) so the text stays readable on phones.
+- A diagram is an SVG drawing written into the page inside `<figure class="diagram">`, so it changes colour with the light and dark themes. Draw it with the site's classes instead of colours: `dg-box` (a box), `dg-key` (a highlighted box), `dg-zone` (a shaded area), `dg-wire` and `dg-link` (lines), `dg-tip` (arrow heads), and `dg-t`, `dg-s`, `dg-m` for titles, small text and code (`dg-c` centres text). Make it about 400 units wide (`viewBox="0 0 400 …"`) so the text stays readable on phones. The Baxter pages have examples (`src/content/logs/baxter/two-baxters.md`).
 - Start sections with `##` (and `###` below that). The page title is the only `#` heading.
 - YouTube: paste the embed code from YouTube's *Share → Embed*. It is shown full width automatically.
 - Link to other pages of the site with paths like `[the Dalek](/projects/dalek/)`.
@@ -447,11 +447,12 @@ Photos without a credit are treated as the society's own. To credit a photograph
 | --- | --- | --- |
 | `path` | yes | One file (`/media/events/2024-25/klaus-screening/poster.jpg`) or a whole folder ending in `/` (`/media/journal/2025-26/varsity-2026/`), which covers everything inside it. If several entries match, the most specific one wins. |
 | `credit` | yes | The text shown on the photo, e.g. "Photos: Jane Doe" or "Poster © Netflix". |
+| `short` | no | A shorter version for small pictures (project and tutorial cards, the homepage robots and collage) and for project headers on phones, e.g. "© Jane Doe". Without it, those show `credit`. Keep it to a few words, as it's cut off after one line. |
 | `link` | no | Makes the credit a link (e.g. to the photographer's page). |
 | `licence` | no | Added after the credit, e.g. "CC BY 4.0". |
 | `note` | no | Only shown in the list on the About page, e.g. "Used to promote our screening". |
 
-The credit is shown in the corner of the photo (galleries and their full-size view, project headers, film posters, homepage cards and collage, project cards) and listed under "About this website" on the About page.
+The credit is shown in the corner of the photo (galleries and their full-size view, project headers, film posters, homepage cards and collage, project and tutorial cards) and listed under "About this website" on the About page. Small pictures show it in smaller type on a single line, and the full text appears when you hover over it.
 
 ### 3D models
 

@@ -1,5 +1,5 @@
 {
-    "_help": "Image credits. `path` is a file or a folder in public/ (a folder covers everything inside it). The most specific match wins. `credit` is shown next to the image and listed on the About page; `link` and `licence` are optional. Photos without an entry are the society's own.",
+    "_help": "Image credits. `path` is a file or a folder in public/ (a folder covers everything inside it). The most specific match wins. `credit` is shown next to the image and listed on the About page; `short`, `link` and `licence` are optional; `short` is shown on small pictures (cards) and on phones. Photos without an entry are the society's own.",
     "credits": [
         {
             "path": "/media/events/2024-25/klaus-screening/poster.jpg",
@@ -22,12 +22,64 @@
             "note": "Used to promote our screening"
         },
         {
-            "path": "/media/projects/baxter/cover.jpeg",
-            "credit": "Baxter press image © Rethink Robotics"
+            "path": "/media/projects/baxter/cover.jpg",
+            "credit": "Render with the Baxter model © Rethink Robotics",
+            "short": "© Rethink Robotics",
+            "link": "https://github.com/RethinkRobotics/baxter_common",
+            "licence": "BSD-3-Clause"
+        },
+        {
+            "path": "/media/projects/baxter/hero.jpg",
+            "credit": "Render with the Baxter model © Rethink Robotics",
+            "short": "© Rethink Robotics",
+            "link": "https://github.com/RethinkRobotics/baxter_common",
+            "licence": "BSD-3-Clause"
         },
         {
             "path": "/media/events/2026-27/mary-poppins-screening/poster.jpg",
             "credit": "Mary Poppins poster © Walt Disney Productions"
+        },
+        {
+            "path": "/media/projects/baxter-ros2-bridge/cover.jpg",
+            "credit": "Render with the Baxter model © Rethink Robotics",
+            "short": "© Rethink Robotics",
+            "link": "https://github.com/RethinkRobotics/baxter_common",
+            "licence": "BSD-3-Clause"
+        },
+        {
+            "path": "/media/projects/baxter-ros2-bridge/hero.jpg",
+            "credit": "Render with the Baxter model © Rethink Robotics",
+            "short": "© Rethink Robotics",
+            "link": "https://github.com/RethinkRobotics/baxter_common",
+            "licence": "BSD-3-Clause"
+        },
+        {
+            "path": "/media/tutorials/baxter-on-a-lab-machine/cover.jpg",
+            "credit": "Render with the Baxter model © Rethink Robotics",
+            "short": "© Rethink Robotics",
+            "link": "https://github.com/RethinkRobotics/baxter_common",
+            "licence": "BSD-3-Clause"
+        },
+        {
+            "path": "/media/tutorials/first-baxter-program/cover.jpg",
+            "credit": "Render with the Baxter model © Rethink Robotics",
+            "short": "© Rethink Robotics",
+            "link": "https://github.com/RethinkRobotics/baxter_common",
+            "licence": "BSD-3-Clause"
+        },
+        {
+            "path": "/media/tutorials/baxter-on-your-laptop/cover.jpg",
+            "credit": "Render with the Baxter model © Rethink Robotics",
+            "short": "© Rethink Robotics",
+            "link": "https://github.com/RethinkRobotics/baxter_common",
+            "licence": "BSD-3-Clause"
+        },
+        {
+            "path": "/media/tutorials/drive-the-mobility-base/cover.jpg",
+            "credit": "Render with the Baxter model © Rethink Robotics and the Mobility Base model © Dataspeed Inc.",
+            "short": "© Rethink Robotics, Dataspeed",
+            "link": "https://github.com/RethinkRobotics/baxter_common",
+            "licence": "BSD-3-Clause / BSD"
         }
     ]
 }
