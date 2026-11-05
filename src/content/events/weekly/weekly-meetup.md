@@ -10,8 +10,8 @@ location: "Robotics Lab, Applied Science building"
 excerpt: "Our weekly meeting to catch up on projects, plan the week and get to know other members. Everyone is welcome, no experience needed."
 cover: "/media/events/weekly/projects.png"
 cancelled:
-  - date: 2026-11-02
-    note: "Mary Poppins film night instead, starting 16:30"
+  - date: 2026-11-09
+    note: "Mary Poppins film night instead, starting 16:15"
     link: /events/mary-poppins-screening/
 ---
 

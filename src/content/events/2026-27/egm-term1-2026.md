@@ -2,8 +2,8 @@
 title: "Emergency General Meeting: Vice President election"
 type: "Executive"
 date: 2026-11-09
-start: "17:00"
-end: "19:00"
+start: "16:00"
+end: "16:15"
 location: "Robotics Lab, Applied Science building"
 excerpt: "An Emergency General Meeting to elect a new Vice President for the rest of the 2026–27 year. Find out what the role involves and how to stand."
 ---
