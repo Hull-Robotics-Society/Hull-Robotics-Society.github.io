@@ -618,5 +618,6 @@ public/media/           Photos and videos, one folder per page (same path as its
 public/images/          Design files (site/) and committee photos (committee/)
 templates/              Starting points used by npm run new
 scripts/                new.mjs (npm run new), check.mjs (npm run check), optimise-media.py for new media;
-                        migrate-content.py was used once to move from Jekyll
+                        migrate-content.py was used once to move from Jekyll;
+                        seed-git-practice.sh builds the git-practice repository used by the Git labs
 ```

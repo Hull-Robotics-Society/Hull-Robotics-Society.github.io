@@ -50,6 +50,12 @@
 .prose-md th { background: var(--surface); font-family: var(--font-display); }
 .prose-md em { color: var(--muted); }
 
+/* Hidden answers in hands-on tutorials: <details> with a <summary> */
+.prose-md details { padding: 10px 16px; border: 1px dashed color-mix(in srgb, var(--accent) 45%, var(--line)); border-radius: var(--radius); }
+.prose-md summary { cursor: pointer; color: var(--accent); font-family: var(--font-display); font-weight: 600; }
+.prose-md details[open] summary { margin-bottom: 10px; }
+.prose-md details > * + * { margin-top: 1em; }
+
 /* Pictures in the text: <figure> with an optional <figcaption>, and .media-row for several side by side
    (same height, each keeps its shape). With width/height on each item, the Article script turns a row into
    .fit: it fills the column exactly; without them, items wrap at a fixed height. */
