@@ -187,7 +187,15 @@
 .t-filters, .p-filters { align-items: center; justify-content: space-between; }
 :is(.t-filters, .p-filters) [role="group"] { display: flex; gap: 8px; flex-wrap: wrap; }
 :is(.t-filters, .p-filters) select { font-family: var(--font-mono); font-size: .78rem; padding: 7px 12px; border-radius: 99px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
-.t-group + .t-group { margin-top: 56px; }
+/* Group series: a switch beside the level menu, which shows each series as one card with a stack behind it */
+.t-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.t-filters .t-view { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: .78rem; padding: 7px 12px; border-radius: 99px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
+.t-view i { position: relative; width: 26px; height: 14px; border-radius: 99px; background: var(--line); transition: background .15s ease; }
+.t-view i::after { content: ""; position: absolute; top: 2px; left: 2px; width: 10px; height: 10px; border-radius: 50%; background: var(--surface); transition: transform .15s ease; }
+.t-view[aria-checked="true"] i { background: var(--accent); }
+.t-view[aria-checked="true"] i::after { transform: translateX(12px); }
+.t-folder { box-shadow: 5px 5px 0 -1px var(--surface), 5px 5px 0 0 var(--line), 10px 10px 0 -1px var(--surface), 10px 10px 0 0 var(--line); }
+.t-group:not([hidden]) ~ .t-group { margin-top: 56px; }
 .t-group h2 { font-size: var(--step-2); margin: 6px 0 20px; }
 .drawn-cover { width: 100%; height: 100%; display: block; background: var(--surface-2); }
 .drawn-cover path { fill: none; stroke: var(--trace); stroke-width: 3; stroke-linejoin: round; }

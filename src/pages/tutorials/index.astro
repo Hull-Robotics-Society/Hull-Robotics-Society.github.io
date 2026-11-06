@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import TutorialCard from '../../components/TutorialCard.astro';
+import SeriesCard from '../../components/SeriesCard.astro';
 import { projects, type Tutorial } from '../../lib/site';
 
 const tutorials = (await getCollection('tutorials')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
@@ -39,11 +40,23 @@ const single = tutorials.filter(t => !t.data.series);
                 <button type="button" aria-pressed="true" data-group="all">All</button>
                 {groups.map(g => <button type="button" aria-pressed="false" data-group={g.id}>{g.label}</button>)}
             </div>
-            <select id="t-level" aria-label="Level">
-                <option value="all">Any level</option>
-                {levels.map(l => <option value={l}>{l}</option>)}
-            </select>
+            <div class="t-controls">
+                {series.length > 0 && <button type="button" class="t-view" role="switch" aria-checked="false">Group series<i aria-hidden="true"></i></button>}
+                <select id="t-level" aria-label="Level">
+                    <option value="all">Any level</option>
+                    {levels.map(l => <option value={l}>{l}</option>)}
+                </select>
+            </div>
         </div>
+
+        {series.length > 0 && (
+            <section class="t-group t-folders" aria-label="Series" hidden>
+                <h2>Series</h2>
+                <div class="grid3">
+                    {series.map(s => <SeriesCard name={s.name} parts={s.parts} groups={[...new Set(s.parts.map(t => groupOf(t).id))]} />)}
+                </div>
+            </section>
+        )}
 
         {series.map(s => (
             <section class="t-group t-series" aria-label={s.name}>
@@ -65,33 +78,51 @@ const single = tutorials.filter(t => !t.data.series);
             </div>
         </section>
         <p class="muted t-none" hidden>No tutorials match. Try another level or project.</p>
+
+        <script is:inline>
+            // Runs here, before the page first paints, so a remembered view doesn't flash the other one.
+            // Filter by project and level in the browser; a series or section with nothing left is hidden.
+            // A series folder has several groups and levels, and stays while any of its parts match.
+            {
+                const chips = [...document.querySelectorAll('.t-filters [role="group"] button')];
+                const level = document.querySelector('#t-level');
+                const toggle = document.querySelector('.t-view');
+                let group = 'all';
+                let folders = false;
+                try { folders = localStorage.getItem('tutorial-view') === 'folders'; } catch {}
+                const apply = () => {
+                    const filtered = group !== 'all' || level.value !== 'all';
+                    let shown = 0;
+                    toggle?.setAttribute('aria-checked', String(folders));
+                    document.querySelectorAll('.t-group').forEach(section => {
+                        if (folders ? section.matches('.t-series') : section.matches('.t-folders')) {
+                            section.hidden = true;
+                            return;
+                        }
+                        let inSection = 0;
+                        section.querySelectorAll('.t-card').forEach(c => {
+                            c.hidden = (group !== 'all' && !c.dataset.group.split(' ').includes(group)) || (level.value !== 'all' && !c.dataset.level.split(' ').includes(level.value));
+                            if (!c.hidden) inSection++;
+                        });
+                        section.querySelector('.t-write')?.toggleAttribute('hidden', filtered);
+                        section.hidden = filtered && inSection === 0;
+                        shown += inSection;
+                    });
+                    document.querySelector('.t-none').hidden = shown > 0;
+                };
+                chips.forEach(b => b.addEventListener('click', () => {
+                    chips.forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+                    group = b.dataset.group;
+                    apply();
+                }));
+                level.addEventListener('change', apply);
+                toggle?.addEventListener('click', () => {
+                    folders = !folders;
+                    try { localStorage.setItem('tutorial-view', folders ? 'folders' : 'parts'); } catch {}
+                    apply();
+                });
+                apply();
+            }
+        </script>
     </div>
 </Base>
-
-<script>
-    // Filter by project and level in the browser; a series or section with nothing left is hidden
-    const buttons = [...document.querySelectorAll<HTMLButtonElement>('.t-filters button')];
-    const level = document.querySelector<HTMLSelectElement>('#t-level')!;
-    let group = 'all';
-    const apply = () => {
-        const filtered = group !== 'all' || level.value !== 'all';
-        let shown = 0;
-        document.querySelectorAll<HTMLElement>('.t-group').forEach(section => {
-            let inSection = 0;
-            section.querySelectorAll<HTMLElement>('.t-card').forEach(c => {
-                c.hidden = (group !== 'all' && c.dataset.group !== group) || (level.value !== 'all' && c.dataset.level !== level.value);
-                if (!c.hidden) inSection++;
-            });
-            section.querySelector<HTMLElement>('.t-write')?.toggleAttribute('hidden', filtered);
-            section.hidden = filtered && inSection === 0;
-            shown += inSection;
-        });
-        document.querySelector<HTMLElement>('.t-none')!.hidden = shown > 0;
-    };
-    buttons.forEach(b => b.addEventListener('click', () => {
-        buttons.forEach(x => x.setAttribute('aria-pressed', String(x === b)));
-        group = b.dataset.group!;
-        apply();
-    }));
-    level.addEventListener('change', apply);
-</script>
