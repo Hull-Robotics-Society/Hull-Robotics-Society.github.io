@@ -373,7 +373,7 @@ Create `src/content/tutorials/<name>.md`. Use `##` headings for the steps; with 
 | `level` | yes | `Beginner`, `Intermediate` or `Advanced`. |
 | `duration` | yes | Free text, kept short so it fits on the card, e.g. `"About 60 minutes"` or `"About 2 hours"`. |
 | `needs` | no | What people need, shown as a "Before you start" checklist. One line, or a list with one thing per line (`- A laptop`). |
-| `series` | no | Tutorials that build on each other share a series name, e.g. `"Getting started with Baxter"`. They are listed together on the Tutorials page, and each says "part 1 of 2" and links to the parts before and after it. The **Group series** switch on that page shows each series as one card that opens its first part; visitors' browsers remember their choice. |
+| `series` | no | Tutorials that build on each other share a series name, e.g. `"Getting started with Baxter"`. They are listed together on the Tutorials page, and each says "part 1 of 2" and links to the parts before and after it. The **Group series** switch on that page shows each series as one card; pressing it shows all the parts in a carousel under that card. It's on by default, and visitors' browsers remember if they turn it off. |
 | `part` | with `series` | The part's number in its series: `1`, `2`, … |
 | `projects` | no | Projects this tutorial belongs to, e.g. `[baxter]`. It is listed on their pages, and the first one decides which filter chip it falls under on the Tutorials page. Tutorials without a project are filed under their `topic`, or else under "Workshops". |
 | `topic` | no | For a tutorial that belongs to no project: the filter chip it falls under on the Tutorials page, e.g. `"Arduino"`. The chip appears as soon as one tutorial uses it. |

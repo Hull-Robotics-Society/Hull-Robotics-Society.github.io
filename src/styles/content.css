@@ -195,6 +195,25 @@
 .t-view[aria-checked="true"] i { background: var(--accent); }
 .t-view[aria-checked="true"] i::after { transform: translateX(12px); }
 .t-folder { box-shadow: 5px 5px 0 -1px var(--surface), 5px 5px 0 0 var(--line), 10px 10px 0 -1px var(--surface), 10px 10px 0 0 var(--line); }
+.t-folder { font: inherit; color: inherit; text-align: left; padding: 0; width: 100%; cursor: pointer; }
+.t-folder[aria-expanded="true"] { border-color: var(--accent); }
+.t-folder .t-open { color: var(--accent); }
+.t-folder .t-open::after { content: " ↓"; }
+.t-folder[aria-expanded="true"] .t-open::after { content: " ↑"; }
+/* A series' parts in a row that scrolls sideways: three at a time on wide screens, one and a bit on phones */
+.t-carousel { grid-column: 1 / -1; min-width: 0; padding: 20px; border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--line)); border-radius: 12px; background: var(--surface-2); }
+.t-carousel-head { display: flex; justify-content: space-between; align-items: end; gap: 12px 16px; flex-wrap: wrap; margin-bottom: 16px; }
+.t-carousel-head h3 { font-size: var(--step-2); margin-top: 4px; }
+.t-carousel-nav { display: flex; gap: 8px; }
+.t-carousel-nav button { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--fg); font-size: 1rem; cursor: pointer; }
+.t-carousel-nav button:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+.t-carousel-nav button:disabled { opacity: .4; cursor: default; }
+.t-carousel-track { display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 40px) / 3); gap: 20px; overflow-x: auto; scroll-snap-type: x proximity; scroll-padding-inline: 2px; padding: 4px 2px 12px; scrollbar-width: thin; }
+.t-carousel-track > * { scroll-snap-align: start; }
+@media (max-width: 900px) {
+  .t-carousel { padding: 14px; }
+  .t-carousel-track { grid-auto-columns: 85%; gap: 12px; }
+}
 .t-group:not([hidden]) ~ .t-group { margin-top: 56px; }
 .t-group h2 { font-size: var(--step-2); margin: 6px 0 20px; }
 .drawn-cover { width: 100%; height: 100%; display: block; background: var(--surface-2); }

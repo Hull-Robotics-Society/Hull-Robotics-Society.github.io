@@ -9,17 +9,19 @@ interface Props {
     parts: Tutorial[];
     // The filter chips its parts fall under on the Tutorials page
     groups: string[];
+    // Id of the carousel with all its parts, which this card opens and closes
+    controls: string;
 }
 
-// A whole series as one card, like a folder of its parts. It opens the first part.
-const { name, parts, groups } = Astro.props;
+// A whole series as one card, like a folder of its parts. Pressing it shows all the parts in a carousel.
+const { name, parts, groups, controls } = Astro.props;
 const first = parts[0];
 const cover = coverOf(first);
 const levels = ['Beginner', 'Intermediate', 'Advanced'].filter(l => parts.some(t => t.data.level === l));
 const range = levels.length > 1 ? `${levels[0]} to ${levels[levels.length - 1]}` : levels[0];
 ---
 
-<a class="card t-card t-folder" href={`/tutorials/${first.id}/`} data-group={groups.join(' ')} data-level={levels.join(' ')}>
+<button type="button" class="card t-card t-folder" aria-expanded="false" aria-controls={controls} data-group={groups.join(' ')} data-level={levels.join(' ')}>
     <div class="media">
         {cover
             ? <img src={cover} alt="" loading="lazy" decoding="async" />
@@ -31,7 +33,7 @@ const range = levels.length > 1 ? `${levels[0]} to ${levels[levels.length - 1]}`
         <h3>{name}</h3>
         <p class="muted">Part 1: {first.data.title}</p>
         <div class="foot">
-            <div class="stats"><span class="t-fact">{range}</span></div>
+            <div class="stats"><span class="t-fact">{range}</span><span class="t-fact t-open">Show parts</span></div>
         </div>
     </div>
-</a>
+</button>
