@@ -10,8 +10,10 @@
             "robot": "Sophia"
         },
         {
+            "name": "Rob",
             "role": "Vice President",
-            "vacant": true
+            "about": "PhD candidate in Computer Science, researching neuroprosthetic technology.",
+            "robot": "Sonny"
         },
         {
             "name": "Ben",
@@ -20,10 +22,8 @@
             "robot": "Spot"
         },
         {
-            "name": "Rob",
             "role": "Project Manager",
-            "about": "PhD candidate in Computer Science, researching neuroprosthetic technology.",
-            "robot": "Sonny"
+            "vacant": true
         }
     ]
 }
