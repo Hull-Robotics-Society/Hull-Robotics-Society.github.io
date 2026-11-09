@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import TutorialCard from '../../components/TutorialCard.astro';
+import SeriesCard from '../../components/SeriesCard.astro';
 import { projects, type Tutorial } from '../../lib/site';
 
 const tutorials = (await getCollection('tutorials')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
@@ -25,6 +26,7 @@ const series = seriesNames.map(name => ({
     parts: tutorials.filter(t => t.data.series === name).sort((a, b) => (a.data.part ?? 0) - (b.data.part ?? 0))
 }));
 const single = tutorials.filter(t => !t.data.series);
+const carouselId = (name: string) => `parts-${name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
 ---
 
 <Base title="Tutorials" description="Step-by-step guides from Hull University Robotics Society workshops.">
@@ -39,11 +41,41 @@ const single = tutorials.filter(t => !t.data.series);
                 <button type="button" aria-pressed="true" data-group="all">All</button>
                 {groups.map(g => <button type="button" aria-pressed="false" data-group={g.id}>{g.label}</button>)}
             </div>
-            <select id="t-level" aria-label="Level">
-                <option value="all">Any level</option>
-                {levels.map(l => <option value={l}>{l}</option>)}
-            </select>
+            <div class="t-controls">
+                {series.length > 0 && <button type="button" class="t-view" role="switch" aria-checked="false">Group series<i aria-hidden="true"></i></button>}
+                <select id="t-level" aria-label="Level">
+                    <option value="all">Any level</option>
+                    {levels.map(l => <option value={l}>{l}</option>)}
+                </select>
+            </div>
         </div>
+
+        {series.length > 0 && (
+            <section class="t-group t-folders" aria-label="Series" hidden>
+                <h2>Series</h2>
+                <div class="grid3">
+                    {series.map(s => <SeriesCard name={s.name} parts={s.parts} groups={[...new Set(s.parts.map(t => groupOf(t).id))]} controls={carouselId(s.name)} />)}
+                {series.map(s => (
+                    <div class="t-carousel" id={carouselId(s.name)} role="region" aria-label={`${s.name}, all parts`} hidden>
+                        <div class="t-carousel-head">
+                            <div>
+                                <p class="eyebrow">Series · {s.parts.length} parts</p>
+                                <h3>{s.name}</h3>
+                            </div>
+                            <div class="t-carousel-nav">
+                                <button type="button" data-step="-1" aria-label="Previous parts">←</button>
+                                <button type="button" data-step="1" aria-label="Next parts">→</button>
+                                <button type="button" data-close aria-label={`Close ${s.name}`}>✕</button>
+                            </div>
+                        </div>
+                        <div class="t-carousel-track" tabindex="0" aria-label={`Parts of ${s.name}`}>
+                            {s.parts.map(t => <TutorialCard t={t} group={groupOf(t)} />)}
+                        </div>
+                    </div>
+                ))}
+                </div>
+            </section>
+        )}
 
         {series.map(s => (
             <section class="t-group t-series" aria-label={s.name}>
@@ -65,33 +97,107 @@ const single = tutorials.filter(t => !t.data.series);
             </div>
         </section>
         <p class="muted t-none" hidden>No tutorials match. Try another level or project.</p>
+
+        <script is:inline>
+            // Runs here, before the page first paints, so a remembered view doesn't flash the other one.
+            // Filter by project and level in the browser; a series or section with nothing left is hidden.
+            // A series folder has several groups and levels, and stays while any of its parts match.
+            // Pressing a folder shows all its parts in a carousel right under that folder's row; one is open at a time.
+            {
+                const chips = [...document.querySelectorAll('.t-filters [role="group"] button')];
+                const level = document.querySelector('#t-level');
+                const toggle = document.querySelector('.t-view');
+                let group = 'all';
+                // Series are grouped unless this visitor turned it off; without JavaScript every part is listed
+                let folders = true;
+                try { folders = localStorage.getItem('tutorial-view') !== 'parts'; } catch {}
+                const motion = () => matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+                const folderCards = [...document.querySelectorAll('.t-folder')];
+                let open = null;
+                // Previous and next are greyed out at the ends of a carousel
+                const updateNav = carousel => {
+                    const track = carousel.querySelector('.t-carousel-track');
+                    carousel.querySelector('[data-step="-1"]').disabled = track.scrollLeft <= 1;
+                    carousel.querySelector('[data-step="1"]').disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 1;
+                };
+                // The last folder in the same row of the grid as this one (one per row on phones)
+                const rowEnd = folder => folderCards.filter(f => !f.hidden && f.offsetTop === folder.offsetTop).pop();
+                const setOpen = (carousel, folder) => {
+                    open = carousel;
+                    folderCards.forEach(f => f.setAttribute('aria-expanded', String(!!carousel && f.getAttribute('aria-controls') === carousel.id)));
+                    document.querySelectorAll('.t-carousel').forEach(c => { c.hidden = c !== carousel; });
+                    if (!carousel) return;
+                    rowEnd(folder).after(carousel);
+                    updateNav(carousel);
+                };
+                // Scroll a carousel by one screenful, to the exact start of a card so snapping doesn't fight it
+                const page = (track, step) => {
+                    const cards = [...track.children].filter(c => !c.hidden);
+                    const box = track.getBoundingClientRect();
+                    const at = Math.max(0, cards.findIndex(c => c.getBoundingClientRect().left >= box.left - 2));
+                    const perScreen = Math.max(1, cards.filter(c => c.getBoundingClientRect().right <= box.right + 2 && c.getBoundingClientRect().left >= box.left - 2).length);
+                    const target = cards[Math.min(cards.length - 1, Math.max(0, at + step * perScreen))];
+                    const left = target.getBoundingClientRect().left - box.left + track.scrollLeft - parseFloat(getComputedStyle(track).paddingLeft);
+                    track.scrollTo({ left, behavior: motion() });
+                };
+                const apply = () => {
+                    const filtered = group !== 'all' || level.value !== 'all';
+                    let shown = 0;
+                    toggle?.setAttribute('aria-checked', String(folders));
+                    document.querySelectorAll('.t-group').forEach(section => {
+                        if (folders ? section.matches('.t-series') : section.matches('.t-folders')) {
+                            section.hidden = true;
+                            return;
+                        }
+                        let inSection = 0;
+                        section.querySelectorAll('.t-card').forEach(c => {
+                            c.hidden = (group !== 'all' && !c.dataset.group.split(' ').includes(group)) || (level.value !== 'all' && !c.dataset.level.split(' ').includes(level.value));
+                            if (!c.hidden && !c.closest('.t-carousel')) inSection++;
+                        });
+                        section.querySelector('.t-write')?.toggleAttribute('hidden', filtered);
+                        section.hidden = filtered && inSection === 0;
+                        shown += inSection;
+                    });
+                    document.querySelector('.t-none').hidden = shown > 0;
+                    // Close the carousel when its folder or all its parts are filtered out, or the view changes
+                    const folder = open && folderCards.find(f => f.getAttribute('aria-controls') === open.id);
+                    if (open && (!folders || folder.hidden || !open.querySelector('.t-card:not([hidden])'))) setOpen(null);
+                    else if (open) setOpen(open, folder);
+                };
+                folderCards.forEach(f => f.addEventListener('click', () => {
+                    const carousel = document.getElementById(f.getAttribute('aria-controls'));
+                    setOpen(open === carousel ? null : carousel, f);
+                    if (!open) return;
+                    open.querySelector('.t-carousel-track').scrollLeft = 0;
+                    updateNav(open);
+                    open.scrollIntoView({ block: 'nearest', behavior: motion() });
+                }));
+                document.querySelectorAll('.t-carousel').forEach(carousel => {
+                    const track = carousel.querySelector('.t-carousel-track');
+                    const close = () => {
+                        setOpen(null);
+                        folderCards.find(f => f.getAttribute('aria-controls') === carousel.id)?.focus();
+                    };
+                    track.addEventListener('scroll', () => updateNav(carousel), { passive: true });
+                    carousel.querySelectorAll('[data-step]').forEach(b => b.addEventListener('click', () => {
+                        page(track, Number(b.dataset.step));
+                    }));
+                    carousel.querySelector('[data-close]').addEventListener('click', close);
+                    carousel.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+                });
+                chips.forEach(b => b.addEventListener('click', () => {
+                    chips.forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+                    group = b.dataset.group;
+                    apply();
+                }));
+                level.addEventListener('change', apply);
+                toggle?.addEventListener('click', () => {
+                    folders = !folders;
+                    try { localStorage.setItem('tutorial-view', folders ? 'folders' : 'parts'); } catch {}
+                    apply();
+                });
+                apply();
+            }
+        </script>
     </div>
 </Base>
-
-<script>
-    // Filter by project and level in the browser; a series or section with nothing left is hidden
-    const buttons = [...document.querySelectorAll<HTMLButtonElement>('.t-filters button')];
-    const level = document.querySelector<HTMLSelectElement>('#t-level')!;
-    let group = 'all';
-    const apply = () => {
-        const filtered = group !== 'all' || level.value !== 'all';
-        let shown = 0;
-        document.querySelectorAll<HTMLElement>('.t-group').forEach(section => {
-            let inSection = 0;
-            section.querySelectorAll<HTMLElement>('.t-card').forEach(c => {
-                c.hidden = (group !== 'all' && c.dataset.group !== group) || (level.value !== 'all' && c.dataset.level !== level.value);
-                if (!c.hidden) inSection++;
-            });
-            section.querySelector<HTMLElement>('.t-write')?.toggleAttribute('hidden', filtered);
-            section.hidden = filtered && inSection === 0;
-            shown += inSection;
-        });
-        document.querySelector<HTMLElement>('.t-none')!.hidden = shown > 0;
-    };
-    buttons.forEach(b => b.addEventListener('click', () => {
-        buttons.forEach(x => x.setAttribute('aria-pressed', String(x === b)));
-        group = b.dataset.group!;
-        apply();
-    }));
-    level.addEventListener('change', apply);
-</script>
