@@ -1,6 +1,7 @@
 ---
 title: "Git command reference and error index"
-date: 2026-11-04
+author: "Rob Finnis"
+date: 2026-11-06
 excerpt: "Every command from the series on one page, plus an index of error messages with what they mean and how to fix them. Search it with Ctrl+F, or paste your error into the site search."
 level: "Beginner"
 duration: "Keep it handy"
@@ -10,7 +11,6 @@ series: "Git and GitHub"
 part: 12
 topic: "Git"
 tags: ["Git", "Reference", "Errors"]
-aiAssisted: true
 ---
 The shortest possible version of the series. Each section links to the part that explains it. Your first stop when stuck is always:
 

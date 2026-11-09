@@ -1,6 +1,7 @@
 ---
 title: "Contribute to a GitHub organisation"
-date: 2026-11-04
+author: "Rob Finnis"
+date: 2026-11-06
 excerpt: "The full route from an idea to merged code in a shared project: permissions, forks and branches, pull requests, reviews, failing checks and cleaning up, using this website as the worked example."
 level: "Intermediate"
 duration: "About 90 minutes"
@@ -12,7 +13,6 @@ series: "Git and GitHub"
 part: 9
 topic: "Git"
 tags: ["GitHub", "Organisations", "Pull requests"]
-aiAssisted: true
 ---
 > **Learn by doing:** [Lab 6](/tutorials/git-lab-fork-pr/) takes you through a real pull request to the society's practice repository, and [Lab 7](/tutorials/git-lab-three-branches/) has you handle three branches at once.
 

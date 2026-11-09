@@ -1,5 +1,6 @@
 ---
 title: "Build your first repository from the command line"
+author: "Rob Finnis"
 date: 2026-11-04
 excerpt: "Make a repository, add folders and files, commit them, ignore what doesn't belong and push it all to GitHub, typing every command yourself."
 level: "Beginner"
@@ -12,7 +13,6 @@ series: "Git hands-on labs"
 part: 1
 topic: "Git"
 tags: ["Git", "Practice", "CLI"]
-aiAssisted: true
 ---
 Reading about Git and using Git are different skills. These labs are for practising: you do the work, make the mistakes on purpose, and find out what really happens. If you want the explanations behind them, they're in the [Git and GitHub](/tutorials/git-setup/) series.
 

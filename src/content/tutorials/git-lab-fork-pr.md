@@ -1,6 +1,7 @@
 ---
 title: "Fork, branch and open a real pull request"
-date: 2026-11-04
+author: "Rob Finnis"
+date: 2026-11-06
 excerpt: "Fork the society's practice repository, add yourself to the crew on your own branch, get a check passing, open a pull request back to the organisation and clean up afterwards."
 level: "Intermediate"
 duration: "About 60 minutes"
@@ -13,7 +14,6 @@ series: "Git hands-on labs"
 part: 6
 topic: "Git"
 tags: ["Git", "Practice", "Pull requests"]
-aiAssisted: true
 ---
 You don't need to be a member of the society to do this one. You'll follow the same route as a contribution to any open source project: fork, branch, change, check, pull request, review, merge, tidy up. At the end, your name is in the society's [git-practice](https://github.com/Hull-Robotics-Society/git-practice) repository.
 

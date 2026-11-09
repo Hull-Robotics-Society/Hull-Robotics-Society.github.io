@@ -1,5 +1,6 @@
 ---
 title: "The everyday loop: from first commit to push"
+author: "Rob Finnis"
 date: 2026-11-04
 excerpt: "Start or clone a repository, stage exactly what you mean to, write commits people can read, ignore the files that don't belong, and push your work."
 level: "Beginner"
@@ -11,7 +12,6 @@ series: "Git and GitHub"
 part: 3
 topic: "Git"
 tags: ["Git", "Commits"]
-aiAssisted: true
 ---
 > **Learn by doing:** [Lab 1](/tutorials/git-lab-first-repo/) has you build a repository from nothing and push it, using every command here.
 

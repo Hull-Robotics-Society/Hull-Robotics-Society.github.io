@@ -1,5 +1,6 @@
 ---
 title: "Git power tools: clean history, faster debugging, big projects"
+author: "Rob Finnis"
 date: 2026-11-04
 excerpt: "Interactive rebase, bisect, blame, worktrees, submodules for ROS workspaces, Git LFS for CAD files, tags and releases, hooks and more."
 level: "Advanced"
@@ -11,7 +12,6 @@ series: "Git and GitHub"
 part: 11
 topic: "Git"
 tags: ["Git", "Rebase", "Submodules"]
-aiAssisted: true
 ---
 > **Learn by doing:** [Lab 5](/tutorials/git-lab-break-and-fix/#tidy-a-messy-branch) has you try interactive rebase and bisect on a branch set up for it.
 

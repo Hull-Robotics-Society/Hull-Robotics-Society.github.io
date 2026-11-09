@@ -1,5 +1,6 @@
 ---
 title: "Branches, merging and rebasing"
+author: "Rob Finnis"
 date: 2026-11-04
 excerpt: "Work on several things at once, bring them back together, and know when to merge and when to rebase, with the one rule that keeps rebasing safe."
 level: "Beginner"
@@ -10,7 +11,6 @@ series: "Git and GitHub"
 part: 4
 topic: "Git"
 tags: ["Git", "Branches", "Rebase"]
-aiAssisted: true
 ---
 > **Learn by doing:** [Lab 2](/tutorials/git-lab-branches/) has you make each of these shapes yourself.
 

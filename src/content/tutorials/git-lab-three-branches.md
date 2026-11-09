@@ -1,5 +1,6 @@
 ---
 title: "Handle three branches at once"
+author: "Rob Finnis"
 date: 2026-11-04
 excerpt: "Lights, wheels and sensors are all in progress and all aimed at main. Land them one at a time and watch the numbers change as each merge leaves the others further behind. Works solo or as a team of three."
 level: "Advanced"
@@ -12,7 +13,6 @@ series: "Git hands-on labs"
 part: 7
 topic: "Git"
 tags: ["Git", "Practice", "Teamwork"]
-aiAssisted: true
 ---
 This is what a real project feels like. Three pieces of work are in progress at once, and all of them started from the same `main`. Nothing's wrong with any of them, but as soon as one lands, the others are behind. One of them will conflict.
 

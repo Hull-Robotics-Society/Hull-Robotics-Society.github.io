@@ -1,5 +1,6 @@
 ---
 title: "Break things and get them back"
+author: "Rob Finnis"
 date: 2026-11-04
 excerpt: "Destroy commits with reset, delete branches, get lost in detached HEAD, then recover everything with the reflog. Finish by tidying a messy branch and hunting a hidden bug with bisect."
 level: "Intermediate"
@@ -11,7 +12,6 @@ series: "Git hands-on labs"
 part: 5
 topic: "Git"
 tags: ["Git", "Practice", "Recovery"]
-aiAssisted: true
 ---
 The best time to find out you can recover from a disaster is before you've had one. Here you'll cause each disaster on purpose, in a repository that doesn't matter. After this, `git reset --hard` should be less scary.
 

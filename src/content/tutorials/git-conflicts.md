@@ -1,5 +1,6 @@
 ---
 title: "Merge conflicts without the panic"
+author: "Rob Finnis"
 date: 2026-11-04
 excerpt: "Read conflict markers, resolve them with confidence, get out safely when you need to, and deal with the awkward cases: rebases, deleted files, lockfiles and CAD files that can't be merged."
 level: "Intermediate"
@@ -11,7 +12,6 @@ series: "Git and GitHub"
 part: 6
 topic: "Git"
 tags: ["Git", "Conflicts", "Merging"]
-aiAssisted: true
 ---
 > **Learn by doing:** [Lab 4](/tutorials/git-lab-conflicts/) has conflicts set up and ready for you to resolve, including binary files.
 

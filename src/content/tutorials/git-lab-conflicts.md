@@ -1,5 +1,6 @@
 ---
 title: "Cause and fix merge conflicts"
+author: "Rob Finnis"
 date: 2026-11-04
 excerpt: "Two teammates disagree about Scout's speed limit, and two versions of a 3D model can't both win. Merge their branches, read the markers and resolve every kind of conflict."
 level: "Intermediate"
@@ -11,7 +12,6 @@ series: "Git hands-on labs"
 part: 4
 topic: "Git"
 tags: ["Git", "Practice", "Conflicts"]
-aiAssisted: true
 ---
 This lab uses the society's practice repository, [git-practice](https://github.com/Hull-Robotics-Society/git-practice). It's a pretend robot called **Scout**, with teammates whose branches are set up to collide. You only need a clone, and nothing you do here can reach the original, because you don't have permission to push there.
 

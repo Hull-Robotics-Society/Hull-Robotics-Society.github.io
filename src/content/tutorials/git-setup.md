@@ -1,5 +1,6 @@
 ---
 title: "Set up Git and your GitHub account"
+author: "Rob Finnis"
 date: 2026-11-04
 excerpt: "Install Git, tell it who you are, secure your GitHub account and connect the two with an SSH key, with defaults that keep you out of trouble later."
 level: "Beginner"
@@ -12,7 +13,6 @@ series: "Git and GitHub"
 part: 1
 topic: "Git"
 tags: ["Git", "GitHub", "SSH"]
-aiAssisted: true
 ---
 Most Git tutorials show you `add`, `commit` and `push`, then stop just before things get difficult. This series keeps going: branches that are ahead of and behind `main`, rejected pushes, merge conflicts, undoing mistakes, and working in a GitHub organisation as a member and as an owner.
 

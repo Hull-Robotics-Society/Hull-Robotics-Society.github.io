@@ -1,5 +1,6 @@
 ---
 title: "Branch, merge and rebase"
+author: "Rob Finnis"
 date: 2026-11-04
 excerpt: "Watch files appear and vanish as you switch branches, make a fast-forward, a merge commit and a rebase yourself, and push a branch to GitHub."
 level: "Beginner"
@@ -11,7 +12,6 @@ series: "Git hands-on labs"
 part: 2
 topic: "Git"
 tags: ["Git", "Practice", "Branches"]
-aiAssisted: true
 ---
 You'll work in the `git-lab` repository from [Lab 1](/tutorials/git-lab-first-repo/). Keep `git lg` close at hand throughout: seeing the shape of your history is the point of this lab. If you haven't got that alias from [part 1](/tutorials/git-setup/#step-4-set-sensible-defaults), add it now:
 

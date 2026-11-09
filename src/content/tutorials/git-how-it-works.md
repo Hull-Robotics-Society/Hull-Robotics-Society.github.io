@@ -1,5 +1,6 @@
 ---
 title: "How Git thinks: commits, branches and HEAD"
+author: "Rob Finnis"
 date: 2026-11-04
 excerpt: "The small mental model behind every Git command. Once you can picture commits, pointers and the three copies of a branch, Git's messages start to make sense."
 level: "Beginner"
@@ -10,7 +11,6 @@ series: "Git and GitHub"
 part: 2
 topic: "Git"
 tags: ["Git", "Concepts"]
-aiAssisted: true
 ---
 People get stuck with Git because they memorise commands without a picture of what those commands do. The picture is small. This part has no exercises you can break, so read it once and come back whenever something later on stops making sense.
 

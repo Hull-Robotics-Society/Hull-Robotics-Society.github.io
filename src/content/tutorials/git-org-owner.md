@@ -1,5 +1,6 @@
 ---
 title: "Run a GitHub organisation as an owner"
+author: "Rob Finnis"
 date: 2026-11-04
 excerpt: "Roles, teams and base permissions, protecting main, safe settings for Actions and secrets, onboarding and offboarding members, and handing a student organisation to next year's committee."
 level: "Advanced"
@@ -11,7 +12,6 @@ series: "Git and GitHub"
 part: 10
 topic: "Git"
 tags: ["GitHub", "Organisations", "Administration"]
-aiAssisted: true
 ---
 Owners can do anything to everything in the organisation, including deleting it. In a student society, the group changes every year, and the people who set things up will graduate. So the aim is to leave an organisation that's safe and that next year's committee can understand.
 

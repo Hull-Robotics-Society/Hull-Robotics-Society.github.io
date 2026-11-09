@@ -1,6 +1,7 @@
 ---
 title: "Ahead, behind and diverged: when branches disagree"
-date: 2026-11-04
+author: "Rob Finnis"
+date: 2026-11-06
 excerpt: "The part other tutorials skip. What every ahead, behind and diverged message really means, why pushes get rejected, and the exact fix for each situation."
 level: "Intermediate"
 duration: "About 75 minutes"
@@ -11,7 +12,6 @@ series: "Git and GitHub"
 part: 5
 topic: "Git"
 tags: ["Git", "Troubleshooting", "Branches"]
-aiAssisted: true
 ---
 > **Learn by doing:** [Lab 3](/tutorials/git-lab-ahead-behind/) has you cause nearly everything on this page on purpose, using two clones of your own repository.
 

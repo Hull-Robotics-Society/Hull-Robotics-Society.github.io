@@ -1,5 +1,6 @@
 ---
 title: "Undo almost anything: reset, revert, reflog and stash"
+author: "Rob Finnis"
 date: 2026-11-04
 excerpt: "Pick the right undo for each mistake, recover commits you thought you had lost, and deal with the serious ones: leaked passwords, huge files and detached HEAD."
 level: "Intermediate"
@@ -11,7 +12,6 @@ series: "Git and GitHub"
 part: 7
 topic: "Git"
 tags: ["Git", "Recovery", "Reset"]
-aiAssisted: true
 ---
 > **Learn by doing:** [Lab 5](/tutorials/git-lab-break-and-fix/) has you lose work on purpose, then recover it.
 

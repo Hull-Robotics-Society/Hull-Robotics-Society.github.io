@@ -1,5 +1,6 @@
 ---
 title: "Make your own ahead, behind and diverged"
+author: "Rob Finnis"
 date: 2026-11-04
 excerpt: "Clone one repository twice and act as two people. Cause rejected pushes, diverged branches and stale status on purpose, then fix each one."
 level: "Intermediate"
@@ -11,7 +12,6 @@ series: "Git hands-on labs"
 part: 3
 topic: "Git"
 tags: ["Git", "Practice", "Troubleshooting"]
-aiAssisted: true
 ---
 Ahead, behind and diverged only happen when more than one copy of a repository exists. You don't need a teammate to see that: **clone your own repository twice** and be two people. This lab makes every message from [Ahead, behind and diverged](/tutorials/git-ahead-behind/) appear in front of you.
 

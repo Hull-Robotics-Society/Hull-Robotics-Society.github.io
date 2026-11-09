@@ -1,5 +1,6 @@
 ---
 title: "Look after your personal GitHub account"
+author: "Rob Finnis"
 date: 2026-11-04
 excerpt: "Create and configure your own repositories, choose a licence, add collaborators, protect your work, keep your account secure and turn your profile into something worth showing an employer."
 level: "Beginner"
@@ -11,7 +12,6 @@ series: "Git and GitHub"
 part: 8
 topic: "Git"
 tags: ["GitHub", "Repositories", "Security"]
-aiAssisted: true
 ---
 Your personal account is yours for life, long after university. Everything in it belongs to you, and you decide who gets access. This part covers how to run it. [Part 9](/tutorials/git-org-member/) covers working in an organisation, which adds shared ownership and finer-grained permissions.
 
